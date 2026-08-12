@@ -24,7 +24,7 @@ class ReportDetailView extends StatelessWidget {
     final passed = log.status == 'TAMAT';
 
     return Scaffold(
-      backgroundColor: AppColors.canvas,
+      backgroundColor: AppColors.canvasOf(context),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -55,7 +55,7 @@ class ReportDetailView extends StatelessWidget {
                                   value:
                                       log.total > 0 ? log.score / log.total : 0,
                                   strokeWidth: 7,
-                                  backgroundColor: AppColors.surfaceBorder,
+                                  backgroundColor: AppColors.surfaceBorderOf(context),
                                   valueColor: AlwaysStoppedAnimation<Color>(
                                     passed ? AppColors.emerald : AppColors.rose,
                                   ),
@@ -66,16 +66,16 @@ class ReportDetailView extends StatelessWidget {
                                 children: [
                                   Text(
                                     '$pct%',
-                                    style: const TextStyle(
-                                      color: AppColors.textPrimary,
+                                    style: TextStyle(
+                                      color: AppColors.textPrimaryOf(context),
                                       fontSize: 14,
                                       fontWeight: FontWeight.w900,
                                     ),
                                   ),
-                                  const Text(
+                                  Text(
                                     'tepat',
                                     style: TextStyle(
-                                      color: AppColors.textMuted,
+                                      color: AppColors.textMutedOf(context),
                                       fontSize: 8,
                                       fontWeight: FontWeight.w700,
                                     ),
@@ -96,8 +96,8 @@ class ReportDetailView extends StatelessWidget {
                               const SizedBox(height: 6),
                               Text(
                                 '${log.score} / ${log.total} betul',
-                                style: const TextStyle(
-                                  color: AppColors.textPrimary,
+                                style: TextStyle(
+                                  color: AppColors.textPrimaryOf(context),
                                   fontSize: 15,
                                   fontWeight: FontWeight.w900,
                                 ),
@@ -117,8 +117,8 @@ class ReportDetailView extends StatelessWidget {
                                   Expanded(
                                     child: Text(
                                       '${log.shields}/3 perisai  |  ${log.date}',
-                                      style: const TextStyle(
-                                        color: AppColors.textMuted,
+                                      style: TextStyle(
+                                        color: AppColors.textMutedOf(context),
                                         fontSize: 9.5,
                                       ),
                                       maxLines: 2,
@@ -136,12 +136,12 @@ class ReportDetailView extends StatelessWidget {
 
                   const SizedBox(height: 16),
 
-                  const Padding(
-                    padding: EdgeInsets.only(left: 4, bottom: 10),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 4, bottom: 10),
                     child: Text(
                       'SEMAKAN JAWAPAN',
                       style: TextStyle(
-                        color: AppColors.textMuted,
+                        color: AppColors.textMutedOf(context),
                         fontSize: 8.5,
                         fontWeight: FontWeight.w900,
                         letterSpacing: 0.8,
@@ -151,6 +151,7 @@ class ReportDetailView extends StatelessWidget {
 
                   ...log.results.asMap().entries.map(
                         (entry) => _buildQuestionCard(
+                          context,
                           entry.key + 1,
                           entry.value,
                           _findScenario(scenProv, entry.value.id),
@@ -160,13 +161,13 @@ class ReportDetailView extends StatelessWidget {
                 ],
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.symmetric(vertical: 10),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 10),
               child: Text(
                 'INISIATIF CELIK DIGITAL WARGA EMAS',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: AppColors.textMuted,
+                  color: AppColors.textMutedOf(context),
                   fontSize: 8,
                   fontWeight: FontWeight.w900,
                   letterSpacing: 0.8,
@@ -180,6 +181,7 @@ class ReportDetailView extends StatelessWidget {
   }
 
   Widget _buildQuestionCard(
+    BuildContext context,
     int num,
     ScenarioResult r,
     Scenario? scenario,
@@ -222,8 +224,8 @@ class ReportDetailView extends StatelessWidget {
                   const SizedBox(width: 6),
                   Text(
                     'Soalan $num  |  ${mediumTypeLabel(r.type)}',
-                    style: const TextStyle(
-                      color: AppColors.textMuted,
+                    style: TextStyle(
+                      color: AppColors.textMutedOf(context),
                       fontSize: 9,
                       fontWeight: FontWeight.w900,
                       letterSpacing: 0.5,
@@ -239,16 +241,16 @@ class ReportDetailView extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      const Icon(
+                      Icon(
                         LucideIcons.user,
-                        color: AppColors.textMuted,
+                        color: AppColors.textMutedOf(context),
                         size: 11,
                       ),
                       const SizedBox(width: 4),
                       Text(
                         r.sender,
-                        style: const TextStyle(
-                          color: AppColors.textSecondary,
+                        style: TextStyle(
+                          color: AppColors.textSecondaryOf(context),
                           fontSize: 10,
                           fontWeight: FontWeight.w700,
                         ),
@@ -259,17 +261,17 @@ class ReportDetailView extends StatelessWidget {
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      const Icon(
+                      Icon(
                         LucideIcons.tag,
-                        color: AppColors.textMuted,
+                        color: AppColors.textMutedOf(context),
                         size: 11,
                       ),
                       const SizedBox(width: 4),
                       Expanded(
                         child: Text(
                           'Kategori Penipuan: ${normalizeCategoryLabel(r.category)}',
-                          style: const TextStyle(
-                            color: AppColors.textSecondary,
+                          style: TextStyle(
+                            color: AppColors.textSecondaryOf(context),
                             fontSize: 9.5,
                             fontWeight: FontWeight.w600,
                             height: 1.35,
@@ -297,14 +299,14 @@ class ReportDetailView extends StatelessWidget {
                     width: double.infinity,
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      color: AppColors.surface,
+                      color: AppColors.surfaceOf(context),
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: AppColors.surfaceBorder),
+                      border: Border.all(color: AppColors.surfaceBorderOf(context)),
                     ),
                     child: Text(
                       r.message,
-                      style: const TextStyle(
-                        color: AppColors.textPrimary,
+                      style: TextStyle(
+                        color: AppColors.textPrimaryOf(context),
                         fontSize: 10.5,
                         height: 1.4,
                       ),
@@ -320,10 +322,10 @@ class ReportDetailView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                  Text(
                     'JAWAPAN ANDA:',
                     style: TextStyle(
-                      color: AppColors.textMuted,
+                      color: AppColors.textMutedOf(context),
                       fontSize: 7.5,
                       fontWeight: FontWeight.w900,
                       letterSpacing: 0.5,
@@ -331,26 +333,29 @@ class ReportDetailView extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   _buildAnswerStep(
+                    context: context,
                     title: '1. KENAL PASTI',
                     answer: r.identifyAnswerText ?? 'Tidak direkodkan',
                     highlight: (r.identifyAnswerText ?? '').isNotEmpty,
                   ),
                   const SizedBox(height: 10),
                   _buildRedFlagStep(
+                    context: context,
                     answers: r.redFlagAnswers,
                   ),
                   const SizedBox(height: 10),
                   _buildAnswerStep(
+                    context: context,
                     title: '3. RESPON',
                     answer: r.userChoiceText ?? 'Tidak direkodkan',
                     highlight: (r.userChoiceText ?? '').isNotEmpty,
                     correct: r.userCorrect,
                   ),
                   const SizedBox(height: 14),
-                  const Text(
+                  Text(
                     'PENJELASAN',
                     style: TextStyle(
-                      color: AppColors.textPrimary,
+                      color: AppColors.textPrimaryOf(context),
                       fontSize: 11,
                       fontWeight: FontWeight.w900,
                       letterSpacing: 0.4,
@@ -372,8 +377,8 @@ class ReportDetailView extends StatelessWidget {
                       Expanded(
                         child: Text(
                           r.explanation,
-                          style: const TextStyle(
-                            color: Colors.white,
+                          style: TextStyle(
+                            color: AppColors.textPrimaryOf(context),
                             fontSize: 10.5,
                             height: 1.45,
                             fontWeight: FontWeight.w600,
@@ -383,10 +388,10 @@ class ReportDetailView extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 14),
-                  const Text(
+                  Text(
                     'TINDAKAN YANG DISYORKAN',
                     style: TextStyle(
-                      color: AppColors.textPrimary,
+                      color: AppColors.textPrimaryOf(context),
                       fontSize: 11,
                       fontWeight: FontWeight.w900,
                       letterSpacing: 0.4,
@@ -394,10 +399,10 @@ class ReportDetailView extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   if (recommendedActions.isEmpty)
-                    const Text(
+                    Text(
                       'Tiada tindakan yang disyorkan direkodkan untuk senario ini.',
                       style: TextStyle(
-                        color: AppColors.textSecondary,
+                        color: AppColors.textSecondaryOf(context),
                         fontSize: 10,
                         fontStyle: FontStyle.italic,
                       ),
@@ -425,8 +430,8 @@ class ReportDetailView extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     entry.value,
-                                    style: const TextStyle(
-                                      color: AppColors.textPrimary,
+                                    style: TextStyle(
+                                      color: AppColors.textPrimaryOf(context),
                                       fontSize: 10.5,
                                       fontWeight: FontWeight.w700,
                                       height: 1.35,
@@ -467,16 +472,17 @@ class ReportDetailView extends StatelessWidget {
   }
 
   Widget _buildAnswerStep({
+    required BuildContext context,
     required String title,
     required String answer,
     required bool highlight,
     bool? correct,
   }) {
     final Color chipColor = correct == null
-        ? AppColors.textSecondary
+        ? AppColors.textSecondaryOf(context)
         : (correct ? AppColors.emeraldMuted : AppColors.rose);
     final Color bgColor = correct == null
-        ? AppColors.surfaceBorder.withValues(alpha: 0.35)
+        ? AppColors.surfaceBorderOf(context).withValues(alpha: 0.35)
         : (correct
             ? AppColors.emeraldBadgeBg
             : AppColors.roseBadgeBg);
@@ -486,8 +492,8 @@ class ReportDetailView extends StatelessWidget {
       children: [
         Text(
           title,
-          style: const TextStyle(
-            color: AppColors.textMuted,
+          style: TextStyle(
+            color: AppColors.textMutedOf(context),
             fontSize: 7.8,
             fontWeight: FontWeight.w900,
             letterSpacing: 0.5,
@@ -498,16 +504,16 @@ class ReportDetailView extends StatelessWidget {
           width: double.infinity,
           padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
           decoration: BoxDecoration(
-            color: highlight ? bgColor : AppColors.surface.withValues(alpha: 0.25),
+            color: highlight ? bgColor : AppColors.surfaceOf(context).withValues(alpha: 0.25),
             borderRadius: BorderRadius.circular(10),
             border: Border.all(
               color: highlight
                   ? (correct == null
-                      ? AppColors.glassBorder
+                      ? AppColors.surfaceBorderOf(context)
                       : (correct
                           ? AppColors.emerald.withValues(alpha: 0.25)
                           : AppColors.rose.withValues(alpha: 0.25)))
-                  : AppColors.glassBorder,
+                  : AppColors.surfaceBorderOf(context),
             ),
           ),
           child: Text(
@@ -525,6 +531,7 @@ class ReportDetailView extends StatelessWidget {
   }
 
   Widget _buildRedFlagStep({
+    required BuildContext context,
     List<String>? answers,
   }) {
     final safeAnswers = answers ?? const [];
@@ -532,10 +539,10 @@ class ReportDetailView extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           '2. RED FLAGS',
           style: TextStyle(
-            color: AppColors.textMuted,
+            color: AppColors.textMutedOf(context),
             fontSize: 7.8,
             fontWeight: FontWeight.w900,
             letterSpacing: 0.5,
@@ -547,14 +554,14 @@ class ReportDetailView extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
             decoration: BoxDecoration(
-              color: AppColors.surface.withValues(alpha: 0.25),
+              color: AppColors.surfaceOf(context).withValues(alpha: 0.25),
               borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: AppColors.glassBorder),
+              border: Border.all(color: AppColors.surfaceBorderOf(context)),
             ),
-            child: const Text(
+            child: Text(
               'Tiada red flags direkodkan.',
               style: TextStyle(
-                color: AppColors.textSecondary,
+                color: AppColors.textSecondaryOf(context),
                 fontSize: 10.5,
                 fontWeight: FontWeight.w700,
                 height: 1.35,

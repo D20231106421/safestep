@@ -22,6 +22,7 @@ class CurriculumView extends StatefulWidget {
 class _CurriculumViewState extends State<CurriculumView> {
   String _searchQuery = '';
   String _filterType = 'all';
+  String _filterCategory = 'all';
 
   static const _typeColors = {
     'whatsapp': Color(0xFF25D366),
@@ -38,11 +39,13 @@ class _CurriculumViewState extends State<CurriculumView> {
 
     final filtered = scenProv.masterScenarios.where((s) {
       final matchType = _filterType == 'all' || s.type == _filterType;
+      final matchCategory = _filterCategory == 'all' ||
+          normalizeCategoryLabel(s.category) == _filterCategory;
       final matchSearch = _searchQuery.isEmpty ||
           s.sender.toLowerCase().contains(_searchQuery.toLowerCase()) ||
           s.category.toLowerCase().contains(_searchQuery.toLowerCase()) ||
           s.message.toLowerCase().contains(_searchQuery.toLowerCase());
-      return matchType && matchSearch;
+      return matchType && matchCategory && matchSearch;
     }).toList();
 
     final activeCount = scenProv.masterScenarios.where((s) => s.isActive).length;
@@ -107,10 +110,28 @@ class _CurriculumViewState extends State<CurriculumView> {
                   _buildChip('sms', 'SMS'),
                   _buildChip('email', 'Emel'),
                   _buildChip('phone', 'Telefon'),
-                  _buildChip('web', 'Web'),
                 ],
               ),
             ).animate().fadeIn(delay: 120.ms, duration: 300.ms),
+            const SizedBox(height: 6),
+
+            // Category filter chips
+            SizedBox(
+              height: 36,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                children: [
+                  _buildCategoryChip('all', 'Semua Penipuan'),
+                  _buildCategoryChip(kCategoryTechSupport, 'Sokongan Teknikal & Bank'),
+                  _buildCategoryChip(kCategoryAuthority, 'Penyamaran Pihak Berkuasa'),
+                  _buildCategoryChip(kCategoryGiveaway, 'Cabutan Bertuah & Hadiah Palsu'),
+                  _buildCategoryChip(kCategoryPhishing, 'Phishing & Smishing'),
+                  _buildCategoryChip(kCategoryFamily, 'Penipuan Penyamar Keluarga'),
+                  _buildCategoryChip(kCategoryOthers, 'Lain-lain'),
+                ],
+              ),
+            ).animate().fadeIn(delay: 140.ms, duration: 300.ms),
             const SizedBox(height: 6),
 
             // Stats row
@@ -209,14 +230,57 @@ class _CurriculumViewState extends State<CurriculumView> {
             width: 1,
           ),
         ),
-        child: Text(
-          label,
-          style: TextStyle(
+        child: Center(
+          child: Text(
+            label,
+            style: TextStyle(
+              color: active
+                  ? (isDark ? AppColors.emeraldMuted : AppColors.lightEmeraldMuted)
+                  : AppColors.textMutedOf(context),
+              fontSize: 10,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildCategoryChip(String category, String label) {
+    final active = _filterCategory == category;
+    final isDark = AppColors.isDark(context);
+
+    return GestureDetector(
+      onTap: () => setState(() => _filterCategory = category),
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 180),
+        margin: const EdgeInsets.only(right: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
+        decoration: BoxDecoration(
+          color: active
+              ? AppColors.amberBadgeBg
+              : (isDark
+                  ? AppColors.surfaceBorder.withValues(alpha: 0.5)
+                  : Colors.white),
+          borderRadius: BorderRadius.circular(100),
+          border: Border.all(
             color: active
-                ? (isDark ? AppColors.emeraldMuted : AppColors.lightEmeraldMuted)
-                : AppColors.textMutedOf(context),
-            fontSize: 10,
-            fontWeight: FontWeight.w700,
+                ? AppColors.amber.withValues(alpha: 0.5)
+                : AppColors.surfaceBorderOf(context),
+            width: 1,
+          ),
+        ),
+        child: Center(
+          child: Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: active
+                  ? AppColors.amber
+                  : AppColors.textMutedOf(context),
+              fontSize: 10,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
       ),

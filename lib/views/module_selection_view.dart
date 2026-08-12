@@ -29,7 +29,7 @@ class ModuleSelectionView extends StatelessWidget {
       {
         'id': 'authority',
         'title': 'Authority & Government Impersonators',
-        'malay': 'Penyamaran Agensi Kerajaan & Kuasa',
+        'malay': 'Penyamaran Pihak Berkuasa & Agensi Kerajaan',
         'desc': 'Penyamaran sebagai polis (Macau Scam), LHDN, atau badan berkuasa dengan ugutan waran.',
         'icon': LucideIcons.shieldAlert,
         'iconColor': AppColors.rose,
@@ -45,7 +45,7 @@ class ModuleSelectionView extends StatelessWidget {
       {
         'id': 'phishing',
         'title': 'Phishing (Email & SMS Smishing)',
-        'malay': 'Phishing & Smishing (E-mel / SMS)',
+        'malay': 'Phishing & Smishing',
         'desc': 'Pautan keselamatan palsu yang cuba mencuri ID pengguna, kata laluan, dan kod TAC.',
         'icon': LucideIcons.mail,
         'iconColor': AppColors.indigo,
@@ -53,7 +53,7 @@ class ModuleSelectionView extends StatelessWidget {
       {
         'id': 'family',
         'title': 'Emergency Family Impersonation',
-        'malay': 'Penyamaran Keluarga & Kecemasan',
+        'malay': 'Penipuan Penyamar Keluarga',
         'desc': 'Taktik meniru identiti anak atau ahli keluarga terdekat meminta wang pembiayaan segera.',
         'icon': LucideIcons.phone,
         'iconColor': AppColors.emerald,
@@ -163,20 +163,20 @@ class ModuleSelectionView extends StatelessWidget {
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Row(
+                                        crossAxisAlignment: CrossAxisAlignment.center,
                                         children: [
                                           Expanded(
                                             child: Text(
-                                              (item['title'] as String).toUpperCase(),
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
+                                              item['malay'] as String,
                                               style: TextStyle(
-                                                color: AppColors.textMutedOf(context),
-                                                fontSize: 8,
+                                                color: AppColors.textPrimaryOf(context),
+                                                fontSize: 12,
                                                 fontWeight: FontWeight.w800,
-                                                letterSpacing: 0.6,
+                                                height: 1.2,
                                               ),
                                             ),
                                           ),
+                                          const SizedBox(width: 8),
                                           MetricChip(
                                             label: '$count Kes',
                                             backgroundColor: count > 0
@@ -188,16 +188,6 @@ class ModuleSelectionView extends StatelessWidget {
                                             fontSize: 8,
                                           ),
                                         ],
-                                      ),
-                                      const SizedBox(height: 3),
-                                      Text(
-                                        item['malay'] as String,
-                                        style: TextStyle(
-                                          color: AppColors.textPrimaryOf(context),
-                                          fontSize: 12,
-                                          fontWeight: FontWeight.w800,
-                                          height: 1.2,
-                                        ),
                                       ),
                                       const SizedBox(height: 3),
                                       Text(

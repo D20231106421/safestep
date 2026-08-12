@@ -111,7 +111,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
     final isEdit = widget.scenario != null;
 
     return Scaffold(
-      backgroundColor: AppColors.canvas,
+      backgroundColor: AppColors.canvasOf(context),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -158,23 +158,23 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                             ),
                           ),
                           const SizedBox(width: 12),
-                          const Expanded(
+                          Expanded(
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
                                   'Bina senario dengan langkah yang jelas',
                                   style: TextStyle(
-                                    color: AppColors.textPrimary,
+                                    color: AppColors.textPrimaryOf(context),
                                     fontSize: 13,
                                     fontWeight: FontWeight.w900,
                                   ),
                                 ),
-                                SizedBox(height: 4),
+                                const SizedBox(height: 4),
                                 Text(
                                   'Pilih medium, isi kandungan, tetapkan klasifikasi, kemudian tambah balasan dan tindakan.',
                                   style: TextStyle(
-                                    color: AppColors.textMuted,
+                                    color: AppColors.textMutedOf(context),
                                     fontSize: 10.5,
                                     height: 1.35,
                                   ),
@@ -368,9 +368,9 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                           Container(
                             padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
                             decoration: BoxDecoration(
-                              color: AppColors.surface,
+                              color: AppColors.surfaceOf(context),
                               borderRadius: BorderRadius.circular(14),
-                              border: Border.all(color: AppColors.surfaceBorder),
+                              border: Border.all(color: AppColors.surfaceBorderOf(context)),
                             ),
                             child: Row(
                               children: [
@@ -388,23 +388,23 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                                   ),
                                 ),
                                 const SizedBox(width: 12),
-                                const Expanded(
+                                Expanded(
                                   child: Column(
                                     crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         'Ini adalah penipuan',
                                         style: TextStyle(
-                                          color: AppColors.textPrimary,
+                                          color: AppColors.textPrimaryOf(context),
                                           fontSize: 12.5,
                                           fontWeight: FontWeight.w800,
                                         ),
                                       ),
-                                      SizedBox(height: 3),
+                                      const SizedBox(height: 3),
                                       Text(
                                         'Aktifkan untuk kandungan yang perlu ditanda sebagai contoh penipuan.',
                                         style: TextStyle(
-                                          color: AppColors.textMuted,
+                                          color: AppColors.textMutedOf(context),
                                           fontSize: 9.5,
                                           height: 1.35,
                                         ),
@@ -471,9 +471,9 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                               child: Container(
                                 padding: const EdgeInsets.all(10),
                                 decoration: BoxDecoration(
-                                  color: AppColors.surface,
+                                  color: AppColors.surfaceOf(context),
                                   borderRadius: BorderRadius.circular(14),
-                                  border: Border.all(color: AppColors.surfaceBorder),
+                                  border: Border.all(color: AppColors.surfaceBorderOf(context)),
                                 ),
                                 child: Row(
                                   children: [
@@ -543,9 +543,9 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                               child: Container(
                                 padding: const EdgeInsets.all(12),
                                 decoration: BoxDecoration(
-                                  color: AppColors.surface,
+                                  color: AppColors.surfaceOf(context),
                                   borderRadius: BorderRadius.circular(14),
-                                  border: Border.all(color: AppColors.surfaceBorder),
+                                  border: Border.all(color: AppColors.surfaceBorderOf(context)),
                                 ),
                                 child: Column(
                                   children: [
@@ -642,7 +642,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                     Text(
                       title,
                       style: GoogleFonts.plusJakartaSans(
-                        color: AppColors.textPrimary,
+                        color: AppColors.textPrimaryOf(context),
                         fontSize: 13,
                         fontWeight: FontWeight.w900,
                         letterSpacing: -0.2,
@@ -653,7 +653,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                       Text(
                         subtitle,
                         style: GoogleFonts.plusJakartaSans(
-                          color: AppColors.textMuted,
+                          color: AppColors.textMutedOf(context),
                           fontSize: 10.5,
                           height: 1.35,
                         ),
@@ -674,7 +674,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
 
   Widget _buildTypeChip(String type) {
     final active = _type == type;
-    final color = _typeColors[type] ?? AppColors.textMuted;
+    final color = _typeColors[type] ?? AppColors.textMutedOf(context);
     return GestureDetector(
       onTap: () => setState(() => _type = type),
       child: AnimatedContainer(
@@ -682,17 +682,17 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
         margin: const EdgeInsets.only(right: 8),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         decoration: BoxDecoration(
-          color: active ? color.withValues(alpha: 0.12) : AppColors.surface,
+          color: active ? color.withValues(alpha: 0.12) : AppColors.surfaceOf(context),
           borderRadius: BorderRadius.circular(100),
           border: Border.all(
-            color: active ? color : AppColors.surfaceBorder,
+            color: active ? color : AppColors.surfaceBorderOf(context),
             width: 1.5,
           ),
         ),
         child: Text(
           mediumTypeLabel(type),
           style: TextStyle(
-            color: active ? color : AppColors.textMuted,
+            color: active ? color : AppColors.textMutedOf(context),
             fontSize: 10,
             fontWeight: FontWeight.w900,
             letterSpacing: 0.5,
@@ -716,17 +716,17 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
         duration: const Duration(milliseconds: 180),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         decoration: BoxDecoration(
-          color: active ? activeColor.withValues(alpha: 0.12) : AppColors.surface,
+          color: active ? activeColor.withValues(alpha: 0.12) : AppColors.surfaceOf(context),
           borderRadius: BorderRadius.circular(100),
           border: Border.all(
-            color: active ? activeColor : AppColors.surfaceBorder,
+            color: active ? activeColor : AppColors.surfaceBorderOf(context),
             width: 1.5,
           ),
         ),
         child: Text(
           label.toUpperCase(),
           style: TextStyle(
-            color: active ? activeColor : AppColors.textMuted,
+            color: active ? activeColor : AppColors.textMutedOf(context),
             fontSize: 10,
             fontWeight: FontWeight.w900,
             letterSpacing: 0.5,
@@ -750,17 +750,17 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
         duration: const Duration(milliseconds: 180),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
         decoration: BoxDecoration(
-          color: active ? activeColor.withValues(alpha: 0.12) : AppColors.surface,
+          color: active ? activeColor.withValues(alpha: 0.12) : AppColors.surfaceOf(context),
           borderRadius: BorderRadius.circular(100),
           border: Border.all(
-            color: active ? activeColor : AppColors.surfaceBorder,
+            color: active ? activeColor : AppColors.surfaceBorderOf(context),
             width: 1.5,
           ),
         ),
         child: Text(
           label,
           style: TextStyle(
-            color: active ? activeColor : AppColors.textMuted,
+            color: active ? activeColor : AppColors.textMutedOf(context),
             fontSize: 10,
             fontWeight: FontWeight.w900,
             letterSpacing: 0.5,
@@ -780,7 +780,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
         Text(
           title,
           style: GoogleFonts.plusJakartaSans(
-            color: AppColors.textMuted,
+            color: AppColors.textMutedOf(context),
             fontSize: 8.5,
             fontWeight: FontWeight.w800,
             letterSpacing: 0.8,
@@ -807,22 +807,22 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
       isExpanded: true,
       onChanged: onChanged,
       menuMaxHeight: 320,
-      dropdownColor: AppColors.cardFill,
+      dropdownColor: AppColors.cardFillOf(context),
       style: GoogleFonts.plusJakartaSans(
-        color: AppColors.textPrimary,
+        color: AppColors.textPrimaryOf(context),
         fontSize: 12,
       ),
       decoration: InputDecoration(
         labelText: label,
         labelStyle: GoogleFonts.plusJakartaSans(
-          color: AppColors.textMuted,
+          color: AppColors.textMutedOf(context),
           fontSize: 10,
         ),
         filled: true,
-        fillColor: AppColors.surface,
+        fillColor: AppColors.surfaceOf(context),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
-          borderSide: const BorderSide(color: AppColors.surfaceBorder),
+          borderSide: BorderSide(color: AppColors.surfaceBorderOf(context)),
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(12),
@@ -836,7 +836,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                 child: Text(
                   item,
                   style: GoogleFonts.plusJakartaSans(
-                    color: AppColors.textPrimary,
+                    color: AppColors.textPrimaryOf(context),
                     fontSize: 12,
                   ),
                   maxLines: 2,
@@ -853,7 +853,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: GoogleFonts.plusJakartaSans(
-                  color: AppColors.textPrimary,
+                  color: AppColors.textPrimaryOf(context),
                   fontSize: 12,
                 ),
               ),
@@ -895,14 +895,14 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
     Navigator.pop(context);
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
-        backgroundColor: AppColors.surface,
+        backgroundColor: AppColors.surfaceOf(context),
         content: Text(
           isEdit
               ? 'Senario dikemaskini berjaya.'
               : 'Senario baru ditambah berjaya.',
-          style: const TextStyle(
+          style: TextStyle(
             fontWeight: FontWeight.w700,
-            color: AppColors.textPrimary,
+            color: AppColors.textPrimaryOf(context),
           ),
         ),
         behavior: SnackBarBehavior.floating,

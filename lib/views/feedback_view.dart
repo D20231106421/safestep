@@ -25,7 +25,7 @@ class FeedbackView extends StatelessWidget {
     final heroColor = isCorrect ? AppColors.emerald : AppColors.rose;
 
     return Scaffold(
-      backgroundColor: AppColors.canvas,
+      backgroundColor: AppColors.canvasOf(context),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -70,8 +70,8 @@ class FeedbackView extends StatelessWidget {
                     isCorrect
                         ? 'Anda membuat keputusan yang tepat.'
                         : 'Tindakan ini berisiko tinggi!',
-                    style: const TextStyle(
-                      color: AppColors.textSecondary,
+                    style: TextStyle(
+                      color: AppColors.textSecondaryOf(context),
                       fontSize: 11,
                       fontWeight: FontWeight.w500,
                     ),
@@ -91,14 +91,14 @@ class FeedbackView extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Row(
+                        Row(
                           children: [
-                            Icon(LucideIcons.bot, color: AppColors.emerald, size: 16),
-                            SizedBox(width: 6),
+                            const Icon(LucideIcons.bot, color: AppColors.emerald, size: 16),
+                            const SizedBox(width: 6),
                             Text(
                               'ANALISIS RISIKO PDRM:',
                               style: TextStyle(
-                                color: AppColors.textMuted,
+                                color: AppColors.textMutedOf(context),
                                 fontSize: 8.5,
                                 fontWeight: FontWeight.w900,
                                 letterSpacing: 0.5,
@@ -119,8 +119,8 @@ class FeedbackView extends StatelessWidget {
                           ),
                           child: Text(
                             game.outcomeFeedback,
-                            style: const TextStyle(
-                              color: AppColors.textPrimary,
+                            style: TextStyle(
+                              color: AppColors.textPrimaryOf(context),
                               fontSize: 11.5,
                               fontWeight: FontWeight.w500,
                               height: 1.5,
@@ -155,18 +155,18 @@ class FeedbackView extends StatelessWidget {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Row(
+                          Row(
                             children: [
-                              Icon(
+                              const Icon(
                                 LucideIcons.checkSquare,
                                 color: AppColors.emerald,
                                 size: 14,
                               ),
-                              SizedBox(width: 6),
+                              const SizedBox(width: 6),
                               Text(
                                 'TINDAKAN SUSULAN PDRM:',
                                 style: TextStyle(
-                                  color: AppColors.textMuted,
+                                  color: AppColors.textMutedOf(context),
                                   fontSize: 8.5,
                                   fontWeight: FontWeight.w900,
                                   letterSpacing: 0.5,
@@ -190,8 +190,8 @@ class FeedbackView extends StatelessWidget {
                                   Expanded(
                                     child: Text(
                                       action,
-                                      style: const TextStyle(
-                                        color: AppColors.textSecondary,
+                                      style: TextStyle(
+                                        color: AppColors.textSecondaryOf(context),
                                         fontSize: 10.5,
                                         fontWeight: FontWeight.w500,
                                         height: 1.4,
@@ -226,13 +226,13 @@ class FeedbackView extends StatelessWidget {
               ),
             ).animate().fadeIn(delay: 300.ms, duration: 350.ms),
 
-            const Padding(
-              padding: EdgeInsets.only(bottom: 8),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
               child: Text(
                 'INISIATIF CELIK DIGITAL WARGA EMAS',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  color: AppColors.textMuted,
+                  color: AppColors.textMutedOf(context),
                   fontSize: 8,
                   fontWeight: FontWeight.w900,
                   letterSpacing: 0.8,

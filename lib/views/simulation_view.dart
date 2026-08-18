@@ -28,16 +28,16 @@ class _SimulationViewState extends State<SimulationView> {
     final scenario = game.currentScenario;
 
     if (scenario == null) {
-      return const Center(
+      return Center(
         child: Text(
           'Tiada senario latihan aktif.',
-          style: TextStyle(color: AppColors.textSecondary),
+          style: TextStyle(color: AppColors.textSecondaryOf(context)),
         ),
       );
     }
 
     return Scaffold(
-      backgroundColor: AppColors.canvas,
+      backgroundColor: AppColors.canvasOf(context),
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -67,7 +67,7 @@ class _SimulationViewState extends State<SimulationView> {
     return Container(
       height: 6,
       width: double.infinity,
-      color: AppColors.surfaceBorder,
+      color: AppColors.surfaceBorderOf(context),
       alignment: Alignment.centerLeft,
       child: FractionallySizedBox(
         widthFactor: percent,
@@ -102,22 +102,22 @@ class _SimulationViewState extends State<SimulationView> {
 
   Widget _buildUnsupportedMedium(GameProvider game, Scenario scen) {
     return Container(
-      color: AppColors.canvas,
+      color: AppColors.canvasOf(context),
       padding: const EdgeInsets.all(20),
       child: Column(
         children: [
           Row(
             children: [
               IconButton(
-                icon: const Icon(LucideIcons.chevronLeft, color: AppColors.textSecondary, size: 20),
+                icon: Icon(LucideIcons.chevronLeft, color: AppColors.textSecondaryOf(context), size: 20),
                 onPressed: () => game.setGameState('menu'),
               ),
               const SizedBox(width: 8),
-              const Expanded(
+               Expanded(
                 child: Text(
                   'Medium tidak disokong',
                   style: TextStyle(
-                    color: AppColors.textPrimary,
+                    color: AppColors.textPrimaryOf(context),
                     fontSize: 16,
                     fontWeight: FontWeight.w900,
                   ),
@@ -148,18 +148,18 @@ class _SimulationViewState extends State<SimulationView> {
                     Text(
                       '${mediumTypeLabel(scen.type)} tidak menggunakan mockup peranti.',
                       textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        color: AppColors.textPrimary,
+                      style: TextStyle(
+                        color: AppColors.textPrimaryOf(context),
                         fontSize: 13,
                         fontWeight: FontWeight.w800,
                       ),
                     ),
                     const SizedBox(height: 6),
-                    const Text(
+                    Text(
                       'Pilih senario WhatsApp, SMS, Emel atau Telefon.',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: AppColors.textSecondary,
+                        color: AppColors.textSecondaryOf(context),
                         fontSize: 11,
                         fontWeight: FontWeight.w600,
                       ),
@@ -962,16 +962,16 @@ class _SimulationViewState extends State<SimulationView> {
   ) {
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
-      decoration: const BoxDecoration(
-        color: AppColors.surface,
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        color: AppColors.surfaceOf(context),
+        borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(28),
           topRight: Radius.circular(28),
         ),
         border: Border(
-          top: BorderSide(color: AppColors.glassBorder, width: 1),
+          top: BorderSide(color: AppColors.surfaceBorderOf(context), width: 1),
         ),
-        boxShadow: [
+        boxShadow: const [
           BoxShadow(color: Color(0x40000000), blurRadius: 20, offset: Offset(0, -6))
         ],
       ),
@@ -983,19 +983,19 @@ class _SimulationViewState extends State<SimulationView> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Langkah Latihan',
-                style: TextStyle(color: AppColors.textMuted, fontSize: 8.5, fontWeight: FontWeight.w800, letterSpacing: 0.8),
+                style: TextStyle(color: AppColors.textMutedOf(context), fontSize: 8.5, fontWeight: FontWeight.w800, letterSpacing: 0.8),
               ),
               Row(
                 children: [
                   _buildStepIndicatorBadge('1. Kenal Pasti', active: game.playStep == 'identify'),
                   const SizedBox(width: 4),
-                  const Text('➔', style: TextStyle(color: AppColors.textMuted, fontSize: 9)),
+                  Text('➔', style: TextStyle(color: AppColors.textMutedOf(context), fontSize: 9)),
                   const SizedBox(width: 4),
                   _buildStepIndicatorBadge('2. Red Flags', active: game.playStep == 'red_flags'),
                   const SizedBox(width: 4),
-                  const Text('➔', style: TextStyle(color: AppColors.textMuted, fontSize: 9)),
+                  Text('➔', style: TextStyle(color: AppColors.textMutedOf(context), fontSize: 9)),
                   const SizedBox(width: 4),
                   _buildStepIndicatorBadge('3. Respon', active: game.playStep == 'respond'),
                 ],
@@ -1044,13 +1044,13 @@ class _SimulationViewState extends State<SimulationView> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
       decoration: BoxDecoration(
-        color: active ? const Color(0xFF106452) : const Color(0xFFF6FCF9),
+        color: active ? const Color(0xFF106452) : AppColors.surfaceBorderOf(context),
         borderRadius: BorderRadius.circular(100),
       ),
       child: Text(
         text,
         style: TextStyle(
-          color: active ? Colors.white : const Color(0xFF94A3B8),
+          color: active ? Colors.white : AppColors.textMutedOf(context),
           fontSize: 8.5,
           fontWeight: FontWeight.w900,
         ),
@@ -1071,17 +1071,17 @@ class _SimulationViewState extends State<SimulationView> {
         key: const ValueKey('step_identify'),
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Center(
+          Center(
             child: Text(
               'Adakah mesej di atas cubaan siber Scam?',
-              style: TextStyle(color: Color(0xFF1E293B), fontSize: 11.5, fontWeight: FontWeight.w900),
+              style: TextStyle(color: AppColors.textPrimaryOf(context), fontSize: 11.5, fontWeight: FontWeight.w900),
             ),
           ),
           const SizedBox(height: 2),
-          const Center(
+          Center(
             child: Text(
               'Fikir dengan tenang sebelum membuat pilihan keselamatan.',
-              style: TextStyle(color: Color(0xFF64748B), fontSize: 9.5, fontWeight: FontWeight.w700),
+              style: TextStyle(color: AppColors.textSecondaryOf(context), fontSize: 9.5, fontWeight: FontWeight.w700),
             ),
           ),
           const SizedBox(height: 10),
@@ -1198,17 +1198,17 @@ class _SimulationViewState extends State<SimulationView> {
         key: const ValueKey('step_redflags'),
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const Center(
+          Center(
             child: Text(
               'Cari & Sentuh Red Flags (Petunjuk Scam)',
-              style: TextStyle(color: Color(0xFF1E293B), fontSize: 11.5, fontWeight: FontWeight.w900),
+              style: TextStyle(color: AppColors.textPrimaryOf(context), fontSize: 11.5, fontWeight: FontWeight.w900),
             ),
           ),
           const SizedBox(height: 2),
-          const Center(
+          Center(
             child: Text(
               'Sentuh perkataan mencurigakan dalam mesej di atas (cth: pautan, ugutan, kod bank, TAC).',
-              style: TextStyle(color: Color(0xFF64748B), fontSize: 9.5, fontWeight: FontWeight.w700),
+              style: TextStyle(color: AppColors.textSecondaryOf(context), fontSize: 9.5, fontWeight: FontWeight.w700),
             ),
           ),
           const SizedBox(height: 10),
@@ -1312,7 +1312,7 @@ class _SimulationViewState extends State<SimulationView> {
             Text(
               game.redFlagMessage,
               textAlign: TextAlign.center,
-              style: const TextStyle(color: Color(0xFF334155), fontSize: 9.5, fontWeight: FontWeight.w800, height: 1.3),
+              style: TextStyle(color: AppColors.textSecondaryOf(context), fontSize: 9.5, fontWeight: FontWeight.w800, height: 1.3),
             ),
             const SizedBox(height: 8),
           ],
@@ -1322,7 +1322,7 @@ class _SimulationViewState extends State<SimulationView> {
               Expanded(
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
-                    foregroundColor: const Color(0xFF334155),
+                    foregroundColor: AppColors.textPrimaryOf(context),
                     side: const BorderSide(color: Color(0xFFCBD5E1)),
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
@@ -1364,9 +1364,9 @@ class _SimulationViewState extends State<SimulationView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
+                Text(
                   'Pilih Maklum Balas Keselamatan',
-                  style: TextStyle(color: Color(0xFF94A3B8), fontSize: 9, fontWeight: FontWeight.w900),
+                  style: TextStyle(color: AppColors.textMutedOf(context), fontSize: 9, fontWeight: FontWeight.w900),
                 ),
                 TextButton(
                   onPressed: () => setState(() => _isReplying = false),
@@ -1386,9 +1386,9 @@ class _SimulationViewState extends State<SimulationView> {
                     padding: const EdgeInsets.only(bottom: 6.0),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: const Color(0xFFF6FCF9),
+                        color: AppColors.surfaceBorderOf(context),
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: const Color(0xFFE6F4F0)),
+                        border: Border.all(color: AppColors.surfaceBorderOf(context)),
                       ),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(12),
@@ -1406,11 +1406,11 @@ class _SimulationViewState extends State<SimulationView> {
                               Expanded(
                                 child: Text(
                                   '"${opt.text}"',
-                                  style: const TextStyle(color: Color(0xFF1E293B), fontSize: 10.5, fontWeight: FontWeight.w800, height: 1.3),
+                                  style: TextStyle(color: AppColors.textPrimaryOf(context), fontSize: 10.5, fontWeight: FontWeight.w800, height: 1.3),
                                 ),
                               ),
                               const SizedBox(width: 8),
-                              const Icon(LucideIcons.send, color: Color(0xFF94A3B8), size: 13),
+                              Icon(LucideIcons.send, color: AppColors.textMutedOf(context), size: 13),
                             ],
                           ),
                         ),
@@ -1436,17 +1436,17 @@ class _SimulationViewState extends State<SimulationView> {
                 ),
               ),
           ] else ...[
-            const Center(
+            Center(
               child: Text(
                 'Tindakan Keselamatan Terakhir Anda',
-                style: TextStyle(color: Color(0xFF1E293B), fontSize: 11.5, fontWeight: FontWeight.w900),
+                style: TextStyle(color: AppColors.textPrimaryOf(context), fontSize: 11.5, fontWeight: FontWeight.w900),
               ),
             ),
             const SizedBox(height: 2),
-            const Center(
+            Center(
               child: Text(
                 'Pilih antara membalas, mengabaikan, atau menyekat pengirim ini.',
-                style: TextStyle(color: Color(0xFF64748B), fontSize: 9.5, fontWeight: FontWeight.w700),
+                style: TextStyle(color: AppColors.textSecondaryOf(context), fontSize: 9.5, fontWeight: FontWeight.w700),
               ),
             ),
             const SizedBox(height: 12),
@@ -1521,7 +1521,7 @@ class _SimulationViewState extends State<SimulationView> {
         const SizedBox(height: 4),
         Text(
           title,
-          style: const TextStyle(color: Color(0xFF475569), fontSize: 10, fontWeight: FontWeight.w900),
+          style: TextStyle(color: AppColors.textSecondaryOf(context), fontSize: 10, fontWeight: FontWeight.w900),
         )
       ],
     );

@@ -482,7 +482,7 @@ class ReportDetailView extends StatelessWidget {
         ? AppColors.textSecondaryOf(context)
         : (correct ? AppColors.emeraldMuted : AppColors.rose);
     final Color bgColor = correct == null
-        ? AppColors.surfaceBorderOf(context).withValues(alpha: 0.35)
+        ? AppColors.surfaceOf(context).withValues(alpha: 0.25)
         : (correct
             ? AppColors.emeraldBadgeBg
             : AppColors.roseBadgeBg);

@@ -4,7 +4,7 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lucide_icons/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import '../app_theme.dart';
-import '../providers/settings_provider.dart';
+
 import '../providers/game_provider.dart';
 import '../widgets/glass_card.dart';
 import '../widgets/glass_app_bar.dart';
@@ -16,7 +16,7 @@ class TrendsView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settings = Provider.of<SettingsProvider>(context);
+
     final game = Provider.of<GameProvider>(context, listen: false);
 
     return Scaffold(
@@ -176,41 +176,7 @@ class TrendsView extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
 
-                  // Notification Settings
-                  _sectionLabel(
-                    'TETAPAN NOTIFIKASI',
-                    LucideIcons.bell,
-                    AppColors.cyan,
-                  ),
-                  const SizedBox(height: 8),
-                  GlassCard(
-                    padding: EdgeInsets.zero,
-                    child: Column(
-                      children: [
-                        _buildToggleTile(
-                          context,
-                          'Amaran Langsung',
-                          'Terima notifikasi scam semasa aplikasi aktif',
-                          LucideIcons.zap,
-                          settings.liveAlertsEnabled,
-                          (v) => settings.setLiveAlerts(v),
-                        ),
-                        Divider(
-                          color: AppColors.surfaceBorderOf(context),
-                          height: 1,
-                        ),
-                        _buildToggleTile(
-                          context,
-                          'Simulasi Notifikasi',
-                          'Demo paparan amaran tolak ketika latihan',
-                          LucideIcons.bellRing,
-                          settings.simulateNotifications,
-                          (v) => settings.setSimulateNotifications(v),
-                        ),
-                      ],
-                    ),
-                  ).animate().fadeIn(delay: 420.ms, duration: 350.ms),
-                  const SizedBox(height: 20),
+
 
                   // Helpline
                   _sectionLabel(
@@ -436,59 +402,5 @@ class TrendsView extends StatelessWidget {
     ).animate().fadeIn(delay: Duration(milliseconds: delay), duration: 350.ms);
   }
 
-  Widget _buildToggleTile(
-    BuildContext context,
-    String title,
-    String subtitle,
-    IconData icon,
-    bool value,
-    ValueChanged<bool> onChanged,
-  ) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 13),
-      child: Row(
-        children: [
-          Container(
-            width: 36,
-            height: 36,
-            decoration: BoxDecoration(
-              color: AppColors.cyan.withValues(alpha: 0.12),
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: AppColors.cyan.withValues(alpha: 0.2)),
-            ),
-            child: Icon(icon, color: AppColors.cyan, size: 16),
-          ),
-          const SizedBox(width: 12),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: TextStyle(
-                    color: AppColors.textPrimaryOf(context),
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                Text(
-                  subtitle,
-                  style: TextStyle(
-                    color: AppColors.textSecondaryOf(context),
-                    fontSize: 9.5,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Switch(
-            value: value,
-            onChanged: onChanged,
-            activeThumbColor: Colors.white,
-            activeTrackColor: AppColors.emerald,
-          ),
-        ],
-      ),
-    );
-  }
+
 }

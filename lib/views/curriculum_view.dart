@@ -63,7 +63,7 @@ class _CurriculumViewState extends State<CurriculumView> {
               onBack: () => game.setGameState('menu'),
               trailing: [
                 HeaderActionButton(
-                  icon: LucideIcons.refreshCw,
+                  icon: LucideIcons.rotateCcw,
                   onPressed: () => _confirmReset(context, scenProv),
                 ),
                 const SizedBox(width: 8),

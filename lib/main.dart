@@ -37,7 +37,11 @@ void main() async {
   ]);
 
   // Initialize real system notification plugin
-  await NotificationService.instance.init();
+  try {
+    await NotificationService.instance.init();
+  } catch (e, stackTrace) {
+    debugPrint('Error initializing NotificationService: $e\n$stackTrace');
+  }
 
   runApp(const SafeStepApp());
 }
@@ -92,11 +96,15 @@ class _AppBootstrapState extends State<AppBootstrap> {
     final histProv = Provider.of<HistoryProvider>(context, listen: false);
     final settingsProv = Provider.of<SettingsProvider>(context, listen: false);
 
-    await Future.wait([
-      scenProv.loadScenarios(),
-      histProv.loadHistory(),
-      settingsProv.loadSettings(),
-    ]);
+    try {
+      await Future.wait([
+        scenProv.loadScenarios(),
+        histProv.loadHistory(),
+        settingsProv.loadSettings(),
+      ]);
+    } catch (e, stackTrace) {
+      debugPrint('Error loading bootstrap data: $e\n$stackTrace');
+    }
 
     if (mounted) {
       setState(() => _initialized = true);

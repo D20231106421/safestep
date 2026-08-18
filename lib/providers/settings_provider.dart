@@ -1,51 +1,60 @@
-import 'dart:math';
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../services/notification_service.dart';
 
 class SettingsProvider with ChangeNotifier {
   bool _enableAlerts = true;
   bool _simulateNotifications = true;
-  String _alertFrequency = 'Tinggi';
-  Map<String, String>? _activePush;
+  String _alertFrequency = 'Sederhana';
 
   ThemeMode _themeMode = ThemeMode.dark;
+
+  Timer? _simulationTimer;
 
   bool get enableAlerts => _enableAlerts;
   // Alias for TrendsView toggle
   bool get liveAlertsEnabled => _enableAlerts;
   bool get simulateNotifications => _simulateNotifications;
   String get alertFrequency => _alertFrequency;
-  Map<String, String>? get activePush => _activePush;
   ThemeMode get themeMode => _themeMode;
 
-  static const String _prefThemeMode = 'theme_mode';
-
-  final List<Map<String, String>> _sampleAlerts = [
-    {
-      'id': '1',
-      'title': '🚨 SafeStep Amaran: Macau Scam',
-      'body': 'Waspada panggilan telefon dari Bukit Aman kononnya akaun anda dibekukan. PDRM tidak siasat guna telefon!'
-    },
-    {
-      'id': '2',
-      'title': '💡 SafeStep Tips Keselamatan',
-      'body': 'Jangan dedahkan kod SMS TAC bank anda. Kakitangan Maybank/CIMB tidak akan memintanya.'
-    },
-    {
-      'id': '3',
-      'title': '🔥 Amaran Trend: LHDN Palsu',
-      'body': 'SMS menawarkan bayaran balik cukai mengandungi pautan ganjil \'.top\' sedang merebak. Abaikan segera!'
-    },
-    {
-      'id': '4',
-      'title': '🛡️ SafeStep Amaran APK',
-      'body': 'Jangan sesekali memasang fail aplikasi (.apk) yang dihantar melalui chat orang asing. Risiko peranti digodam!'
-    }
+  /// All selectable frequency labels.
+  static const List<String> frequencyOptions = [
+    'Tinggi',
+    'Sederhana',
+    'Rendah',
+    'Mati',
   ];
+
+  /// Returns the periodic interval in seconds for the active frequency.
+  /// Returns -1 when 'Mati' (off).
+  int get notificationIntervalSeconds {
+    switch (_alertFrequency) {
+      case 'Tinggi':
+        return 15;
+      case 'Sederhana':
+        return 45;
+      case 'Rendah':
+        return 90;
+      default:
+        return -1;
+    }
+  }
+
+  // ── SharedPreferences keys ─────────────────────────────────────────────────
+  static const String _prefThemeMode = 'theme_mode';
+  static const String _prefEnableAlerts = 'enable_alerts';
+  static const String _prefSimulateNotifications = 'simulate_notifications';
+  static const String _prefAlertFrequency = 'alert_frequency';
+
+  // ── Persistence ────────────────────────────────────────────────────────────
 
   Future<void> loadSettings() async {
     try {
       final prefs = await SharedPreferences.getInstance();
+
+      // Theme
       final savedTheme = prefs.getString(_prefThemeMode);
       if (savedTheme != null) {
         if (savedTheme == 'light') {
@@ -56,7 +65,16 @@ class SettingsProvider with ChangeNotifier {
           _themeMode = ThemeMode.system;
         }
       }
+
+      // Notifications
+      _enableAlerts = prefs.getBool(_prefEnableAlerts) ?? true;
+      _simulateNotifications =
+          prefs.getBool(_prefSimulateNotifications) ?? true;
+      _alertFrequency =
+          prefs.getString(_prefAlertFrequency) ?? 'Sederhana';
+
       notifyListeners();
+      _restartTimer();
     } catch (e) {
       debugPrint('Error loading settings: $e');
     }
@@ -79,9 +97,12 @@ class SettingsProvider with ChangeNotifier {
   void setEnableAlerts(bool value) {
     _enableAlerts = value;
     if (!_enableAlerts) {
-      _activePush = null;
+      _stopTimer();
+    } else {
+      _restartTimer();
     }
     notifyListeners();
+    _saveNotificationPrefs();
   }
 
   // Alias for TrendsView
@@ -89,23 +110,60 @@ class SettingsProvider with ChangeNotifier {
 
   void setSimulateNotifications(bool value) {
     _simulateNotifications = value;
+    if (_simulateNotifications) {
+      _restartTimer();
+    } else {
+      _stopTimer();
+    }
     notifyListeners();
+    _saveNotificationPrefs();
   }
 
   void setAlertFrequency(String value) {
     _alertFrequency = value;
+    _restartTimer();
     notifyListeners();
+    _saveNotificationPrefs();
   }
 
-  void triggerRandomAlert() {
+  /// Fires a real system notification immediately (called by the CUBA button).
+  Future<void> triggerRandomAlert() async {
     if (!_enableAlerts) return;
-    final random = Random();
-    _activePush = _sampleAlerts[random.nextInt(_sampleAlerts.length)];
-    notifyListeners();
+    await NotificationService.instance.showRandomAlert();
   }
 
-  void dismissAlert() {
-    _activePush = null;
-    notifyListeners();
+  // ── Timer management ───────────────────────────────────────────────────────
+
+  void _restartTimer() {
+    _stopTimer();
+    final intervalSecs = notificationIntervalSeconds;
+    if (!_simulateNotifications || !_enableAlerts || intervalSecs < 0) return;
+
+    _simulationTimer =
+        Timer.periodic(Duration(seconds: intervalSecs), (_) async {
+      await NotificationService.instance.showRandomAlert();
+    });
+  }
+
+  void _stopTimer() {
+    _simulationTimer?.cancel();
+    _simulationTimer = null;
+  }
+
+  Future<void> _saveNotificationPrefs() async {
+    try {
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setBool(_prefEnableAlerts, _enableAlerts);
+      await prefs.setBool(_prefSimulateNotifications, _simulateNotifications);
+      await prefs.setString(_prefAlertFrequency, _alertFrequency);
+    } catch (e) {
+      debugPrint('Error saving notification prefs: $e');
+    }
+  }
+
+  @override
+  void dispose() {
+    _stopTimer();
+    super.dispose();
   }
 }

@@ -6,6 +6,7 @@ import 'providers/settings_provider.dart';
 import 'providers/history_provider.dart';
 import 'providers/scenario_provider.dart';
 import 'providers/game_provider.dart';
+import 'services/notification_service.dart';
 import 'views/home_view.dart';
 import 'views/module_selection_view.dart';
 import 'views/simulation_view.dart';
@@ -16,7 +17,6 @@ import 'views/history_view.dart';
 import 'views/curriculum_view.dart';
 import 'views/settings_view.dart';
 import 'widgets/phishing_logo.dart';
-import 'widgets/push_notification.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -35,6 +35,9 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
+  // Initialize real system notification plugin
+  await NotificationService.instance.init();
 
   runApp(const SafeStepApp());
 }
@@ -134,7 +137,9 @@ class _AppBootstrapState extends State<AppBootstrap> {
   }
 }
 
-/// Main app shell with push notification overlay and state-driven view router.
+/// Main app shell — state-driven view router.
+/// Real system notifications are handled by NotificationService;
+/// the in-app overlay has been removed.
 class AppShell extends StatelessWidget {
   const AppShell({super.key});
 
@@ -142,14 +147,7 @@ class AppShell extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.canvasOf(context),
-      body: const Stack(
-        children: [
-          // Primary view router
-          _ViewRouter(),
-          // Push notification overlay (renders on top of everything)
-          PushNotificationDrawer(),
-        ],
-      ),
+      body: const _ViewRouter(),
     );
   }
 }

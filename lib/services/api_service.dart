@@ -99,9 +99,12 @@ Tentukan jika jawapan itu selamat atau mengundang bahaya. Secara umum, membalas 
     }
 
     // 3. Last Fallback: Static rule evaluation (identical to React's frontend local fallback)
+    final bool isActionSafe = reply == 'Saya abaikan dan padam mesej ini tanpa klik pautan.' ||
+        reply == 'Saya terus sekat (block) nombor pengirim ini di telefon saya.';
+
     final matchedOpt = scenario.replyOptions.firstWhere(
       (o) => o.text == reply,
-      orElse: () => ReplyOption(text: reply, safety: 'risky'),
+      orElse: () => ReplyOption(text: reply, safety: isActionSafe ? 'safe' : 'risky'),
     );
 
     final String safetyLevel = matchedOpt.safety;

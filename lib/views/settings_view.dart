@@ -98,14 +98,14 @@ class SettingsView extends StatelessWidget {
                           color: AppColors.surfaceBorderOf(context),
                           height: 1,
                         ),
-                        _buildToggleTile(
-                          context,
-                          title: 'Simulasi Notifikasi',
-                          subtitle: 'Demo paparan amaran tolak ketika latihan simulasi',
-                          icon: LucideIcons.bellRing,
-                          value: settings.simulateNotifications,
-                          onChanged: (v) => settings.setSimulateNotifications(v),
+                        // ── Simulate Notification Button ──────────────────
+                        _buildSimulateButtonTile(context, settings),
+                        Divider(
+                          color: AppColors.surfaceBorderOf(context),
+                          height: 1,
                         ),
+                        // ── Frequency Selector ────────────────────────────
+                        _buildFrequencySelector(context, settings),
                       ],
                     ),
                   ).animate().fadeIn(delay: 180.ms, duration: 350.ms),
@@ -364,6 +364,316 @@ class SettingsView extends StatelessWidget {
                 ? AppColors.surfaceBorder
                 : AppColors.lightSurfaceBorder,
           ),
+        ],
+      ),
+    );
+  }
+
+  /// Clickable button tile to instantly trigger a simulated push notification.
+  Widget _buildSimulateButtonTile(
+      BuildContext context, SettingsProvider settings) {
+    final isDark = AppColors.isDark(context);
+    final isEnabled = settings.liveAlertsEnabled;
+
+    return Material(
+      color: Colors.transparent,
+      child: InkWell(
+        onTap: isEnabled
+            ? () {
+                // triggerRandomAlert is async; fire-and-forget is intentional here.
+                settings.triggerRandomAlert();
+                ScaffoldMessenger.of(context).clearSnackBars();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(
+                    behavior: SnackBarBehavior.floating,
+                    backgroundColor: isDark
+                        ? AppColors.surfaceBorder
+                        : AppColors.lightSurface,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12)),
+                    margin: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+                    duration: const Duration(seconds: 2),
+                    content: Row(
+                      children: [
+                        const Icon(Icons.notifications_active_rounded,
+                            color: AppColors.cyan, size: 16),
+                        const SizedBox(width: 8),
+                        Text(
+                          'Notifikasi simulasi dihantar!',
+                          style: GoogleFonts.plusJakartaSans(
+                            color: AppColors.textPrimaryOf(context),
+                            fontSize: 11,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              }
+            : null,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: Row(
+            children: [
+              Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  color: isEnabled
+                      ? AppColors.cyan.withValues(alpha: 0.12)
+                      : AppColors.textMuted.withValues(alpha: 0.08),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                    color: isEnabled
+                        ? AppColors.cyan.withValues(alpha: 0.2)
+                        : AppColors.textMuted.withValues(alpha: 0.12),
+                  ),
+                ),
+                child: Icon(
+                  LucideIcons.bellRing,
+                  color: isEnabled
+                      ? AppColors.cyan
+                      : AppColors.textMutedOf(context),
+                  size: 16,
+                ),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Simulasi Notifikasi',
+                      style: GoogleFonts.plusJakartaSans(
+                        color: isEnabled
+                            ? AppColors.textPrimaryOf(context)
+                            : AppColors.textMutedOf(context),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Text(
+                      isEnabled
+                          ? 'Ketik untuk tunjukkan demo amaran tolak sekarang'
+                          : 'Aktifkan Amaran Langsung untuk gunakan ciri ini',
+                      style: GoogleFonts.plusJakartaSans(
+                        color: AppColors.textMutedOf(context),
+                        fontSize: 9.5,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              // Pill button
+              AnimatedContainer(
+                duration: const Duration(milliseconds: 200),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                decoration: BoxDecoration(
+                  gradient: isEnabled
+                      ? const LinearGradient(
+                          colors: [AppColors.cyan, AppColors.emerald],
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                        )
+                      : null,
+                  color: isEnabled
+                      ? null
+                      : AppColors.textMuted.withValues(alpha: 0.12),
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Icon(
+                      LucideIcons.play,
+                      size: 10,
+                      color: isEnabled ? Colors.white : AppColors.textMuted,
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      'CUBA',
+                      style: GoogleFonts.plusJakartaSans(
+                        color: isEnabled ? Colors.white : AppColors.textMuted,
+                        fontSize: 9,
+                        fontWeight: FontWeight.w800,
+                        letterSpacing: 0.8,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  /// Frequency option selector for automatic periodic notifications.
+  Widget _buildFrequencySelector(
+      BuildContext context, SettingsProvider settings) {
+    final isDark = AppColors.isDark(context);
+    final isEnabled = settings.liveAlertsEnabled;
+
+    final freqLabels = {
+      'Tinggi': '15s',
+      'Sederhana': '45s',
+      'Rendah': '90s',
+      'Mati': '—',
+    };
+
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Header row
+          Row(
+            children: [
+              Container(
+                width: 36,
+                height: 36,
+                decoration: BoxDecoration(
+                  color: AppColors.indigo.withValues(alpha: 0.12),
+                  borderRadius: BorderRadius.circular(10),
+                  border: Border.all(
+                      color: AppColors.indigo.withValues(alpha: 0.2)),
+                ),
+                child: const Icon(LucideIcons.timer,
+                    color: AppColors.indigo, size: 16),
+              ),
+              const SizedBox(width: 12),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      'Kekerapan Notifikasi Auto',
+                      style: GoogleFonts.plusJakartaSans(
+                        color: isEnabled
+                            ? AppColors.textPrimaryOf(context)
+                            : AppColors.textMutedOf(context),
+                        fontSize: 12,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Text(
+                      'Tetapkan selang masa notifikasi simulasi muncul',
+                      style: GoogleFonts.plusJakartaSans(
+                        color: AppColors.textMutedOf(context),
+                        fontSize: 9.5,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+          const SizedBox(height: 14),
+          // Frequency segment chips
+          Row(
+            children: SettingsProvider.frequencyOptions.map((option) {
+              final isSelected = settings.alertFrequency == option;
+              final isMati = option == 'Mati';
+
+              Color chipColor = isMati
+                  ? AppColors.rose
+                  : isSelected
+                      ? AppColors.indigo
+                      : Colors.transparent;
+
+              return Expanded(
+                child: GestureDetector(
+                  onTap: isEnabled
+                      ? () => settings.setAlertFrequency(option)
+                      : null,
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    margin: EdgeInsets.only(
+                        right: option ==
+                                SettingsProvider.frequencyOptions.last
+                            ? 0
+                            : 6),
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    decoration: BoxDecoration(
+                      color: isSelected
+                          ? chipColor.withValues(alpha: 0.18)
+                          : (isDark
+                              ? AppColors.surfaceBorder.withValues(alpha: 0.5)
+                              : AppColors.lightSurfaceBorder),
+                      borderRadius: BorderRadius.circular(10),
+                      border: Border.all(
+                        color: isSelected
+                            ? chipColor.withValues(alpha: 0.5)
+                            : Colors.transparent,
+                        width: 1.5,
+                      ),
+                    ),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Text(
+                          option,
+                          style: GoogleFonts.plusJakartaSans(
+                            color: isSelected
+                                ? (isEnabled ? chipColor : AppColors.textMuted)
+                                : AppColors.textMutedOf(context),
+                            fontSize: 9.5,
+                            fontWeight: isSelected
+                                ? FontWeight.w800
+                                : FontWeight.w600,
+                          ),
+                        ),
+                        const SizedBox(height: 2),
+                        Text(
+                          freqLabels[option] ?? '',
+                          style: GoogleFonts.plusJakartaSans(
+                            color: isSelected && isEnabled
+                                ? chipColor
+                                : AppColors.textMutedOf(context),
+                            fontSize: 8.5,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              );
+            }).toList(),
+          ),
+          // Status indicator
+          if (settings.liveAlertsEnabled &&
+              settings.alertFrequency != 'Mati') ...[
+            const SizedBox(height: 10),
+            Row(
+              children: [
+                Container(
+                  width: 6,
+                  height: 6,
+                  decoration: const BoxDecoration(
+                    color: AppColors.emerald,
+                    shape: BoxShape.circle,
+                  ),
+                )
+                    .animate(onPlay: (c) => c.repeat())
+                    .fadeOut(duration: 800.ms)
+                    .then()
+                    .fadeIn(duration: 800.ms),
+                const SizedBox(width: 6),
+                Text(
+                  'Notifikasi auto setiap ${settings.notificationIntervalSeconds}s',
+                  style: GoogleFonts.plusJakartaSans(
+                    color: AppColors.emerald,
+                    fontSize: 9,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+          ],
         ],
       ),
     );

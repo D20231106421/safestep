@@ -46,12 +46,16 @@ class _SimulationViewState extends State<SimulationView> {
             _buildProgressBar(game),
 
             // Mock Device UI Content Frame
-            Expanded(
-              child: _buildDeviceMockFrame(game, scenario),
-            ),
+            Expanded(child: _buildDeviceMockFrame(game, scenario)),
 
             // Bottom Actions Panel Tray
-            _buildActionsTray(context, game, scenario, historyProv, settingsProv),
+            _buildActionsTray(
+              context,
+              game,
+              scenario,
+              historyProv,
+              settingsProv,
+            ),
           ],
         ),
       ),
@@ -109,11 +113,15 @@ class _SimulationViewState extends State<SimulationView> {
           Row(
             children: [
               IconButton(
-                icon: Icon(LucideIcons.chevronLeft, color: AppColors.textSecondaryOf(context), size: 20),
-                onPressed: () => game.setGameState('menu'),
+                icon: Icon(
+                  LucideIcons.chevronLeft,
+                  color: AppColors.textSecondaryOf(context),
+                  size: 20,
+                ),
+                onPressed: () => game.setGameState('choose_category'),
               ),
               const SizedBox(width: 8),
-               Expanded(
+              Expanded(
                 child: Text(
                   'Medium tidak disokong',
                   style: TextStyle(
@@ -136,7 +144,9 @@ class _SimulationViewState extends State<SimulationView> {
                       decoration: BoxDecoration(
                         color: AppColors.amberBadgeBgOf(context),
                         borderRadius: BorderRadius.circular(100),
-                        border: Border.all(color: AppColors.amber.withValues(alpha: 0.25)),
+                        border: Border.all(
+                          color: AppColors.amber.withValues(alpha: 0.25),
+                        ),
                       ),
                       child: Icon(
                         LucideIcons.alertCircle,
@@ -190,8 +200,12 @@ class _SimulationViewState extends State<SimulationView> {
                 Row(
                   children: [
                     IconButton(
-                      icon: const Icon(LucideIcons.chevronLeft, color: Colors.white, size: 20),
-                      onPressed: () => game.setGameState('menu'),
+                      icon: const Icon(
+                        LucideIcons.chevronLeft,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                      onPressed: () => game.setGameState('choose_category'),
                       padding: EdgeInsets.zero,
                       constraints: const BoxConstraints(),
                     ),
@@ -200,8 +214,14 @@ class _SimulationViewState extends State<SimulationView> {
                       radius: 16,
                       backgroundColor: const Color(0xFF0C4A42),
                       child: Text(
-                        scen.sender.isNotEmpty ? scen.sender[0].toUpperCase() : 'S',
-                        style: const TextStyle(color: Colors.white, fontWeight: FontWeight.w900, fontSize: 13),
+                        scen.sender.isNotEmpty
+                            ? scen.sender[0].toUpperCase()
+                            : 'S',
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w900,
+                          fontSize: 13,
+                        ),
                       ),
                     ),
                     const SizedBox(width: 8),
@@ -210,11 +230,19 @@ class _SimulationViewState extends State<SimulationView> {
                       children: [
                         Text(
                           scen.sender,
-                          style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w900),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w900,
+                          ),
                         ),
                         Text(
                           game.isTyping ? 'sedang menaip...' : 'Atas Talian',
-                          style: const TextStyle(color: Color(0xFFA7F3D0), fontSize: 8, fontWeight: FontWeight.w800),
+                          style: const TextStyle(
+                            color: Color(0xFFA7F3D0),
+                            fontSize: 8,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
                       ],
                     ),
@@ -224,7 +252,7 @@ class _SimulationViewState extends State<SimulationView> {
               ],
             ),
           ),
-          
+
           // Chat area
           Expanded(
             child: ListView(
@@ -234,7 +262,10 @@ class _SimulationViewState extends State<SimulationView> {
                 Center(
                   child: Container(
                     margin: const EdgeInsets.only(bottom: 12),
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       color: const Color(0xFFFEF3C7), // amber-100
                       borderRadius: BorderRadius.circular(12),
@@ -260,7 +291,10 @@ class _SimulationViewState extends State<SimulationView> {
                   Align(
                     alignment: Alignment.centerLeft,
                     child: Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 14,
+                        vertical: 10,
+                      ),
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
@@ -275,7 +309,10 @@ class _SimulationViewState extends State<SimulationView> {
                           SizedBox(
                             width: 6,
                             height: 6,
-                            child: CircularProgressIndicator(strokeWidth: 1.5, valueColor: AlwaysStoppedAnimation(Colors.grey)),
+                            child: CircularProgressIndicator(
+                              strokeWidth: 1.5,
+                              valueColor: AlwaysStoppedAnimation(Colors.grey),
+                            ),
                           ),
                         ],
                       ),
@@ -294,17 +331,30 @@ class _SimulationViewState extends State<SimulationView> {
                           bottomRight: Radius.circular(16),
                         ),
                         boxShadow: [
-                          BoxShadow(color: Colors.black.withValues(alpha: 0.05), blurRadius: 2, offset: const Offset(0, 1))
+                          BoxShadow(
+                            color: Colors.black.withValues(alpha: 0.05),
+                            blurRadius: 2,
+                            offset: const Offset(0, 1),
+                          ),
                         ],
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          _buildInteractiveMessage(game, scen, isWhiteText: false),
+                          _buildInteractiveMessage(
+                            game,
+                            scen,
+                            isWhiteText: false,
+                          ),
                           const SizedBox(height: 4),
                           Text(
                             '${scen.timestamp} • ✓✓',
-                            style: const TextStyle(color: Colors.grey, fontSize: 7.5, fontWeight: FontWeight.bold, fontStyle: FontStyle.italic),
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 7.5,
+                              fontWeight: FontWeight.bold,
+                              fontStyle: FontStyle.italic,
+                            ),
                           ),
                         ],
                       ),
@@ -312,7 +362,7 @@ class _SimulationViewState extends State<SimulationView> {
                   ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
@@ -334,8 +384,12 @@ class _SimulationViewState extends State<SimulationView> {
                 Row(
                   children: [
                     IconButton(
-                      icon: const Icon(LucideIcons.chevronLeft, color: Colors.white, size: 20),
-                      onPressed: () => game.setGameState('menu'),
+                      icon: const Icon(
+                        LucideIcons.chevronLeft,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                      onPressed: () => game.setGameState('choose_category'),
                       padding: EdgeInsets.zero,
                       constraints: const BoxConstraints(),
                     ),
@@ -343,7 +397,11 @@ class _SimulationViewState extends State<SimulationView> {
                     const CircleAvatar(
                       radius: 16,
                       backgroundColor: Color(0xFF334155),
-                      child: Icon(LucideIcons.mail, color: Colors.white, size: 14),
+                      child: Icon(
+                        LucideIcons.mail,
+                        color: Colors.white,
+                        size: 14,
+                      ),
                     ),
                     const SizedBox(width: 8),
                     Column(
@@ -351,11 +409,19 @@ class _SimulationViewState extends State<SimulationView> {
                       children: [
                         Text(
                           scen.sender,
-                          style: const TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w900),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w900,
+                          ),
                         ),
                         const Text(
                           'Mesej Ringkas',
-                          style: TextStyle(color: Colors.grey, fontSize: 8, fontWeight: FontWeight.w800),
+                          style: TextStyle(
+                            color: Colors.grey,
+                            fontSize: 8,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
                       ],
                     ),
@@ -374,7 +440,10 @@ class _SimulationViewState extends State<SimulationView> {
                 Center(
                   child: Container(
                     margin: const EdgeInsets.only(bottom: 12),
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 5,
+                    ),
                     decoration: BoxDecoration(
                       color: const Color(0xFFE0F2FE), // sky-100
                       borderRadius: BorderRadius.circular(8),
@@ -382,13 +451,21 @@ class _SimulationViewState extends State<SimulationView> {
                     ),
                     child: const Text(
                       'NSRC ALERT: SMS MASUK RAGU-RAGU',
-                      style: TextStyle(color: Color(0xFF0369A1), fontSize: 8.5, fontWeight: FontWeight.w900, letterSpacing: 0.5),
+                      style: TextStyle(
+                        color: Color(0xFF0369A1),
+                        fontSize: 8.5,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 0.5,
+                      ),
                     ),
                   ),
                 ),
 
                 if (game.isTyping)
-                  const Align(alignment: Alignment.centerLeft, child: Text('...'))
+                  const Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text('...'),
+                  )
                 else
                   Align(
                     alignment: Alignment.centerLeft,
@@ -402,11 +479,19 @@ class _SimulationViewState extends State<SimulationView> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          _buildInteractiveMessage(game, scen, isWhiteText: false),
+                          _buildInteractiveMessage(
+                            game,
+                            scen,
+                            isWhiteText: false,
+                          ),
                           const SizedBox(height: 4),
                           Text(
                             scen.timestamp,
-                            style: const TextStyle(color: Colors.grey, fontSize: 7, fontWeight: FontWeight.bold),
+                            style: const TextStyle(
+                              color: Colors.grey,
+                              fontSize: 7,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ],
                       ),
@@ -414,7 +499,7 @@ class _SimulationViewState extends State<SimulationView> {
                   ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
@@ -436,8 +521,12 @@ class _SimulationViewState extends State<SimulationView> {
                 Row(
                   children: [
                     IconButton(
-                      icon: const Icon(LucideIcons.chevronLeft, color: Colors.white, size: 20),
-                      onPressed: () => game.setGameState('menu'),
+                      icon: const Icon(
+                        LucideIcons.chevronLeft,
+                        color: Colors.white,
+                        size: 20,
+                      ),
+                      onPressed: () => game.setGameState('choose_category'),
                       padding: EdgeInsets.zero,
                       constraints: const BoxConstraints(),
                     ),
@@ -449,11 +538,19 @@ class _SimulationViewState extends State<SimulationView> {
                       children: [
                         Text(
                           'Aplikasi E-mel Masuk',
-                          style: TextStyle(color: Colors.white, fontSize: 11, fontWeight: FontWeight.w900),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                            fontWeight: FontWeight.w900,
+                          ),
                         ),
                         Text(
                           'Peti Surat Selamat',
-                          style: TextStyle(color: Color(0xFFA7F3D0), fontSize: 8, fontWeight: FontWeight.w800),
+                          style: TextStyle(
+                            color: Color(0xFFA7F3D0),
+                            fontSize: 8,
+                            fontWeight: FontWeight.w800,
+                          ),
                         ),
                       ],
                     ),
@@ -482,22 +579,33 @@ class _SimulationViewState extends State<SimulationView> {
                       // Headers
                       _buildEmailHeaderRow('Daripada:', scen.sender),
                       _buildEmailHeaderRow('Kepada:', 'saya@celikdigital.my'),
-                      _buildEmailHeaderRow('Subjek:', scen.category, isSubject: true),
+                      _buildEmailHeaderRow(
+                        'Subjek:',
+                        scen.category,
+                        isSubject: true,
+                      ),
                       const Divider(color: Color(0xFFF6FCF9), height: 16),
-                      
+
                       if (game.isTyping)
                         const Padding(
                           padding: EdgeInsets.symmetric(vertical: 20.0),
                           child: Center(
                             child: Text(
                               'Menghurai e-mel masuk siber...',
-                              style: TextStyle(color: Colors.grey, fontSize: 10, fontWeight: FontWeight.bold),
+                              style: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 10,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         )
                       else ...[
                         Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 10,
+                            vertical: 6,
+                          ),
                           decoration: BoxDecoration(
                             color: const Color(0xFFFEF2F2), // red-50
                             borderRadius: BorderRadius.circular(10),
@@ -505,12 +613,20 @@ class _SimulationViewState extends State<SimulationView> {
                           ),
                           child: const Row(
                             children: [
-                              Icon(LucideIcons.alertCircle, color: Color(0xFFDC2626), size: 14),
+                              Icon(
+                                LucideIcons.alertCircle,
+                                color: Color(0xFFDC2626),
+                                size: 14,
+                              ),
                               SizedBox(width: 6),
                               Text(
                                 'Sila semak pautan di bawah dengan berhati-hati!',
-                                style: TextStyle(color: Color(0xFF991B1B), fontSize: 9, fontWeight: FontWeight.w900),
-                              )
+                                style: TextStyle(
+                                  color: Color(0xFF991B1B),
+                                  fontSize: 9,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
                             ],
                           ),
                         ),
@@ -522,21 +638,29 @@ class _SimulationViewState extends State<SimulationView> {
                             borderRadius: BorderRadius.circular(8),
                             border: Border.all(color: const Color(0xFFF6FCF9)),
                           ),
-                          child: _buildInteractiveMessage(game, scen, isWhiteText: false),
+                          child: _buildInteractiveMessage(
+                            game,
+                            scen,
+                            isWhiteText: false,
+                          ),
                         ),
-                      ]
+                      ],
                     ],
                   ),
-                )
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildEmailHeaderRow(String label, String value, {bool isSubject = false}) {
+  Widget _buildEmailHeaderRow(
+    String label,
+    String value, {
+    bool isSubject = false,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 1.5),
       child: Row(
@@ -544,7 +668,11 @@ class _SimulationViewState extends State<SimulationView> {
         children: [
           Text(
             label,
-            style: const TextStyle(color: Color(0xFF64748B), fontSize: 9.5, fontWeight: FontWeight.w800),
+            style: const TextStyle(
+              color: Color(0xFF64748B),
+              fontSize: 9.5,
+              fontWeight: FontWeight.w800,
+            ),
           ),
           const SizedBox(width: 6),
           Expanded(
@@ -553,12 +681,14 @@ class _SimulationViewState extends State<SimulationView> {
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                color: isSubject ? const Color(0xFF0F172A) : const Color(0xFF334155),
+                color: isSubject
+                    ? const Color(0xFF0F172A)
+                    : const Color(0xFF334155),
                 fontSize: 9.5,
                 fontWeight: isSubject ? FontWeight.w900 : FontWeight.w700,
               ),
             ),
-          )
+          ),
         ],
       ),
     );
@@ -580,29 +710,51 @@ class _SimulationViewState extends State<SimulationView> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     IconButton(
-                      icon: const Icon(LucideIcons.chevronLeft, color: Colors.white, size: 18),
-                      onPressed: () => game.setGameState('menu'),
+                      icon: const Icon(
+                        LucideIcons.chevronLeft,
+                        color: Colors.white,
+                        size: 18,
+                      ),
+                      onPressed: () => game.setGameState('choose_category'),
                       padding: EdgeInsets.zero,
                       constraints: const BoxConstraints(),
                     ),
                     const Text(
                       'SIMBAH PELAYAR WEB',
-                      style: TextStyle(color: Color(0xFFCBD5E1), fontSize: 8.5, fontWeight: FontWeight.w900, letterSpacing: 0.8),
+                      style: TextStyle(
+                        color: Color(0xFFCBD5E1),
+                        fontSize: 8.5,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 0.8,
+                      ),
                     ),
-                    _buildShieldsHeader(game, isDark: true, sizeMultiplier: 0.8),
+                    _buildShieldsHeader(
+                      game,
+                      isDark: true,
+                      sizeMultiplier: 0.8,
+                    ),
                   ],
                 ),
                 const SizedBox(height: 6),
                 Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 8,
+                    vertical: 4,
+                  ),
                   decoration: BoxDecoration(
                     color: const Color(0xFF1E293B),
                     borderRadius: BorderRadius.circular(6),
-                    border: Border.all(color: const Color(0xFFEF4444).withValues(alpha: 0.3)),
+                    border: Border.all(
+                      color: const Color(0xFFEF4444).withValues(alpha: 0.3),
+                    ),
                   ),
                   child: const Row(
                     children: [
-                      Icon(LucideIcons.alertCircle, color: Color(0xFFEF4444), size: 12),
+                      Icon(
+                        LucideIcons.alertCircle,
+                        color: Color(0xFFEF4444),
+                        size: 12,
+                      ),
                       SizedBox(width: 6),
                       Expanded(
                         child: Text(
@@ -614,7 +766,7 @@ class _SimulationViewState extends State<SimulationView> {
                             decoration: TextDecoration.underline,
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -633,7 +785,11 @@ class _SimulationViewState extends State<SimulationView> {
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(color: const Color(0xFFE6F4F0)),
                     boxShadow: [
-                      BoxShadow(color: Colors.black.withValues(alpha: 0.04), blurRadius: 4, offset: const Offset(0, 2))
+                      BoxShadow(
+                        color: Colors.black.withValues(alpha: 0.04),
+                        blurRadius: 4,
+                        offset: const Offset(0, 2),
+                      ),
                     ],
                   ),
                   clipBehavior: Clip.hardEdge,
@@ -645,44 +801,61 @@ class _SimulationViewState extends State<SimulationView> {
                         padding: const EdgeInsets.all(10),
                         decoration: const BoxDecoration(
                           gradient: LinearGradient(
-                            colors: [Color(0xFFDC2626), Color(0xFFD97706)], // red to amber
+                            colors: [
+                              Color(0xFFDC2626),
+                              Color(0xFFD97706),
+                            ], // red to amber
                           ),
                         ),
                         child: const Text(
                           'KEMPEN REZEKI BERTUAH RAHMAH 2026',
                           textAlign: TextAlign.center,
-                          style: TextStyle(color: Colors.white, fontSize: 10, fontWeight: FontWeight.w900),
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 10,
+                            fontWeight: FontWeight.w900,
+                          ),
                         ),
                       ),
-                      
+
                       Padding(
                         padding: const EdgeInsets.all(12),
                         child: Column(
                           children: [
-                            _buildInteractiveMessage(game, scen, isWhiteText: false),
+                            _buildInteractiveMessage(
+                              game,
+                              scen,
+                              isWhiteText: false,
+                            ),
                             const SizedBox(height: 12),
                             Container(
                               padding: const EdgeInsets.all(8),
                               decoration: BoxDecoration(
                                 color: const Color(0xFFFEF9C3), // yellow-50
-                                border: Border.all(color: const Color(0xFFFEF08A)),
+                                border: Border.all(
+                                  color: const Color(0xFFFEF08A),
+                                ),
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: const Text(
                                 '⚠ Sila isi Nombor Kad, No IC & Kod OTP Keselamatan di bawah.',
                                 textAlign: TextAlign.center,
-                                style: TextStyle(color: Color(0xFF854D0E), fontSize: 8.5, fontWeight: FontWeight.w900),
+                                style: TextStyle(
+                                  color: Color(0xFF854D0E),
+                                  fontSize: 8.5,
+                                  fontWeight: FontWeight.w900,
+                                ),
                               ),
                             ),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
@@ -703,26 +876,44 @@ class _SimulationViewState extends State<SimulationView> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   IconButton(
-                    icon: const Icon(LucideIcons.chevronLeft, color: Colors.grey, size: 20),
-                    onPressed: () => game.setGameState('menu'),
+                    icon: const Icon(
+                      LucideIcons.chevronLeft,
+                      color: Colors.grey,
+                      size: 20,
+                    ),
+                    onPressed: () => game.setGameState('choose_category'),
                   ),
                   Row(
                     children: [
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 4,
+                        ),
                         decoration: BoxDecoration(
                           color: const Color(0xFF7F1D1D).withValues(alpha: 0.4),
                           borderRadius: BorderRadius.circular(100),
-                          border: Border.all(color: const Color(0xFFEF4444).withValues(alpha: 0.2)),
+                          border: Border.all(
+                            color: const Color(
+                              0xFFEF4444,
+                            ).withValues(alpha: 0.2),
+                          ),
                         ),
                         child: const Text(
                           '🚨 WARAN BERISIKO TINGGI',
-                          style: TextStyle(color: Color(0xFFFCA5A5), fontSize: 8, fontWeight: FontWeight.w900),
+                          style: TextStyle(
+                            color: Color(0xFFFCA5A5),
+                            fontSize: 8,
+                            fontWeight: FontWeight.w900,
+                          ),
                         ),
                       ),
                       const SizedBox(width: 6),
                       Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 4,
+                        ),
                         decoration: BoxDecoration(
                           color: const Color(0xFF1E293B),
                           borderRadius: BorderRadius.circular(100),
@@ -730,22 +921,39 @@ class _SimulationViewState extends State<SimulationView> {
                         ),
                         child: Text(
                           'KES ${game.currentIndex + 1}/${game.currentPool.length}',
-                          style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.w900),
+                          style: const TextStyle(
+                            color: Colors.white,
+                            fontSize: 8,
+                            fontWeight: FontWeight.w900,
+                          ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ],
               ),
               const SizedBox(height: 12),
               const Text(
-                'PANGGILAN KECEMASAN...',
-                style: TextStyle(color: Color(0xFFF43F5E), fontSize: 16, fontWeight: FontWeight.w900, letterSpacing: 0.5),
-              ).animate(onPlay: (controller) => controller.repeat(reverse: true)).fadeIn(duration: 800.ms),
+                    'PANGGILAN KECEMASAN...',
+                    style: TextStyle(
+                      color: Color(0xFFF43F5E),
+                      fontSize: 16,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: 0.5,
+                    ),
+                  )
+                  .animate(
+                    onPlay: (controller) => controller.repeat(reverse: true),
+                  )
+                  .fadeIn(duration: 800.ms),
               const SizedBox(height: 4),
               const Text(
                 'Identiti Penghantar:',
-                style: TextStyle(color: Colors.grey, fontSize: 9.5, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 9.5,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ],
           ),
@@ -754,24 +962,46 @@ class _SimulationViewState extends State<SimulationView> {
           Column(
             children: [
               Container(
-                width: 64,
-                height: 64,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFDC2626).withValues(alpha: 0.2),
-                  shape: BoxShape.circle,
-                  border: Border.all(color: const Color(0xFFEF4444).withValues(alpha: 0.3)),
-                ),
-                child: const Icon(LucideIcons.phoneCall, color: Color(0xFFEF4444), size: 28),
-              ).animate(onPlay: (controller) => controller.repeat(reverse: true)).scale(begin: const Offset(0.9, 0.9), end: const Offset(1.1, 1.1), duration: 1.seconds),
+                    width: 64,
+                    height: 64,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFDC2626).withValues(alpha: 0.2),
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: const Color(0xFFEF4444).withValues(alpha: 0.3),
+                      ),
+                    ),
+                    child: const Icon(
+                      LucideIcons.phoneCall,
+                      color: Color(0xFFEF4444),
+                      size: 28,
+                    ),
+                  )
+                  .animate(
+                    onPlay: (controller) => controller.repeat(reverse: true),
+                  )
+                  .scale(
+                    begin: const Offset(0.9, 0.9),
+                    end: const Offset(1.1, 1.1),
+                    duration: 1.seconds,
+                  ),
               const SizedBox(height: 12),
               Text(
                 scen.sender,
-                style: const TextStyle(color: Colors.white, fontSize: 15, fontWeight: FontWeight.w900),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.w900,
+                ),
               ),
               const SizedBox(height: 4),
               const Text(
                 'Disyaki Macau Scam Penyamaran PDRM',
-                style: TextStyle(color: Colors.grey, fontSize: 9.5, fontWeight: FontWeight.w700),
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 9.5,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ],
           ),
@@ -789,7 +1019,12 @@ class _SimulationViewState extends State<SimulationView> {
               children: [
                 const Text(
                   'Kandungan Transkrip Panggilan:',
-                  style: TextStyle(color: Color(0xFFFCA5A5), fontSize: 8, fontWeight: FontWeight.w900, letterSpacing: 0.8),
+                  style: TextStyle(
+                    color: Color(0xFFFCA5A5),
+                    fontSize: 8,
+                    fontWeight: FontWeight.w900,
+                    letterSpacing: 0.8,
+                  ),
                 ),
                 const SizedBox(height: 4),
                 _buildInteractiveMessage(game, scen, isWhiteText: true),
@@ -806,31 +1041,48 @@ class _SimulationViewState extends State<SimulationView> {
                   'Siri: ${scen.category}',
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(color: Colors.grey, fontSize: 8.5, fontWeight: FontWeight.bold),
+                  style: const TextStyle(
+                    color: Colors.grey,
+                    fontSize: 8.5,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               Row(
                 children: [
-                  const Text('SHIELDS: ', style: TextStyle(color: Colors.grey, fontSize: 8, fontWeight: FontWeight.w900)),
+                  const Text(
+                    'SHIELDS: ',
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 8,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
                   ...List.generate(3, (i) {
                     final isFull = i < game.shields;
                     return Icon(
                       Icons.shield,
-                      color: isFull ? const Color(0xFFF43F5E) : const Color(0xFF1E293B),
+                      color: isFull
+                          ? const Color(0xFFF43F5E)
+                          : const Color(0xFF1E293B),
                       size: 11,
                     );
-                  })
+                  }),
                 ],
-              )
+              ),
             ],
-          )
+          ),
         ],
       ),
     );
   }
 
   // Generic Shields and Session count badge
-  Widget _buildShieldsHeader(GameProvider game, {bool isDark = false, double sizeMultiplier = 1.0}) {
+  Widget _buildShieldsHeader(
+    GameProvider game, {
+    bool isDark = false,
+    double sizeMultiplier = 1.0,
+  }) {
     return Row(
       children: [
         Container(
@@ -838,11 +1090,19 @@ class _SimulationViewState extends State<SimulationView> {
           decoration: BoxDecoration(
             color: isDark ? const Color(0xFF1E293B) : const Color(0xFF0C4A42),
             borderRadius: BorderRadius.circular(100),
-            border: Border.all(color: isDark ? const Color(0xFF334155) : const Color(0xFF0D9488).withValues(alpha: 0.2)),
+            border: Border.all(
+              color: isDark
+                  ? const Color(0xFF334155)
+                  : const Color(0xFF0D9488).withValues(alpha: 0.2),
+            ),
           ),
           child: Text(
             'KES ${game.currentIndex + 1}/${game.currentPool.length}',
-            style: const TextStyle(color: Colors.white, fontSize: 8, fontWeight: FontWeight.w900),
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 8,
+              fontWeight: FontWeight.w900,
+            ),
           ),
         ),
         const SizedBox(width: 6),
@@ -857,30 +1117,44 @@ class _SimulationViewState extends State<SimulationView> {
             children: [
               Text(
                 'SHIELD: ',
-                style: TextStyle(color: isDark ? Colors.grey : Colors.white, fontSize: 8 * sizeMultiplier, fontWeight: FontWeight.w900),
+                style: TextStyle(
+                  color: isDark ? Colors.grey : Colors.white,
+                  fontSize: 8 * sizeMultiplier,
+                  fontWeight: FontWeight.w900,
+                ),
               ),
               ...List.generate(3, (i) {
                 final isFull = i < game.shields;
                 return Icon(
                   Icons.shield,
-                  color: isFull ? const Color(0xFF34D399) : (isDark ? const Color(0xFF334155) : const Color(0xFF0D4F46)),
+                  color: isFull
+                      ? const Color(0xFF34D399)
+                      : (isDark
+                            ? const Color(0xFF334155)
+                            : const Color(0xFF0D4F46)),
                   size: 11 * sizeMultiplier,
                 );
-              })
+              }),
             ],
           ),
-        )
+        ),
       ],
     );
   }
 
   // Clickable text segments for red flag mapping
-  Widget _buildInteractiveMessage(GameProvider game, Scenario scen, {required bool isWhiteText}) {
+  Widget _buildInteractiveMessage(
+    GameProvider game,
+    Scenario scen, {
+    required bool isWhiteText,
+  }) {
     if (game.playStep != 'red_flags') {
       return Text(
         scen.message,
         style: TextStyle(
-          color: isWhiteText ? const Color(0xFFE6F4F0) : const Color(0xFF1E293B),
+          color: isWhiteText
+              ? const Color(0xFFE6F4F0)
+              : const Color(0xFF1E293B),
           fontSize: 11.5,
           fontWeight: FontWeight.w800,
           height: 1.4,
@@ -901,52 +1175,75 @@ class _SimulationViewState extends State<SimulationView> {
 
         final clean = seg
             .toLowerCase()
-            .replaceAll(RegExp(r'[.,\/#!$%\^&\*;:{}=\-_`~()?"' "'" r'\[\]]'), '')
+            .replaceAll(
+              RegExp(
+                r'[.,\/#!$%\^&\*;:{}=\-_`~()?"'
+                "'"
+                r'\[\]]',
+              ),
+              '',
+            )
             .trim();
         final isClicked = game.foundRedFlags.contains(clean);
         final isFlag = game.isWordRedFlag(seg);
 
         return GestureDetector(
           onTap: () => game.handleWordClick(seg, isFlag),
-          child: Container(
-            margin: const EdgeInsets.symmetric(horizontal: 1.0, vertical: 0.5),
-            padding: const EdgeInsets.symmetric(horizontal: 1),
-            decoration: BoxDecoration(
-              color: isClicked
-                  ? (isFlag ? const Color(0xFFFCD34D) : Colors.transparent) // amber-300
-                  : Colors.transparent,
-              borderRadius: BorderRadius.circular(4),
-              border: isClicked && isFlag
-                  ? Border.all(color: const Color(0xFFD97706), width: 1)
-                  : null,
-            ),
-            child: RichText(
-              text: TextSpan(
-                children: [
-                  TextSpan(
-                    text: seg,
-                    style: TextStyle(
+          child:
+              Container(
+                    margin: const EdgeInsets.symmetric(
+                      horizontal: 1.0,
+                      vertical: 0.5,
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 1),
+                    decoration: BoxDecoration(
                       color: isClicked
-                          ? (isFlag ? const Color(0xFF0F172A) : Colors.grey.withValues(alpha: 0.5))
-                          : (isWhiteText ? Colors.white : const Color(0xFF1E293B)),
-                      fontSize: 11.5,
-                      fontWeight: FontWeight.w900,
-                      decoration: isClicked
-                          ? (isFlag ? TextDecoration.none : TextDecoration.lineThrough)
-                          : TextDecoration.underline,
-                      decorationStyle: TextDecorationStyle.dotted,
-                      decorationColor: isWhiteText ? Colors.grey : const Color(0xFF64748B),
+                          ? (isFlag
+                                ? const Color(0xFFFCD34D)
+                                : Colors.transparent) // amber-300
+                          : Colors.transparent,
+                      borderRadius: BorderRadius.circular(4),
+                      border: isClicked && isFlag
+                          ? Border.all(color: const Color(0xFFD97706), width: 1)
+                          : null,
                     ),
-                  ),
-                  if (isClicked && isFlag)
-                    const TextSpan(
-                      text: ' ⚠️',
-                      style: TextStyle(fontSize: 9),
+                    child: RichText(
+                      text: TextSpan(
+                        children: [
+                          TextSpan(
+                            text: seg,
+                            style: TextStyle(
+                              color: isClicked
+                                  ? (isFlag
+                                        ? const Color(0xFF0F172A)
+                                        : Colors.grey.withValues(alpha: 0.5))
+                                  : (isWhiteText
+                                        ? Colors.white
+                                        : const Color(0xFF1E293B)),
+                              fontSize: 11.5,
+                              fontWeight: FontWeight.w900,
+                              decoration: isClicked
+                                  ? (isFlag
+                                        ? TextDecoration.none
+                                        : TextDecoration.lineThrough)
+                                  : TextDecoration.underline,
+                              decorationStyle: TextDecorationStyle.dotted,
+                              decorationColor: isWhiteText
+                                  ? Colors.grey
+                                  : const Color(0xFF64748B),
+                            ),
+                          ),
+                          if (isClicked && isFlag)
+                            const TextSpan(
+                              text: ' ⚠️',
+                              style: TextStyle(fontSize: 9),
+                            ),
+                        ],
+                      ),
                     ),
-                ],
-              ),
-            ),
-          ).animate(target: isClicked && isFlag ? 1 : 0).shake(duration: 300.ms, rotation: 0.05),
+                  )
+                  .animate(target: isClicked && isFlag ? 1 : 0)
+                  .shake(duration: 300.ms, rotation: 0.05),
         );
       }).toList(),
     );
@@ -961,7 +1258,7 @@ class _SimulationViewState extends State<SimulationView> {
     SettingsProvider settingsProv,
   ) {
     return Container(
-      padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
+      padding: const EdgeInsets.fromLTRB(20, 22, 20, 24),
       decoration: BoxDecoration(
         color: AppColors.surfaceOf(context),
         borderRadius: const BorderRadius.only(
@@ -972,7 +1269,11 @@ class _SimulationViewState extends State<SimulationView> {
           top: BorderSide(color: AppColors.surfaceBorderOf(context), width: 1),
         ),
         boxShadow: const [
-          BoxShadow(color: Color(0x40000000), blurRadius: 20, offset: Offset(0, -6))
+          BoxShadow(
+            color: Color(0x40000000),
+            blurRadius: 20,
+            offset: Offset(0, -6),
+          ),
         ],
       ),
       child: Column(
@@ -985,32 +1286,58 @@ class _SimulationViewState extends State<SimulationView> {
             children: [
               Text(
                 'Langkah Latihan',
-                style: TextStyle(color: AppColors.textMutedOf(context), fontSize: 8.5, fontWeight: FontWeight.w800, letterSpacing: 0.8),
+                style: TextStyle(
+                  color: AppColors.textMutedOf(context),
+                  fontSize: 8.5,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: 0.8,
+                ),
               ),
               Row(
                 children: [
-                  _buildStepIndicatorBadge('1. Kenal Pasti', active: game.playStep == 'identify'),
+                  _buildStepIndicatorBadge(
+                    '1. Kenal Pasti',
+                    active: game.playStep == 'identify',
+                  ),
                   const SizedBox(width: 4),
-                  Text('➔', style: TextStyle(color: AppColors.textMutedOf(context), fontSize: 9)),
+                  Text(
+                    '➔',
+                    style: TextStyle(
+                      color: AppColors.textMutedOf(context),
+                      fontSize: 9,
+                    ),
+                  ),
                   const SizedBox(width: 4),
-                  _buildStepIndicatorBadge('2. Red Flags', active: game.playStep == 'red_flags'),
+                  _buildStepIndicatorBadge(
+                    '2. Red Flags',
+                    active: game.playStep == 'red_flags',
+                  ),
                   const SizedBox(width: 4),
-                  Text('➔', style: TextStyle(color: AppColors.textMutedOf(context), fontSize: 9)),
+                  Text(
+                    '➔',
+                    style: TextStyle(
+                      color: AppColors.textMutedOf(context),
+                      fontSize: 9,
+                    ),
+                  ),
                   const SizedBox(width: 4),
-                  _buildStepIndicatorBadge('3. Respon', active: game.playStep == 'respond'),
+                  _buildStepIndicatorBadge(
+                    '3. Respon',
+                    active: game.playStep == 'respond',
+                  ),
                 ],
-              )
+              ),
             ],
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 18),
 
           // DYNAMIC STEP CARD VIEWER
           AnimatedSwitcher(
             duration: const Duration(milliseconds: 200),
             child: _buildActiveStepControl(context, game, scen, historyProv),
           ),
-          
-          const SizedBox(height: 12),
+
+          const SizedBox(height: 18),
 
           // Tips footer — solid fill for contrast
           Container(
@@ -1027,19 +1354,27 @@ class _SimulationViewState extends State<SimulationView> {
             ),
             child: Row(
               children: [
-                Icon(LucideIcons.info, color: AppColors.emeraldBadgeTextOf(context), size: 14),
+                Icon(
+                  LucideIcons.info,
+                  color: AppColors.emeraldBadgeTextOf(context),
+                  size: 14,
+                ),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
                     _rotatingTips[game.currentIndex % _rotatingTips.length],
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(color: AppColors.emeraldBadgeTextOf(context), fontSize: 8.5, fontWeight: FontWeight.w800),
+                    style: TextStyle(
+                      color: AppColors.emeraldBadgeTextOf(context),
+                      fontSize: 8.5,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
-                )
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
@@ -1049,7 +1384,9 @@ class _SimulationViewState extends State<SimulationView> {
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
       decoration: BoxDecoration(
-        color: active ? const Color(0xFF106452) : AppColors.surfaceBorderOf(context),
+        color: active
+            ? const Color(0xFF106452)
+            : AppColors.surfaceBorderOf(context),
         borderRadius: BorderRadius.circular(100),
       ),
       child: Text(
@@ -1079,14 +1416,22 @@ class _SimulationViewState extends State<SimulationView> {
           Center(
             child: Text(
               'Adakah mesej di atas cubaan siber Scam?',
-              style: TextStyle(color: AppColors.textPrimaryOf(context), fontSize: 11.5, fontWeight: FontWeight.w900),
+              style: TextStyle(
+                color: AppColors.textPrimaryOf(context),
+                fontSize: 11.5,
+                fontWeight: FontWeight.w900,
+              ),
             ),
           ),
           const SizedBox(height: 2),
           Center(
             child: Text(
               'Fikir dengan tenang sebelum membuat pilihan keselamatan.',
-              style: TextStyle(color: AppColors.textSecondaryOf(context), fontSize: 9.5, fontWeight: FontWeight.w700),
+              style: TextStyle(
+                color: AppColors.textSecondaryOf(context),
+                fontSize: 9.5,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
           const SizedBox(height: 10),
@@ -1099,13 +1444,24 @@ class _SimulationViewState extends State<SimulationView> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFFEF2F2),
                       foregroundColor: const Color(0xFFDC2626),
-                      side: const BorderSide(color: Color(0xFFFCA5A5), width: 1.5),
+                      side: const BorderSide(
+                        color: Color(0xFFFCA5A5),
+                        width: 1.5,
+                      ),
                       padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
                       elevation: 0,
                     ),
                     icon: const Icon(LucideIcons.alertTriangle, size: 18),
-                    label: const Text('Ya, Ini Scam!', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 12)),
+                    label: const Text(
+                      'Ya, Ini Scam!',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 12,
+                      ),
+                    ),
                     onPressed: () => game.handleIdentifyClick(true),
                   ),
                 ),
@@ -1115,13 +1471,24 @@ class _SimulationViewState extends State<SimulationView> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFF6FCF9),
                       foregroundColor: const Color(0xFF475569),
-                      side: const BorderSide(color: Color(0xFFCBD5E1), width: 1.5),
+                      side: const BorderSide(
+                        color: Color(0xFFCBD5E1),
+                        width: 1.5,
+                      ),
                       padding: const EdgeInsets.symmetric(vertical: 16),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                      ),
                       elevation: 0,
                     ),
                     icon: const Icon(LucideIcons.checkCircle, size: 18),
-                    label: const Text('Bukan, Ini Sah', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 12)),
+                    label: const Text(
+                      'Bukan, Ini Sah',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w900,
+                        fontSize: 12,
+                      ),
+                    ),
                     onPressed: () => game.handleIdentifyClick(false),
                   ),
                 ),
@@ -1134,18 +1501,26 @@ class _SimulationViewState extends State<SimulationView> {
                 Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: game.isIdentifyCorrect == true ? const Color(0xFFECFDF5) : const Color(0xFFFEF2F2),
+                    color: game.isIdentifyCorrect == true
+                        ? const Color(0xFFECFDF5)
+                        : const Color(0xFFFEF2F2),
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
-                      color: game.isIdentifyCorrect == true ? const Color(0xFFA7F3D0) : const Color(0xFFFCA5A5),
+                      color: game.isIdentifyCorrect == true
+                          ? const Color(0xFFA7F3D0)
+                          : const Color(0xFFFCA5A5),
                     ),
                   ),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Icon(
-                        game.isIdentifyCorrect == true ? LucideIcons.checkCircle : LucideIcons.xCircle,
-                        color: game.isIdentifyCorrect == true ? const Color(0xFF106452) : const Color(0xFFDC2626),
+                        game.isIdentifyCorrect == true
+                            ? LucideIcons.checkCircle
+                            : LucideIcons.xCircle,
+                        color: game.isIdentifyCorrect == true
+                            ? const Color(0xFF106452)
+                            : const Color(0xFFDC2626),
                         size: 18,
                       ),
                       const SizedBox(width: 8),
@@ -1154,9 +1529,13 @@ class _SimulationViewState extends State<SimulationView> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              game.isIdentifyCorrect == true ? 'JAWAPAN ANDA BETUL!' : 'JAWAPAN ANDA SALAH!',
+                              game.isIdentifyCorrect == true
+                                  ? 'JAWAPAN ANDA BETUL!'
+                                  : 'JAWAPAN ANDA SALAH!',
                               style: TextStyle(
-                                color: game.isIdentifyCorrect == true ? const Color(0xFF047857) : const Color(0xFFB91C1C),
+                                color: game.isIdentifyCorrect == true
+                                    ? const Color(0xFF047857)
+                                    : const Color(0xFFB91C1C),
                                 fontSize: 10,
                                 fontWeight: FontWeight.w900,
                               ),
@@ -1165,7 +1544,9 @@ class _SimulationViewState extends State<SimulationView> {
                             Text(
                               game.identifyFeedback ?? '',
                               style: TextStyle(
-                                color: game.isIdentifyCorrect == true ? const Color(0xFF065F46) : const Color(0xFF991B1B),
+                                color: game.isIdentifyCorrect == true
+                                    ? const Color(0xFF065F46)
+                                    : const Color(0xFF991B1B),
                                 fontSize: 9.5,
                                 fontWeight: FontWeight.w700,
                                 height: 1.3,
@@ -1173,7 +1554,7 @@ class _SimulationViewState extends State<SimulationView> {
                             ),
                           ],
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),
@@ -1183,21 +1564,28 @@ class _SimulationViewState extends State<SimulationView> {
                     backgroundColor: const Color(0xFF106452),
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(vertical: 12),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                   ),
                   icon: const Icon(LucideIcons.arrowRight, size: 16),
-                  label: const Text('MULA CARI RED FLAGS', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 11)),
+                  label: const Text(
+                    'MULA CARI RED FLAGS',
+                    style: TextStyle(fontWeight: FontWeight.w900, fontSize: 11),
+                  ),
                   onPressed: () => game.goToStep2(), // updates to red_flags
                 ),
               ],
-            )
+            ),
         ],
       );
     }
 
     // STEP 2: FIND RED FLAGS
     if (game.playStep == 'red_flags') {
-      final realFlagsCount = game.foundRedFlags.where((w) => game.isWordRedFlag(w)).length;
+      final realFlagsCount = game.foundRedFlags
+          .where((w) => game.isWordRedFlag(w))
+          .length;
 
       return Column(
         key: const ValueKey('step_redflags'),
@@ -1206,14 +1594,22 @@ class _SimulationViewState extends State<SimulationView> {
           Center(
             child: Text(
               'Cari & Sentuh Red Flags (Petunjuk Scam)',
-              style: TextStyle(color: AppColors.textPrimaryOf(context), fontSize: 11.5, fontWeight: FontWeight.w900),
+              style: TextStyle(
+                color: AppColors.textPrimaryOf(context),
+                fontSize: 11.5,
+                fontWeight: FontWeight.w900,
+              ),
             ),
           ),
           const SizedBox(height: 2),
           Center(
             child: Text(
               'Sentuh perkataan mencurigakan dalam mesej di atas (cth: pautan, ugutan, kod bank, TAC).',
-              style: TextStyle(color: AppColors.textSecondaryOf(context), fontSize: 9.5, fontWeight: FontWeight.w700),
+              style: TextStyle(
+                color: AppColors.textSecondaryOf(context),
+                fontSize: 9.5,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
           const SizedBox(height: 10),
@@ -1232,12 +1628,19 @@ class _SimulationViewState extends State<SimulationView> {
                   final isFlag = game.isWordRedFlag(word);
                   return Container(
                     margin: const EdgeInsets.only(right: 6),
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 10,
+                      vertical: 6,
+                    ),
                     decoration: BoxDecoration(
                       // Solid fills for contrast
-                      color: isFlag ? const Color(0xFFFEF3C7) : const Color(0xFFE2E8F0),
+                      color: isFlag
+                          ? const Color(0xFFFEF3C7)
+                          : const Color(0xFFE2E8F0),
                       border: Border.all(
-                        color: isFlag ? const Color(0xFFF59E0B) : const Color(0xFF94A3B8),
+                        color: isFlag
+                            ? const Color(0xFFF59E0B)
+                            : const Color(0xFF94A3B8),
                         width: 1.5,
                       ),
                       borderRadius: BorderRadius.circular(100),
@@ -1245,10 +1648,14 @@ class _SimulationViewState extends State<SimulationView> {
                     child: Text(
                       '${isFlag ? '🚨' : '⚪'} $word',
                       style: TextStyle(
-                        color: isFlag ? const Color(0xFF92400E) : const Color(0xFF475569),
+                        color: isFlag
+                            ? const Color(0xFF92400E)
+                            : const Color(0xFF475569),
                         fontSize: 9,
                         fontWeight: FontWeight.w900,
-                        decoration: isFlag ? TextDecoration.none : TextDecoration.lineThrough,
+                        decoration: isFlag
+                            ? TextDecoration.none
+                            : TextDecoration.lineThrough,
                       ),
                     ),
                   );
@@ -1266,7 +1673,11 @@ class _SimulationViewState extends State<SimulationView> {
               ),
               child: const Text(
                 'Sila sentuh sekurang-kurangnya 1 perkataan mencurigakan dalam mesej!',
-                style: TextStyle(color: Color(0xFFB45309), fontSize: 9, fontWeight: FontWeight.w900),
+                style: TextStyle(
+                  color: Color(0xFFB45309),
+                  fontSize: 9,
+                  fontWeight: FontWeight.w900,
+                ),
               ),
             ),
 
@@ -1287,17 +1698,26 @@ class _SimulationViewState extends State<SimulationView> {
                     padding: const EdgeInsets.only(right: 20),
                     child: Text(
                       '💡 Pembayangan:\n${game.getScenarioHint(scen)}',
-                      style: const TextStyle(color: Color(0xFFB45309), fontSize: 9.5, fontWeight: FontWeight.w700, height: 1.3),
+                      style: const TextStyle(
+                        color: Color(0xFFB45309),
+                        fontSize: 9.5,
+                        fontWeight: FontWeight.w700,
+                        height: 1.3,
+                      ),
                     ),
                   ),
                   Positioned(
                     top: -5,
                     right: -5,
                     child: IconButton(
-                      icon: const Icon(LucideIcons.x, size: 14, color: Colors.grey),
+                      icon: const Icon(
+                        LucideIcons.x,
+                        size: 14,
+                        color: Colors.grey,
+                      ),
                       onPressed: () => game.setShowPlayHint(false),
                     ),
-                  )
+                  ),
                 ],
               ),
             )
@@ -1306,11 +1726,17 @@ class _SimulationViewState extends State<SimulationView> {
               style: OutlinedButton.styleFrom(
                 side: const BorderSide(color: Color(0xFFFCD34D)),
                 padding: const EdgeInsets.symmetric(vertical: 6),
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
               child: const Text(
                 '💡 Perlukan Pembayangan? (Klik Sini)',
-                style: TextStyle(color: Color(0xFFB45309), fontSize: 9, fontWeight: FontWeight.w900),
+                style: TextStyle(
+                  color: Color(0xFFB45309),
+                  fontSize: 9,
+                  fontWeight: FontWeight.w900,
+                ),
               ),
               onPressed: () => game.setShowPlayHint(true),
             ),
@@ -1321,7 +1747,12 @@ class _SimulationViewState extends State<SimulationView> {
             Text(
               game.redFlagMessage,
               textAlign: TextAlign.center,
-              style: TextStyle(color: AppColors.textSecondaryOf(context), fontSize: 9.5, fontWeight: FontWeight.w800, height: 1.3),
+              style: TextStyle(
+                color: AppColors.textSecondaryOf(context),
+                fontSize: 9.5,
+                fontWeight: FontWeight.w800,
+                height: 1.3,
+              ),
             ),
             const SizedBox(height: 8),
           ],
@@ -1334,10 +1765,19 @@ class _SimulationViewState extends State<SimulationView> {
                     foregroundColor: AppColors.textPrimaryOf(context),
                     side: const BorderSide(color: Color(0xFFCBD5E1)),
                     padding: const EdgeInsets.symmetric(vertical: 12),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                   ),
-                  child: const Text('LANGKAU & SELESAI', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 10.5)),
-                  onPressed: () => game.skipToStep3(), // update step state to respond
+                  child: const Text(
+                    'LANGKAU & SELESAI',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 10.5,
+                    ),
+                  ),
+                  onPressed: () =>
+                      game.skipToStep3(), // update step state to respond
                 ),
               ),
               const SizedBox(width: 8),
@@ -1345,20 +1785,32 @@ class _SimulationViewState extends State<SimulationView> {
                 flex: 1,
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: realFlagsCount >= 1 ? const Color(0xFF106452) : const Color(0xFFE6F4F0),
-                    foregroundColor: realFlagsCount >= 1 ? Colors.white : const Color(0xFF94A3B8),
+                    backgroundColor: realFlagsCount >= 1
+                        ? const Color(0xFF106452)
+                        : const Color(0xFFE6F4F0),
+                    foregroundColor: realFlagsCount >= 1
+                        ? Colors.white
+                        : const Color(0xFF94A3B8),
                     padding: const EdgeInsets.symmetric(vertical: 12),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16),
+                    ),
                     elevation: 0,
                   ),
                   onPressed: realFlagsCount >= 1
                       ? () => game.skipToStep3()
                       : null,
-                  child: const Text('LANGKAH SETERUSNYA', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 10.5)),
+                  child: const Text(
+                    'LANGKAH SETERUSNYA',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 10.5,
+                    ),
+                  ),
                 ),
               ),
             ],
-          )
+          ),
         ],
       );
     }
@@ -1375,12 +1827,23 @@ class _SimulationViewState extends State<SimulationView> {
               children: [
                 Text(
                   'Pilih Maklum Balas Keselamatan',
-                  style: TextStyle(color: AppColors.textMutedOf(context), fontSize: 9, fontWeight: FontWeight.w900),
+                  style: TextStyle(
+                    color: AppColors.textMutedOf(context),
+                    fontSize: 9,
+                    fontWeight: FontWeight.w900,
+                  ),
                 ),
                 TextButton(
                   onPressed: () => setState(() => _isReplying = false),
-                  child: const Text('Batal', style: TextStyle(color: Color(0xFFF43F5E), fontSize: 9.5, fontWeight: FontWeight.w900)),
-                )
+                  child: const Text(
+                    'Batal',
+                    style: TextStyle(
+                      color: Color(0xFFF43F5E),
+                      fontSize: 9.5,
+                      fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                ),
               ],
             ),
             const SizedBox(height: 6),
@@ -1411,18 +1874,30 @@ class _SimulationViewState extends State<SimulationView> {
                                 setState(() => _isReplying = false);
                               },
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 14,
+                            vertical: 16,
+                          ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
                                 child: Text(
                                   '"${opt.text}"',
-                                  style: TextStyle(color: AppColors.textPrimaryOf(context), fontSize: 10.5, fontWeight: FontWeight.w800, height: 1.3),
+                                  style: TextStyle(
+                                    color: AppColors.textPrimaryOf(context),
+                                    fontSize: 10.5,
+                                    fontWeight: FontWeight.w800,
+                                    height: 1.3,
+                                  ),
                                 ),
                               ),
                               const SizedBox(width: 8),
-                              Icon(LucideIcons.send, color: AppColors.textMutedOf(context), size: 14),
+                              Icon(
+                                LucideIcons.send,
+                                color: AppColors.textMutedOf(context),
+                                size: 14,
+                              ),
                             ],
                           ),
                         ),
@@ -1438,12 +1913,23 @@ class _SimulationViewState extends State<SimulationView> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(width: 12, height: 12, child: CircularProgressIndicator(strokeWidth: 1.5, valueColor: AlwaysStoppedAnimation(Color(0xFF106452)))),
+                    SizedBox(
+                      width: 12,
+                      height: 12,
+                      child: CircularProgressIndicator(
+                        strokeWidth: 1.5,
+                        valueColor: AlwaysStoppedAnimation(Color(0xFF106452)),
+                      ),
+                    ),
                     SizedBox(width: 8),
                     Text(
                       'SISTEM AI MENGANALISIS KEBOCORAN SIBER...',
-                      style: TextStyle(color: Color(0xFF106452), fontSize: 8, fontWeight: FontWeight.w900),
-                    )
+                      style: TextStyle(
+                        color: Color(0xFF106452),
+                        fontSize: 8,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
                   ],
                 ),
               ),
@@ -1451,14 +1937,22 @@ class _SimulationViewState extends State<SimulationView> {
             Center(
               child: Text(
                 'Tindakan Keselamatan Terakhir Anda',
-                style: TextStyle(color: AppColors.textPrimaryOf(context), fontSize: 11.5, fontWeight: FontWeight.w900),
+                style: TextStyle(
+                  color: AppColors.textPrimaryOf(context),
+                  fontSize: 11.5,
+                  fontWeight: FontWeight.w900,
+                ),
               ),
             ),
             const SizedBox(height: 2),
             Center(
               child: Text(
                 'Pilih antara membalas, mengabaikan, atau menyekat pengirim ini.',
-                style: TextStyle(color: AppColors.textSecondaryOf(context), fontSize: 9.5, fontWeight: FontWeight.w700),
+                style: TextStyle(
+                  color: AppColors.textSecondaryOf(context),
+                  fontSize: 9.5,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
             const SizedBox(height: 12),
@@ -1481,7 +1975,9 @@ class _SimulationViewState extends State<SimulationView> {
                   icon: LucideIcons.trash2,
                   color: const Color(0xFF475569),
                   bg: const Color(0xFFF6FCF9),
-                  onTap: () => game.analyzeUserReply('Saya abaikan dan padam mesej ini tanpa klik pautan.'),
+                  onTap: () => game.analyzeUserReply(
+                    'Saya abaikan dan padam mesej ini tanpa klik pautan.',
+                  ),
                 ),
                 // Sekat Option
                 _buildActionCircle(
@@ -1489,12 +1985,14 @@ class _SimulationViewState extends State<SimulationView> {
                   icon: LucideIcons.ban,
                   color: const Color(0xFFDC2626),
                   bg: const Color(0xFFFEF2F2),
-                  onTap: () => game.analyzeUserReply('Saya terus sekat (block) nombor pengirim ini di telefon saya.'),
+                  onTap: () => game.analyzeUserReply(
+                    'Saya terus sekat (block) nombor pengirim ini di telefon saya.',
+                  ),
                   isPulse: true,
                 ),
               ],
-            )
-          ]
+            ),
+          ],
         ],
       );
     }
@@ -1514,31 +2012,42 @@ class _SimulationViewState extends State<SimulationView> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          width: 56,
-          height: 56,
-          decoration: BoxDecoration(
-            color: bg,
-            shape: BoxShape.circle,
-            border: isPulse
-                ? Border.all(color: color.withValues(alpha: 0.50), width: 2)
-                : null,
-          ),
-          child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              customBorder: const CircleBorder(),
-              onTap: onTap,
-              child: Center(
-                child: Icon(icon, color: color, size: 24),
+              width: 56,
+              height: 56,
+              decoration: BoxDecoration(
+                color: bg,
+                shape: BoxShape.circle,
+                border: isPulse
+                    ? Border.all(color: color.withValues(alpha: 0.50), width: 2)
+                    : null,
               ),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  customBorder: const CircleBorder(),
+                  onTap: onTap,
+                  child: Center(child: Icon(icon, color: color, size: 24)),
+                ),
+              ),
+            )
+            .animate(
+              target: isPulse ? 1 : 0,
+              onPlay: (controller) => controller.repeat(reverse: true),
+            )
+            .scale(
+              begin: const Offset(0.95, 0.95),
+              end: const Offset(1.05, 1.05),
+              duration: 800.ms,
             ),
-          ),
-        ).animate(target: isPulse ? 1 : 0, onPlay: (controller) => controller.repeat(reverse: true)).scale(begin: const Offset(0.95, 0.95), end: const Offset(1.05, 1.05), duration: 800.ms),
         const SizedBox(height: 6),
         Text(
           title,
-          style: TextStyle(color: AppColors.textSecondaryOf(context), fontSize: 11, fontWeight: FontWeight.w900),
-        )
+          style: TextStyle(
+            color: AppColors.textSecondaryOf(context),
+            fontSize: 11,
+            fontWeight: FontWeight.w900,
+          ),
+        ),
       ],
     );
   }
@@ -1548,7 +2057,6 @@ class _SimulationViewState extends State<SimulationView> {
     "TIP: Jangan sesekali mendedahkan kod keselamatan TAC / OTP bank kepada sesiapa pun.",
     "TIP: Bank atau polis tidak akan sesekali menghubungi anda untuk menyekat akaun melalui WhatsApp.",
     "TIP: Pihak polis atau mahkamah tidak akan meminta siasatan sulit di telefon atau memindahkan wang simpanan.",
-    "TIP: PDRM menyediakan portal 'Semak Mule' untuk menyemak akaun bank meragukan sebelum transaksi."
+    "TIP: PDRM menyediakan portal 'Semak Mule' untuk menyemak akaun bank meragukan sebelum transaksi.",
   ];
 }
-

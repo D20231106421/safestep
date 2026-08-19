@@ -32,10 +32,17 @@ class SettingsView extends StatelessWidget {
 
             Expanded(
               child: ListView(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 16,
+                  vertical: 4,
+                ),
                 children: [
                   // ── Theme Selector Section ──────────────────────────────
-                  _sectionLabel('MOD TEMA TAMPILAN', LucideIcons.palette, AppColors.emerald),
+                  _sectionLabel(
+                    'MOD TEMA TAMPILAN',
+                    LucideIcons.palette,
+                    AppColors.emerald,
+                  ),
                   const SizedBox(height: 8),
 
                   GlassCard(
@@ -61,7 +68,8 @@ class SettingsView extends StatelessWidget {
                           icon: LucideIcons.sun,
                           mode: ThemeMode.light,
                           currentMode: settings.themeMode,
-                          onSelect: () => settings.setThemeMode(ThemeMode.light),
+                          onSelect: () =>
+                              settings.setThemeMode(ThemeMode.light),
                         ),
                         Divider(
                           height: 24,
@@ -73,7 +81,8 @@ class SettingsView extends StatelessWidget {
                           icon: LucideIcons.laptop,
                           mode: ThemeMode.system,
                           currentMode: settings.themeMode,
-                          onSelect: () => settings.setThemeMode(ThemeMode.system),
+                          onSelect: () =>
+                              settings.setThemeMode(ThemeMode.system),
                         ),
                       ],
                     ),
@@ -82,7 +91,11 @@ class SettingsView extends StatelessWidget {
                   const SizedBox(height: 24),
 
                   // ── Notifications Settings ──────────────────────────────
-                  _sectionLabel('NOTIFIKASI & AMARAN', LucideIcons.bell, AppColors.cyan),
+                  _sectionLabel(
+                    'NOTIFIKASI & AMARAN',
+                    LucideIcons.bell,
+                    AppColors.cyan,
+                  ),
                   const SizedBox(height: 8),
 
                   GlassCard(
@@ -92,7 +105,6 @@ class SettingsView extends StatelessWidget {
                         _buildToggleTile(
                           context,
                           title: 'Amaran Langsung',
-                          subtitle: 'Terima notifikasi amaran scam semasa aplikasi aktif',
                           icon: LucideIcons.zap,
                           value: settings.liveAlertsEnabled,
                           onChanged: (v) => settings.setLiveAlerts(v),
@@ -183,13 +195,11 @@ class SettingsView extends StatelessWidget {
                 color: isSelected
                     ? AppColors.emeraldBadgeBgOf(context)
                     : (isDark
-                        ? AppColors.surfaceBorder
-                        : AppColors.lightSurfaceBorder),
+                          ? AppColors.surfaceBorder
+                          : AppColors.lightSurfaceBorder),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
-                  color: isSelected
-                      ? AppColors.emerald
-                      : Colors.transparent,
+                  color: isSelected ? AppColors.emerald : Colors.transparent,
                   width: 2,
                 ),
               ),
@@ -208,8 +218,7 @@ class SettingsView extends StatelessWidget {
                 style: GoogleFonts.plusJakartaSans(
                   color: AppColors.textPrimaryOf(context),
                   fontSize: 12,
-                  fontWeight:
-                      isSelected ? FontWeight.w800 : FontWeight.w600,
+                  fontWeight: isSelected ? FontWeight.w800 : FontWeight.w600,
                 ),
               ),
             ),
@@ -246,7 +255,6 @@ class SettingsView extends StatelessWidget {
   Widget _buildToggleTile(
     BuildContext context, {
     required String title,
-    required String subtitle,
     required IconData icon,
     required bool value,
     required ValueChanged<bool> onChanged,
@@ -276,25 +284,13 @@ class SettingsView extends StatelessWidget {
           ),
           const SizedBox(width: 12),
           Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: GoogleFonts.plusJakartaSans(
-                    color: AppColors.textPrimaryOf(context),
-                    fontSize: 12,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                Text(
-                  subtitle,
-                  style: GoogleFonts.plusJakartaSans(
-                    color: AppColors.textMutedOf(context),
-                    fontSize: 9.5,
-                  ),
-                ),
-              ],
+            child: Text(
+              title,
+              style: GoogleFonts.plusJakartaSans(
+                color: AppColors.textPrimaryOf(context),
+                fontSize: 12,
+                fontWeight: FontWeight.w700,
+              ),
             ),
           ),
           Switch(
@@ -313,7 +309,9 @@ class SettingsView extends StatelessWidget {
 
   /// Clickable button tile to instantly trigger a simulated push notification.
   Widget _buildSimulateButtonTile(
-      BuildContext context, SettingsProvider settings) {
+    BuildContext context,
+    SettingsProvider settings,
+  ) {
     final isDark = AppColors.isDark(context);
     final isEnabled = settings.liveAlertsEnabled;
 
@@ -332,13 +330,17 @@ class SettingsView extends StatelessWidget {
                         ? AppColors.surfaceBorder
                         : AppColors.lightSurface,
                     shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(12)),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
                     margin: const EdgeInsets.fromLTRB(16, 0, 16, 12),
                     duration: const Duration(seconds: 2),
                     content: Row(
                       children: [
-                        const Icon(Icons.notifications_active_rounded,
-                            color: AppColors.cyan, size: 16),
+                        const Icon(
+                          Icons.notifications_active_rounded,
+                          color: AppColors.cyan,
+                          size: 16,
+                        ),
                         const SizedBox(width: 8),
                         Text(
                           'Notifikasi simulasi dihantar!',
@@ -366,11 +368,11 @@ class SettingsView extends StatelessWidget {
                   // Solid icon container
                   color: isEnabled
                       ? (isDark
-                          ? AppColors.cyan.withValues(alpha: 0.18)
-                          : const Color(0xFFCCFBF1))
+                            ? AppColors.cyan.withValues(alpha: 0.18)
+                            : const Color(0xFFCCFBF1))
                       : (isDark
-                          ? AppColors.surfaceBorder
-                          : AppColors.lightSurfaceBorder),
+                            ? AppColors.surfaceBorder
+                            : AppColors.lightSurfaceBorder),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
                     color: isEnabled
@@ -381,42 +383,32 @@ class SettingsView extends StatelessWidget {
                 ),
                 child: Icon(
                   LucideIcons.bellRing,
-                  color: isEnabled ? AppColors.cyan : AppColors.textMutedOf(context),
+                  color: isEnabled
+                      ? AppColors.cyan
+                      : AppColors.textMutedOf(context),
                   size: 20,
                 ),
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Simulasi Notifikasi',
-                      style: GoogleFonts.plusJakartaSans(
-                        color: isEnabled
-                            ? AppColors.textPrimaryOf(context)
-                            : AppColors.textMutedOf(context),
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    Text(
-                      isEnabled
-                          ? 'Ketik untuk tunjukkan demo amaran tolak sekarang'
-                          : 'Aktifkan Amaran Langsung untuk gunakan ciri ini',
-                      style: GoogleFonts.plusJakartaSans(
-                        color: AppColors.textMutedOf(context),
-                        fontSize: 9.5,
-                      ),
-                    ),
-                  ],
+                child: Text(
+                  'Simulasi Notifikasi',
+                  style: GoogleFonts.plusJakartaSans(
+                    color: isEnabled
+                        ? AppColors.textPrimaryOf(context)
+                        : AppColors.textMutedOf(context),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
               // Solid pill button — prominent, no gradient opacity tricks
               AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 14,
+                  vertical: 8,
+                ),
                 decoration: BoxDecoration(
                   color: isEnabled ? AppColors.cyan : AppColors.surfaceBorder,
                   borderRadius: BorderRadius.circular(20),
@@ -451,15 +443,13 @@ class SettingsView extends StatelessWidget {
 
   /// Frequency option selector for automatic periodic notifications.
   Widget _buildFrequencySelector(
-      BuildContext context, SettingsProvider settings) {
+    BuildContext context,
+    SettingsProvider settings,
+  ) {
     final isDark = AppColors.isDark(context);
     final isEnabled = settings.liveAlertsEnabled;
 
-    final freqLabels = {
-      'Tinggi': '15s',
-      'Sederhana': '45s',
-      'Rendah': '90s',
-    };
+    final freqLabels = {'Tinggi': '15s', 'Sederhana': '45s', 'Rendah': '90s'};
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(16, 14, 16, 16),
@@ -479,38 +469,29 @@ class SettingsView extends StatelessWidget {
                       : AppColors.indigoBadgeBgLight,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                      color: AppColors.indigo.withValues(alpha: 0.40),
-                      width: 1.5),
+                    color: AppColors.indigo.withValues(alpha: 0.40),
+                    width: 1.5,
+                  ),
                 ),
-                child: Icon(LucideIcons.timer,
-                    color: isDark
-                        ? AppColors.indigoBadgeTextDark
-                        : AppColors.indigoBadgeTextLight,
-                    size: 20),
+                child: Icon(
+                  LucideIcons.timer,
+                  color: isDark
+                      ? AppColors.indigoBadgeTextDark
+                      : AppColors.indigoBadgeTextLight,
+                  size: 20,
+                ),
               ),
               const SizedBox(width: 12),
               Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Kekerapan Notifikasi Auto',
-                      style: GoogleFonts.plusJakartaSans(
-                        color: isEnabled
-                            ? AppColors.textPrimaryOf(context)
-                            : AppColors.textMutedOf(context),
-                        fontSize: 12,
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    Text(
-                      'Tetapkan selang masa notifikasi simulasi muncul',
-                      style: GoogleFonts.plusJakartaSans(
-                        color: AppColors.textMutedOf(context),
-                        fontSize: 9.5,
-                      ),
-                    ),
-                  ],
+                child: Text(
+                  'Kekerapan Notifikasi',
+                  style: GoogleFonts.plusJakartaSans(
+                    color: isEnabled
+                        ? AppColors.textPrimaryOf(context)
+                        : AppColors.textMutedOf(context),
+                    fontSize: 12,
+                    fontWeight: FontWeight.w700,
+                  ),
                 ),
               ),
             ],
@@ -525,8 +506,12 @@ class SettingsView extends StatelessWidget {
               Color? selectedBg;
               Color? selectedText;
               if (isSelected && isEnabled) {
-                selectedBg = isDark ? AppColors.indigoBadgeBgDark : AppColors.indigoBadgeBgLight;
-                selectedText = isDark ? AppColors.indigoBadgeTextDark : AppColors.indigoBadgeTextLight;
+                selectedBg = isDark
+                    ? AppColors.indigoBadgeBgDark
+                    : AppColors.indigoBadgeBgLight;
+                selectedText = isDark
+                    ? AppColors.indigoBadgeTextDark
+                    : AppColors.indigoBadgeTextLight;
               }
 
               return Expanded(
@@ -537,18 +522,18 @@ class SettingsView extends StatelessWidget {
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
                     margin: EdgeInsets.only(
-                        right: option ==
-                                SettingsProvider.frequencyOptions.last
-                            ? 0
-                            : 6),
+                      right: option == SettingsProvider.frequencyOptions.last
+                          ? 0
+                          : 6,
+                    ),
                     // Min 48dp tall
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     decoration: BoxDecoration(
                       color: isSelected && isEnabled
                           ? selectedBg
                           : (isDark
-                              ? AppColors.surfaceBorder
-                              : AppColors.lightSurfaceBorder),
+                                ? AppColors.surfaceBorder
+                                : AppColors.lightSurfaceBorder),
                       borderRadius: BorderRadius.circular(12),
                       border: Border.all(
                         color: isSelected && isEnabled
@@ -596,13 +581,13 @@ class SettingsView extends StatelessWidget {
             Row(
               children: [
                 Container(
-                  width: 8,
-                  height: 8,
-                  decoration: const BoxDecoration(
-                    color: AppColors.emerald,
-                    shape: BoxShape.circle,
-                  ),
-                )
+                      width: 8,
+                      height: 8,
+                      decoration: const BoxDecoration(
+                        color: AppColors.emerald,
+                        shape: BoxShape.circle,
+                      ),
+                    )
                     .animate(onPlay: (c) => c.repeat())
                     .fadeOut(duration: 800.ms)
                     .then()

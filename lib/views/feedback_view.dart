@@ -7,8 +7,6 @@ import '../providers/game_provider.dart';
 import '../providers/history_provider.dart';
 import '../widgets/glass_card.dart';
 import '../widgets/gradient_button.dart';
-import '../widgets/metric_chip.dart';
-import '../utils/medium_type_label.dart';
 
 class FeedbackView extends StatelessWidget {
   const FeedbackView({super.key});
@@ -96,7 +94,7 @@ class FeedbackView extends StatelessWidget {
                             const Icon(LucideIcons.bot, color: AppColors.emerald, size: 16),
                             const SizedBox(width: 6),
                             Text(
-                              'ANALISIS RISIKO PDRM:',
+                              'ANALISIS:',
                               style: TextStyle(
                                 color: AppColors.textMutedOf(context),
                                 fontSize: 8.5,
@@ -131,21 +129,6 @@ class FeedbackView extends StatelessWidget {
                       ],
                     ),
                   ).animate().fadeIn(delay: 100.ms, duration: 350.ms),
-                  const SizedBox(height: 12),
-
-                  // Metadata tags
-                  Wrap(
-                    spacing: 6,
-                    runSpacing: 6,
-                    children: [
-                      MetricChip.muted(
-                        label: 'Modul: ${mediumTypeLabel(scenario.type)}',
-                      ),
-                      MetricChip.amber(
-                        label: 'Tahap: ${scenario.difficulty}',
-                      ),
-                    ],
-                  ).animate().fadeIn(delay: 180.ms, duration: 350.ms),
                   const SizedBox(height: 16),
 
                   // Recommended actions
@@ -164,7 +147,7 @@ class FeedbackView extends StatelessWidget {
                               ),
                               const SizedBox(width: 6),
                               Text(
-                                'TINDAKAN SUSULAN PDRM:',
+                                'TINDAKAN YANG DISYORKAN:',
                                 style: TextStyle(
                                   color: AppColors.textMutedOf(context),
                                   fontSize: 8.5,

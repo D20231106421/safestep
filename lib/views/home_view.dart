@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lucide_icons/lucide_icons.dart';
@@ -47,24 +46,18 @@ class HomeView extends StatelessWidget {
                       ),
                     ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
                     const SizedBox(height: 8),
-                    // Emerald badge
+                    // Solid emerald badge
                     Container(
                       padding: const EdgeInsets.symmetric(
-                          horizontal: 14, vertical: 5),
+                          horizontal: 14, vertical: 7),
                       decoration: BoxDecoration(
-                        color: AppColors.emeraldBadgeBg,
+                        color: AppColors.emeraldBadgeBgOf(context),
                         borderRadius: BorderRadius.circular(100),
-                        border: Border.all(
-                          color: AppColors.emerald.withValues(alpha: 0.25),
-                          width: 1,
-                        ),
                       ),
                       child: Text(
                         'SIBER ANTI-SCAM MALAYSIA',
                         style: TextStyle(
-                          color: isDark
-                              ? AppColors.emeraldMuted
-                              : AppColors.lightEmeraldMuted,
+                          color: AppColors.emeraldBadgeTextOf(context),
                           fontSize: 9.5,
                           fontWeight: FontWeight.w800,
                           letterSpacing: 0.8,
@@ -77,61 +70,63 @@ class HomeView extends StatelessWidget {
               const SizedBox(height: 20),
 
               // ── Active Threat Warning Banner ─────────────────────────────
-              ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: BackdropFilter(
-                  filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-                  child: Container(
-                    padding: const EdgeInsets.all(14),
-                    decoration: BoxDecoration(
-                      color: AppColors.amberBadgeBg,
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(color: AppColors.amberBorder),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(9),
-                          decoration: BoxDecoration(
-                            color: AppColors.amber.withValues(alpha: 0.15),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const Icon(
-                            LucideIcons.alertTriangle,
-                            color: AppColors.amber,
-                            size: 18,
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'Amaran Semasa PDRM:',
-                                style: TextStyle(
-                                  color: AppColors.textPrimaryOf(context),
-                                  fontSize: 11.5,
-                                  fontWeight: FontWeight.w900,
-                                ),
-                              ),
-                              const SizedBox(height: 3),
-                              Text(
-                                'Sindiket APK palsu penyamaran khidmat pembersihan meningkat. Jangan sesekali muat turun fail .apk ganjil!',
-                                style: TextStyle(
-                                  color: AppColors.textSecondaryOf(context),
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w500,
-                                  height: 1.4,
-                                ),
-                              ),
-                            ],
-                          ),
-                        )
-                      ],
-                    ),
+              // Solid fill — BackdropFilter removed for clarity and contrast
+              Container(
+                padding: const EdgeInsets.all(14),
+                decoration: BoxDecoration(
+                  color: AppColors.amberBadgeBgOf(context),
+                  borderRadius: BorderRadius.circular(16),
+                  border: Border.all(
+                    color: isDark
+                        ? AppColors.amber.withValues(alpha: 0.5)
+                        : AppColors.amberBorder,
+                    width: 1.5,
                   ),
+                ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(9),
+                      decoration: BoxDecoration(
+                        color: isDark
+                            ? AppColors.amber.withValues(alpha: 0.2)
+                            : AppColors.amber.withValues(alpha: 0.15),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: const Icon(
+                        LucideIcons.alertTriangle,
+                        color: AppColors.amber,
+                        size: 18,
+                      ),
+                    ),
+                    const SizedBox(width: 12),
+                    Expanded(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Amaran Semasa PDRM:',
+                            style: TextStyle(
+                              color: AppColors.textPrimaryOf(context),
+                              fontSize: 11.5,
+                              fontWeight: FontWeight.w900,
+                            ),
+                          ),
+                          const SizedBox(height: 3),
+                          Text(
+                            'Sindiket APK palsu penyamaran khidmat pembersihan meningkat. Jangan sesekali muat turun fail .apk ganjil!',
+                            style: TextStyle(
+                              color: AppColors.textSecondaryOf(context),
+                              fontSize: 10,
+                              fontWeight: FontWeight.w500,
+                              height: 1.4,
+                            ),
+                          ),
+                        ],
+                      ),
+                    )
+                  ],
                 ),
               ).animate().fadeIn(delay: 250.ms, duration: 400.ms).slideY(
                     begin: 0.1,
@@ -192,24 +187,24 @@ class HomeView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 6.0),
                 child: Row(
                   children: [
-                    // Settings icon button on bottom-left
-                    GestureDetector(
+                    // Settings icon button — 48×48 solid touch target
+                    InkWell(
                       onTap: () => game.setGameState('settings'),
+                      borderRadius: BorderRadius.circular(12),
                       child: Container(
-                        width: 36,
-                        height: 36,
+                        width: 48,
+                        height: 48,
                         decoration: BoxDecoration(
-                          color: isDark
-                              ? AppColors.surfaceBorder.withValues(alpha: 0.6)
-                              : Colors.white,
-                          borderRadius: BorderRadius.circular(10),
+                          color: isDark ? AppColors.surfaceBorder : Colors.white,
+                          borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: AppColors.surfaceBorderOf(context),
+                            width: 1.5,
                           ),
                           boxShadow: [
                             if (!isDark)
                               BoxShadow(
-                                color: Colors.black.withValues(alpha: 0.04),
+                                color: Colors.black.withValues(alpha: 0.06),
                                 blurRadius: 6,
                                 offset: const Offset(0, 2),
                               ),
@@ -218,7 +213,7 @@ class HomeView extends StatelessWidget {
                         child: Icon(
                           LucideIcons.settings,
                           color: AppColors.textSecondaryOf(context),
-                          size: 18,
+                          size: 20,
                         ),
                       ),
                     ),
@@ -234,7 +229,7 @@ class HomeView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 36), // Visual balance spacer
+                    const SizedBox(width: 48), // Visual balance spacer
                   ],
                 ),
               ),
@@ -245,7 +240,7 @@ class HomeView extends StatelessWidget {
     );
   }
 
-  /// Primary gradient card (first action) — keeps emerald glow in both themes
+  /// Primary gradient card (first action) — keeps emerald gradient in both themes
   Widget _buildPrimaryCard({
     required String title,
     required String subtitle,
@@ -264,11 +259,11 @@ class HomeView extends StatelessWidget {
             end: Alignment.centerRight,
           ),
           borderRadius: BorderRadius.circular(20),
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
-              color: AppColors.emeraldGlow,
-              blurRadius: 20,
-              offset: Offset(0, 6),
+              color: AppColors.emeraldDeep.withValues(alpha: 0.40),
+              blurRadius: 16,
+              offset: const Offset(0, 6),
             ),
           ],
         ),
@@ -283,13 +278,13 @@ class HomeView extends StatelessWidget {
               child: Row(
                 children: [
                   Container(
-                    width: 46,
-                    height: 46,
+                    width: 52,
+                    height: 52,
                     decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.15),
+                      color: Colors.white.withValues(alpha: 0.18),
                       borderRadius: BorderRadius.circular(14),
                     ),
-                    child: Icon(icon, color: Colors.white, size: 22),
+                    child: Icon(icon, color: Colors.white, size: 24),
                   ),
                   const SizedBox(width: 14),
                   Expanded(
@@ -309,7 +304,7 @@ class HomeView extends StatelessWidget {
                         Text(
                           subtitle,
                           style: TextStyle(
-                            color: Colors.white.withValues(alpha: 0.8),
+                            color: Colors.white.withValues(alpha: 0.85),
                             fontSize: 10,
                             fontWeight: FontWeight.w500,
                           ),
@@ -318,15 +313,15 @@ class HomeView extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    padding: const EdgeInsets.all(6),
+                    padding: const EdgeInsets.all(8),
                     decoration: BoxDecoration(
-                      color: Colors.white.withValues(alpha: 0.15),
-                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.white.withValues(alpha: 0.18),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                     child: const Icon(
                       LucideIcons.chevronRight,
                       color: Colors.white,
-                      size: 16,
+                      size: 18,
                     ),
                   ),
                 ],
@@ -342,7 +337,7 @@ class HomeView extends StatelessWidget {
         );
   }
 
-  /// Secondary glass card (navigation items) — frosted glass in both light & dark
+  /// Secondary solid card (navigation items) — opaque solid fill in both themes
   Widget _buildNavCard(
     BuildContext context, {
     required String title,
@@ -352,6 +347,7 @@ class HomeView extends StatelessWidget {
     required VoidCallback onTap,
     int delay = 0,
   }) {
+    final isDark = AppColors.isDark(context);
     return GlassCard(
       padding: EdgeInsets.zero,
       child: Material(
@@ -361,20 +357,24 @@ class HomeView extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           splashColor: AppColors.emerald.withValues(alpha: 0.08),
           child: Padding(
-            padding: const EdgeInsets.all(16),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             child: Row(
               children: [
                 Container(
-                  width: 44,
-                  height: 44,
+                  width: 48,
+                  height: 48,
                   decoration: BoxDecoration(
-                    color: iconColor.withValues(alpha: 0.12),
-                    borderRadius: BorderRadius.circular(13),
+                    // Solid icon background
+                    color: isDark
+                        ? iconColor.withValues(alpha: 0.18)
+                        : iconColor.withValues(alpha: 0.10),
+                    borderRadius: BorderRadius.circular(14),
                     border: Border.all(
-                      color: iconColor.withValues(alpha: 0.2),
+                      color: iconColor.withValues(alpha: 0.30),
+                      width: 1.5,
                     ),
                   ),
-                  child: Icon(icon, color: iconColor, size: 20),
+                  child: Icon(icon, color: iconColor, size: 22),
                 ),
                 const SizedBox(width: 14),
                 Expanded(
@@ -390,7 +390,7 @@ class HomeView extends StatelessWidget {
                           letterSpacing: 0.4,
                         ),
                       ),
-                      const SizedBox(height: 2),
+                      const SizedBox(height: 3),
                       Text(
                         subtitle,
                         style: TextStyle(

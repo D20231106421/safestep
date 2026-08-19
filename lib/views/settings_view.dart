@@ -45,28 +45,31 @@ class SettingsView extends StatelessWidget {
                       children: [
                         _buildThemeOptionTile(
                           context,
-                          title: 'Mod Gelap (Dark Obsidian)',
-                          subtitle: 'Warna Obsidian gelap dengan frosted glass indigo glow',
+                          title: 'Mod Gelap',
                           icon: LucideIcons.moon,
                           mode: ThemeMode.dark,
                           currentMode: settings.themeMode,
                           onSelect: () => settings.setThemeMode(ThemeMode.dark),
                         ),
-                        const Divider(height: 20),
+                        Divider(
+                          height: 24,
+                          color: AppColors.surfaceBorderOf(context),
+                        ),
                         _buildThemeOptionTile(
                           context,
-                          title: 'Mod Terang (Light Mode)',
-                          subtitle: 'Latar belakang terang bersih dengan kad frosted glass & hijau perisai',
+                          title: 'Mod Terang',
                           icon: LucideIcons.sun,
                           mode: ThemeMode.light,
                           currentMode: settings.themeMode,
                           onSelect: () => settings.setThemeMode(ThemeMode.light),
                         ),
-                        const Divider(height: 20),
+                        Divider(
+                          height: 24,
+                          color: AppColors.surfaceBorderOf(context),
+                        ),
                         _buildThemeOptionTile(
                           context,
                           title: 'Ikut Sistem Peranti',
-                          subtitle: 'Secara automatik mengikut tetapan tema peranti anda',
                           icon: LucideIcons.laptop,
                           mode: ThemeMode.system,
                           currentMode: settings.themeMode,
@@ -110,62 +113,6 @@ class SettingsView extends StatelessWidget {
                     ),
                   ).animate().fadeIn(delay: 180.ms, duration: 350.ms),
 
-                  const SizedBox(height: 24),
-
-                  // ── About App Info Card ─────────────────────────────────
-                  _sectionLabel('MAKLUMAT APLIKASI', LucideIcons.info, AppColors.indigo),
-                  const SizedBox(height: 8),
-
-                  GlassCard(
-                    padding: const EdgeInsets.all(16),
-                    child: Row(
-                      children: [
-                        Container(
-                          width: 44,
-                          height: 44,
-                          decoration: BoxDecoration(
-                            gradient: const LinearGradient(
-                              colors: [AppColors.emerald, AppColors.emeraldDeep],
-                              begin: Alignment.topLeft,
-                              end: Alignment.bottomRight,
-                            ),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const Icon(
-                            Icons.shield_rounded,
-                            color: Colors.white,
-                            size: 24,
-                          ),
-                        ),
-                        const SizedBox(width: 14),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'SafeStep AI  •  v0.1.0',
-                                style: GoogleFonts.plusJakartaSans(
-                                  color: AppColors.textPrimaryOf(context),
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w800,
-                                ),
-                              ),
-                              const SizedBox(height: 2),
-                              Text(
-                                'Perisai Digital & Latihan Keselamatan Siber Warga Emas Malaysia',
-                                style: GoogleFonts.plusJakartaSans(
-                                  color: AppColors.textSecondaryOf(context),
-                                  fontSize: 10,
-                                  height: 1.35,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
-                    ),
-                  ).animate().fadeIn(delay: 240.ms, duration: 350.ms),
-
                   const SizedBox(height: 20),
                 ],
               ),
@@ -194,13 +141,13 @@ class SettingsView extends StatelessWidget {
   Widget _sectionLabel(String text, IconData icon, Color color) {
     return Row(
       children: [
-        Icon(icon, color: color, size: 13),
+        Icon(icon, color: color, size: 14),
         const SizedBox(width: 6),
         Text(
           text,
           style: GoogleFonts.plusJakartaSans(
             color: color,
-            fontSize: 8.5,
+            fontSize: 9,
             fontWeight: FontWeight.w900,
             letterSpacing: 0.8,
           ),
@@ -212,7 +159,6 @@ class SettingsView extends StatelessWidget {
   Widget _buildThemeOptionTile(
     BuildContext context, {
     required String title,
-    required String subtitle,
     required IconData icon,
     required ThemeMode mode,
     required ThemeMode currentMode,
@@ -225,75 +171,64 @@ class SettingsView extends StatelessWidget {
       onTap: onSelect,
       borderRadius: BorderRadius.circular(12),
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 4),
+        // Minimum 12dp vertical padding to ensure ≥48dp touch target
+        padding: const EdgeInsets.symmetric(vertical: 10),
         child: Row(
           children: [
             Container(
-              width: 38,
-              height: 38,
+              width: 48,
+              height: 48,
               decoration: BoxDecoration(
+                // Solid icon background — no opacity
                 color: isSelected
-                    ? AppColors.emeraldBadgeBg
+                    ? AppColors.emeraldBadgeBgOf(context)
                     : (isDark
-                        ? AppColors.surfaceBorder.withValues(alpha: 0.5)
+                        ? AppColors.surfaceBorder
                         : AppColors.lightSurfaceBorder),
-                borderRadius: BorderRadius.circular(10),
+                borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                   color: isSelected
-                      ? AppColors.emerald.withValues(alpha: 0.4)
+                      ? AppColors.emerald
                       : Colors.transparent,
+                  width: 2,
                 ),
               ),
               child: Icon(
                 icon,
                 color: isSelected
-                    ? AppColors.emerald
+                    ? AppColors.emeraldBadgeTextOf(context)
                     : AppColors.textSecondaryOf(context),
-                size: 18,
+                size: 22,
               ),
             ),
             const SizedBox(width: 14),
             Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    title,
-                    style: GoogleFonts.plusJakartaSans(
-                      color: AppColors.textPrimaryOf(context),
-                      fontSize: 12,
-                      fontWeight:
-                          isSelected ? FontWeight.w800 : FontWeight.w600,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    subtitle,
-                    style: GoogleFonts.plusJakartaSans(
-                      color: AppColors.textSecondaryOf(context),
-                      fontSize: 9.5,
-                      height: 1.3,
-                    ),
-                  ),
-                ],
+              child: Text(
+                title,
+                style: GoogleFonts.plusJakartaSans(
+                  color: AppColors.textPrimaryOf(context),
+                  fontSize: 12,
+                  fontWeight:
+                      isSelected ? FontWeight.w800 : FontWeight.w600,
+                ),
               ),
             ),
-            // Custom radio indicator
+            // Custom radio indicator — larger for fat-finger friendliness
             Container(
-              width: 20,
-              height: 20,
+              width: 24,
+              height: 24,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(
                   color: isSelected ? AppColors.emerald : AppColors.textMuted,
-                  width: 2,
+                  width: 2.5,
                 ),
               ),
               child: isSelected
                   ? Center(
                       child: Container(
-                        width: 10,
-                        height: 10,
+                        width: 12,
+                        height: 12,
                         decoration: const BoxDecoration(
                           shape: BoxShape.circle,
                           color: AppColors.emerald,
@@ -319,18 +254,25 @@ class SettingsView extends StatelessWidget {
     final isDark = AppColors.isDark(context);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+      // Increased padding for ≥56dp height
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       child: Row(
         children: [
           Container(
-            width: 36,
-            height: 36,
+            width: 48,
+            height: 48,
             decoration: BoxDecoration(
-              color: AppColors.cyan.withValues(alpha: 0.12),
-              borderRadius: BorderRadius.circular(10),
-              border: Border.all(color: AppColors.cyan.withValues(alpha: 0.2)),
+              // Solid cyan-tinted container
+              color: isDark
+                  ? AppColors.cyan.withValues(alpha: 0.18)
+                  : const Color(0xFFCCFBF1),
+              borderRadius: BorderRadius.circular(12),
+              border: Border.all(
+                color: AppColors.cyan.withValues(alpha: 0.40),
+                width: 1.5,
+              ),
             ),
-            child: const Icon(LucideIcons.zap, color: AppColors.cyan, size: 16),
+            child: const Icon(LucideIcons.zap, color: AppColors.cyan, size: 20),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -413,29 +355,34 @@ class SettingsView extends StatelessWidget {
               }
             : null,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          // Increased padding for ≥56dp tap target
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
           child: Row(
             children: [
               Container(
-                width: 36,
-                height: 36,
+                width: 48,
+                height: 48,
                 decoration: BoxDecoration(
+                  // Solid icon container
                   color: isEnabled
-                      ? AppColors.cyan.withValues(alpha: 0.12)
-                      : AppColors.textMuted.withValues(alpha: 0.08),
-                  borderRadius: BorderRadius.circular(10),
+                      ? (isDark
+                          ? AppColors.cyan.withValues(alpha: 0.18)
+                          : const Color(0xFFCCFBF1))
+                      : (isDark
+                          ? AppColors.surfaceBorder
+                          : AppColors.lightSurfaceBorder),
+                  borderRadius: BorderRadius.circular(12),
                   border: Border.all(
                     color: isEnabled
-                        ? AppColors.cyan.withValues(alpha: 0.2)
-                        : AppColors.textMuted.withValues(alpha: 0.12),
+                        ? AppColors.cyan.withValues(alpha: 0.40)
+                        : AppColors.textMuted.withValues(alpha: 0.25),
+                    width: 1.5,
                   ),
                 ),
                 child: Icon(
                   LucideIcons.bellRing,
-                  color: isEnabled
-                      ? AppColors.cyan
-                      : AppColors.textMutedOf(context),
-                  size: 16,
+                  color: isEnabled ? AppColors.cyan : AppColors.textMutedOf(context),
+                  size: 20,
                 ),
               ),
               const SizedBox(width: 12),
@@ -465,22 +412,13 @@ class SettingsView extends StatelessWidget {
                   ],
                 ),
               ),
-              // Pill button
+              // Solid pill button — prominent, no gradient opacity tricks
               AnimatedContainer(
                 duration: const Duration(milliseconds: 200),
                 padding:
-                    const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
                 decoration: BoxDecoration(
-                  gradient: isEnabled
-                      ? const LinearGradient(
-                          colors: [AppColors.cyan, AppColors.emerald],
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                        )
-                      : null,
-                  color: isEnabled
-                      ? null
-                      : AppColors.textMuted.withValues(alpha: 0.12),
+                  color: isEnabled ? AppColors.cyan : AppColors.surfaceBorder,
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
@@ -488,15 +426,15 @@ class SettingsView extends StatelessWidget {
                   children: [
                     Icon(
                       LucideIcons.play,
-                      size: 10,
+                      size: 11,
                       color: isEnabled ? Colors.white : AppColors.textMuted,
                     ),
-                    const SizedBox(width: 4),
+                    const SizedBox(width: 5),
                     Text(
                       'CUBA',
                       style: GoogleFonts.plusJakartaSans(
                         color: isEnabled ? Colors.white : AppColors.textMuted,
-                        fontSize: 9,
+                        fontSize: 9.5,
                         fontWeight: FontWeight.w800,
                         letterSpacing: 0.8,
                       ),
@@ -521,7 +459,6 @@ class SettingsView extends StatelessWidget {
       'Tinggi': '15s',
       'Sederhana': '45s',
       'Rendah': '90s',
-      'Mati': '—',
     };
 
     return Padding(
@@ -533,16 +470,23 @@ class SettingsView extends StatelessWidget {
           Row(
             children: [
               Container(
-                width: 36,
-                height: 36,
+                width: 48,
+                height: 48,
                 decoration: BoxDecoration(
-                  color: AppColors.indigo.withValues(alpha: 0.12),
-                  borderRadius: BorderRadius.circular(10),
+                  // Solid indigo-tinted container
+                  color: isDark
+                      ? AppColors.indigoBadgeBgDark
+                      : AppColors.indigoBadgeBgLight,
+                  borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                      color: AppColors.indigo.withValues(alpha: 0.2)),
+                      color: AppColors.indigo.withValues(alpha: 0.40),
+                      width: 1.5),
                 ),
-                child: const Icon(LucideIcons.timer,
-                    color: AppColors.indigo, size: 16),
+                child: Icon(LucideIcons.timer,
+                    color: isDark
+                        ? AppColors.indigoBadgeTextDark
+                        : AppColors.indigoBadgeTextLight,
+                    size: 20),
               ),
               const SizedBox(width: 12),
               Expanded(
@@ -572,17 +516,18 @@ class SettingsView extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 14),
-          // Frequency segment chips
+          // Frequency segment chips — 48dp tall, clearly differentiated
           Row(
             children: SettingsProvider.frequencyOptions.map((option) {
               final isSelected = settings.alertFrequency == option;
-              final isMati = option == 'Mati';
 
-              Color chipColor = isMati
-                  ? AppColors.rose
-                  : isSelected
-                      ? AppColors.indigo
-                      : Colors.transparent;
+              // Solid selected color — no opacity arithmetic
+              Color? selectedBg;
+              Color? selectedText;
+              if (isSelected && isEnabled) {
+                selectedBg = isDark ? AppColors.indigoBadgeBgDark : AppColors.indigoBadgeBgLight;
+                selectedText = isDark ? AppColors.indigoBadgeTextDark : AppColors.indigoBadgeTextLight;
+              }
 
               return Expanded(
                 child: GestureDetector(
@@ -596,19 +541,20 @@ class SettingsView extends StatelessWidget {
                                 SettingsProvider.frequencyOptions.last
                             ? 0
                             : 6),
-                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    // Min 48dp tall
+                    padding: const EdgeInsets.symmetric(vertical: 12),
                     decoration: BoxDecoration(
-                      color: isSelected
-                          ? chipColor.withValues(alpha: 0.18)
+                      color: isSelected && isEnabled
+                          ? selectedBg
                           : (isDark
-                              ? AppColors.surfaceBorder.withValues(alpha: 0.5)
+                              ? AppColors.surfaceBorder
                               : AppColors.lightSurfaceBorder),
-                      borderRadius: BorderRadius.circular(10),
+                      borderRadius: BorderRadius.circular(12),
                       border: Border.all(
-                        color: isSelected
-                            ? chipColor.withValues(alpha: 0.5)
+                        color: isSelected && isEnabled
+                            ? AppColors.indigo
                             : Colors.transparent,
-                        width: 1.5,
+                        width: 2,
                       ),
                     ),
                     child: Column(
@@ -617,23 +563,23 @@ class SettingsView extends StatelessWidget {
                         Text(
                           option,
                           style: GoogleFonts.plusJakartaSans(
-                            color: isSelected
-                                ? (isEnabled ? chipColor : AppColors.textMuted)
+                            color: isSelected && isEnabled
+                                ? selectedText
                                 : AppColors.textMutedOf(context),
-                            fontSize: 9.5,
+                            fontSize: 10,
                             fontWeight: isSelected
                                 ? FontWeight.w800
                                 : FontWeight.w600,
                           ),
                         ),
-                        const SizedBox(height: 2),
+                        const SizedBox(height: 3),
                         Text(
                           freqLabels[option] ?? '',
                           style: GoogleFonts.plusJakartaSans(
                             color: isSelected && isEnabled
-                                ? chipColor
+                                ? selectedText
                                 : AppColors.textMutedOf(context),
-                            fontSize: 8.5,
+                            fontSize: 9,
                             fontWeight: FontWeight.w700,
                           ),
                         ),
@@ -645,14 +591,13 @@ class SettingsView extends StatelessWidget {
             }).toList(),
           ),
           // Status indicator
-          if (settings.liveAlertsEnabled &&
-              settings.alertFrequency != 'Mati') ...[
+          if (settings.liveAlertsEnabled) ...[
             const SizedBox(height: 10),
             Row(
               children: [
                 Container(
-                  width: 6,
-                  height: 6,
+                  width: 8,
+                  height: 8,
                   decoration: const BoxDecoration(
                     color: AppColors.emerald,
                     shape: BoxShape.circle,

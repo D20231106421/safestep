@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../app_theme.dart';
 
-/// Primary gradient action button (emerald → teal) with emerald glow shadow.
-/// Retains its signature emerald glow in both Light Mode and Dark Mode.
+/// Primary gradient action button (emerald → teal) with a standard shadow.
+/// Works in both Light Mode and Dark Mode.
 class GradientButton extends StatelessWidget {
   const GradientButton({
     super.key,
@@ -39,11 +39,11 @@ class GradientButton extends StatelessWidget {
             end: Alignment.centerRight,
           ),
           borderRadius: radius,
-          boxShadow: const [
+          boxShadow: [
             BoxShadow(
-              color: AppColors.emeraldGlow,
-              blurRadius: 16,
-              offset: Offset(0, 4),
+              color: AppColors.emeraldDeep.withValues(alpha: 0.40),
+              blurRadius: 10,
+              offset: const Offset(0, 4),
             ),
           ],
         ),
@@ -55,8 +55,9 @@ class GradientButton extends StatelessWidget {
             splashColor: Colors.white.withValues(alpha: 0.1),
             highlightColor: Colors.white.withValues(alpha: 0.05),
             child: Padding(
+              // Minimum vertical padding to ensure ≥48dp touch target height
               padding: padding ??
-                  const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                  const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -84,7 +85,8 @@ class GradientButton extends StatelessWidget {
   }
 }
 
-/// Secondary translucent glass button.
+/// Secondary solid button — replaces translucent glass button.
+/// Uses fully opaque fills to prevent visual noise from background bleed.
 class GlassButton extends StatelessWidget {
   const GlassButton({
     super.key,
@@ -117,24 +119,20 @@ class GlassButton extends StatelessWidget {
       duration: const Duration(milliseconds: 150),
       width: width,
       decoration: BoxDecoration(
-        color: isDark
-            ? AppColors.surfaceBorder.withValues(alpha: 0.6)
-            : Colors.white.withValues(alpha: 0.8),
+        // Solid fill — no opacity/translucency
+        color: isDark ? AppColors.surfaceBorder : Colors.white,
         borderRadius: radius,
         border: Border.all(
-          color: isDark
-              ? Colors.white.withValues(alpha: 0.10)
-              : AppColors.lightSurfaceBorder,
+          color: isDark ? AppColors.surfaceBorder : AppColors.lightSurfaceBorder,
+          width: 1.5,
         ),
-        boxShadow: isDark
-            ? null
-            : [
-                BoxShadow(
-                  color: Colors.black.withValues(alpha: 0.03),
-                  blurRadius: 8,
-                  offset: const Offset(0, 2),
-                ),
-              ],
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: isDark ? 0.2 : 0.06),
+            blurRadius: 8,
+            offset: const Offset(0, 2),
+          ),
+        ],
       ),
       child: Material(
         color: Colors.transparent,
@@ -143,8 +141,9 @@ class GlassButton extends StatelessWidget {
           borderRadius: radius,
           splashColor: AppColors.emerald.withValues(alpha: 0.08),
           child: Padding(
+            // Minimum vertical padding to ensure ≥48dp touch target height
             padding: padding ??
-                const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                const EdgeInsets.symmetric(horizontal: 20, vertical: 16),
             child: Row(
               mainAxisSize: MainAxisSize.min,
               mainAxisAlignment: MainAxisAlignment.center,

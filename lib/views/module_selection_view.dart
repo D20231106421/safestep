@@ -118,7 +118,7 @@ class ModuleSelectionView extends StatelessWidget {
                   final iconColor = item['iconColor'] as Color;
 
                   return Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
+                    padding: const EdgeInsets.only(bottom: 12.0),
                     child: GlassCard(
                       padding: EdgeInsets.zero,
                       child: Material(
@@ -137,24 +137,28 @@ class ModuleSelectionView extends StatelessWidget {
                             );
                           },
                           child: Padding(
-                            padding: const EdgeInsets.all(14),
+                            padding: const EdgeInsets.all(16),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  width: 44,
-                                  height: 44,
+                                  width: 48,
+                                  height: 48,
                                   decoration: BoxDecoration(
-                                    color: iconColor.withValues(alpha: 0.12),
+                                    // Solid icon background
+                                    color: AppColors.isDark(context)
+                                        ? iconColor.withValues(alpha: 0.18)
+                                        : iconColor.withValues(alpha: 0.10),
                                     borderRadius: BorderRadius.circular(13),
                                     border: Border.all(
-                                      color: iconColor.withValues(alpha: 0.2),
+                                      color: iconColor.withValues(alpha: 0.35),
+                                      width: 1.5,
                                     ),
                                   ),
                                   child: Icon(
                                     item['icon'] as IconData,
                                     color: iconColor,
-                                    size: 20,
+                                    size: 22,
                                   ),
                                 ),
                                 const SizedBox(width: 12),
@@ -180,16 +184,16 @@ class ModuleSelectionView extends StatelessWidget {
                                           MetricChip(
                                             label: '$count Kes',
                                             backgroundColor: count > 0
-                                                ? AppColors.emeraldBadgeBg
-                                                : AppColors.roseBadgeBg,
+                                                ? AppColors.emeraldBadgeBgOf(context)
+                                                : AppColors.roseBadgeBgOf(context),
                                             textColor: count > 0
-                                                ? AppColors.emeraldMuted
-                                                : AppColors.rose,
-                                            fontSize: 8,
+                                                ? AppColors.emeraldBadgeTextOf(context)
+                                                : AppColors.roseBadgeTextOf(context),
+                                            fontSize: 8.5,
                                           ),
                                         ],
                                       ),
-                                      const SizedBox(height: 3),
+                                      const SizedBox(height: 4),
                                       Text(
                                         item['desc'] as String,
                                         style: TextStyle(

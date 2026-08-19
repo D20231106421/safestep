@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lucide_icons/lucide_icons.dart';
@@ -36,62 +35,61 @@ class TrendsView extends StatelessWidget {
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 children: [
-                  // Critical Threat Banner
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(16),
-                    child: BackdropFilter(
-                      filter: ImageFilter.blur(sigmaX: 8, sigmaY: 8),
-                      child: Container(
-                        padding: const EdgeInsets.all(14),
-                        decoration: BoxDecoration(
-                          color: AppColors.amberBadgeBg,
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(color: AppColors.amberBorder),
-                        ),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              padding: const EdgeInsets.all(9),
-                              decoration: BoxDecoration(
-                                color: AppColors.amber.withValues(alpha: 0.15),
-                                borderRadius: BorderRadius.circular(12),
-                              ),
-                              child: const Icon(
-                                LucideIcons.alertOctagon,
-                                color: AppColors.amber,
-                                size: 20,
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'TAHAP ANCAMAN: KRITIKAL',
-                                    style: TextStyle(
-                                      color: AppColors.textPrimaryOf(context),
-                                      fontSize: 11,
-                                      fontWeight: FontWeight.w900,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 3),
-                                  Text(
-                                    'PDRM melaporkan 4,203 aduan penipuan tele-komunikasi dalam tempoh 30 hari terakhir.',
-                                    style: TextStyle(
-                                      color: AppColors.textSecondaryOf(context),
-                                      fontSize: 10,
-                                      fontWeight: FontWeight.w500,
-                                      height: 1.4,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
+                  // Critical Threat Banner — solid fill, no BackdropFilter
+                  Container(
+                    padding: const EdgeInsets.all(14),
+                    decoration: BoxDecoration(
+                      color: AppColors.amberBadgeBgOf(context),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: AppColors.isDark(context)
+                            ? AppColors.amber.withValues(alpha: 0.5)
+                            : AppColors.amberBorder,
+                        width: 1.5,
                       ),
+                    ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(9),
+                          decoration: BoxDecoration(
+                            color: AppColors.amber.withValues(alpha: 0.20),
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          child: const Icon(
+                            LucideIcons.alertOctagon,
+                            color: AppColors.amber,
+                            size: 20,
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'TAHAP ANCAMAN: KRITIKAL',
+                                style: TextStyle(
+                                  color: AppColors.textPrimaryOf(context),
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w900,
+                                ),
+                              ),
+                              const SizedBox(height: 3),
+                              Text(
+                                'PDRM melaporkan 4,203 aduan penipuan tele-komunikasi dalam tempoh 30 hari terakhir.',
+                                style: TextStyle(
+                                  color: AppColors.textSecondaryOf(context),
+                                  fontSize: 10,
+                                  fontWeight: FontWeight.w500,
+                                  height: 1.4,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
                     ),
                   ).animate().fadeIn(delay: 100.ms, duration: 350.ms),
                   const SizedBox(height: 20),
@@ -186,9 +184,6 @@ class TrendsView extends StatelessWidget {
                   ),
                   const SizedBox(height: 8),
                   GlassCard(
-                    color: AppColors.isDark(context)
-                        ? const Color(0xFF0A1F18).withValues(alpha: 0.85)
-                        : Colors.white.withValues(alpha: 0.85),
                     padding: const EdgeInsets.all(18),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -308,14 +303,20 @@ class TrendsView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            width: 40,
-            height: 40,
+            width: 48,
+            height: 48,
             decoration: BoxDecoration(
-              color: iconColor.withValues(alpha: 0.12),
+              // Solid icon background
+              color: AppColors.isDark(context)
+                  ? iconColor.withValues(alpha: 0.20)
+                  : iconColor.withValues(alpha: 0.12),
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: iconColor.withValues(alpha: 0.2)),
+              border: Border.all(
+                color: iconColor.withValues(alpha: 0.35),
+                width: 1.5,
+              ),
             ),
-            child: Icon(icon, color: iconColor, size: 18),
+            child: Icon(icon, color: iconColor, size: 22),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -360,7 +361,10 @@ class TrendsView extends StatelessWidget {
   }) {
     return GlassCard(
       padding: const EdgeInsets.all(14),
-      border: Border.all(color: accentColor.withValues(alpha: 0.15)),
+      border: Border.all(
+        color: accentColor.withValues(alpha: 0.35),
+        width: 1.5,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

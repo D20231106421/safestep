@@ -1012,24 +1012,29 @@ class _SimulationViewState extends State<SimulationView> {
           
           const SizedBox(height: 12),
 
-          // Tips footer
+          // Tips footer — solid fill for contrast
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
             decoration: BoxDecoration(
-              color: AppColors.emeraldBadgeBg,
+              color: AppColors.emeraldBadgeBgOf(context),
               borderRadius: BorderRadius.circular(12),
-              border: Border.all(color: AppColors.emerald.withValues(alpha: 0.2)),
+              border: Border.all(
+                color: AppColors.isDark(context)
+                    ? AppColors.emerald.withValues(alpha: 0.40)
+                    : AppColors.emeraldBadgeTextLight,
+                width: 1.5,
+              ),
             ),
             child: Row(
               children: [
-                const Icon(LucideIcons.info, color: AppColors.emeraldMuted, size: 14),
+                Icon(LucideIcons.info, color: AppColors.emeraldBadgeTextOf(context), size: 14),
                 const SizedBox(width: 8),
                 Expanded(
                   child: Text(
                     _rotatingTips[game.currentIndex % _rotatingTips.length],
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: const TextStyle(color: AppColors.emeraldMuted, fontSize: 8.5, fontWeight: FontWeight.w800),
+                    style: TextStyle(color: AppColors.emeraldBadgeTextOf(context), fontSize: 8.5, fontWeight: FontWeight.w800),
                   ),
                 )
               ],
@@ -1042,7 +1047,7 @@ class _SimulationViewState extends State<SimulationView> {
 
   Widget _buildStepIndicatorBadge(String text, {required bool active}) {
     return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
       decoration: BoxDecoration(
         color: active ? const Color(0xFF106452) : AppColors.surfaceBorderOf(context),
         borderRadius: BorderRadius.circular(100),
@@ -1095,12 +1100,12 @@ class _SimulationViewState extends State<SimulationView> {
                       backgroundColor: const Color(0xFFFEF2F2),
                       foregroundColor: const Color(0xFFDC2626),
                       side: const BorderSide(color: Color(0xFFFCA5A5), width: 1.5),
-                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                       elevation: 0,
                     ),
-                    icon: const Icon(LucideIcons.alertTriangle, size: 16),
-                    label: const Text('Ya, Ini Scam!', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 11)),
+                    icon: const Icon(LucideIcons.alertTriangle, size: 18),
+                    label: const Text('Ya, Ini Scam!', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 12)),
                     onPressed: () => game.handleIdentifyClick(true),
                   ),
                 ),
@@ -1111,12 +1116,12 @@ class _SimulationViewState extends State<SimulationView> {
                       backgroundColor: const Color(0xFFF6FCF9),
                       foregroundColor: const Color(0xFF475569),
                       side: const BorderSide(color: Color(0xFFCBD5E1), width: 1.5),
-                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 16),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                       elevation: 0,
                     ),
-                    icon: const Icon(LucideIcons.checkCircle, size: 16),
-                    label: const Text('Bukan, Ini Sah', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 11)),
+                    icon: const Icon(LucideIcons.checkCircle, size: 18),
+                    label: const Text('Bukan, Ini Sah', style: TextStyle(fontWeight: FontWeight.w900, fontSize: 12)),
                     onPressed: () => game.handleIdentifyClick(false),
                   ),
                 ),
@@ -1216,7 +1221,7 @@ class _SimulationViewState extends State<SimulationView> {
           // Flags badges list
           if (game.foundRedFlags.isNotEmpty)
             Container(
-              height: 28,
+              height: 34,
               alignment: Alignment.center,
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -1227,17 +1232,21 @@ class _SimulationViewState extends State<SimulationView> {
                   final isFlag = game.isWordRedFlag(word);
                   return Container(
                     margin: const EdgeInsets.only(right: 6),
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     decoration: BoxDecoration(
-                      color: isFlag ? const Color(0xFFFEF3C7) : const Color(0xFFF6FCF9),
-                      border: Border.all(color: isFlag ? const Color(0xFFFCD34D) : const Color(0xFFCBD5E1)),
+                      // Solid fills for contrast
+                      color: isFlag ? const Color(0xFFFEF3C7) : const Color(0xFFE2E8F0),
+                      border: Border.all(
+                        color: isFlag ? const Color(0xFFF59E0B) : const Color(0xFF94A3B8),
+                        width: 1.5,
+                      ),
                       borderRadius: BorderRadius.circular(100),
                     ),
                     child: Text(
                       '${isFlag ? '🚨' : '⚪'} $word',
                       style: TextStyle(
                         color: isFlag ? const Color(0xFF92400E) : const Color(0xFF475569),
-                        fontSize: 8.5,
+                        fontSize: 9,
                         fontWeight: FontWeight.w900,
                         decoration: isFlag ? TextDecoration.none : TextDecoration.lineThrough,
                       ),
@@ -1248,12 +1257,12 @@ class _SimulationViewState extends State<SimulationView> {
             )
           else
             Container(
-              padding: const EdgeInsets.all(8),
+              padding: const EdgeInsets.all(10),
               alignment: Alignment.center,
               decoration: BoxDecoration(
-                color: const Color(0xFFFEF3C7).withValues(alpha: 0.5),
+                color: const Color(0xFFFEF3C7),
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: const Color(0xFFFCD34D), style: BorderStyle.solid),
+                border: Border.all(color: const Color(0xFFF59E0B), width: 1.5),
               ),
               child: const Text(
                 'Sila sentuh sekurang-kurangnya 1 perkataan mencurigakan dalam mesej!',
@@ -1383,12 +1392,15 @@ class _SimulationViewState extends State<SimulationView> {
                 itemBuilder: (context, i) {
                   final opt = scen.replyOptions[i];
                   return Padding(
-                    padding: const EdgeInsets.only(bottom: 6.0),
+                    padding: const EdgeInsets.only(bottom: 10.0),
                     child: Container(
                       decoration: BoxDecoration(
-                        color: AppColors.surfaceBorderOf(context),
+                        color: AppColors.cardFillOf(context),
                         borderRadius: BorderRadius.circular(12),
-                        border: Border.all(color: AppColors.surfaceBorderOf(context)),
+                        border: Border.all(
+                          color: AppColors.surfaceBorderOf(context),
+                          width: 1.5,
+                        ),
                       ),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(12),
@@ -1399,7 +1411,7 @@ class _SimulationViewState extends State<SimulationView> {
                                 setState(() => _isReplying = false);
                               },
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
@@ -1410,7 +1422,7 @@ class _SimulationViewState extends State<SimulationView> {
                                 ),
                               ),
                               const SizedBox(width: 8),
-                              Icon(LucideIcons.send, color: AppColors.textMutedOf(context), size: 13),
+                              Icon(LucideIcons.send, color: AppColors.textMutedOf(context), size: 14),
                             ],
                           ),
                         ),
@@ -1458,7 +1470,9 @@ class _SimulationViewState extends State<SimulationView> {
                   title: 'Balas',
                   icon: LucideIcons.messageSquare,
                   color: const Color(0xFF106452),
-                  bg: const Color(0xFF106452).withValues(alpha: 0.1),
+                  bg: AppColors.isDark(context)
+                      ? AppColors.emeraldBadgeBgDark
+                      : AppColors.emeraldBadgeBgLight,
                   onTap: () => setState(() => _isReplying = true),
                 ),
                 // Abai Option
@@ -1500,12 +1514,14 @@ class _SimulationViewState extends State<SimulationView> {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          width: 44,
-          height: 44,
+          width: 56,
+          height: 56,
           decoration: BoxDecoration(
             color: bg,
             shape: BoxShape.circle,
-            border: isPulse ? Border.all(color: color.withValues(alpha: 0.3)) : null,
+            border: isPulse
+                ? Border.all(color: color.withValues(alpha: 0.50), width: 2)
+                : null,
           ),
           child: Material(
             color: Colors.transparent,
@@ -1513,15 +1529,15 @@ class _SimulationViewState extends State<SimulationView> {
               customBorder: const CircleBorder(),
               onTap: onTap,
               child: Center(
-                child: Icon(icon, color: color, size: 20),
+                child: Icon(icon, color: color, size: 24),
               ),
             ),
           ),
         ).animate(target: isPulse ? 1 : 0, onPlay: (controller) => controller.repeat(reverse: true)).scale(begin: const Offset(0.95, 0.95), end: const Offset(1.05, 1.05), duration: 800.ms),
-        const SizedBox(height: 4),
+        const SizedBox(height: 6),
         Text(
           title,
-          style: TextStyle(color: AppColors.textSecondaryOf(context), fontSize: 10, fontWeight: FontWeight.w900),
+          style: TextStyle(color: AppColors.textSecondaryOf(context), fontSize: 11, fontWeight: FontWeight.w900),
         )
       ],
     );

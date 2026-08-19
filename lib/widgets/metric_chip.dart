@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../app_theme.dart';
 
-/// A rounded pill badge / metric chip for the dark design system.
+/// A rounded pill badge / metric chip for the design system.
+///
+/// Uses fully solid, opaque background colors (no transparency) for maximum
+/// contrast in both Dark and Light modes.
 ///
 /// Predefined variants:
 /// - [MetricChip.emerald]  — green success badge
@@ -18,8 +21,8 @@ class MetricChip extends StatelessWidget {
     this.backgroundColor,
     this.textColor,
     this.borderColor,
-    this.fontSize = 8.5,
-    this.iconSize = 10,
+    this.fontSize = 9.0,
+    this.iconSize = 11,
     this.padding,
   });
 
@@ -28,55 +31,55 @@ class MetricChip extends StatelessWidget {
     super.key,
     required this.label,
     this.icon,
-    this.fontSize = 8.5,
-    this.iconSize = 10,
+    this.fontSize = 9.0,
+    this.iconSize = 11,
     this.padding,
-  })  : backgroundColor = AppColors.emeraldBadgeBg,
-        textColor       = AppColors.emeraldMuted,
+  })  : backgroundColor = AppColors.emeraldBadgeBgDark,
+        textColor       = AppColors.emeraldBadgeTextDark,
         borderColor     = null;
 
   const MetricChip.indigo({
     super.key,
     required this.label,
     this.icon,
-    this.fontSize = 8.5,
-    this.iconSize = 10,
+    this.fontSize = 9.0,
+    this.iconSize = 11,
     this.padding,
-  })  : backgroundColor = AppColors.indigoBadgeBg,
-        textColor       = AppColors.indigo,
+  })  : backgroundColor = AppColors.indigoBadgeBgDark,
+        textColor       = AppColors.indigoBadgeTextDark,
         borderColor     = null;
 
   const MetricChip.amber({
     super.key,
     required this.label,
     this.icon,
-    this.fontSize = 8.5,
-    this.iconSize = 10,
+    this.fontSize = 9.0,
+    this.iconSize = 11,
     this.padding,
-  })  : backgroundColor = AppColors.amberBadgeBg,
-        textColor       = AppColors.amber,
+  })  : backgroundColor = AppColors.amberBadgeBgDark,
+        textColor       = AppColors.amberBadgeTextDark,
         borderColor     = null;
 
   const MetricChip.rose({
     super.key,
     required this.label,
     this.icon,
-    this.fontSize = 8.5,
-    this.iconSize = 10,
+    this.fontSize = 9.0,
+    this.iconSize = 11,
     this.padding,
-  })  : backgroundColor = AppColors.roseBadgeBg,
-        textColor       = AppColors.rose,
+  })  : backgroundColor = AppColors.roseBadgeBgDark,
+        textColor       = AppColors.roseBadgeTextDark,
         borderColor     = null;
 
   const MetricChip.muted({
     super.key,
     required this.label,
     this.icon,
-    this.fontSize = 8.5,
-    this.iconSize = 10,
+    this.fontSize = 9.0,
+    this.iconSize = 11,
     this.padding,
-  })  : backgroundColor = const Color(0x1494A3B8),
-        textColor       = AppColors.textSecondary,
+  })  : backgroundColor = AppColors.mutedBadgeBgDark,
+        textColor       = AppColors.mutedBadgeTextDark,
         borderColor     = null;
 
   // ── Fields ────────────────────────────────────────────────────────────────
@@ -91,12 +94,12 @@ class MetricChip extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final fg = textColor ?? AppColors.textSecondary;
+    final fg = textColor ?? AppColors.mutedBadgeTextOf(context);
     return Container(
       padding: padding ??
-          const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+          const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
       decoration: BoxDecoration(
-        color: backgroundColor ?? AppColors.emeraldBadgeBg,
+        color: backgroundColor ?? AppColors.mutedBadgeBgOf(context),
         borderRadius: BorderRadius.circular(20),
         border: borderColor != null
             ? Border.all(color: borderColor!, width: 1)
@@ -107,7 +110,7 @@ class MetricChip extends StatelessWidget {
         children: [
           if (icon != null) ...[
             Icon(icon, color: fg, size: iconSize),
-            const SizedBox(width: 3),
+            const SizedBox(width: 4),
           ],
           Text(
             label,

@@ -65,7 +65,7 @@ class DarkPageHeader extends StatelessWidget {
   }
 }
 
-/// Circular back button with glass styling.
+/// Circular back button — solid, 48×48 touch target.
 class _BackButton extends StatelessWidget {
   const _BackButton({required this.onPressed});
 
@@ -74,26 +74,25 @@ class _BackButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final isDark = AppColors.isDark(context);
-    return GestureDetector(
+    return InkWell(
       onTap: onPressed,
+      borderRadius: BorderRadius.circular(12),
       child: Container(
-        width: 36,
-        height: 36,
+        width: 48,
+        height: 48,
         decoration: BoxDecoration(
-          color: isDark
-              ? AppColors.surfaceBorder.withValues(alpha: 0.6)
-              : Colors.white,
-          borderRadius: BorderRadius.circular(10),
+          // Solid fill — no opacity
+          color: isDark ? AppColors.surfaceBorder : Colors.white,
+          borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: isDark
-                ? AppColors.glassBorder
-                : AppColors.lightSurfaceBorder,
+            color: isDark ? AppColors.surfaceBorder : AppColors.lightSurfaceBorder,
+            width: 1.5,
           ),
           boxShadow: isDark
               ? null
               : [
                   BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.04),
+                    color: Colors.black.withValues(alpha: 0.06),
                     blurRadius: 6,
                     offset: const Offset(0, 2),
                   )
@@ -102,7 +101,7 @@ class _BackButton extends StatelessWidget {
         child: Icon(
           Icons.chevron_left_rounded,
           color: AppColors.textSecondaryOf(context),
-          size: 22,
+          size: 24,
         ),
       ),
     );
@@ -110,6 +109,7 @@ class _BackButton extends StatelessWidget {
 }
 
 /// Compact icon-action button for header trailing area (e.g. Reset, Add).
+/// Minimum 48×48 touch target for accessibility.
 class HeaderActionButton extends StatelessWidget {
   const HeaderActionButton({
     super.key,
@@ -132,30 +132,30 @@ class HeaderActionButton extends StatelessWidget {
   Widget build(BuildContext context) {
     final isDark = AppColors.isDark(context);
     final iconColor = color ?? AppColors.textSecondaryOf(context);
+    // Solid fill — no opacity
     final bgColor = backgroundColor ??
-        (isDark
-            ? AppColors.surfaceBorder.withValues(alpha: 0.6)
-            : Colors.white);
+        (isDark ? AppColors.surfaceBorder : Colors.white);
 
-    return GestureDetector(
+    return InkWell(
       onTap: onPressed,
+      borderRadius: BorderRadius.circular(12),
       child: Container(
+        // Icon-only: 48×48. Label variant: auto-sized with min height via padding.
         padding: label != null
-            ? const EdgeInsets.symmetric(horizontal: 12, vertical: 7)
-            : const EdgeInsets.all(8),
+            ? const EdgeInsets.symmetric(horizontal: 14, vertical: 14)
+            : const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: bgColor,
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(12),
           border: Border.all(
-            color: isDark
-                ? AppColors.glassBorder
-                : AppColors.lightSurfaceBorder,
+            color: isDark ? AppColors.surfaceBorder : AppColors.lightSurfaceBorder,
+            width: 1.5,
           ),
           boxShadow: isDark
               ? null
               : [
                   BoxShadow(
-                    color: Colors.black.withValues(alpha: 0.04),
+                    color: Colors.black.withValues(alpha: 0.06),
                     blurRadius: 6,
                     offset: const Offset(0, 2),
                   )
@@ -165,19 +165,19 @@ class HeaderActionButton extends StatelessWidget {
             ? Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(icon, color: iconColor, size: 14),
-                  const SizedBox(width: 5),
+                  Icon(icon, color: iconColor, size: 16),
+                  const SizedBox(width: 6),
                   Text(
                     label!,
                     style: GoogleFonts.plusJakartaSans(
                       color: labelColor ?? iconColor,
-                      fontSize: 10,
+                      fontSize: 11,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
                 ],
               )
-            : Icon(icon, color: iconColor, size: 16),
+            : Icon(icon, color: iconColor, size: 18),
       ),
     );
   }

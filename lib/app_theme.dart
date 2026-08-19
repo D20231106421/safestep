@@ -9,52 +9,83 @@ abstract class AppColors {
   // Dark Backgrounds
   static const canvas         = Color(0xFF0B0F19); // Deep Obsidian Slate
   static const surface        = Color(0xFF0F172A); // Elevated Surface
-  static const cardFill       = Color(0xFF131C2E); // Card / Glass Container
+  static const cardFill       = Color(0xFF131C2E); // Card Container — fully opaque
   static const surfaceBorder  = Color(0xFF1E293B); // Subtle border
 
   // Light Backgrounds
   static const lightCanvas        = Color(0xFFF6FCF9);
   static const lightSurface       = Colors.white;
-  static const lightCardFill      = Color(0xC8FFFFFF); // 78% opacity white frosted fill
+  static const lightCardFill      = Colors.white; // Solid white — no frost/translucency
   static const lightSurfaceBorder = Color(0xFFE6F4F0);
 
   // Primary Accent — Emerald / Teal
   static const emerald        = Color(0xFF10B981);
   static const emeraldDeep    = Color(0xFF0D9488);
-  static const emeraldGlow    = Color(0x4010B981); // 25% opacity glow
-  static const emeraldBadgeBg = Color(0x1A10B981); // 10% opacity badge bg
   static const emeraldMuted   = Color(0xFF34D399);
   static const lightEmeraldMuted = Color(0xFF047857);
 
   // Secondary Accent — Indigo / Cyan
   static const indigo         = Color(0xFF6366F1);
-  static const indigoGlow     = Color(0x0F6366F1);
-  static const indigoBadgeBg  = Color(0x1A6366F1);
   static const cyan           = Color(0xFF06B6D4);
 
   // Alert Accents
   static const amber          = Color(0xFFF59E0B);
-  static const amberBadgeBg   = Color(0x1AF59E0B);
-  static const amberBorder    = Color(0x33F59E0B);
   static const rose           = Color(0xFFEF4444);
-  static const roseBadgeBg    = Color(0x1AEF4444);
-  static const roseBorder     = Color(0x33EF4444);
+
+  // ── Solid Badge Backgrounds — Dark Mode ──────────────────────────────────
+  // High-contrast filled badges for dark surfaces
+  static const emeraldBadgeBgDark  = Color(0xFF064E3B); // deep emerald-950
+  static const roseBadgeBgDark     = Color(0xFF7F1D1D); // deep red-900
+  static const amberBadgeBgDark    = Color(0xFF78350F); // deep amber-900
+  static const indigoBadgeBgDark   = Color(0xFF312E81); // deep indigo-900
+  static const mutedBadgeBgDark    = Color(0xFF1E293B); // slate-800
+
+  // ── Solid Badge Backgrounds — Light Mode ─────────────────────────────────
+  static const emeraldBadgeBgLight = Color(0xFFD1FAE5); // emerald-100
+  static const roseBadgeBgLight    = Color(0xFFFEE2E2); // red-100
+  static const amberBadgeBgLight   = Color(0xFFFEF3C7); // amber-100
+  static const indigoBadgeBgLight  = Color(0xFFE0E7FF); // indigo-100
+  static const mutedBadgeBgLight   = Color(0xFFE2E8F0); // slate-200
+
+  // ── Solid Badge Text Colors — Dark Mode ──────────────────────────────────
+  static const emeraldBadgeTextDark = Color(0xFF6EE7B7); // emerald-300
+  static const roseBadgeTextDark    = Color(0xFFFCA5A5); // red-300
+  static const amberBadgeTextDark   = Color(0xFFFCD34D); // amber-300
+  static const indigoBadgeTextDark  = Color(0xFFA5B4FC); // indigo-300
+  static const mutedBadgeTextDark   = Color(0xFFCBD5E1); // slate-300
+
+  // ── Solid Badge Text Colors — Light Mode ─────────────────────────────────
+  static const emeraldBadgeTextLight = Color(0xFF065F46); // emerald-800
+  static const roseBadgeTextLight    = Color(0xFF991B1B); // red-800
+  static const amberBadgeTextLight   = Color(0xFF92400E); // amber-800
+  static const indigoBadgeTextLight  = Color(0xFF3730A3); // indigo-800
+  static const mutedBadgeTextLight   = Color(0xFF475569); // slate-600
+
+  // ── Legacy aliases (kept for backward compat — now point to dark solid) ──
+  static const emeraldBadgeBg = emeraldBadgeBgDark;
+  static const roseBadgeBg    = roseBadgeBgDark;
+  static const amberBadgeBg   = amberBadgeBgDark;
+  static const indigoBadgeBg  = indigoBadgeBgDark;
+
+  // ── Amber/rose border helpers (solid) ────────────────────────────────────
+  static const amberBorder    = Color(0xFF92400E); // amber-800 solid border
+  static const roseBorder     = Color(0xFF991B1B); // red-800 solid border
 
   // Typography — Dark Mode
   static const textPrimary    = Color(0xFFF8FAFC); // Slate-50
-  static const textSecondary  = Color(0xFF94A3B8); // Slate-400
-  static const textMuted      = Color(0xFF64748B); // Slate-500
+  static const textSecondary  = Color(0xFFCBD5E1); // Slate-300 — upgraded from 400 for WCAG AA
+  static const textMuted      = Color(0xFF94A3B8); // Slate-400
 
   // Typography — Light Mode
   static const lightTextPrimary   = Color(0xFF0F172A); // Slate-900
-  static const lightTextSecondary = Color(0xFF475569); // Slate-600
-  static const lightTextMuted     = Color(0xFF94A3B8); // Slate-400
+  static const lightTextSecondary = Color(0xFF334155); // Slate-700 — upgraded from 600 for WCAG AA
+  static const lightTextMuted     = Color(0xFF64748B); // Slate-500 — upgraded from 400
 
   // Focus border
-  static const focusBorder    = Color(0x8010B981); // emerald 50%
+  static const focusBorder    = Color(0xFF10B981); // emerald solid
 
-  // Card glass white border
-  static const glassBorder    = Color(0x14FFFFFF); // white 8%
+  // Card solid border (replaces glassBorder)
+  static const glassBorder    = surfaceBorder; // solid — same as surfaceBorder
 
   // ── Context-aware getters ─────────────────────────────────────────────────
   static bool isDark(BuildContext context) =>
@@ -67,10 +98,10 @@ abstract class AppColors {
       isDark(context) ? surface : lightSurface;
 
   static Color cardFillOf(BuildContext context) =>
-      isDark(context) ? cardFill.withValues(alpha: 0.7) : lightCardFill;
+      isDark(context) ? cardFill : lightCardFill;
 
   static Color surfaceBorderOf(BuildContext context) =>
-      isDark(context) ? glassBorder : lightSurfaceBorder;
+      isDark(context) ? surfaceBorder : lightSurfaceBorder;
 
   static Color textPrimaryOf(BuildContext context) =>
       isDark(context) ? textPrimary : lightTextPrimary;
@@ -80,6 +111,38 @@ abstract class AppColors {
 
   static Color textMutedOf(BuildContext context) =>
       isDark(context) ? textMuted : lightTextMuted;
+
+  // ── Context-aware Badge Background getters ────────────────────────────────
+  static Color emeraldBadgeBgOf(BuildContext context) =>
+      isDark(context) ? emeraldBadgeBgDark : emeraldBadgeBgLight;
+
+  static Color roseBadgeBgOf(BuildContext context) =>
+      isDark(context) ? roseBadgeBgDark : roseBadgeBgLight;
+
+  static Color amberBadgeBgOf(BuildContext context) =>
+      isDark(context) ? amberBadgeBgDark : amberBadgeBgLight;
+
+  static Color indigoBadgeBgOf(BuildContext context) =>
+      isDark(context) ? indigoBadgeBgDark : indigoBadgeBgLight;
+
+  static Color mutedBadgeBgOf(BuildContext context) =>
+      isDark(context) ? mutedBadgeBgDark : mutedBadgeBgLight;
+
+  // ── Context-aware Badge Text getters ─────────────────────────────────────
+  static Color emeraldBadgeTextOf(BuildContext context) =>
+      isDark(context) ? emeraldBadgeTextDark : emeraldBadgeTextLight;
+
+  static Color roseBadgeTextOf(BuildContext context) =>
+      isDark(context) ? roseBadgeTextDark : roseBadgeTextLight;
+
+  static Color amberBadgeTextOf(BuildContext context) =>
+      isDark(context) ? amberBadgeTextDark : amberBadgeTextLight;
+
+  static Color indigoBadgeTextOf(BuildContext context) =>
+      isDark(context) ? indigoBadgeTextDark : indigoBadgeTextLight;
+
+  static Color mutedBadgeTextOf(BuildContext context) =>
+      isDark(context) ? mutedBadgeTextDark : mutedBadgeTextLight;
 }
 
 // ─────────────────────────────────────────────
@@ -207,6 +270,7 @@ abstract class AppTheme {
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           elevation: 0,
+          minimumSize: const Size(0, 48),
           textStyle: GoogleFonts.plusJakartaSans(
             fontSize: 13, fontWeight: FontWeight.w700,
           ),
@@ -218,6 +282,7 @@ abstract class AppTheme {
           foregroundColor: AppColors.textSecondary,
           side: const BorderSide(color: AppColors.surfaceBorder, width: 1.5),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          minimumSize: const Size(0, 48),
           textStyle: GoogleFonts.plusJakartaSans(
             fontSize: 13, fontWeight: FontWeight.w700,
           ),
@@ -241,7 +306,7 @@ abstract class AppTheme {
         backgroundColor: AppColors.cardFill,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
-          side: const BorderSide(color: AppColors.glassBorder),
+          side: const BorderSide(color: AppColors.surfaceBorder),
         ),
       ),
 
@@ -354,6 +419,7 @@ abstract class AppTheme {
           foregroundColor: Colors.white,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           elevation: 0,
+          minimumSize: const Size(0, 48),
           textStyle: GoogleFonts.plusJakartaSans(
             fontSize: 13, fontWeight: FontWeight.w700,
           ),
@@ -365,6 +431,7 @@ abstract class AppTheme {
           foregroundColor: AppColors.lightTextSecondary,
           side: const BorderSide(color: AppColors.lightSurfaceBorder, width: 1.5),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+          minimumSize: const Size(0, 48),
           textStyle: GoogleFonts.plusJakartaSans(
             fontSize: 13, fontWeight: FontWeight.w700,
           ),

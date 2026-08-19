@@ -1,11 +1,10 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../app_theme.dart';
 
-/// A frosted-glass card container.
+/// A high-contrast solid card container.
 ///
-/// Wraps [child] in a [ClipRRect] + [BackdropFilter] blur with
-/// theme-aware translucent styling (Dark Obsidian or Light Frosted Glass).
+/// Replaces the old frosted-glass (BackdropFilter) design with a fully opaque
+/// solid fill for improved text contrast and accessibility.
 class GlassCard extends StatelessWidget {
   const GlassCard({
     super.key,
@@ -15,7 +14,6 @@ class GlassCard extends StatelessWidget {
     this.color,
     this.border,
     this.shadows,
-    this.blur = 16.0,
   });
 
   final Widget child;
@@ -24,55 +22,41 @@ class GlassCard extends StatelessWidget {
   final Color? color;
   final BoxBorder? border;
   final List<BoxShadow>? shadows;
-  final double blur;
 
   @override
   Widget build(BuildContext context) {
     final radius = borderRadius ?? BorderRadius.circular(16);
     final isDark = AppColors.isDark(context);
 
+    // Solid card fill — no transparency
     final cardColor = color ??
-        (isDark
-            ? AppColors.cardFill.withValues(alpha: 0.7)
-            : AppColors.lightCardFill);
+        (isDark ? AppColors.cardFill : AppColors.lightCardFill);
 
+    // Solid visible border
     final cardBorder = border ??
         Border.all(
-          color: isDark ? AppColors.glassBorder : AppColors.lightSurfaceBorder,
+          color: isDark ? AppColors.surfaceBorder : AppColors.lightSurfaceBorder,
           width: 1,
         );
 
     final cardShadows = shadows ??
         [
-          if (isDark)
-            const BoxShadow(
-              color: AppColors.indigoGlow,
-              blurRadius: 24,
-              spreadRadius: -4,
-            )
-          else
-            BoxShadow(
-              color: Colors.black.withValues(alpha: 0.04),
-              blurRadius: 16,
-              offset: const Offset(0, 4),
-            ),
+          BoxShadow(
+            color: Colors.black.withValues(alpha: isDark ? 0.25 : 0.06),
+            blurRadius: 12,
+            offset: const Offset(0, 4),
+          ),
         ];
 
-    return ClipRRect(
-      borderRadius: radius,
-      child: BackdropFilter(
-        filter: ImageFilter.blur(sigmaX: blur, sigmaY: blur),
-        child: Container(
-          padding: padding,
-          decoration: BoxDecoration(
-            color: cardColor,
-            borderRadius: radius,
-            border: cardBorder,
-            boxShadow: cardShadows,
-          ),
-          child: child,
-        ),
+    return Container(
+      padding: padding,
+      decoration: BoxDecoration(
+        color: cardColor,
+        borderRadius: radius,
+        border: cardBorder,
+        boxShadow: cardShadows,
       ),
+      child: child,
     );
   }
 }

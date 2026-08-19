@@ -24,11 +24,9 @@ class SettingsProvider with ChangeNotifier {
     'Tinggi',
     'Sederhana',
     'Rendah',
-    'Mati',
   ];
 
   /// Returns the periodic interval in seconds for the active frequency.
-  /// Returns -1 when 'Mati' (off).
   int get notificationIntervalSeconds {
     switch (_alertFrequency) {
       case 'Tinggi':
@@ -72,6 +70,9 @@ class SettingsProvider with ChangeNotifier {
           prefs.getBool(_prefSimulateNotifications) ?? true;
       _alertFrequency =
           prefs.getString(_prefAlertFrequency) ?? 'Sederhana';
+      if (_alertFrequency == 'Mati') {
+        _alertFrequency = 'Sederhana';
+      }
 
       notifyListeners();
       _restartTimer();

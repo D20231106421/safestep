@@ -36,7 +36,7 @@ class HistoryView extends StatelessWidget {
                     icon: LucideIcons.trash2,
                     label: 'Padam',
                     color: AppColors.rose,
-                    backgroundColor: AppColors.roseBadgeBg,
+                    backgroundColor: AppColors.roseBadgeBgOf(context),
                     onPressed: () => _confirmClear(context, histProv),
                   ),
               ],
@@ -150,7 +150,7 @@ class HistoryView extends StatelessWidget {
                         color: log.shields > 0
                             ? AppColors.cyan
                             : AppColors.rose,
-                        size: 11,
+                        size: 13,
                       ),
                       const SizedBox(width: 3),
                       Text(
@@ -184,21 +184,25 @@ class HistoryView extends StatelessWidget {
               ),
             ),
 
-            // Actions
+            // Actions — InkWell for proper 48dp touch target
             Column(
               children: [
                 Icon(
                   LucideIcons.chevronRight,
                   color: AppColors.textMutedOf(context),
-                  size: 16,
+                  size: 18,
                 ),
-                const SizedBox(height: 8),
-                GestureDetector(
-                  onTap: () => histProv.deleteLog(log.id),
-                  child: const Icon(
-                    LucideIcons.trash2,
-                    color: AppColors.rose,
-                    size: 13,
+                const SizedBox(height: 4),
+                InkWell(
+                  onTap: () => _confirmDeleteLog(context, histProv, log.id),
+                  borderRadius: BorderRadius.circular(8),
+                  child: const Padding(
+                    padding: EdgeInsets.all(8),
+                    child: Icon(
+                      LucideIcons.trash2,
+                      color: AppColors.rose,
+                      size: 16,
+                    ),
                   ),
                 ),
               ],
@@ -223,14 +227,14 @@ class HistoryView extends StatelessWidget {
             width: 72,
             height: 72,
             decoration: BoxDecoration(
-              color: isDark
-                  ? AppColors.surfaceBorder.withValues(alpha: 0.5)
-                  : Colors.white,
+              // Solid fill — no opacity
+              color: isDark ? AppColors.surfaceBorder : Colors.white,
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
                 color: isDark
-                    ? AppColors.glassBorder
+                    ? AppColors.surfaceBorder
                     : AppColors.lightSurfaceBorder,
+                width: 1.5,
               ),
             ),
             child: Icon(
@@ -305,6 +309,54 @@ class HistoryView extends StatelessWidget {
             },
             child: const Text(
               'Padam Semua',
+              style: TextStyle(fontWeight: FontWeight.w900),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  void _confirmDeleteLog(BuildContext context, HistoryProvider histProv, int logId) {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        title: Text(
+          'Padam Rekod?',
+          style: TextStyle(
+            color: AppColors.textPrimaryOf(context),
+            fontWeight: FontWeight.w900,
+            fontSize: 15,
+          ),
+        ),
+        content: Text(
+          'Adakah anda pasti mahu memadam rekod latihan ini?',
+          style: TextStyle(
+            color: AppColors.textSecondaryOf(context),
+            fontSize: 12,
+          ),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(
+              'Batal',
+              style: TextStyle(color: AppColors.textMutedOf(context)),
+            ),
+          ),
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.rose,
+              foregroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+            ),
+            onPressed: () {
+              histProv.deleteLog(logId);
+              Navigator.pop(context);
+            },
+            child: const Text(
+              'Padam',
               style: TextStyle(fontWeight: FontWeight.w900),
             ),
           ),

@@ -204,8 +204,8 @@ class ReportDetailView extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
               decoration: BoxDecoration(
                 color: r.userCorrect
-                    ? AppColors.emeraldBadgeBg
-                    : AppColors.roseBadgeBg,
+                    ? AppColors.emeraldBadgeBgOf(context)
+                    : AppColors.roseBadgeBgOf(context),
                 borderRadius: const BorderRadius.vertical(
                   top: Radius.circular(15),
                 ),
@@ -217,15 +217,17 @@ class ReportDetailView extends StatelessWidget {
                         ? LucideIcons.checkCircle
                         : LucideIcons.xCircle,
                     color: r.userCorrect
-                        ? AppColors.emeraldMuted
-                        : AppColors.rose,
+                        ? AppColors.emeraldBadgeTextOf(context)
+                        : AppColors.roseBadgeTextOf(context),
                     size: 14,
                   ),
                   const SizedBox(width: 6),
                   Text(
                     'Soalan $num  |  ${mediumTypeLabel(r.type)}',
                     style: TextStyle(
-                      color: AppColors.textMutedOf(context),
+                      color: r.userCorrect
+                          ? AppColors.emeraldBadgeTextOf(context)
+                          : AppColors.roseBadgeTextOf(context),
                       fontSize: 9,
                       fontWeight: FontWeight.w900,
                       letterSpacing: 0.5,
@@ -480,12 +482,14 @@ class ReportDetailView extends StatelessWidget {
   }) {
     final Color chipColor = correct == null
         ? AppColors.textSecondaryOf(context)
-        : (correct ? AppColors.emeraldMuted : AppColors.rose);
+        : (correct
+            ? AppColors.emeraldBadgeTextOf(context)
+            : AppColors.roseBadgeTextOf(context));
     final Color bgColor = correct == null
         ? AppColors.surfaceOf(context).withValues(alpha: 0.25)
         : (correct
-            ? AppColors.emeraldBadgeBg
-            : AppColors.roseBadgeBg);
+            ? AppColors.emeraldBadgeBgOf(context)
+            : AppColors.roseBadgeBgOf(context));
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,

@@ -125,9 +125,9 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                 HeaderActionButton(
                   icon: LucideIcons.save,
                   label: 'SIMPAN',
-                  color: AppColors.emeraldMuted,
-                  backgroundColor: AppColors.emeraldBadgeBg,
-                  labelColor: AppColors.emeraldMuted,
+                  color: AppColors.emeraldBadgeTextOf(context),
+                  backgroundColor: AppColors.emeraldBadgeBgOf(context),
+                  labelColor: AppColors.emeraldBadgeTextOf(context),
                   onPressed: _submit,
                 ),
               ],
@@ -147,13 +147,13 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                             width: 44,
                             height: 44,
                             decoration: BoxDecoration(
-                              color: AppColors.emeraldBadgeBg,
+                              color: AppColors.emeraldBadgeBgOf(context),
                               borderRadius: BorderRadius.circular(14),
                               border: Border.all(color: AppColors.emerald.withValues(alpha: 0.18)),
                             ),
-                            child: const Icon(
+                            child: Icon(
                               LucideIcons.edit3,
-                              color: AppColors.emeraldMuted,
+                              color: AppColors.emeraldBadgeTextOf(context),
                               size: 18,
                             ),
                           ),
@@ -378,12 +378,12 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                                   width: 34,
                                   height: 34,
                                   decoration: BoxDecoration(
-                                    color: AppColors.amberBadgeBg,
+                                    color: AppColors.amberBadgeBgOf(context),
                                     borderRadius: BorderRadius.circular(10),
                                   ),
-                                  child: const Icon(
+                                  child: Icon(
                                     LucideIcons.alertTriangle,
-                                    color: AppColors.amber,
+                                    color: AppColors.amberBadgeTextOf(context),
                                     size: 16,
                                   ),
                                 ),

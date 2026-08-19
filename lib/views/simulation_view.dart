@@ -134,13 +134,13 @@ class _SimulationViewState extends State<SimulationView> {
                     Container(
                       padding: const EdgeInsets.all(14),
                       decoration: BoxDecoration(
-                        color: AppColors.amberBadgeBg,
+                        color: AppColors.amberBadgeBgOf(context),
                         borderRadius: BorderRadius.circular(100),
                         border: Border.all(color: AppColors.amber.withValues(alpha: 0.25)),
                       ),
-                      child: const Icon(
+                      child: Icon(
                         LucideIcons.alertCircle,
-                        color: AppColors.amber,
+                        color: AppColors.amberBadgeTextOf(context),
                         size: 28,
                       ),
                     ),

@@ -70,9 +70,9 @@ class _CurriculumViewState extends State<CurriculumView> {
                 HeaderActionButton(
                   icon: LucideIcons.plus,
                   label: 'Tambah',
-                  color: AppColors.emerald,
-                  backgroundColor: AppColors.emeraldBadgeBg,
-                  labelColor: AppColors.emerald,
+                  color: AppColors.emeraldBadgeTextOf(context),
+                  backgroundColor: AppColors.emeraldBadgeBgOf(context),
+                  labelColor: AppColors.emeraldBadgeTextOf(context),
                   onPressed: () => Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -218,7 +218,7 @@ class _CurriculumViewState extends State<CurriculumView> {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
         decoration: BoxDecoration(
           color: active
-              ? AppColors.emeraldBadgeBg
+              ? AppColors.emeraldBadgeBgOf(context)
               : (isDark
                   ? AppColors.surfaceBorder.withValues(alpha: 0.5)
                   : Colors.white),
@@ -235,7 +235,7 @@ class _CurriculumViewState extends State<CurriculumView> {
             label,
             style: TextStyle(
               color: active
-                  ? (isDark ? AppColors.emeraldMuted : AppColors.lightEmeraldMuted)
+                  ? AppColors.emeraldBadgeTextOf(context)
                   : AppColors.textMutedOf(context),
               fontSize: 10,
               fontWeight: FontWeight.w700,
@@ -258,7 +258,7 @@ class _CurriculumViewState extends State<CurriculumView> {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
         decoration: BoxDecoration(
           color: active
-              ? AppColors.amberBadgeBg
+              ? AppColors.amberBadgeBgOf(context)
               : (isDark
                   ? AppColors.surfaceBorder.withValues(alpha: 0.5)
                   : Colors.white),
@@ -276,7 +276,7 @@ class _CurriculumViewState extends State<CurriculumView> {
             textAlign: TextAlign.center,
             style: TextStyle(
               color: active
-                  ? AppColors.amber
+                  ? AppColors.amberBadgeTextOf(context)
                   : AppColors.textMutedOf(context),
               fontSize: 10,
               fontWeight: FontWeight.w700,
@@ -407,11 +407,11 @@ class _CurriculumViewState extends State<CurriculumView> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 10, vertical: 5),
                     decoration: BoxDecoration(
-                      color: AppColors.roseBadgeBg,
+                      color: AppColors.roseBadgeBgOf(context),
                       borderRadius: BorderRadius.circular(8),
                     ),
-                    child: const Icon(LucideIcons.trash2,
-                        color: AppColors.rose, size: 11),
+                    child: Icon(LucideIcons.trash2,
+                        color: AppColors.roseBadgeTextOf(context), size: 11),
                   ),
                 ),
               ],

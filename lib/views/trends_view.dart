@@ -220,6 +220,7 @@ class TrendsView extends StatelessWidget {
                           label: 'Hubungi 997 — NSRC',
                           icon: LucideIcons.phone,
                           width: double.infinity,
+                          gradientColors: const [Color(0xFF106452), Color(0xFF106452)],
                           onPressed: () {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(

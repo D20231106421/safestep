@@ -205,6 +205,7 @@ class FeedbackView extends StatelessWidget {
                 fontSize: 12,
                 padding: const EdgeInsets.symmetric(vertical: 15),
                 borderRadius: BorderRadius.circular(16),
+                gradientColors: const [Color(0xFF106452), Color(0xFF106452)],
                 onPressed: () => game.nextScenario(historyProv),
               ),
             ).animate().fadeIn(delay: 300.ms, duration: 350.ms),

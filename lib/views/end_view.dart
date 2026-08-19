@@ -220,12 +220,13 @@ class EndView extends StatelessWidget {
 
                     // Action buttons
                     GradientButton(
-                      label: 'MULA SEMULA',
-                      icon: LucideIcons.refreshCw,
+                      label: 'MENU UTAMA',
+                      icon: LucideIcons.home,
                       width: double.infinity,
                       fontSize: 12,
                       padding: const EdgeInsets.symmetric(vertical: 15),
                       borderRadius: BorderRadius.circular(16),
+                      gradientColors: const [Color(0xFF106452), Color(0xFF106452)],
                       onPressed: () => game.setGameState('menu'),
                     ).animate().fadeIn(delay: 450.ms, duration: 350.ms),
                     const SizedBox(height: 10),

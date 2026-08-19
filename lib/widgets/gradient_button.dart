@@ -14,6 +14,7 @@ class GradientButton extends StatelessWidget {
     this.padding,
     this.borderRadius,
     this.fontSize = 13,
+    this.gradientColors,
   });
 
   final String label;
@@ -23,6 +24,7 @@ class GradientButton extends StatelessWidget {
   final EdgeInsetsGeometry? padding;
   final BorderRadius? borderRadius;
   final double fontSize;
+  final List<Color>? gradientColors;
 
   @override
   Widget build(BuildContext context) {
@@ -33,15 +35,15 @@ class GradientButton extends StatelessWidget {
         duration: const Duration(milliseconds: 150),
         width: width,
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [AppColors.emerald, AppColors.emeraldDeep],
+          gradient: LinearGradient(
+            colors: gradientColors ?? [AppColors.emerald, AppColors.emeraldDeep],
             begin: Alignment.centerLeft,
             end: Alignment.centerRight,
           ),
           borderRadius: radius,
           boxShadow: [
             BoxShadow(
-              color: AppColors.emeraldDeep.withValues(alpha: 0.40),
+              color: (gradientColors?.first ?? AppColors.emeraldDeep).withValues(alpha: 0.40),
               blurRadius: 10,
               offset: const Offset(0, 4),
             ),

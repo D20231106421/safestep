@@ -253,15 +253,11 @@ class HomeView extends StatelessWidget {
       child: AnimatedContainer(
         duration: const Duration(milliseconds: 150),
         decoration: BoxDecoration(
-          gradient: const LinearGradient(
-            colors: [AppColors.emerald, AppColors.emeraldDeep],
-            begin: Alignment.centerLeft,
-            end: Alignment.centerRight,
-          ),
+          color: const Color(0xFF106452),
           borderRadius: BorderRadius.circular(20),
           boxShadow: [
             BoxShadow(
-              color: AppColors.emeraldDeep.withValues(alpha: 0.40),
+              color: const Color(0xFF106452).withValues(alpha: 0.40),
               blurRadius: 16,
               offset: const Offset(0, 6),
             ),

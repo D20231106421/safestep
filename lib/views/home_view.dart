@@ -151,7 +151,7 @@ class HomeView extends StatelessWidget {
                     const SizedBox(height: 10),
                     _buildNavCard(
                       context,
-                      title: 'PUSAT ALERT & TREN',
+                      title: 'PANDUAN PENIPUAN',
                       subtitle: 'Kes terkini Malaysia & push alert',
                       icon: LucideIcons.bell,
                       iconColor: AppColors.indigo,

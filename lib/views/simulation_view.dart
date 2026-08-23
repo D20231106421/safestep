@@ -1296,7 +1296,7 @@ class _SimulationViewState extends State<SimulationView> {
               Row(
                 children: [
                   _buildStepIndicatorBadge(
-                    '1. Kenal Pasti',
+                    'Kenal Pasti',
                     active: game.playStep == 'identify',
                   ),
                   const SizedBox(width: 4),
@@ -1309,7 +1309,7 @@ class _SimulationViewState extends State<SimulationView> {
                   ),
                   const SizedBox(width: 4),
                   _buildStepIndicatorBadge(
-                    '2. Red Flags',
+                    'Red Flags',
                     active: game.playStep == 'red_flags',
                   ),
                   const SizedBox(width: 4),
@@ -1322,7 +1322,7 @@ class _SimulationViewState extends State<SimulationView> {
                   ),
                   const SizedBox(width: 4),
                   _buildStepIndicatorBadge(
-                    '3. Respon',
+                    'Respon',
                     active: game.playStep == 'respond',
                   ),
                 ],
@@ -1338,43 +1338,6 @@ class _SimulationViewState extends State<SimulationView> {
           ),
 
           const SizedBox(height: 18),
-
-          // Tips footer — solid fill for contrast
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 8),
-            decoration: BoxDecoration(
-              color: AppColors.emeraldBadgeBgOf(context),
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: AppColors.isDark(context)
-                    ? AppColors.emerald.withValues(alpha: 0.40)
-                    : AppColors.emeraldBadgeTextLight,
-                width: 1.5,
-              ),
-            ),
-            child: Row(
-              children: [
-                Icon(
-                  LucideIcons.info,
-                  color: AppColors.emeraldBadgeTextOf(context),
-                  size: 14,
-                ),
-                const SizedBox(width: 8),
-                Expanded(
-                  child: Text(
-                    _rotatingTips[game.currentIndex % _rotatingTips.length],
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                      color: AppColors.emeraldBadgeTextOf(context),
-                      fontSize: 8.5,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     );
@@ -1415,26 +1378,15 @@ class _SimulationViewState extends State<SimulationView> {
         children: [
           Center(
             child: Text(
-              'Adakah mesej di atas cubaan siber Scam?',
+              'Adakah anda rasa senario diatas adalah scam?',
               style: TextStyle(
                 color: AppColors.textPrimaryOf(context),
-                fontSize: 11.5,
+                fontSize: 15,
                 fontWeight: FontWeight.w900,
               ),
             ),
           ),
-          const SizedBox(height: 2),
-          Center(
-            child: Text(
-              'Fikir dengan tenang sebelum membuat pilihan keselamatan.',
-              style: TextStyle(
-                color: AppColors.textSecondaryOf(context),
-                fontSize: 9.5,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 15),
 
           if (game.identifiedIsScam == null)
             Row(
@@ -1483,7 +1435,7 @@ class _SimulationViewState extends State<SimulationView> {
                     ),
                     icon: const Icon(LucideIcons.checkCircle, size: 18),
                     label: const Text(
-                      'Bukan, Ini Sah',
+                      'Tidak, Ini bukan scam',
                       style: TextStyle(
                         fontWeight: FontWeight.w900,
                         fontSize: 12,
@@ -1593,26 +1545,15 @@ class _SimulationViewState extends State<SimulationView> {
         children: [
           Center(
             child: Text(
-              'Cari & Sentuh Red Flags (Petunjuk Scam)',
+              'Cari & Sentuh sekurang-kurangnya 1 perkataan mencurigakan dalam senario diatas',
               style: TextStyle(
                 color: AppColors.textPrimaryOf(context),
-                fontSize: 11.5,
+                fontSize: 15,
                 fontWeight: FontWeight.w900,
               ),
             ),
           ),
-          const SizedBox(height: 2),
-          Center(
-            child: Text(
-              'Sentuh perkataan mencurigakan dalam mesej di atas (cth: pautan, ugutan, kod bank, TAC).',
-              style: TextStyle(
-                color: AppColors.textSecondaryOf(context),
-                fontSize: 9.5,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ),
-          const SizedBox(height: 10),
+          const SizedBox(height: 15),
 
           // Flags badges list
           if (game.foundRedFlags.isNotEmpty)
@@ -1630,7 +1571,7 @@ class _SimulationViewState extends State<SimulationView> {
                     margin: const EdgeInsets.only(right: 6),
                     padding: const EdgeInsets.symmetric(
                       horizontal: 10,
-                      vertical: 6,
+                      vertical: 8,
                     ),
                     decoration: BoxDecoration(
                       // Solid fills for contrast
@@ -1661,27 +1602,9 @@ class _SimulationViewState extends State<SimulationView> {
                   );
                 },
               ),
-            )
-          else
-            Container(
-              padding: const EdgeInsets.all(10),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                color: const Color(0xFFFEF3C7),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: const Color(0xFFF59E0B), width: 1.5),
-              ),
-              child: const Text(
-                'Sila sentuh sekurang-kurangnya 1 perkataan mencurigakan dalam mesej!',
-                style: TextStyle(
-                  color: Color(0xFFB45309),
-                  fontSize: 9,
-                  fontWeight: FontWeight.w900,
-                ),
-              ),
             ),
 
-          const SizedBox(height: 8),
+          const SizedBox(height: 15),
 
           // Educative Hint Panel
           if (game.showPlayHint)
@@ -1770,7 +1693,7 @@ class _SimulationViewState extends State<SimulationView> {
                     ),
                   ),
                   child: const Text(
-                    'LANGKAU & SELESAI',
+                    'LANGKAU',
                     style: TextStyle(
                       fontWeight: FontWeight.w900,
                       fontSize: 10.5,
@@ -1936,26 +1859,15 @@ class _SimulationViewState extends State<SimulationView> {
           ] else ...[
             Center(
               child: Text(
-                'Tindakan Keselamatan Terakhir Anda',
+                'Apakah respon anda sekiranya menghadapi senario diatas?',
                 style: TextStyle(
                   color: AppColors.textPrimaryOf(context),
-                  fontSize: 11.5,
+                  fontSize: 15,
                   fontWeight: FontWeight.w900,
                 ),
               ),
             ),
-            const SizedBox(height: 2),
-            Center(
-              child: Text(
-                'Pilih antara membalas, mengabaikan, atau menyekat pengirim ini.',
-                style: TextStyle(
-                  color: AppColors.textSecondaryOf(context),
-                  fontSize: 9.5,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
+            const SizedBox(height: 15),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -2052,11 +1964,5 @@ class _SimulationViewState extends State<SimulationView> {
     );
   }
 
-  final List<String> _rotatingTips = [
-    "TIP: Pautan rasmi agensi kerajaan Malaysia sentiasa berakhir dengan domain '.gov.my'.",
-    "TIP: Jangan sesekali mendedahkan kod keselamatan TAC / OTP bank kepada sesiapa pun.",
-    "TIP: Bank atau polis tidak akan sesekali menghubungi anda untuk menyekat akaun melalui WhatsApp.",
-    "TIP: Pihak polis atau mahkamah tidak akan meminta siasatan sulit di telefon atau memindahkan wang simpanan.",
-    "TIP: PDRM menyediakan portal 'Semak Mule' untuk menyemak akaun bank meragukan sebelum transaksi.",
-  ];
+
 }

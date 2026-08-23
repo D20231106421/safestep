@@ -104,11 +104,11 @@ Tentukan jika jawapan itu selamat atau mengundang bahaya. Secara umum, membalas 
 
     final matchedOpt = scenario.replyOptions.firstWhere(
       (o) => o.text == reply,
-      orElse: () => ReplyOption(text: reply, safety: isActionSafe ? 'safe' : 'risky'),
+      orElse: () => ReplyOption(text: reply, safety: isActionSafe ? 'selamat' : 'bahaya'),
     );
 
     final String safetyLevel = matchedOpt.safety;
-    final bool isCorrect = safetyLevel == 'safe';
+    final bool isCorrect = safetyLevel == 'selamat';
 
     String feedback = '';
     String why = '';
@@ -116,7 +116,7 @@ Tentukan jika jawapan itu selamat atau mengundang bahaya. Secara umum, membalas 
     if (isCorrect) {
       feedback = 'Tindakan Cemerlang!';
       why = 'Anda menolak taktik tipu muslihat scammer dengan tegas dan mengekalkan privasi anda secara selamat.';
-    } else if (safetyLevel == 'risky') {
+    } else if (safetyLevel == 'bahaya') {
       feedback = 'Berisiko tinggi!';
       why = 'Menjawab atau bertanya lanjut menunjukkan nombor anda aktif, membolehkan scammer melancarkan taktik emosi lanjutan.';
     } else {

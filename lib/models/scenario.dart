@@ -1,6 +1,6 @@
 class ReplyOption {
   final String text;
-  final String safety; // 'safe' | 'risky' | 'dangerous'
+  final String safety; // 'safe' | 'berisiko' | 'bahaya'
 
   ReplyOption({
     required this.text,
@@ -187,9 +187,9 @@ final List<Scenario> curatedScenarios = [
       "Jangan sesekali menghantar maklumat peribadi menerusi WhatsApp"
     ],
     replyOptions: [
-      ReplyOption(text: "Batal! Sila batalkan transaksi itu sekarang, saya tidak meluluskannya.", safety: "dangerous"),
-      ReplyOption(text: "Betul ke ini pihak Maybank? Kenapa tak hubungi telefon?", safety: "risky"),
-      ReplyOption(text: "Saya letak telefon, abaikan chat ini, dan periksa terus di Maybank2u.", safety: "safe")
+      ReplyOption(text: "Batal! Sila batalkan transaksi itu sekarang, saya tidak meluluskannya.", safety: "bahaya"),
+      ReplyOption(text: "Betul ke ini pihak Maybank? Kenapa tak hubungi telefon?", safety: "berisiko"),
+      ReplyOption(text: "Saya letak telefon, abaikan chat ini, dan periksa terus di Maybank2u.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -211,9 +211,9 @@ final List<Scenario> curatedScenarios = [
       "Padamkan SMS tersebut demi keselamatan diri"
     ],
     replyOptions: [
-      ReplyOption(text: "Saya klik pautan untuk mengaktifkan semula akaun saya secepat mungkin.", safety: "dangerous"),
-      ReplyOption(text: "Saya balas SMS bertanya kenapa akaun saya dinyahaktifkan.", safety: "risky"),
-      ReplyOption(text: "Saya abaikan SMS ini and terus ke cawangan bank atau portal rasmi CIMB.", safety: "safe")
+      ReplyOption(text: "Saya klik pautan untuk mengaktifkan semula akaun saya secepat mungkin.", safety: "bahaya"),
+      ReplyOption(text: "Saya balas SMS bertanya kenapa akaun saya dinyahaktifkan.", safety: "berisiko"),
+      ReplyOption(text: "Saya abaikan SMS ini and terus ke cawangan bank atau portal rasmi CIMB.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -235,9 +235,9 @@ final List<Scenario> curatedScenarios = [
       "Laporkan e-mel tersebut kepada khidmat pelanggan Bank Islam"
     ],
     replyOptions: [
-      ReplyOption(text: "Tekan pautan untuk membatalkan pertukaran nombor TAC tersebut dengan cemas.", safety: "dangerous"),
-      ReplyOption(text: "Balas e-mel untuk menafikan sebarang pertukaran nombor telefon.", safety: "risky"),
-      ReplyOption(text: "Padam e-mel ini dan log masuk ke portal perbankan rasmi secara asing.", safety: "safe")
+      ReplyOption(text: "Tekan pautan untuk membatalkan pertukaran nombor TAC tersebut dengan cemas.", safety: "bahaya"),
+      ReplyOption(text: "Balas e-mel untuk menafikan sebarang pertukaran nombor telefon.", safety: "berisiko"),
+      ReplyOption(text: "Padam e-mel ini dan log masuk ke portal perbankan rasmi secara asing.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -259,9 +259,9 @@ final List<Scenario> curatedScenarios = [
       "Jangan kongsi nombor kad atau kod OTP/TAC kepada pemanggil"
     ],
     replyOptions: [
-      ReplyOption(text: "Sebutkan butiran kad kredit kepada pegawai untuk keselamatan akaun.", safety: "dangerous"),
-      ReplyOption(text: "Tanya pegawai tersebut di kedai mana kad tersebut digunakan.", safety: "risky"),
-      ReplyOption(text: "Letakkan panggilan telefon dan hubungi talian rasmi di belakang kad saya.", safety: "safe")
+      ReplyOption(text: "Sebutkan butiran kad kredit kepada pegawai untuk keselamatan akaun.", safety: "bahaya"),
+      ReplyOption(text: "Tanya pegawai tersebut di kedai mana kad tersebut digunakan.", safety: "berisiko"),
+      ReplyOption(text: "Letakkan panggilan telefon dan hubungi talian rasmi di belakang kad saya.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -283,9 +283,9 @@ final List<Scenario> curatedScenarios = [
       "Laporkan nombor WhatsApp tersebut kepada pihak berkuasa"
     ],
     replyOptions: [
-      ReplyOption(text: "Pasang fail APK tersebut supaya nama saya dibersihkan daripada kes jenayah.", safety: "dangerous"),
-      ReplyOption(text: "Tanya Inspektor tersebut jika saya boleh hadir sendiri ke balai polis.", safety: "risky"),
-      ReplyOption(text: "Abaikan mesej, sekat nombor, and tidak sesekali memuat turun fail apk tersebut.", safety: "safe")
+      ReplyOption(text: "Pasang fail APK tersebut supaya nama saya dibersihkan daripada kes jenayah.", safety: "bahaya"),
+      ReplyOption(text: "Tanya Inspektor tersebut jika saya boleh hadir sendiri ke balai polis.", safety: "berisiko"),
+      ReplyOption(text: "Abaikan mesej, sekat nombor, and tidak sesekali memuat turun fail apk tersebut.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -307,9 +307,9 @@ final List<Scenario> curatedScenarios = [
       "Jangan terpedaya dengan ugutan sita harta atau denda dalam masa 24 jam"
     ],
     replyOptions: [
-      ReplyOption(text: "Buka pautan tersebut dan terus buat pembayaran cukai untuk elak waran sivil.", safety: "dangerous"),
-      ReplyOption(text: "Balas SMS ini untuk merayu denda atau denda pengampunan.", safety: "risky"),
-      ReplyOption(text: "Padam SMS dan buat semakan tunggakan secara terus di portal rasmi MyTax.", safety: "safe")
+      ReplyOption(text: "Buka pautan tersebut dan terus buat pembayaran cukai untuk elak waran sivil.", safety: "bahaya"),
+      ReplyOption(text: "Balas SMS ini untuk merayu denda atau denda pengampunan.", safety: "berisiko"),
+      ReplyOption(text: "Padam SMS dan buat semakan tunggakan secara terus di portal rasmi MyTax.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -331,9 +331,9 @@ final List<Scenario> curatedScenarios = [
       "Gunakan portal e-Filing rasmi kerajaan Malaysia (efiling.kehakiman.gov.my) untuk semakan"
     ],
     replyOptions: [
-      ReplyOption(text: "Klik pautan tersebut untuk mengisi maklumat bank bagi menafikan tuntutan.", safety: "dangerous"),
-      ReplyOption(text: "Balas e-mel untuk menerangkan bahawa ini adalah kesilapan identiti.", safety: "risky"),
-      ReplyOption(text: "Padam e-mel ini dan tidak membalas sebarang maklumat peribadi.", safety: "safe")
+      ReplyOption(text: "Klik pautan tersebut untuk mengisi maklumat bank bagi menafikan tuntutan.", safety: "bahaya"),
+      ReplyOption(text: "Balas e-mel untuk menerangkan bahawa ini adalah kesilapan identiti.", safety: "berisiko"),
+      ReplyOption(text: "Padam e-mel ini dan tidak membalas sebarang maklumat peribadi.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -355,9 +355,9 @@ final List<Scenario> curatedScenarios = [
       "Hubungi talian NSRC 997 untuk melaporkan cubaan Macau Scam ini"
     ],
     replyOptions: [
-      ReplyOption(text: "Saya pindahkan semua wang simpanan saya ke akaun transit tersebut sekarang.", safety: "dangerous"),
-      ReplyOption(text: "Saya minta pegawai tersebut memberikan nombor rujukan kes dan nama ketuanya.", safety: "risky"),
-      ReplyOption(text: "Saya letakkan telefon sekarang juga dan laporkan kes ini ke talian NSRC 997.", safety: "safe")
+      ReplyOption(text: "Saya pindahkan semua wang simpanan saya ke akaun transit tersebut sekarang.", safety: "bahaya"),
+      ReplyOption(text: "Saya minta pegawai tersebut memberikan nombor rujukan kes dan nama ketuanya.", safety: "berisiko"),
+      ReplyOption(text: "Saya letakkan telefon sekarang juga dan laporkan kes ini ke talian NSRC 997.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -379,9 +379,9 @@ final List<Scenario> curatedScenarios = [
       "Jangan sesekali berkongsi butiran kad bank kepada orang asing"
     ],
     replyOptions: [
-      ReplyOption(text: "Hantar butiran kad bank dan gambar kad pengenalan demi menuntut hadiah wang tersebut.", safety: "dangerous"),
-      ReplyOption(text: "Adakah ini betul? Saya mahu bercakap dengan pengurus Petronas terlebih dahulu.", safety: "risky"),
-      ReplyOption(text: "Saya tahu ini scam. Abaikan mesej ini dan sekat nombor pengirim serta-merta.", safety: "safe")
+      ReplyOption(text: "Hantar butiran kad bank dan gambar kad pengenalan demi menuntut hadiah wang tersebut.", safety: "bahaya"),
+      ReplyOption(text: "Adakah ini betul? Saya mahu bercakap dengan pengurus Petronas terlebih dahulu.", safety: "berisiko"),
+      ReplyOption(text: "Saya tahu ini scam. Abaikan mesej ini dan sekat nombor pengirim serta-merta.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -403,9 +403,9 @@ final List<Scenario> curatedScenarios = [
       "Laporkan nombor pengirim tersebut kepada SKMM"
     ],
     replyOptions: [
-      ReplyOption(text: "Klik pautan ganjil tersebut untuk mengisi maklumat perbankan.", safety: "dangerous"),
-      ReplyOption(text: "Tanya kawan-kawan sama ada mereka mendapat SMS yang serupa.", safety: "risky"),
-      ReplyOption(text: "Abaikan SMS ini dan padamkannya serta-merta.", safety: "safe")
+      ReplyOption(text: "Klik pautan ganjil tersebut untuk mengisi maklumat perbankan.", safety: "bahaya"),
+      ReplyOption(text: "Tanya kawan-kawan sama ada mereka mendapat SMS yang serupa.", safety: "berisiko"),
+      ReplyOption(text: "Abaikan SMS ini dan padamkannya serta-merta.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -427,9 +427,9 @@ final List<Scenario> curatedScenarios = [
       "Abaikan segala ancaman kehilangan hadiah jika tidak membuat bayaran dalam tempoh singkat"
     ],
     replyOptions: [
-      ReplyOption(text: "Buat pemindahan RM250 ke akaun ejen tersebut demi mendapatkan hadiah lumayan.", safety: "dangerous"),
-      ReplyOption(text: "Balas e-mel untuk meminta mereka memotong yuran RM250 dari jumlah hadiah utama.", safety: "risky"),
-      ReplyOption(text: "Abaikan dan padam e-mel ini kerana ia merupakan penipuan loteri.", safety: "safe")
+      ReplyOption(text: "Buat pemindahan RM250 ke akaun ejen tersebut demi mendapatkan hadiah lumayan.", safety: "bahaya"),
+      ReplyOption(text: "Balas e-mel untuk meminta mereka memotong yuran RM250 dari jumlah hadiah utama.", safety: "berisiko"),
+      ReplyOption(text: "Abaikan dan padam e-mel ini kerana ia merupakan penipuan loteri.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -451,9 +451,9 @@ final List<Scenario> curatedScenarios = [
       "Letakkan panggilan telefon dan hubungi talian khidmat pelanggan Astro rasmi jika musykil"
     ],
     replyOptions: [
-      ReplyOption(text: "Sebutkan 6-digit kod TAC yang diterima di SMS kepada pegawai tersebut.", safety: "dangerous"),
-      ReplyOption(text: "Tanya kenapa mereka memerlukan kod TAC jika mereka mahu memberi wang.", safety: "risky"),
-      ReplyOption(text: "Jangan berikan kod TAC, letakkan telefon, dan terus sekat nombor tersebut.", safety: "safe")
+      ReplyOption(text: "Sebutkan 6-digit kod TAC yang diterima di SMS kepada pegawai tersebut.", safety: "bahaya"),
+      ReplyOption(text: "Tanya kenapa mereka memerlukan kod TAC jika mereka mahu memberi wang.", safety: "berisiko"),
+      ReplyOption(text: "Jangan berikan kod TAC, letakkan telefon, dan terus sekat nombor tersebut.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -475,9 +475,9 @@ final List<Scenario> curatedScenarios = [
       "Amaran kepada rakan anda bahawa akaun WhatsApp beliau berkemungkinan besar telah digodam"
     ],
     replyOptions: [
-      ReplyOption(text: "Tekan pautan video viral itu dengan rasa ingin tahu dan masukkan maklumat log masuk jika diminta.", safety: "dangerous"),
-      ReplyOption(text: "Balas mesej bertanya video apa tu dan adakah ia benar-benar saya.", safety: "risky"),
-      ReplyOption(text: "Saya abaikan pautan itu dan hubungi rakan tersebut secara terus menerusi panggilan suara biasa.", safety: "safe")
+      ReplyOption(text: "Tekan pautan video viral itu dengan rasa ingin tahu dan masukkan maklumat log masuk jika diminta.", safety: "bahaya"),
+      ReplyOption(text: "Balas mesej bertanya video apa tu dan adakah ia benar-benar saya.", safety: "berisiko"),
+      ReplyOption(text: "Saya abaikan pautan itu dan hubungi rakan tersebut secara terus menerusi panggilan suara biasa.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -499,9 +499,9 @@ final List<Scenario> curatedScenarios = [
       "Jangan sekali-kali memasukkan butiran kad perbankan menerusi pautan tidak rasmi"
     ],
     replyOptions: [
-      ReplyOption(text: "Buka pautan tersebut, kemaskini alamat, and bayar caj RM1.50 guna kad perbankan saya.", safety: "dangerous"),
-      ReplyOption(text: "Adakah bungkusan ini betul? Saya balas SMS untuk minta alamat pejabat pos mereka.", safety: "risky"),
-      ReplyOption(text: "Abaikan SMS tersebut dan periksa terus no tracking di laman rasmi Pos Malaysia.", safety: "safe")
+      ReplyOption(text: "Buka pautan tersebut, kemaskini alamat, and bayar caj RM1.50 guna kad perbankan saya.", safety: "bahaya"),
+      ReplyOption(text: "Adakah bungkusan ini betul? Saya balas SMS untuk minta alamat pejabat pos mereka.", safety: "berisiko"),
+      ReplyOption(text: "Abaikan SMS tersebut dan periksa terus no tracking di laman rasmi Pos Malaysia.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -523,9 +523,9 @@ final List<Scenario> curatedScenarios = [
       "Jangan klik pautan di dalam e-mel pengebilan yang mencurigakan"
     ],
     replyOptions: [
-      ReplyOption(text: "Klik pautan tersebut and segera masukkan butiran kad bank baharu saya.", safety: "dangerous"),
-      ReplyOption(text: "Balas e-mel untuk menanyakan mengapa caj bulanan saya gagal diselesaikan.", safety: "risky"),
-      ReplyOption(text: "Saya abaikan e-mel palsu ini and periksa pengebilan saya terus di aplikasi Netflix.", safety: "safe")
+      ReplyOption(text: "Klik pautan tersebut and segera masukkan butiran kad bank baharu saya.", safety: "bahaya"),
+      ReplyOption(text: "Balas e-mel untuk menanyakan mengapa caj bulanan saya gagal diselesaikan.", safety: "berisiko"),
+      ReplyOption(text: "Saya abaikan e-mel palsu ini and periksa pengebilan saya terus di aplikasi Netflix.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -547,9 +547,9 @@ final List<Scenario> curatedScenarios = [
       "Letakkan panggilan telefon dan rujuk nombor tracking barang anda secara berasingan"
     ],
     replyOptions: [
-      ReplyOption(text: "Tekan pautan SMS tersebut dan pasang aplikasi tersebut seperti yang diarahkan.", safety: "dangerous"),
-      ReplyOption(text: "Tanya pemanggil jenis barang yang dihantar dan nama pengirimnya.", safety: "risky"),
-      ReplyOption(text: "Letakkan panggilan telefon, abaikan SMS tersebut, and periksa terus di laman web rasmi J&T.", safety: "safe")
+      ReplyOption(text: "Tekan pautan SMS tersebut dan pasang aplikasi tersebut seperti yang diarahkan.", safety: "bahaya"),
+      ReplyOption(text: "Tanya pemanggil jenis barang yang dihantar dan nama pengirimnya.", safety: "berisiko"),
+      ReplyOption(text: "Letakkan panggilan telefon, abaikan SMS tersebut, and periksa terus di laman web rasmi J&T.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -571,9 +571,9 @@ final List<Scenario> curatedScenarios = [
       "Jangan sesekali memindahkan wang ke akaun individu asing"
     ],
     replyOptions: [
-      ReplyOption(text: "Mak hantar sekarang, tolong jangan masuk lokap!", safety: "dangerous"),
-      ReplyOption(text: "Adik kat balai mana? Mak hantar peguam ke sana.", safety: "risky"),
-      ReplyOption(text: "Saya letak telefon dan hubungi nombor asal adik untuk pengesahan.", safety: "safe")
+      ReplyOption(text: "Mak hantar sekarang, tolong jangan masuk lokap!", safety: "bahaya"),
+      ReplyOption(text: "Adik kat balai mana? Mak hantar peguam ke sana.", safety: "berisiko"),
+      ReplyOption(text: "Saya letak telefon dan hubungi nombor asal adik untuk pengesahan.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -595,9 +595,9 @@ final List<Scenario> curatedScenarios = [
       "Hubungi ahli keluarga yang lain untuk memeriksa status mangsa kecemasan"
     ],
     replyOptions: [
-      ReplyOption(text: "Terus pindahkan RM150 ke akaun Maybank pemandu teksi tersebut tanpa usul periksa.", safety: "dangerous"),
-      ReplyOption(text: "Hantar mesej balasan bertanya adakah dia cedera atau sudah melaporkan kepada polis.", safety: "risky"),
-      ReplyOption(text: "Abaikan SMS tersebut, dan segera hubungi nombor asal anak saya untuk pengesahan.", safety: "safe")
+      ReplyOption(text: "Terus pindahkan RM150 ke akaun Maybank pemandu teksi tersebut tanpa usul periksa.", safety: "bahaya"),
+      ReplyOption(text: "Hantar mesej balasan bertanya adakah dia cedera atau sudah melaporkan kepada polis.", safety: "berisiko"),
+      ReplyOption(text: "Abaikan SMS tersebut, dan segera hubungi nombor asal anak saya untuk pengesahan.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -619,9 +619,9 @@ final List<Scenario> curatedScenarios = [
       "Hubungi abang sepupu anda di platform media sosial rasmi beliau untuk pengesahan"
     ],
     replyOptions: [
-      ReplyOption(text: "Segera lakukan pindahan RM2,000 kerana bimbangkan keselamatan ahli keluarga di luar negara.", safety: "dangerous"),
-      ReplyOption(text: "Balas e-mel untuk menyatakan saya mahu menderma sedikit wang sahaja.", safety: "risky"),
-      ReplyOption(text: "Saya abaikan e-mel ini, dan terus membuat panggilan telefon ke nombor asal abang sepupu saya.", safety: "safe")
+      ReplyOption(text: "Segera lakukan pindahan RM2,000 kerana bimbangkan keselamatan ahli keluarga di luar negara.", safety: "bahaya"),
+      ReplyOption(text: "Balas e-mel untuk menyatakan saya mahu menderma sedikit wang sahaja.", safety: "berisiko"),
+      ReplyOption(text: "Saya abaikan e-mel ini, dan terus membuat panggilan telefon ke nombor asal abang sepupu saya.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -643,9 +643,9 @@ final List<Scenario> curatedScenarios = [
       "Jangan sesekali memindahkan wang tebusan sivil secara panggilan telefon"
     ],
     replyOptions: [
-      ReplyOption(text: "Pergi ke ATM sekarang juga and pindahkan wang ikat jamin RM3,000 itu.", safety: "dangerous"),
-      ReplyOption(text: "Cuba tanya cucu tersebut nama penuh and di balai polis mana dia berada.", safety: "risky"),
-      ReplyOption(text: "Letakkan panggilan telefon dengan tenang and segera telefon ibu bapanya untuk semakan.", safety: "safe")
+      ReplyOption(text: "Pergi ke ATM sekarang juga and pindahkan wang ikat jamin RM3,000 itu.", safety: "bahaya"),
+      ReplyOption(text: "Cuba tanya cucu tersebut nama penuh and di balai polis mana dia berada.", safety: "berisiko"),
+      ReplyOption(text: "Letakkan panggilan telefon dengan tenang and segera telefon ibu bapanya untuk semakan.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -667,9 +667,9 @@ final List<Scenario> curatedScenarios = [
       "Sekat nombor WhatsApp pengirim tersebut serta-merta"
     ],
     replyOptions: [
-      ReplyOption(text: "Tekan pautan Telegram tersebut dan sedia mendepositkan wang untuk tugasan komisen tinggi.", safety: "dangerous"),
-      ReplyOption(text: "Tanya adakah kerja ini sah dan jika saya boleh buat kerja tanpa membayar sebarang yuran.", safety: "risky"),
-      ReplyOption(text: "Abaikan tawaran ini dan sekat nombor pengirim tersebut demi keselamatan kewangan saya.", safety: "safe")
+      ReplyOption(text: "Tekan pautan Telegram tersebut dan sedia mendepositkan wang untuk tugasan komisen tinggi.", safety: "bahaya"),
+      ReplyOption(text: "Tanya adakah kerja ini sah dan jika saya boleh buat kerja tanpa membayar sebarang yuran.", safety: "berisiko"),
+      ReplyOption(text: "Abaikan tawaran ini dan sekat nombor pengirim tersebut demi keselamatan kewangan saya.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -691,9 +691,9 @@ final List<Scenario> curatedScenarios = [
       "Rujuk institusi perbankan berlesen yang sah jika memerlukan bantuan pembiayaan kewangan"
     ],
     replyOptions: [
-      ReplyOption(text: "Mohon pinjaman melalui pautan tersebut dan bayar yuran pendahuluan yang diminta.", safety: "dangerous"),
-      ReplyOption(text: "Balas SMS ini untuk bertanyakan sama ada saya boleh meminjam RM10,000 dahulu.", safety: "risky"),
-      ReplyOption(text: "Abaikan iklan ini dan padam SMS ini bagi mengelakkan diri daripada terpedaya.", safety: "safe")
+      ReplyOption(text: "Mohon pinjaman melalui pautan tersebut dan bayar yuran pendahuluan yang diminta.", safety: "bahaya"),
+      ReplyOption(text: "Balas SMS ini untuk bertanyakan sama ada saya boleh meminjam RM10,000 dahulu.", safety: "berisiko"),
+      ReplyOption(text: "Abaikan iklan ini dan padam SMS ini bagi mengelakkan diri daripada terpedaya.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -715,9 +715,9 @@ final List<Scenario> curatedScenarios = [
       "Jangan terpedaya dengan istilah 'Patuh Syariah' or 'Dijamin Selamat' yang digunakan sebarangan"
     ],
     replyOptions: [
-      ReplyOption(text: "Daftar akaun di pautan tersebut dan labur RM300 untuk mencuba nasib.", safety: "dangerous"),
-      ReplyOption(text: "Balas e-mel untuk bertanyakan sijil kelulusan daripada Bank Negara Malaysia.", safety: "risky"),
-      ReplyOption(text: "Abaikan e-mel palsu ini dan padamkannya terus.", safety: "safe")
+      ReplyOption(text: "Daftar akaun di pautan tersebut dan labur RM300 untuk mencuba nasib.", safety: "bahaya"),
+      ReplyOption(text: "Balas e-mel untuk bertanyakan sijil kelulusan daripada Bank Negara Malaysia.", safety: "berisiko"),
+      ReplyOption(text: "Abaikan e-mel palsu ini dan padamkannya terus.", safety: "selamat")
     ],
   ),
   Scenario(
@@ -739,9 +739,9 @@ final List<Scenario> curatedScenarios = [
       "Letakkan panggilan telefon serta-merta apabila diarahkan membuat pembayaran pendahuluan"
     ],
     replyOptions: [
-      ReplyOption(text: "Bayar yuran pelepasan RM200 tersebut ke akaun ejen agar bayaran barangan saya dilepaskan.", safety: "dangerous"),
-      ReplyOption(text: "Minta pembeli tersebut menanggung sendiri yuran pelepasan akaun dan menolaknya dari harga barang.", safety: "risky"),
-      ReplyOption(text: "Letakkan panggilan telefon, abaikan tawaran pembeli tersebut, and sekat nombornya.", safety: "safe")
+      ReplyOption(text: "Bayar yuran pelepasan RM200 tersebut ke akaun ejen agar bayaran barangan saya dilepaskan.", safety: "bahaya"),
+      ReplyOption(text: "Minta pembeli tersebut menanggung sendiri yuran pelepasan akaun dan menolaknya dari harga barang.", safety: "berisiko"),
+      ReplyOption(text: "Letakkan panggilan telefon, abaikan tawaran pembeli tersebut, and sekat nombornya.", safety: "selamat")
     ],
   ),
 ];

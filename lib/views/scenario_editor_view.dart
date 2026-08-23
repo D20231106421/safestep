@@ -219,7 +219,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                             hintText: 'Penghantar / Nombor / Nama',
                             controller: _senderCtrl,
                             validator: (v) => (v == null || v.trim().isEmpty)
-                                ? 'Medan ini wajib diisi'
+                                ? 'Ruang ini wajib diisi'
                                 : null,
                           ),
                           const SizedBox(height: 10),
@@ -240,7 +240,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                         controller: _messageCtrl,
                         maxLines: 5,
                         validator: (v) => (v == null || v.trim().isEmpty)
-                            ? 'Medan ini wajib diisi'
+                            ? 'Ruang ini wajib diisi'
                             : null,
                       ),
                     ),
@@ -431,7 +431,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                         controller: _explanationCtrl,
                         maxLines: 3,
                         validator: (v) => (v == null || v.trim().isEmpty)
-                            ? 'Medan ini wajib diisi'
+                            ? 'Ruang ini wajib diisi'
                             : null,
                       ),
                     ),
@@ -553,7 +553,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                                       hintText: 'Teks pilihan balas ${i + 1}',
                                       controller: entry.textCtrl,
                                       validator: (v) => (v == null || v.trim().isEmpty)
-                                          ? 'Medan ini wajib diisi'
+                                          ? 'Ruang ini wajib diisi'
                                           : null,
                                     ),
                                     const SizedBox(height: 8),

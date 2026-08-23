@@ -69,71 +69,7 @@ class HomeView extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              // ── Active Threat Warning Banner ─────────────────────────────
-              // Solid fill — BackdropFilter removed for clarity and contrast
-              Container(
-                padding: const EdgeInsets.all(14),
-                decoration: BoxDecoration(
-                  color: AppColors.amberBadgeBgOf(context),
-                  borderRadius: BorderRadius.circular(16),
-                  border: Border.all(
-                    color: isDark
-                        ? AppColors.amber.withValues(alpha: 0.5)
-                        : AppColors.amberBorder,
-                    width: 1.5,
-                  ),
-                ),
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.all(9),
-                      decoration: BoxDecoration(
-                        color: isDark
-                            ? AppColors.amber.withValues(alpha: 0.2)
-                            : AppColors.amber.withValues(alpha: 0.15),
-                        borderRadius: BorderRadius.circular(12),
-                      ),
-                      child: const Icon(
-                        LucideIcons.alertTriangle,
-                        color: AppColors.amber,
-                        size: 18,
-                      ),
-                    ),
-                    const SizedBox(width: 12),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Amaran Semasa PDRM:',
-                            style: TextStyle(
-                              color: AppColors.textPrimaryOf(context),
-                              fontSize: 11.5,
-                              fontWeight: FontWeight.w900,
-                            ),
-                          ),
-                          const SizedBox(height: 3),
-                          Text(
-                            'Sindiket APK palsu penyamaran khidmat pembersihan meningkat. Jangan sesekali muat turun fail .apk ganjil!',
-                            style: TextStyle(
-                              color: AppColors.textSecondaryOf(context),
-                              fontSize: 10,
-                              fontWeight: FontWeight.w500,
-                              height: 1.4,
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ).animate().fadeIn(delay: 250.ms, duration: 400.ms).slideY(
-                    begin: 0.1,
-                    duration: 400.ms,
-                    curve: Curves.easeOut,
-                  ),
-              const SizedBox(height: 18),
+              
 
               // ── Navigation Cards ─────────────────────────────────────────
               Expanded(

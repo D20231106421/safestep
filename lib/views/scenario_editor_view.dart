@@ -202,7 +202,6 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                       title: 'KATEGORI PENIPUAN',
                       subtitle: 'Pilih kumpulan modus operandi yang paling sesuai.',
                       child: _dropdown(
-                        'Kategori Penipuan',
                         _category,
                         _categories,
                         (v) => setState(() => _category = v!),
@@ -797,7 +796,6 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
   }
 
   Widget _dropdown(
-    String label,
     String value,
     List<String> items,
     ValueChanged<String?> onChanged,
@@ -813,11 +811,6 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
         fontSize: 12,
       ),
       decoration: InputDecoration(
-        labelText: label,
-        labelStyle: GoogleFonts.plusJakartaSans(
-          color: AppColors.textMutedOf(context),
-          fontSize: 10,
-        ),
         filled: true,
         fillColor: AppColors.surfaceOf(context),
         enabledBorder: OutlineInputBorder(

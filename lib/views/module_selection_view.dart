@@ -98,7 +98,7 @@ class ModuleSelectionView extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
               child: Text(
-                'Sila pilih jenis modul scam di bawah untuk mulakan simulasi keselamatan siber:',
+                'Sila pilih kategori penipuan di bawah untuk mulakan simulasi keselamatan siber:',
                 style: TextStyle(
                   color: AppColors.textSecondaryOf(context),
                   fontSize: 11,

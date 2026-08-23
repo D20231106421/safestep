@@ -69,8 +69,6 @@ class HomeView extends StatelessWidget {
               ),
               const SizedBox(height: 20),
 
-              
-
               // ── Navigation Cards ─────────────────────────────────────────
               Expanded(
                 child: ListView(

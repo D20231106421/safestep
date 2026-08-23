@@ -26,8 +26,8 @@ class TrendsView extends StatelessWidget {
           children: [
             // Header
             DarkPageHeader(
-              title: 'Pusat Alert & Tren',
-              subtitle: 'AMARAN & KEMPEN TERKINI',
+              title: 'Panduan Penipuan',
+              subtitle: null,
               onBack: () => game.setGameState('menu'),
             ).animate().fadeIn(duration: 300.ms),
 

@@ -119,7 +119,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
             // Header
             DarkPageHeader(
               title: isEdit ? 'Edit Senario' : 'Tambah Senario',
-              subtitle: isEdit ? 'KEMASKINI KANDUNGAN' : 'SENARIO BAHARU',
+              subtitle: isEdit ? null : null,
               onBack: () => Navigator.pop(context),
               trailing: [
                 HeaderActionButton(

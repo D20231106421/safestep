@@ -59,7 +59,7 @@ class _CurriculumViewState extends State<CurriculumView> {
             // Header
             DarkPageHeader(
               title: 'Katalog Senario',
-              subtitle: 'PANGKALAN DATA LATIHAN',
+              subtitle: null,
               onBack: () => game.setGameState('menu'),
               trailing: [
                 HeaderActionButton(

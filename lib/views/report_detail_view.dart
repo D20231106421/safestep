@@ -31,7 +31,7 @@ class ReportDetailView extends StatelessWidget {
           children: [
             DarkPageHeader(
               title: 'Laporan Terperinci',
-              subtitle: 'SEMAKAN JAWAPAN ANDA',
+              subtitle: null,
               onBack: () => Navigator.pop(context),
             ).animate().fadeIn(duration: 300.ms),
             Expanded(

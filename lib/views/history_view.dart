@@ -28,7 +28,7 @@ class HistoryView extends StatelessWidget {
             // Header
             DarkPageHeader(
               title: 'Rekod Latihan',
-              subtitle: 'SEJARAH PRESTASI ANDA',
+              subtitle: null,
               onBack: () => game.setGameState('menu'),
               trailing: [
                 if (histProv.historyLogs.isNotEmpty)

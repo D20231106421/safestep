@@ -91,7 +91,7 @@ class ModuleSelectionView extends StatelessWidget {
             // Header
             DarkPageHeader(
               title: 'Pilih Modul Latihan',
-              subtitle: 'KATEGORI SCAM SIBER',
+              subtitle: null,
               onBack: () => game.setGameState('menu'),
             ).animate().fadeIn(duration: 300.ms),
 

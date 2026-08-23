@@ -44,15 +44,6 @@ class EndView extends StatelessWidget {
                       color: AppColors.textPrimaryOf(context),
                     ),
                   ),
-                  Text(
-                    'RINGKASAN SESI',
-                    style: TextStyle(
-                      fontSize: 8.5,
-                      fontWeight: FontWeight.w800,
-                      color: AppColors.textMutedOf(context),
-                      letterSpacing: 1.2,
-                    ),
-                  ),
                 ],
               ),
             ).animate().fadeIn(duration: 300.ms),

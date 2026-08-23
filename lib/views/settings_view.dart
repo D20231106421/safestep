@@ -26,7 +26,7 @@ class SettingsView extends StatelessWidget {
             // Header
             DarkPageHeader(
               title: 'Tetapan Aplikasi',
-              subtitle: 'TETAPAN & TEMA',
+              subtitle: null,
               onBack: () => game.setGameState('menu'),
             ).animate().fadeIn(duration: 300.ms),
 

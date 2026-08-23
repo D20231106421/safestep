@@ -129,21 +129,6 @@ class SettingsView extends StatelessWidget {
                 ],
               ),
             ),
-
-            // Footer
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 8),
-              child: Text(
-                'INISIATIF CELIK DIGITAL WARGA EMAS',
-                textAlign: TextAlign.center,
-                style: GoogleFonts.plusJakartaSans(
-                  color: AppColors.textMutedOf(context),
-                  fontSize: 8,
-                  fontWeight: FontWeight.w800,
-                  letterSpacing: 0.8,
-                ),
-              ),
-            ),
           ],
         ),
       ),

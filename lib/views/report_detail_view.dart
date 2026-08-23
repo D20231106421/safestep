@@ -161,19 +161,6 @@ class ReportDetailView extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 10),
-              child: Text(
-                'INISIATIF CELIK DIGITAL WARGA EMAS',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: AppColors.textMutedOf(context),
-                  fontSize: 8,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 0.8,
-                ),
-              ),
-            ),
           ],
         ),
       ),

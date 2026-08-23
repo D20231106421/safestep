@@ -209,20 +209,6 @@ class FeedbackView extends StatelessWidget {
                 onPressed: () => game.nextScenario(historyProv),
               ),
             ).animate().fadeIn(delay: 300.ms, duration: 350.ms),
-
-            Padding(
-              padding: const EdgeInsets.only(bottom: 8),
-              child: Text(
-                'INISIATIF CELIK DIGITAL WARGA EMAS',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: AppColors.textMutedOf(context),
-                  fontSize: 8,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 0.8,
-                ),
-              ),
-            ),
           ],
         ),
       ),

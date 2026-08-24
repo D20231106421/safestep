@@ -110,7 +110,7 @@ class ReportDetailView extends StatelessWidget {
                                     LucideIcons.shield,
                                     size: 11,
                                     color: log.shields > 0
-                                        ? AppColors.cyan
+                                        ? AppColors.emerald
                                         : AppColors.rose,
                                   ),
                                   const SizedBox(width: 4),

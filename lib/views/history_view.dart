@@ -133,7 +133,7 @@ class HistoryView extends StatelessWidget {
                       Icon(
                         LucideIcons.shield,
                         color: log.shields > 0
-                            ? AppColors.cyan
+                            ? AppColors.emerald
                             : AppColors.rose,
                         size: 13,
                       ),

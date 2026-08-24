@@ -258,33 +258,6 @@ class _SimulationViewState extends State<SimulationView> {
             child: ListView(
               padding: const EdgeInsets.all(12),
               children: [
-                // Info block
-                Center(
-                  child: Container(
-                    margin: const EdgeInsets.only(bottom: 12),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 6,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFFEF3C7), // amber-100
-                      borderRadius: BorderRadius.circular(12),
-                      border: Border.all(color: const Color(0xFFFDE68A)),
-                    ),
-                    child: Text(
-                      'Kategori: ${normalizeCategoryLabel(scen.category)} • Tahap: ${scen.difficulty}',
-                      textAlign: TextAlign.center,
-                      maxLines: 2,
-                      overflow: TextOverflow.ellipsis,
-                      style: const TextStyle(
-                        color: Color(0xFF92400E),
-                        fontSize: 8.5,
-                        fontWeight: FontWeight.w900,
-                        height: 1.25,
-                      ),
-                    ),
-                  ),
-                ),
 
                 // Sender Message Bubble
                 if (game.isTyping)
@@ -351,7 +324,7 @@ class _SimulationViewState extends State<SimulationView> {
                             '${scen.timestamp} • ✓✓',
                             style: const TextStyle(
                               color: Colors.grey,
-                              fontSize: 7.5,
+                              fontSize: 8,
                               fontWeight: FontWeight.bold,
                               fontStyle: FontStyle.italic,
                             ),
@@ -411,7 +384,7 @@ class _SimulationViewState extends State<SimulationView> {
                           scen.sender,
                           style: const TextStyle(
                             color: Colors.white,
-                            fontSize: 11,
+                            fontSize: 12,
                             fontWeight: FontWeight.w900,
                           ),
                         ),
@@ -419,7 +392,7 @@ class _SimulationViewState extends State<SimulationView> {
                           'Mesej Ringkas',
                           style: TextStyle(
                             color: Colors.grey,
-                            fontSize: 8,
+                            fontSize: 9,
                             fontWeight: FontWeight.w800,
                           ),
                         ),
@@ -427,7 +400,7 @@ class _SimulationViewState extends State<SimulationView> {
                     ),
                   ],
                 ),
-                _buildShieldsHeader(game, isDark: true),
+                _buildShieldsHeader(game),
               ],
             ),
           ),
@@ -437,30 +410,6 @@ class _SimulationViewState extends State<SimulationView> {
             child: ListView(
               padding: const EdgeInsets.all(12),
               children: [
-                Center(
-                  child: Container(
-                    margin: const EdgeInsets.only(bottom: 12),
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 10,
-                      vertical: 5,
-                    ),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFE0F2FE), // sky-100
-                      borderRadius: BorderRadius.circular(8),
-                      border: Border.all(color: const Color(0xFFBAE6FD)),
-                    ),
-                    child: const Text(
-                      'NSRC ALERT: SMS MASUK RAGU-RAGU',
-                      style: TextStyle(
-                        color: Color(0xFF0369A1),
-                        fontSize: 8.5,
-                        fontWeight: FontWeight.w900,
-                        letterSpacing: 0.5,
-                      ),
-                    ),
-                  ),
-                ),
-
                 if (game.isTyping)
                   const Align(
                     alignment: Alignment.centerLeft,
@@ -489,7 +438,7 @@ class _SimulationViewState extends State<SimulationView> {
                             scen.timestamp,
                             style: const TextStyle(
                               color: Colors.grey,
-                              fontSize: 7,
+                              fontSize: 8,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
@@ -513,7 +462,7 @@ class _SimulationViewState extends State<SimulationView> {
         children: [
           // Mail Header bar
           Container(
-            color: const Color(0xFF106452),
+            color: const Color(0xFF08519C),
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -537,18 +486,18 @@ class _SimulationViewState extends State<SimulationView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Aplikasi E-mel Masuk',
+                          'Aplikasi E-mel',
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 11,
+                            fontSize: 12,
                             fontWeight: FontWeight.w900,
                           ),
                         ),
                         Text(
-                          'Peti Surat Selamat',
+                          'Peti Surat',
                           style: TextStyle(
-                            color: Color(0xFFA7F3D0),
-                            fontSize: 8,
+                            color: Color(0xFFDEEBF7),
+                            fontSize: 9,
                             fontWeight: FontWeight.w800,
                           ),
                         ),
@@ -578,7 +527,7 @@ class _SimulationViewState extends State<SimulationView> {
                     children: [
                       // Headers
                       _buildEmailHeaderRow('Daripada:', scen.sender),
-                      _buildEmailHeaderRow('Kepada:', 'saya@celikdigital.my'),
+                      _buildEmailHeaderRow('Kepada:', 'saya@safestep.my'),
                       _buildEmailHeaderRow(
                         'Subjek:',
                         scen.category,
@@ -591,7 +540,7 @@ class _SimulationViewState extends State<SimulationView> {
                           padding: EdgeInsets.symmetric(vertical: 20.0),
                           child: Center(
                             child: Text(
-                              'Menghurai e-mel masuk siber...',
+                              'Memuatkan e-mel yang masuk...',
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 10,
@@ -601,36 +550,7 @@ class _SimulationViewState extends State<SimulationView> {
                           ),
                         )
                       else ...[
-                        Container(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 10,
-                            vertical: 6,
-                          ),
-                          decoration: BoxDecoration(
-                            color: const Color(0xFFFEF2F2), // red-50
-                            borderRadius: BorderRadius.circular(10),
-                            border: Border.all(color: const Color(0xFFFEE2E2)),
-                          ),
-                          child: const Row(
-                            children: [
-                              Icon(
-                                LucideIcons.alertCircle,
-                                color: Color(0xFFDC2626),
-                                size: 14,
-                              ),
-                              SizedBox(width: 6),
-                              Text(
-                                'Sila semak pautan di bawah dengan berhati-hati!',
-                                style: TextStyle(
-                                  color: Color(0xFF991B1B),
-                                  fontSize: 9,
-                                  fontWeight: FontWeight.w900,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                        const SizedBox(height: 10),
+                        const SizedBox(height: 12),
                         Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
@@ -694,173 +614,6 @@ class _SimulationViewState extends State<SimulationView> {
     );
   }
 
-  // Legacy Web Browser Layout UI
-  Widget buildBrowserMock(GameProvider game, Scenario scen) {
-    return Container(
-      color: const Color(0xFFECEFF1),
-      child: Column(
-        children: [
-          // Browser Header
-          Container(
-            color: const Color(0xFF0F172A),
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-            child: Column(
-              children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    IconButton(
-                      icon: const Icon(
-                        LucideIcons.chevronLeft,
-                        color: Colors.white,
-                        size: 18,
-                      ),
-                      onPressed: () => game.setGameState('choose_category'),
-                      padding: EdgeInsets.zero,
-                      constraints: const BoxConstraints(),
-                    ),
-                    const Text(
-                      'SIMBAH PELAYAR WEB',
-                      style: TextStyle(
-                        color: Color(0xFFCBD5E1),
-                        fontSize: 8.5,
-                        fontWeight: FontWeight.w900,
-                        letterSpacing: 0.8,
-                      ),
-                    ),
-                    _buildShieldsHeader(
-                      game,
-                      isDark: true,
-                      sizeMultiplier: 0.8,
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 6),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 8,
-                    vertical: 4,
-                  ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF1E293B),
-                    borderRadius: BorderRadius.circular(6),
-                    border: Border.all(
-                      color: const Color(0xFFEF4444).withValues(alpha: 0.3),
-                    ),
-                  ),
-                  child: const Row(
-                    children: [
-                      Icon(
-                        LucideIcons.alertCircle,
-                        color: Color(0xFFEF4444),
-                        size: 12,
-                      ),
-                      SizedBox(width: 6),
-                      Expanded(
-                        child: Text(
-                          'TIDAK SELAMAT | https://petronas-rezeki-rahmah.shop',
-                          style: TextStyle(
-                            color: Color(0xFFFCA5A5),
-                            fontSize: 8.5,
-                            fontWeight: FontWeight.w900,
-                            decoration: TextDecoration.underline,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          // Portal body
-          Expanded(
-            child: ListView(
-              padding: const EdgeInsets.all(12),
-              children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(16),
-                    border: Border.all(color: const Color(0xFFE6F4F0)),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.04),
-                        blurRadius: 4,
-                        offset: const Offset(0, 2),
-                      ),
-                    ],
-                  ),
-                  clipBehavior: Clip.hardEdge,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      // Header banner
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: const BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Color(0xFFDC2626),
-                              Color(0xFFD97706),
-                            ], // red to amber
-                          ),
-                        ),
-                        child: const Text(
-                          'KEMPEN REZEKI BERTUAH RAHMAH 2026',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 10,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ),
-
-                      Padding(
-                        padding: const EdgeInsets.all(12),
-                        child: Column(
-                          children: [
-                            _buildInteractiveMessage(
-                              game,
-                              scen,
-                              isWhiteText: false,
-                            ),
-                            const SizedBox(height: 12),
-                            Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: BoxDecoration(
-                                color: const Color(0xFFFEF9C3), // yellow-50
-                                border: Border.all(
-                                  color: const Color(0xFFFEF08A),
-                                ),
-                                borderRadius: BorderRadius.circular(8),
-                              ),
-                              child: const Text(
-                                '⚠ Sila isi Nombor Kad, No IC & Kod OTP Keselamatan di bawah.',
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  color: Color(0xFF854D0E),
-                                  fontSize: 8.5,
-                                  fontWeight: FontWeight.w900,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
   // Incoming Call Screen Layout UI
   Widget _buildCallMock(GameProvider game, Scenario scen) {
     return Container(
@@ -885,29 +638,6 @@ class _SimulationViewState extends State<SimulationView> {
                   ),
                   Row(
                     children: [
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF7F1D1D).withValues(alpha: 0.4),
-                          borderRadius: BorderRadius.circular(100),
-                          border: Border.all(
-                            color: const Color(
-                              0xFFEF4444,
-                            ).withValues(alpha: 0.2),
-                          ),
-                        ),
-                        child: const Text(
-                          '🚨 WARAN BERISIKO TINGGI',
-                          style: TextStyle(
-                            color: Color(0xFFFCA5A5),
-                            fontSize: 8,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ),
                       const SizedBox(width: 6),
                       Container(
                         padding: const EdgeInsets.symmetric(
@@ -934,7 +664,7 @@ class _SimulationViewState extends State<SimulationView> {
               ),
               const SizedBox(height: 12),
               const Text(
-                    'PANGGILAN KECEMASAN...',
+                    'PANGGILAN MASUK...',
                     style: TextStyle(
                       color: Color(0xFFF43F5E),
                       fontSize: 16,
@@ -946,15 +676,6 @@ class _SimulationViewState extends State<SimulationView> {
                     onPlay: (controller) => controller.repeat(reverse: true),
                   )
                   .fadeIn(duration: 800.ms),
-              const SizedBox(height: 4),
-              const Text(
-                'Identiti Penghantar:',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 9.5,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
             ],
           ),
 
@@ -994,15 +715,6 @@ class _SimulationViewState extends State<SimulationView> {
                   fontWeight: FontWeight.w900,
                 ),
               ),
-              const SizedBox(height: 4),
-              const Text(
-                'Disyaki Macau Scam Penyamaran PDRM',
-                style: TextStyle(
-                  color: Colors.grey,
-                  fontSize: 9.5,
-                  fontWeight: FontWeight.w700,
-                ),
-              ),
             ],
           ),
 
@@ -1020,8 +732,8 @@ class _SimulationViewState extends State<SimulationView> {
                 const Text(
                   'Kandungan Transkrip Panggilan:',
                   style: TextStyle(
-                    color: Color(0xFFFCA5A5),
-                    fontSize: 8,
+                    color: Colors.grey,
+                    fontSize: 8.5,
                     fontWeight: FontWeight.w900,
                     letterSpacing: 0.8,
                   ),
@@ -1036,18 +748,6 @@ class _SimulationViewState extends State<SimulationView> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Expanded(
-                child: Text(
-                  'Siri: ${scen.category}',
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: const TextStyle(
-                    color: Colors.grey,
-                    fontSize: 8.5,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-              ),
               Row(
                 children: [
                   const Text(
@@ -1086,14 +786,11 @@ class _SimulationViewState extends State<SimulationView> {
     return Row(
       children: [
         Container(
-          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
           decoration: BoxDecoration(
-            color: isDark ? const Color(0xFF1E293B) : const Color(0xFF0C4A42),
+            color: Colors.black.withValues(alpha: 0.15),
             borderRadius: BorderRadius.circular(100),
-            border: Border.all(
-              color: isDark
-                  ? const Color(0xFF334155)
-                  : const Color(0xFF0D9488).withValues(alpha: 0.2),
+            border: Border.all(color: Colors.white.withValues(alpha: 0.08),
             ),
           ),
           child: Text(
@@ -1118,7 +815,7 @@ class _SimulationViewState extends State<SimulationView> {
               Text(
                 'SHIELD: ',
                 style: TextStyle(
-                  color: isDark ? Colors.grey : Colors.white,
+                  color: Colors.white,
                   fontSize: 8 * sizeMultiplier,
                   fontWeight: FontWeight.w900,
                 ),

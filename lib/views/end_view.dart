@@ -169,9 +169,9 @@ class EndView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               _buildStat(context, '$score / $total', 'Betul',
-                                  LucideIcons.target, AppColors.emerald),
+                                  LucideIcons.target, AppColors.cyan),
                               _buildStat(context, '$shields / 3', 'Perisai',
-                                  LucideIcons.shield, AppColors.cyan),
+                                  LucideIcons.shield, AppColors.emerald),
                               _buildStat(context, '$total', 'Soalan',
                                   LucideIcons.fileText, AppColors.indigo),
                             ],

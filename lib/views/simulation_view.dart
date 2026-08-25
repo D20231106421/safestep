@@ -636,30 +636,7 @@ class _SimulationViewState extends State<SimulationView> {
                     ),
                     onPressed: () => game.setGameState('choose_category'),
                   ),
-                  Row(
-                    children: [
-                      const SizedBox(width: 6),
-                      Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 10,
-                          vertical: 4,
-                        ),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFF1E293B),
-                          borderRadius: BorderRadius.circular(100),
-                          border: Border.all(color: const Color(0xFF475569)),
-                        ),
-                        child: Text(
-                          'KES ${game.currentIndex + 1}/${game.currentPool.length}',
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 8,
-                            fontWeight: FontWeight.w900,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                  _buildShieldsHeader(game),
                 ],
               ),
               const SizedBox(height: 12),
@@ -742,35 +719,6 @@ class _SimulationViewState extends State<SimulationView> {
                 _buildInteractiveMessage(game, scen, isWhiteText: true),
               ],
             ),
-          ),
-
-          // Call Footer info
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  const Text(
-                    'SHIELDS: ',
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 8,
-                      fontWeight: FontWeight.w900,
-                    ),
-                  ),
-                  ...List.generate(3, (i) {
-                    final isFull = i < game.shields;
-                    return Icon(
-                      Icons.shield,
-                      color: isFull
-                          ? const Color(0xFFF43F5E)
-                          : const Color(0xFF1E293B),
-                      size: 11,
-                    );
-                  }),
-                ],
-              ),
-            ],
           ),
         ],
       ),
@@ -1045,14 +993,16 @@ class _SimulationViewState extends State<SimulationView> {
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 7),
       decoration: BoxDecoration(
         color: active
-            ? const Color(0xFF106452)
+            ? AppColors.emeraldBadgeBgOf(context)
             : AppColors.surfaceBorderOf(context),
         borderRadius: BorderRadius.circular(100),
       ),
       child: Text(
         text,
         style: TextStyle(
-          color: active ? Colors.white : AppColors.textMutedOf(context),
+          color: active 
+              ? AppColors.emeraldBadgeTextOf(context)
+              : AppColors.textMutedOf(context),
           fontSize: 8.5,
           fontWeight: FontWeight.w900,
         ),
@@ -1091,10 +1041,10 @@ class _SimulationViewState extends State<SimulationView> {
                 Expanded(
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFFEF2F2),
-                      foregroundColor: const Color(0xFFDC2626),
-                      side: const BorderSide(
-                        color: Color(0xFFFCA5A5),
+                      backgroundColor: AppColors.roseBadgeBgOf(context),
+                      foregroundColor: AppColors.roseBadgeTextOf(context),
+                      side: BorderSide(
+                        color: AppColors.roseBadgeTextOf(context).withValues(alpha: 0.35),
                         width: 1.5,
                       ),
                       padding: const EdgeInsets.symmetric(vertical: 16),
@@ -1118,10 +1068,10 @@ class _SimulationViewState extends State<SimulationView> {
                 Expanded(
                   child: ElevatedButton.icon(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFF6FCF9),
-                      foregroundColor: const Color(0xFF475569),
-                      side: const BorderSide(
-                        color: Color(0xFFCBD5E1),
+                      backgroundColor: AppColors.mutedBadgeBgOf(context),
+                      foregroundColor: AppColors.mutedBadgeTextOf(context),
+                      side: BorderSide(
+                        color: AppColors.mutedBadgeTextOf(context).withValues(alpha: 0.35),
                         width: 1.5,
                       ),
                       padding: const EdgeInsets.symmetric(vertical: 16),
@@ -1151,13 +1101,13 @@ class _SimulationViewState extends State<SimulationView> {
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: game.isIdentifyCorrect == true
-                        ? const Color(0xFFECFDF5)
-                        : const Color(0xFFFEF2F2),
+                        ? AppColors.emeraldBadgeBgOf(context)
+                        : AppColors.roseBadgeBgOf(context),
                     borderRadius: BorderRadius.circular(16),
                     border: Border.all(
                       color: game.isIdentifyCorrect == true
-                          ? const Color(0xFFA7F3D0)
-                          : const Color(0xFFFCA5A5),
+                          ? AppColors.emeraldBadgeTextOf(context).withValues(alpha: 0.35)
+                          : AppColors.roseBadgeTextOf(context).withValues(alpha: 0.35),
                     ),
                   ),
                   child: Row(
@@ -1168,8 +1118,8 @@ class _SimulationViewState extends State<SimulationView> {
                             ? LucideIcons.checkCircle
                             : LucideIcons.xCircle,
                         color: game.isIdentifyCorrect == true
-                            ? const Color(0xFF106452)
-                            : const Color(0xFFDC2626),
+                            ? AppColors.emeraldBadgeTextOf(context)
+                            : AppColors.roseBadgeTextOf(context),
                         size: 18,
                       ),
                       const SizedBox(width: 8),
@@ -1183,8 +1133,8 @@ class _SimulationViewState extends State<SimulationView> {
                                   : 'JAWAPAN ANDA SALAH!',
                               style: TextStyle(
                                 color: game.isIdentifyCorrect == true
-                                    ? const Color(0xFF047857)
-                                    : const Color(0xFFB91C1C),
+                                    ? AppColors.emeraldBadgeTextOf(context)
+                                    : AppColors.roseBadgeTextOf(context),
                                 fontSize: 10,
                                 fontWeight: FontWeight.w900,
                               ),
@@ -1194,8 +1144,8 @@ class _SimulationViewState extends State<SimulationView> {
                               game.identifyFeedback ?? '',
                               style: TextStyle(
                                 color: game.isIdentifyCorrect == true
-                                    ? const Color(0xFF065F46)
-                                    : const Color(0xFF991B1B),
+                                    ? AppColors.emeraldBadgeTextOf(context)
+                                    : AppColors.roseBadgeTextOf(context),
                                 fontSize: 9.5,
                                 fontWeight: FontWeight.w700,
                                 height: 1.3,
@@ -1264,7 +1214,7 @@ class _SimulationViewState extends State<SimulationView> {
                 itemBuilder: (context, idx) {
                   final word = game.foundRedFlags[idx];
                   final isFlag = game.isWordRedFlag(word);
-                  return Container(
+                   return Container(
                     margin: const EdgeInsets.only(right: 6),
                     padding: const EdgeInsets.symmetric(
                       horizontal: 10,
@@ -1273,12 +1223,12 @@ class _SimulationViewState extends State<SimulationView> {
                     decoration: BoxDecoration(
                       // Solid fills for contrast
                       color: isFlag
-                          ? const Color(0xFFFEF3C7)
-                          : const Color(0xFFE2E8F0),
+                          ? AppColors.amberBadgeBgOf(context)
+                          : AppColors.mutedBadgeBgOf(context),
                       border: Border.all(
                         color: isFlag
-                            ? const Color(0xFFF59E0B)
-                            : const Color(0xFF94A3B8),
+                            ? AppColors.amberBadgeTextOf(context).withValues(alpha: 0.35)
+                            : AppColors.mutedBadgeTextOf(context).withValues(alpha: 0.35),
                         width: 1.5,
                       ),
                       borderRadius: BorderRadius.circular(100),
@@ -1287,8 +1237,8 @@ class _SimulationViewState extends State<SimulationView> {
                       '${isFlag ? '🚨' : '⚪'} $word',
                       style: TextStyle(
                         color: isFlag
-                            ? const Color(0xFF92400E)
-                            : const Color(0xFF475569),
+                            ? AppColors.amberBadgeTextOf(context)
+                            : AppColors.mutedBadgeTextOf(context),
                         fontSize: 9,
                         fontWeight: FontWeight.w900,
                         decoration: isFlag
@@ -1308,9 +1258,9 @@ class _SimulationViewState extends State<SimulationView> {
             Container(
               padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(
-                color: const Color(0xFFFFFBEB),
+                color: AppColors.amberBadgeBgOf(context),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: const Color(0xFFFDE68A)),
+                border: Border.all(color: AppColors.amberBadgeTextOf(context).withValues(alpha: 0.35)),
               ),
               child: Stack(
                 children: [
@@ -1318,8 +1268,8 @@ class _SimulationViewState extends State<SimulationView> {
                     padding: const EdgeInsets.only(right: 20),
                     child: Text(
                       '💡 Pembayangan:\n${game.getScenarioHint(scen)}',
-                      style: const TextStyle(
-                        color: Color(0xFFB45309),
+                      style: TextStyle(
+                        color: AppColors.amberBadgeTextOf(context),
                         fontSize: 9.5,
                         fontWeight: FontWeight.w700,
                         height: 1.3,
@@ -1344,16 +1294,16 @@ class _SimulationViewState extends State<SimulationView> {
           else
             OutlinedButton(
               style: OutlinedButton.styleFrom(
-                side: const BorderSide(color: Color(0xFFFCD34D)),
+                side: BorderSide(color: AppColors.amberBadgeTextOf(context).withValues(alpha: 0.35)),
                 padding: const EdgeInsets.symmetric(vertical: 6),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
-              child: const Text(
+              child: Text(
                 '💡 Perlukan Pembayangan? (Klik Sini)',
                 style: TextStyle(
-                  color: Color(0xFFB45309),
+                  color: AppColors.amberBadgeTextOf(context),
                   fontSize: 9,
                   fontWeight: FontWeight.w900,
                 ),
@@ -1383,7 +1333,7 @@ class _SimulationViewState extends State<SimulationView> {
                 child: OutlinedButton(
                   style: OutlinedButton.styleFrom(
                     foregroundColor: AppColors.textPrimaryOf(context),
-                    side: const BorderSide(color: Color(0xFFCBD5E1)),
+                    side: BorderSide(color: AppColors.surfaceBorderOf(context)),
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
@@ -1407,10 +1357,12 @@ class _SimulationViewState extends State<SimulationView> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: realFlagsCount >= 1
                         ? const Color(0xFF106452)
-                        : const Color(0xFFE6F4F0),
+                        : (AppColors.isDark(context)
+                            ? AppColors.surfaceBorder
+                            : const Color(0xFFE6F4F0)),
                     foregroundColor: realFlagsCount >= 1
                         ? Colors.white
-                        : const Color(0xFF94A3B8),
+                        : AppColors.textMutedOf(context),
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(16),
@@ -1572,18 +1524,16 @@ class _SimulationViewState extends State<SimulationView> {
                 _buildActionCircle(
                   title: 'Balas',
                   icon: LucideIcons.messageSquare,
-                  color: const Color(0xFF106452),
-                  bg: AppColors.isDark(context)
-                      ? AppColors.emeraldBadgeBgDark
-                      : AppColors.emeraldBadgeBgLight,
+                  color: AppColors.emeraldBadgeTextOf(context),
+                  bg: AppColors.emeraldBadgeBgOf(context),
                   onTap: () => setState(() => _isReplying = true),
                 ),
                 // Abai Option
                 _buildActionCircle(
                   title: 'Abai',
                   icon: LucideIcons.trash2,
-                  color: const Color(0xFF475569),
-                  bg: const Color(0xFFF6FCF9),
+                  color: AppColors.mutedBadgeTextOf(context),
+                  bg: AppColors.mutedBadgeBgOf(context),
                   onTap: () => game.analyzeUserReply(
                     'Saya abaikan dan padam mesej ini tanpa klik pautan.',
                   ),
@@ -1592,8 +1542,8 @@ class _SimulationViewState extends State<SimulationView> {
                 _buildActionCircle(
                   title: 'Sekat',
                   icon: LucideIcons.ban,
-                  color: const Color(0xFFDC2626),
-                  bg: const Color(0xFFFEF2F2),
+                  color: AppColors.roseBadgeTextOf(context),
+                  bg: AppColors.roseBadgeBgOf(context),
                   onTap: () => game.analyzeUserReply(
                     'Saya terus sekat (block) nombor pengirim ini di telefon saya.',
                   ),

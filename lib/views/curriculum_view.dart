@@ -412,9 +412,10 @@ class _CurriculumViewState extends State<CurriculumView> {
   }
 
   Widget _miniTag(String text, Color color) {
+    final isDark = AppColors.isDark(context);
     return MetricChip(
       label: text,
-      backgroundColor: color.withValues(alpha: 0.12),
+      backgroundColor: color.withValues(alpha: isDark ? 0.20 : 0.12),
       textColor: color,
       fontSize: 7.5,
     );

@@ -255,9 +255,9 @@ class SettingsView extends StatelessWidget {
             width: 48,
             height: 48,
             decoration: BoxDecoration(
-              // Solid cyan-tinted container
+               // Solid cyan-tinted container
               color: isDark
-                  ? AppColors.cyan.withValues(alpha: 0.18)
+                  ? AppColors.cyan.withValues(alpha: 0.25)
                   : const Color(0xFFCCFBF1),
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
@@ -395,7 +395,7 @@ class SettingsView extends StatelessWidget {
                   vertical: 8,
                 ),
                 decoration: BoxDecoration(
-                  color: isEnabled ? AppColors.cyan : AppColors.surfaceBorder,
+                  color: isEnabled ? AppColors.cyan : AppColors.surfaceBorderOf(context),
                   borderRadius: BorderRadius.circular(20),
                 ),
                 child: Row(
@@ -404,13 +404,13 @@ class SettingsView extends StatelessWidget {
                     Icon(
                       LucideIcons.play,
                       size: 11,
-                      color: isEnabled ? Colors.white : AppColors.textMuted,
+                      color: isEnabled ? Colors.white : AppColors.textMutedOf(context),
                     ),
                     const SizedBox(width: 5),
                     Text(
                       'CUBA',
                       style: GoogleFonts.plusJakartaSans(
-                        color: isEnabled ? Colors.white : AppColors.textMuted,
+                        color: isEnabled ? Colors.white : AppColors.textMutedOf(context),
                         fontSize: 9.5,
                         fontWeight: FontWeight.w800,
                         letterSpacing: 0.8,
@@ -449,9 +449,7 @@ class SettingsView extends StatelessWidget {
                 height: 48,
                 decoration: BoxDecoration(
                   // Solid indigo-tinted container
-                  color: isDark
-                      ? AppColors.indigoBadgeBgDark
-                      : AppColors.indigoBadgeBgLight,
+                  color: AppColors.indigoBadgeBgOf(context),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
                     color: AppColors.indigo.withValues(alpha: 0.40),
@@ -460,9 +458,7 @@ class SettingsView extends StatelessWidget {
                 ),
                 child: Icon(
                   LucideIcons.timer,
-                  color: isDark
-                      ? AppColors.indigoBadgeTextDark
-                      : AppColors.indigoBadgeTextLight,
+                  color: AppColors.indigoBadgeTextOf(context),
                   size: 20,
                 ),
               ),
@@ -491,12 +487,8 @@ class SettingsView extends StatelessWidget {
               Color? selectedBg;
               Color? selectedText;
               if (isSelected && isEnabled) {
-                selectedBg = isDark
-                    ? AppColors.indigoBadgeBgDark
-                    : AppColors.indigoBadgeBgLight;
-                selectedText = isDark
-                    ? AppColors.indigoBadgeTextDark
-                    : AppColors.indigoBadgeTextLight;
+                selectedBg = AppColors.indigoBadgeBgOf(context);
+                selectedText = AppColors.indigoBadgeTextOf(context);
               }
 
               return Expanded(

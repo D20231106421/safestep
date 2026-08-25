@@ -35,7 +35,7 @@ class HistoryView extends StatelessWidget {
                   HeaderActionButton(
                     icon: LucideIcons.trash2,
                     label: 'Padam',
-                    color: AppColors.rose,
+                    color: AppColors.roseBadgeTextOf(context),
                     backgroundColor: AppColors.roseBadgeBgOf(context),
                     onPressed: () => _confirmClear(context, histProv),
                   ),

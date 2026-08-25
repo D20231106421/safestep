@@ -249,7 +249,8 @@ class EndView extends StatelessWidget {
           width: 40,
           height: 40,
           decoration: BoxDecoration(
-            color: color.withValues(alpha: 0.12),
+            color: color.withValues(
+                alpha: AppColors.isDark(context) ? 0.20 : 0.12),
             borderRadius: BorderRadius.circular(12),
             border: Border.all(color: color.withValues(alpha: 0.2)),
           ),

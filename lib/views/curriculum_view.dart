@@ -308,29 +308,15 @@ class _CurriculumViewState extends State<CurriculumView> {
                 fontWeight: FontWeight.w800,
               ),
             ),
-            subtitle: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  s.category,
-                  style: TextStyle(
-                    color: AppColors.textMutedOf(context),
-                    fontSize: 9,
-                    fontWeight: FontWeight.w600,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                Text(
-                  s.message,
-                  style: TextStyle(
-                    color: AppColors.textSecondaryOf(context),
-                    fontSize: 9.5,
-                  ),
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+            subtitle: Text(
+              s.category,
+              style: TextStyle(
+                color: AppColors.textMutedOf(context),
+                fontSize: 9,
+                fontWeight: FontWeight.w600,
+              ),
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
             trailing: Switch(
               value: s.isActive,

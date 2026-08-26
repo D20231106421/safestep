@@ -181,6 +181,40 @@ class TrendsView extends StatelessWidget {
         'Laporkan kepada MCMC dan PDRM CCID.'
       ],
     ),
+    ScamDetail(
+      title: 'Penipuan Penyamar Keluarga',
+      icon: LucideIcons.users,
+      themeColor: AppColors.amber,
+      definition: 'Penipuan di mana penipu menyamar sebagai ahli keluarga atau rakan rapat untuk meminta wang atau maklumat peribadi sensitif atas alasan kecemasan.',
+      howItWorks: [
+        'Penipu mengklon akaun media sosial atau WhatsApp menggunakan gambar dan nama orang yang anda kenali.',
+        'Mereka menggunakan nombor telefon baru dengan alasan telefon lama telah hilang, rosak, atau bertukar nombor.',
+        'Mengirim mesej mendesak meminta pinjaman wang kecemasan untuk membayar bil, hutang, atau urusan kecemasan lain.',
+        'Menggunakan teknologi klon suara AI atau deepfake video untuk meniru wajah dan suara ahli keluarga.'
+      ],
+      warningSigns: [
+        'Permintaan wang secara tiba-tiba ke akaun bank pihak ketiga (akaun keldai) atas nama orang lain.',
+        'Menghubungi menggunakan nombor baru dan meminta anda memadam atau mengabaikan nombor telefon lama mereka.',
+        'Bahasa, panggilan manja, atau gaya mesej yang janggal dan berbeza daripada kebiasaan.',
+        'Mengelak daripada menjawab panggilan suara atau video langsung dengan pelbagai alasan teknikal.'
+      ],
+      whatToDo: [
+        'Tamatkan perbualan dan terus hubungi nombor telefon lama/rasmi orang tersebut untuk pengesahan.',
+        'Tanya soalan peribadi (soalan ujian) yang hanya diketahui oleh anda berdua untuk menguji identiti mereka.',
+        'Semak nama pemilik akaun bank penerima terlebih dahulu (jangan pindah jika nama berbeza daripada nama ahli keluarga).',
+        'Jangan sesekali memindahkan wang secara tergesa-gesa tanpa pengesahan lisan.'
+      ],
+      ifAlreadyScammed: [
+        'Hubungi bank anda dengan kadar segera untuk membekukan akaun dan transaksi.',
+        'Laporkan akaun palsu atau WhatsApp tersebut kepada platform media sosial berkaitan.',
+        'Beritahu ahli keluarga dan rakan-rakan lain mengenai penyamaran tersebut agar mereka tidak turut terkena.',
+        'Buat laporan polis rasmi dengan membawa bukti tangkapan skrin dan transaksi bank.'
+      ],
+      reportingContacts: [
+        'Hubungi National Scam Response Centre (NSRC) di talian 997.',
+        'Laporkan kepada PDRM CCID atau balai polis berhampiran.'
+      ],
+    ),
   ];
 
   @override

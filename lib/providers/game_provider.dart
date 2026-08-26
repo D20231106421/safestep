@@ -101,7 +101,13 @@ class GameProvider with ChangeNotifier {
       "paypal", "e-filing", "ikat", "jamin", "tebus", ".shop", ".top", ".click", ".info", ".apk", "sistem_semakan_pdrm"
     ];
 
-    return triggers.any((t) => clean.contains(t) || t.contains(clean));
+    return triggers.any((t) {
+      final cleanT = t
+          .toLowerCase()
+          .replaceAll(RegExp(r'[.,\/#!$%\^&\*;:{}=\-_`~()?"' "'" r'\[\]]'), '')
+          .trim();
+      return clean.contains(cleanT);
+    });
   }
 
   // Context Hint Builder for Warga Emas

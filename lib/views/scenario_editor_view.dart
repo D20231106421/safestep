@@ -28,7 +28,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
   late TextEditingController _explanationCtrl;
 
   String _type = 'whatsapp';
-  String _difficulty = 'Sederhana';
+  String _difficulty = 'SEDERHANA';
   String _threatLevel = 'TINGGI';
   bool _isScam = true;
   bool _isActive = true;
@@ -260,25 +260,25 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                                       title: 'KESUKARAN',
                                       children: [
                                         _buildClassificationChip(
-                                          label: 'Mudah',
-                                          value: 'Mudah',
+                                          label: 'MUDAH',
+                                          value: 'MUDAH',
                                           groupValue: _difficulty,
                                           activeColor: AppColors.emerald,
-                                          onTap: () => setState(() => _difficulty = 'Mudah'),
+                                          onTap: () => setState(() => _difficulty = 'MUDAH'),
                                         ),
                                         _buildClassificationChip(
-                                          label: 'Sederhana',
-                                          value: 'Sederhana',
+                                          label: 'SEDERHANA',
+                                          value: 'SEDERHANA',
                                           groupValue: _difficulty,
                                           activeColor: AppColors.emerald,
-                                          onTap: () => setState(() => _difficulty = 'Sederhana'),
+                                          onTap: () => setState(() => _difficulty = 'SEDERHANA'),
                                         ),
                                         _buildClassificationChip(
-                                          label: 'Sukar',
-                                          value: 'Sukar',
+                                          label: 'SUKAR',
+                                          value: 'SUKAR',
                                           groupValue: _difficulty,
                                           activeColor: AppColors.emerald,
-                                          onTap: () => setState(() => _difficulty = 'Sukar'),
+                                          onTap: () => setState(() => _difficulty = 'SUKAR'),
                                         ),
                                       ],
                                     ),
@@ -314,25 +314,25 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                                       title: 'KESUKARAN',
                                       children: [
                                         _buildClassificationChip(
-                                          label: 'Mudah',
-                                          value: 'Mudah',
+                                          label: 'MUDAH',
+                                          value: 'MUDAH',
                                           groupValue: _difficulty,
                                           activeColor: AppColors.emerald,
-                                          onTap: () => setState(() => _difficulty = 'Mudah'),
+                                          onTap: () => setState(() => _difficulty = 'MUDAH'),
                                         ),
                                         _buildClassificationChip(
-                                          label: 'Sederhana',
-                                          value: 'Sederhana',
+                                          label: 'SEDERHANA',
+                                          value: 'SEDERHANA',
                                           groupValue: _difficulty,
                                           activeColor: AppColors.emerald,
-                                          onTap: () => setState(() => _difficulty = 'Sederhana'),
+                                          onTap: () => setState(() => _difficulty = 'SEDERHANA'),
                                         ),
                                         _buildClassificationChip(
-                                          label: 'Sukar',
-                                          value: 'Sukar',
+                                          label: 'SUKAR',
+                                          value: 'SUKAR',
                                           groupValue: _difficulty,
                                           activeColor: AppColors.emerald,
-                                          onTap: () => setState(() => _difficulty = 'Sukar'),
+                                          onTap: () => setState(() => _difficulty = 'SUKAR'),
                                         ),
                                       ],
                                     ),

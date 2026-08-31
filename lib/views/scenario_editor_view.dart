@@ -891,8 +891,8 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
         backgroundColor: AppColors.surfaceOf(context),
         content: Text(
           isEdit
-              ? 'Senario dikemaskini berjaya.'
-              : 'Senario baru ditambah berjaya.',
+              ? 'Senario berjaya dikemaskini'
+              : 'Senario baru berjaya ditambah',
           style: TextStyle(
             fontWeight: FontWeight.w700,
             color: AppColors.textPrimaryOf(context),

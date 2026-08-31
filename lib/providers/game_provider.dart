@@ -218,9 +218,17 @@ class GameProvider with ChangeNotifier {
     _isIdentifyCorrect = isCorrect;
 
     if (isCorrect) {
-      _identifyFeedback = "Tepat Sekali! Anda bijak. Ini sememangnya penipuan (scam) siber yang sangat merbahaya.";
+      if (correctValue) {
+        _identifyFeedback = "Tepat Sekali! Anda bijak. Ini sememangnya penipuan siber yang sangat merbahaya. (Scam)";
+      } else {
+        _identifyFeedback = "Tepat Sekali! Anda bijak. Ini sememangnya bukan penipuan siber dan selamat.(Bukan scam)";
+      }
     } else {
-      _identifyFeedback = "Salah! Ini sebenarnya adalah satu penipuan (scam) siber. Kakitangan agensi sah tidak akan mendesak atau meminta maklumat sulit melalui mesej peribadi.";
+      if (correctValue) {
+        _identifyFeedback = "Salah! Ini sebenarnya adalah satu penipuan siber.(Scam)";
+      } else {
+        _identifyFeedback = "Salah! Ini sebenarnya bukan penipuan siber.(Bukan scam)";
+      }
       _shields = max(0, _shields - 1);
     }
     notifyListeners();
@@ -302,7 +310,7 @@ class GameProvider with ChangeNotifier {
       explanation: scenario.explanation,
       identifyAnswerText: _identifiedIsScam == null
           ? null
-          : (_identifiedIsScam! ? 'Ya, Ini Scam!' : 'Bukan, Ini Sah'),
+          : (_identifiedIsScam! ? 'Ya, Ini Scam!' : 'Tidak, Ini bukan scam'),
       redFlagAnswers: List<String>.from(_foundRedFlags),
       userChoiceText: selectedText,
       userCorrect: isCorrect,

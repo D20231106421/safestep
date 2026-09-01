@@ -162,7 +162,6 @@ class SettingsView extends StatelessWidget {
     required VoidCallback onSelect,
   }) {
     final isSelected = currentMode == mode;
-    final isDark = AppColors.isDark(context);
 
     return InkWell(
       onTap: onSelect,
@@ -179,9 +178,7 @@ class SettingsView extends StatelessWidget {
                 // Solid icon background — no opacity
                 color: isSelected
                     ? AppColors.emeraldBadgeBgOf(context)
-                    : (isDark
-                          ? AppColors.surfaceBorder
-                          : AppColors.lightSurfaceBorder),
+                    : AppColors.mutedBadgeBgOf(context),
                 borderRadius: BorderRadius.circular(12),
                 border: Border.all(
                   color: isSelected ? AppColors.emerald : Colors.transparent,
@@ -192,7 +189,7 @@ class SettingsView extends StatelessWidget {
                 icon,
                 color: isSelected
                     ? AppColors.emeraldBadgeTextOf(context)
-                    : AppColors.textSecondaryOf(context),
+                    : AppColors.mutedBadgeTextOf(context),
                 size: 22,
               ),
             ),
@@ -256,16 +253,14 @@ class SettingsView extends StatelessWidget {
             height: 48,
             decoration: BoxDecoration(
                // Solid cyan-tinted container
-              color: isDark
-                  ? AppColors.cyan.withValues(alpha: 0.25)
-                  : const Color(0xFFCCFBF1),
+              color: AppColors.cyanBadgeBgOf(context),
               borderRadius: BorderRadius.circular(12),
               border: Border.all(
-                color: AppColors.cyan.withValues(alpha: 0.40),
+                color: AppColors.cyanBadgeTextOf(context).withValues(alpha: 0.35),
                 width: 1.5,
               ),
             ),
-            child: const Icon(LucideIcons.zap, color: AppColors.cyan, size: 20),
+            child: Icon(LucideIcons.zap, color: AppColors.cyanBadgeTextOf(context), size: 20),
           ),
           const SizedBox(width: 12),
           Expanded(
@@ -321,9 +316,9 @@ class SettingsView extends StatelessWidget {
                     duration: const Duration(seconds: 2),
                     content: Row(
                       children: [
-                        const Icon(
+                        Icon(
                           Icons.notifications_active_rounded,
-                          color: AppColors.cyan,
+                          color: AppColors.cyanBadgeTextOf(context),
                           size: 16,
                         ),
                         const SizedBox(width: 8),
@@ -352,24 +347,21 @@ class SettingsView extends StatelessWidget {
                 decoration: BoxDecoration(
                   // Solid icon container
                   color: isEnabled
-                      ? (isDark
-                            ? AppColors.cyan.withValues(alpha: 0.18)
-                            : const Color(0xFFCCFBF1))
-                      : (isDark
-                            ? AppColors.surfaceBorder
-                            : AppColors.lightSurfaceBorder),
+                      ? AppColors.cyanBadgeBgOf(context)
+                      : AppColors.mutedBadgeBgOf(context),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: isEnabled
-                        ? AppColors.cyan.withValues(alpha: 0.40)
-                        : AppColors.textMuted.withValues(alpha: 0.25),
+                    color: (isEnabled
+                            ? AppColors.cyanBadgeTextOf(context)
+                            : AppColors.mutedBadgeTextOf(context))
+                        .withValues(alpha: 0.35),
                     width: 1.5,
                   ),
                 ),
                 child: Icon(
                   LucideIcons.bellRing,
                   color: isEnabled
-                      ? AppColors.cyan
+                      ? AppColors.cyanBadgeTextOf(context)
                       : AppColors.textMutedOf(context),
                   size: 20,
                 ),
@@ -452,7 +444,7 @@ class SettingsView extends StatelessWidget {
                   color: AppColors.indigoBadgeBgOf(context),
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: AppColors.indigo.withValues(alpha: 0.40),
+                    color: AppColors.indigoBadgeTextOf(context).withValues(alpha: 0.35),
                     width: 1.5,
                   ),
                 ),

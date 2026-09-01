@@ -38,6 +38,8 @@ abstract class AppColors {
   static const roseBadgeBgDark     = Color(0xFF7F1D1D); // deep red-900
   static const amberBadgeBgDark    = Color(0xFF78350F); // deep amber-900
   static const indigoBadgeBgDark   = Color(0xFF312E81); // deep indigo-900
+  static const cyanBadgeBgDark     = Color(0xFF164E63); // deep cyan-900
+  static const blueBadgeBgDark     = Color(0xFF1E3A8A); // deep blue-900
   static const mutedBadgeBgDark    = Color(0xFF1E293B); // slate-800
 
   // ── Solid Badge Backgrounds — Light Mode ─────────────────────────────────
@@ -45,6 +47,8 @@ abstract class AppColors {
   static const roseBadgeBgLight    = Color(0xFFFEE2E2); // red-100
   static const amberBadgeBgLight   = Color(0xFFFEF3C7); // amber-100
   static const indigoBadgeBgLight  = Color(0xFFE0E7FF); // indigo-100
+  static const cyanBadgeBgLight    = Color(0xFFCFFAFE); // cyan-100
+  static const blueBadgeBgLight    = Color(0xFFDBEAFE); // blue-100
   static const mutedBadgeBgLight   = Color(0xFFE2E8F0); // slate-200
 
   // ── Solid Badge Text Colors — Dark Mode ──────────────────────────────────
@@ -52,6 +56,8 @@ abstract class AppColors {
   static const roseBadgeTextDark    = Color(0xFFFCA5A5); // red-300
   static const amberBadgeTextDark   = Color(0xFFFCD34D); // amber-300
   static const indigoBadgeTextDark  = Color(0xFFA5B4FC); // indigo-300
+  static const cyanBadgeTextDark    = Color(0xFF67E8F9); // cyan-300
+  static const blueBadgeTextDark    = Color(0xFF93C5FD); // blue-300
   static const mutedBadgeTextDark   = Color(0xFFCBD5E1); // slate-300
 
   // ── Solid Badge Text Colors — Light Mode ─────────────────────────────────
@@ -59,6 +65,8 @@ abstract class AppColors {
   static const roseBadgeTextLight    = Color(0xFF991B1B); // red-800
   static const amberBadgeTextLight   = Color(0xFF92400E); // amber-800
   static const indigoBadgeTextLight  = Color(0xFF3730A3); // indigo-800
+  static const cyanBadgeTextLight    = Color(0xFF0E7490); // cyan-700
+  static const blueBadgeTextLight    = Color(0xFF1E40AF); // blue-800
   static const mutedBadgeTextLight   = Color(0xFF475569); // slate-600
 
   // ── Legacy aliases (kept for backward compat — now point to dark solid) ──
@@ -125,6 +133,12 @@ abstract class AppColors {
   static Color indigoBadgeBgOf(BuildContext context) =>
       isDark(context) ? indigoBadgeBgDark : indigoBadgeBgLight;
 
+  static Color cyanBadgeBgOf(BuildContext context) =>
+      isDark(context) ? cyanBadgeBgDark : cyanBadgeBgLight;
+
+  static Color blueBadgeBgOf(BuildContext context) =>
+      isDark(context) ? blueBadgeBgDark : blueBadgeBgLight;
+
   static Color mutedBadgeBgOf(BuildContext context) =>
       isDark(context) ? mutedBadgeBgDark : mutedBadgeBgLight;
 
@@ -140,6 +154,12 @@ abstract class AppColors {
 
   static Color indigoBadgeTextOf(BuildContext context) =>
       isDark(context) ? indigoBadgeTextDark : indigoBadgeTextLight;
+
+  static Color cyanBadgeTextOf(BuildContext context) =>
+      isDark(context) ? cyanBadgeTextDark : cyanBadgeTextLight;
+
+  static Color blueBadgeTextOf(BuildContext context) =>
+      isDark(context) ? blueBadgeTextDark : blueBadgeTextLight;
 
   static Color mutedBadgeTextOf(BuildContext context) =>
       isDark(context) ? mutedBadgeTextDark : mutedBadgeTextLight;

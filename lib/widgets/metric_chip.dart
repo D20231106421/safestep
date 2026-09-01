@@ -19,6 +19,8 @@ enum _MetricChipType {
   indigo,
   amber,
   rose,
+  cyan,
+  blue,
   muted,
 }
 
@@ -84,6 +86,30 @@ class MetricChip extends StatelessWidget {
         borderColor     = null,
         _type           = _MetricChipType.rose;
 
+  const MetricChip.cyan({
+    super.key,
+    required this.label,
+    this.icon,
+    this.fontSize = 9.0,
+    this.iconSize = 11,
+    this.padding,
+  })  : backgroundColor = null,
+        textColor       = null,
+        borderColor     = null,
+        _type           = _MetricChipType.cyan;
+
+  const MetricChip.blue({
+    super.key,
+    required this.label,
+    this.icon,
+    this.fontSize = 9.0,
+    this.iconSize = 11,
+    this.padding,
+  })  : backgroundColor = null,
+        textColor       = null,
+        borderColor     = null,
+        _type           = _MetricChipType.blue;
+
   const MetricChip.muted({
     super.key,
     required this.label,
@@ -128,6 +154,14 @@ class MetricChip extends StatelessWidget {
       case _MetricChipType.rose:
         bg = AppColors.roseBadgeBgOf(context);
         fg = AppColors.roseBadgeTextOf(context);
+        break;
+      case _MetricChipType.cyan:
+        bg = AppColors.cyanBadgeBgOf(context);
+        fg = AppColors.cyanBadgeTextOf(context);
+        break;
+      case _MetricChipType.blue:
+        bg = AppColors.blueBadgeBgOf(context);
+        fg = AppColors.blueBadgeTextOf(context);
         break;
       case _MetricChipType.muted:
         bg = AppColors.mutedBadgeBgOf(context);

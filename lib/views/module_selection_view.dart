@@ -24,7 +24,6 @@ class ModuleSelectionView extends StatelessWidget {
         'malay': 'Penipuan Sokongan Teknikal & Bank',
         'desc': 'Mesej kononnya daripada pusat khidmat sokongan sistem, atau sekatan akaun bank.',
         'icon': LucideIcons.smartphone,
-        'iconColor': const Color(0xFF60A5FA), // blue-400
       },
       {
         'id': 'authority',
@@ -32,7 +31,6 @@ class ModuleSelectionView extends StatelessWidget {
         'malay': 'Penyamaran Pihak Berkuasa & Agensi Kerajaan',
         'desc': 'Penyamaran sebagai polis (Macau Scam), LHDN, atau badan berkuasa dengan ugutan waran.',
         'icon': LucideIcons.shieldAlert,
-        'iconColor': AppColors.rose,
       },
       {
         'id': 'giveaway',
@@ -40,7 +38,6 @@ class ModuleSelectionView extends StatelessWidget {
         'malay': 'Cabutan Bertuah & Hadiah Palsu',
         'desc': 'Umpan ganjaran wang tunai, cabutan bertuah Petronas/Shell, atau bantuan rahmah.',
         'icon': LucideIcons.award,
-        'iconColor': AppColors.amber,
       },
       {
         'id': 'phishing',
@@ -48,7 +45,6 @@ class ModuleSelectionView extends StatelessWidget {
         'malay': 'Phishing & Smishing',
         'desc': 'Pautan keselamatan palsu yang cuba mencuri ID pengguna, kata laluan, dan kod TAC.',
         'icon': LucideIcons.mail,
-        'iconColor': AppColors.indigo,
       },
       {
         'id': 'family',
@@ -56,7 +52,6 @@ class ModuleSelectionView extends StatelessWidget {
         'malay': 'Penipuan Penyamar Keluarga',
         'desc': 'Taktik meniru identiti anak atau ahli keluarga terdekat meminta wang pembiayaan segera.',
         'icon': LucideIcons.phone,
-        'iconColor': AppColors.emerald,
       },
       {
         'id': 'others',
@@ -64,7 +59,6 @@ class ModuleSelectionView extends StatelessWidget {
         'malay': 'Lain-lain Jenis Modus Operandi',
         'desc': 'Penipuan pelbagai seperti e-dagang, pelaburan palsu, tawaran pekerjaan, atau pinjaman tak wujud.',
         'icon': LucideIcons.helpCircle,
-        'iconColor': AppColors.cyan,
       },
       {
         'id': 'all',
@@ -72,9 +66,28 @@ class ModuleSelectionView extends StatelessWidget {
         'malay': 'Semua Kategori (Ujian Rawak)',
         'desc': 'Gabungan rawak semua jenis taktik manipulasi sosial siber untuk latihan menyeluruh.',
         'icon': LucideIcons.shield,
-        'iconColor': AppColors.textSecondaryOf(context),
       }
     ];
+
+    (Color, Color) getModuleColors(String catId) {
+      switch (catId) {
+        case 'tech_support':
+          return (AppColors.blueBadgeBgOf(context), AppColors.blueBadgeTextOf(context));
+        case 'authority':
+          return (AppColors.roseBadgeBgOf(context), AppColors.roseBadgeTextOf(context));
+        case 'giveaway':
+          return (AppColors.amberBadgeBgOf(context), AppColors.amberBadgeTextOf(context));
+        case 'phishing':
+          return (AppColors.indigoBadgeBgOf(context), AppColors.indigoBadgeTextOf(context));
+        case 'family':
+          return (AppColors.emeraldBadgeBgOf(context), AppColors.emeraldBadgeTextOf(context));
+        case 'others':
+          return (AppColors.cyanBadgeBgOf(context), AppColors.cyanBadgeTextOf(context));
+        case 'all':
+        default:
+          return (AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context));
+      }
+    }
 
     int getCategoryCount(String catId) {
       final active = scenarioProv.masterScenarios.where((s) => s.isActive).toList();
@@ -114,8 +127,9 @@ class ModuleSelectionView extends StatelessWidget {
                 itemCount: modules.length,
                 itemBuilder: (context, index) {
                   final item = modules[index];
-                  final count = getCategoryCount(item['id'] as String);
-                  final iconColor = item['iconColor'] as Color;
+                  final catId = item['id'] as String;
+                  final count = getCategoryCount(catId);
+                  final (badgeBg, badgeText) = getModuleColors(catId);
 
                   return Padding(
                     padding: const EdgeInsets.only(bottom: 12.0),
@@ -125,7 +139,7 @@ class ModuleSelectionView extends StatelessWidget {
                         color: Colors.transparent,
                         child: InkWell(
                           borderRadius: BorderRadius.circular(16),
-                          splashColor: iconColor.withValues(alpha: 0.08),
+                          splashColor: badgeText.withValues(alpha: 0.08),
                           onTap: () {
                             if (count == 0) {
                               _showEmptyDialog(context);
@@ -146,18 +160,16 @@ class ModuleSelectionView extends StatelessWidget {
                                   height: 48,
                                   decoration: BoxDecoration(
                                     // Solid icon background
-                                    color: AppColors.isDark(context)
-                                        ? iconColor.withValues(alpha: 0.18)
-                                        : iconColor.withValues(alpha: 0.10),
+                                    color: badgeBg,
                                     borderRadius: BorderRadius.circular(13),
                                     border: Border.all(
-                                      color: iconColor.withValues(alpha: 0.35),
+                                      color: badgeText.withValues(alpha: 0.35),
                                       width: 1.5,
                                     ),
                                   ),
                                   child: Icon(
                                     item['icon'] as IconData,
-                                    color: iconColor,
+                                    color: badgeText,
                                     size: 22,
                                   ),
                                 ),

@@ -88,7 +88,8 @@ class HomeView extends StatelessWidget {
                       title: 'PANDUAN PENIPUAN',
                       subtitle: 'Kes terkini Malaysia & push alert',
                       icon: LucideIcons.bell,
-                      iconColor: AppColors.indigo,
+                      iconColor: AppColors.indigoBadgeTextOf(context),
+                      iconBgColor: AppColors.indigoBadgeBgOf(context),
                       onTap: () => game.setGameState('trends'),
                       delay: 380,
                     ),
@@ -98,7 +99,8 @@ class HomeView extends StatelessWidget {
                       title: 'SEJARAH LATIHAN',
                       subtitle: 'Semak laporan prestasi lama',
                       icon: LucideIcons.history,
-                      iconColor: AppColors.emerald,
+                      iconColor: AppColors.emeraldBadgeTextOf(context),
+                      iconBgColor: AppColors.emeraldBadgeBgOf(context),
                       onTap: () => game.setGameState('history'),
                       delay: 420,
                     ),
@@ -108,7 +110,8 @@ class HomeView extends StatelessWidget {
                       title: 'KATALOG SENARIO',
                       subtitle: 'Tambah & selia taktik baharu',
                       icon: LucideIcons.fileText,
-                      iconColor: AppColors.textSecondaryOf(context),
+                      iconColor: AppColors.mutedBadgeTextOf(context),
+                      iconBgColor: AppColors.mutedBadgeBgOf(context),
                       onTap: () => game.setGameState('manage_sim'),
                       delay: 460,
                     ),
@@ -129,7 +132,7 @@ class HomeView extends StatelessWidget {
                         width: 48,
                         height: 48,
                         decoration: BoxDecoration(
-                          color: isDark ? AppColors.surfaceBorder : Colors.white,
+                          color: AppColors.mutedBadgeBgOf(context),
                           borderRadius: BorderRadius.circular(12),
                           border: Border.all(
                             color: AppColors.surfaceBorderOf(context),
@@ -146,7 +149,7 @@ class HomeView extends StatelessWidget {
                         ),
                         child: Icon(
                           LucideIcons.settings,
-                          color: AppColors.textSecondaryOf(context),
+                          color: AppColors.mutedBadgeTextOf(context),
                           size: 20,
                         ),
                       ),
@@ -274,10 +277,10 @@ class HomeView extends StatelessWidget {
     required String subtitle,
     required IconData icon,
     required Color iconColor,
+    required Color iconBgColor,
     required VoidCallback onTap,
     int delay = 0,
   }) {
-    final isDark = AppColors.isDark(context);
     return GlassCard(
       padding: EdgeInsets.zero,
       child: Material(
@@ -295,12 +298,10 @@ class HomeView extends StatelessWidget {
                   height: 48,
                   decoration: BoxDecoration(
                     // Solid icon background
-                    color: isDark
-                        ? iconColor.withValues(alpha: 0.18)
-                        : iconColor.withValues(alpha: 0.10),
+                    color: iconBgColor,
                     borderRadius: BorderRadius.circular(14),
                     border: Border.all(
-                      color: iconColor.withValues(alpha: 0.30),
+                      color: iconColor.withValues(alpha: 0.35),
                       width: 1.5,
                     ),
                   ),

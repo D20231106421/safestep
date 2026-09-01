@@ -11,8 +11,25 @@ class ScamDetailView extends StatelessWidget {
 
   const ScamDetailView({super.key, required this.scamDetail});
 
+  (Color, Color) _getThemeBadgeColors(BuildContext context, Color themeColor) {
+    if (themeColor == AppColors.rose) {
+      return (AppColors.roseBadgeBgOf(context), AppColors.roseBadgeTextOf(context));
+    } else if (themeColor == AppColors.amber) {
+      return (AppColors.amberBadgeBgOf(context), AppColors.amberBadgeTextOf(context));
+    } else if (themeColor == AppColors.indigo) {
+      return (AppColors.indigoBadgeBgOf(context), AppColors.indigoBadgeTextOf(context));
+    } else if (themeColor == AppColors.cyan) {
+      return (AppColors.cyanBadgeBgOf(context), AppColors.cyanBadgeTextOf(context));
+    } else if (themeColor == AppColors.emerald) {
+      return (AppColors.emeraldBadgeBgOf(context), AppColors.emeraldBadgeTextOf(context));
+    }
+    return (AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context));
+  }
+
   @override
   Widget build(BuildContext context) {
+    final (badgeBg, badgeText) = _getThemeBadgeColors(context, scamDetail.themeColor);
+
     return Scaffold(
       backgroundColor: AppColors.canvasOf(context),
       body: SafeArea(
@@ -41,20 +58,16 @@ class ScamDetailView extends StatelessWidget {
                             Container(
                               padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
-                                color: scamDetail.themeColor.withValues(
-                                  alpha: AppColors.isDark(context) ? 0.20 : 0.12,
-                                ),
+                                color: badgeBg,
                                 borderRadius: BorderRadius.circular(12),
                                 border: Border.all(
-                                  color: scamDetail.themeColor.withValues(
-                                    alpha: 0.35,
-                                  ),
+                                  color: badgeText.withValues(alpha: 0.35),
                                   width: 1.5,
                                 ),
                               ),
                               child: Icon(
                                 scamDetail.icon,
-                                color: scamDetail.themeColor,
+                                color: badgeText,
                                 size: 24,
                               ),
                             ),

@@ -238,64 +238,68 @@ class TrendsView extends StatelessWidget {
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 children: [
-                  // Critical Threat Banner — solid fill, no BackdropFilter
-                  Container(
-                    padding: const EdgeInsets.all(14),
-                    decoration: BoxDecoration(
-                      color: AppColors.amberBadgeBgOf(context),
-                      borderRadius: BorderRadius.circular(16),
-                      border: Border.all(
-                        color: AppColors.isDark(context)
-                            ? AppColors.amber.withValues(alpha: 0.5)
-                            : AppColors.amberBorder,
-                        width: 1.5,
+                    // Critical Threat Banner — solid fill, no BackdropFilter
+                    Container(
+                      padding: const EdgeInsets.all(14),
+                      decoration: BoxDecoration(
+                        color: AppColors.amberBadgeBgOf(context),
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(
+                          color: AppColors.isDark(context)
+                              ? AppColors.amber.withValues(alpha: 0.5)
+                              : AppColors.amberBorder,
+                          width: 1.5,
+                        ),
                       ),
-                    ),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(9),
-                          decoration: BoxDecoration(
-                            color: AppColors.amber.withValues(alpha: 0.20),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: const Icon(
-                            LucideIcons.alertOctagon,
-                            color: AppColors.amber,
-                            size: 20,
-                          ),
-                        ),
-                        const SizedBox(width: 12),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                'TAHAP ANCAMAN: KRITIKAL',
-                                style: TextStyle(
-                                  color: AppColors.textPrimaryOf(context),
-                                  fontSize: 11,
-                                  fontWeight: FontWeight.w900,
-                                ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(9),
+                            decoration: BoxDecoration(
+                              color: AppColors.amberBadgeBgOf(context),
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(
+                                color: AppColors.amberBadgeTextOf(context).withValues(alpha: 0.35),
+                                width: 1.5,
                               ),
-                              const SizedBox(height: 3),
-                              Text(
-                                'PDRM melaporkan 4,203 aduan penipuan tele-komunikasi dalam tempoh 30 hari terakhir.',
-                                style: TextStyle(
-                                  color: AppColors.textSecondaryOf(context),
-                                  fontSize: 10,
-                                  fontWeight: FontWeight.w500,
-                                  height: 1.4,
-                                ),
-                              ),
-                            ],
+                            ),
+                            child: Icon(
+                              LucideIcons.alertOctagon,
+                              color: AppColors.amberBadgeTextOf(context),
+                              size: 20,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ).animate().fadeIn(delay: 100.ms, duration: 350.ms),
-                  const SizedBox(height: 20),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'TAHAP ANCAMAN: KRITIKAL',
+                                  style: TextStyle(
+                                    color: AppColors.textPrimaryOf(context),
+                                    fontSize: 11,
+                                    fontWeight: FontWeight.w900,
+                                  ),
+                                ),
+                                const SizedBox(height: 3),
+                                Text(
+                                  'PDRM melaporkan 4,203 aduan penipuan tele-komunikasi dalam tempoh 30 hari terakhir.',
+                                  style: TextStyle(
+                                    color: AppColors.textSecondaryOf(context),
+                                    fontSize: 10,
+                                    fontWeight: FontWeight.w500,
+                                    height: 1.4,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ).animate().fadeIn(delay: 100.ms, duration: 350.ms),
+                    const SizedBox(height: 20),
 
                   // Section Title
                   _sectionLabel(
@@ -305,14 +309,14 @@ class TrendsView extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
 
-                  // Vertical list of 4 cards/buttons that navigate to ScamDetailView
-                  Column(
-                    children: List.generate(scamDetails.length, (index) {
-                      final detail = scamDetails[index];
-                      return _buildScamTypeCard(context, detail, delay: 150 + (index * 40));
-                    }),
-                  ),
-                  const SizedBox(height: 20),
+                    // Vertical list of 4 cards/buttons that navigate to ScamDetailView
+                    Column(
+                      children: List.generate(scamDetails.length, (index) {
+                        final detail = scamDetails[index];
+                        return _buildScamTypeCard(context, detail, delay: 150 + (index * 40));
+                      }),
+                    ),
+                    const SizedBox(height: 20),
 
                   // Campaigns
                   _sectionLabel(
@@ -368,7 +372,7 @@ class TrendsView extends StatelessWidget {
                           children: [
                             const Icon(
                               LucideIcons.shieldAlert,
-                              color: AppColors.emeraldMuted,
+                              color: AppColors.emerald,
                               size: 18,
                             ),
                             const SizedBox(width: 8),
@@ -454,7 +458,23 @@ class TrendsView extends StatelessWidget {
     );
   }
 
+  (Color, Color) _getThemeBadgeColors(BuildContext context, Color themeColor) {
+    if (themeColor == AppColors.rose) {
+      return (AppColors.roseBadgeBgOf(context), AppColors.roseBadgeTextOf(context));
+    } else if (themeColor == AppColors.amber) {
+      return (AppColors.amberBadgeBgOf(context), AppColors.amberBadgeTextOf(context));
+    } else if (themeColor == AppColors.indigo) {
+      return (AppColors.indigoBadgeBgOf(context), AppColors.indigoBadgeTextOf(context));
+    } else if (themeColor == AppColors.cyan) {
+      return (AppColors.cyanBadgeBgOf(context), AppColors.cyanBadgeTextOf(context));
+    } else if (themeColor == AppColors.emerald) {
+      return (AppColors.emeraldBadgeBgOf(context), AppColors.emeraldBadgeTextOf(context));
+    }
+    return (AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context));
+  }
+
   Widget _buildScamTypeCard(BuildContext context, ScamDetail detail, {required int delay}) {
+    final (badgeBg, badgeText) = _getThemeBadgeColors(context, detail.themeColor);
     return Padding(
       padding: const EdgeInsets.only(bottom: 10),
       child: InkWell(
@@ -475,16 +495,14 @@ class TrendsView extends StatelessWidget {
                 width: 44,
                 height: 44,
                 decoration: BoxDecoration(
-                  color: AppColors.isDark(context)
-                      ? detail.themeColor.withValues(alpha: 0.20)
-                      : detail.themeColor.withValues(alpha: 0.12),
+                  color: badgeBg,
                   borderRadius: BorderRadius.circular(12),
                   border: Border.all(
-                    color: detail.themeColor.withValues(alpha: 0.35),
+                    color: badgeText.withValues(alpha: 0.35),
                     width: 1.5,
                   ),
                 ),
-                child: Icon(detail.icon, color: detail.themeColor, size: 20),
+                child: Icon(detail.icon, color: badgeText, size: 20),
               ),
               const SizedBox(width: 14),
               Expanded(

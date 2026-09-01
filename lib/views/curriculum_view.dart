@@ -24,13 +24,22 @@ class _CurriculumViewState extends State<CurriculumView> {
   String _filterType = 'all';
   String _filterCategory = 'all';
 
-  static const _typeColors = {
-    'whatsapp': Color(0xFF25D366),
-    'sms': AppColors.cyan,
-    'email': AppColors.amber,
-    'phone': AppColors.rose,
-    'web': AppColors.indigo,
-  };
+  (Color, Color) _getTypeBadgeColors(BuildContext context, String type) {
+    switch (type.toLowerCase()) {
+      case 'whatsapp':
+        return (AppColors.emeraldBadgeBgOf(context), AppColors.emeraldBadgeTextOf(context));
+      case 'sms':
+        return (AppColors.cyanBadgeBgOf(context), AppColors.cyanBadgeTextOf(context));
+      case 'email':
+        return (AppColors.amberBadgeBgOf(context), AppColors.amberBadgeTextOf(context));
+      case 'phone':
+        return (AppColors.roseBadgeBgOf(context), AppColors.roseBadgeTextOf(context));
+      case 'web':
+        return (AppColors.indigoBadgeBgOf(context), AppColors.indigoBadgeTextOf(context));
+      default:
+        return (AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -279,7 +288,7 @@ class _CurriculumViewState extends State<CurriculumView> {
     ScenarioProvider scenProv,
     int index,
   ) {
-    final color = _typeColors[s.type] ?? AppColors.textMutedOf(context);
+    final (typeBg, typeText) = _getTypeBadgeColors(context, s.type);
     final isDark = AppColors.isDark(context);
 
     return GlassCard(
@@ -292,11 +301,14 @@ class _CurriculumViewState extends State<CurriculumView> {
               width: 40,
               height: 40,
               decoration: BoxDecoration(
-                color: color.withValues(alpha: 0.12),
+                color: typeBg,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: color.withValues(alpha: 0.2)),
+                border: Border.all(
+                  color: typeText.withValues(alpha: 0.35),
+                  width: 1.5,
+                ),
               ),
-              child: Icon(_typeIcon(s.type), color: color, size: 18),
+              child: Icon(_typeIcon(s.type), color: typeText, size: 18),
             ),
             title: Text(
               s.sender,
@@ -330,11 +342,11 @@ class _CurriculumViewState extends State<CurriculumView> {
             padding: const EdgeInsets.fromLTRB(14, 0, 14, 10),
             child: Row(
               children: [
-                _miniTag(s.type.toUpperCase(), color),
+                _miniTag(s.type.toUpperCase(), typeBg, typeText),
                 const SizedBox(width: 5),
-                _miniTag(s.difficulty, AppColors.indigo),
+                _miniTag(s.difficulty, AppColors.indigoBadgeBgOf(context), AppColors.indigoBadgeTextOf(context)),
                 const SizedBox(width: 5),
-                _miniTag(s.threatLevel, AppColors.rose),
+                _miniTag(s.threatLevel, AppColors.roseBadgeBgOf(context), AppColors.roseBadgeTextOf(context)),
                 const Spacer(),
                 GestureDetector(
                   onTap: () => Navigator.push(
@@ -397,19 +409,16 @@ class _CurriculumViewState extends State<CurriculumView> {
         );
   }
 
-  Widget _miniTag(String text, Color color) {
-    final isDark = AppColors.isDark(context);
+  Widget _miniTag(String text, Color bgColor, Color textColor) {
     return MetricChip(
       label: text,
-      backgroundColor: color.withValues(alpha: isDark ? 0.20 : 0.12),
-      textColor: color,
+      backgroundColor: bgColor,
+      textColor: textColor,
       fontSize: 7.5,
     );
   }
 
   Widget _buildEmpty(BuildContext context) {
-    final isDark = AppColors.isDark(context);
-
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -418,17 +427,16 @@ class _CurriculumViewState extends State<CurriculumView> {
             width: 72,
             height: 72,
             decoration: BoxDecoration(
-              color: isDark
-                  ? AppColors.surfaceBorder.withValues(alpha: 0.5)
-                  : Colors.white,
+              color: AppColors.mutedBadgeBgOf(context),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: AppColors.surfaceBorderOf(context),
+                color: AppColors.mutedBadgeTextOf(context).withValues(alpha: 0.35),
+                width: 1.5,
               ),
             ),
             child: Icon(
               LucideIcons.bookOpen,
-              color: AppColors.textMutedOf(context),
+              color: AppColors.mutedBadgeTextOf(context),
               size: 30,
             ),
           ),

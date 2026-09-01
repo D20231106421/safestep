@@ -169,11 +169,11 @@ class EndView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               _buildStat(context, '$score / $total', 'Betul',
-                                  LucideIcons.target, AppColors.cyan),
+                                  LucideIcons.target, AppColors.cyanBadgeBgOf(context), AppColors.cyanBadgeTextOf(context)),
                               _buildStat(context, '$shields / 3', 'Perisai',
-                                  LucideIcons.shield, AppColors.emerald),
+                                  LucideIcons.shield, AppColors.emeraldBadgeBgOf(context), AppColors.emeraldBadgeTextOf(context)),
                               _buildStat(context, '$total', 'Soalan',
-                                  LucideIcons.fileText, AppColors.indigo),
+                                  LucideIcons.fileText, AppColors.indigoBadgeBgOf(context), AppColors.indigoBadgeTextOf(context)),
                             ],
                           ),
                         ],
@@ -242,19 +242,21 @@ class EndView extends StatelessWidget {
   }
 
   Widget _buildStat(
-      BuildContext context, String value, String label, IconData icon, Color color) {
+      BuildContext context, String value, String label, IconData icon, Color bgColor, Color iconColor) {
     return Column(
       children: [
         Container(
           width: 40,
           height: 40,
           decoration: BoxDecoration(
-            color: color.withValues(
-                alpha: AppColors.isDark(context) ? 0.20 : 0.12),
+            color: bgColor,
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(color: color.withValues(alpha: 0.2)),
+            border: Border.all(
+              color: iconColor.withValues(alpha: 0.35),
+              width: 1.5,
+            ),
           ),
-          child: Icon(icon, color: color, size: 18),
+          child: Icon(icon, color: iconColor, size: 18),
         ),
         const SizedBox(height: 6),
         Text(

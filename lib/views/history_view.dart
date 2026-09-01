@@ -169,7 +169,7 @@ class HistoryView extends StatelessWidget {
               ),
             ),
 
-            // Actions — InkWell for proper 48dp touch target
+            // Actions
             Column(
               children: [
                 Icon(
@@ -177,16 +177,20 @@ class HistoryView extends StatelessWidget {
                   color: AppColors.textMutedOf(context),
                   size: 18,
                 ),
-                const SizedBox(height: 4),
+                const SizedBox(height: 6),
                 InkWell(
                   onTap: () => _confirmDeleteLog(context, histProv, log.id),
-                  borderRadius: BorderRadius.circular(8),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8),
+                  borderRadius: BorderRadius.circular(10),
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 7),
+                    decoration: BoxDecoration(
+                      color: AppColors.roseBadgeBgOf(context),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
                     child: Icon(
                       LucideIcons.trash2,
-                      color: AppColors.rose,
-                      size: 16,
+                      color: AppColors.roseBadgeTextOf(context),
+                      size: 15,
                     ),
                   ),
                 ),
@@ -202,8 +206,6 @@ class HistoryView extends StatelessWidget {
   }
 
   Widget _buildEmptyState(BuildContext context) {
-    final isDark = AppColors.isDark(context);
-
     return Center(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -212,19 +214,16 @@ class HistoryView extends StatelessWidget {
             width: 72,
             height: 72,
             decoration: BoxDecoration(
-              // Solid fill — no opacity
-              color: isDark ? AppColors.surfaceBorder : Colors.white,
+              color: AppColors.mutedBadgeBgOf(context),
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: isDark
-                    ? AppColors.surfaceBorder
-                    : AppColors.lightSurfaceBorder,
+                color: AppColors.mutedBadgeTextOf(context).withValues(alpha: 0.35),
                 width: 1.5,
               ),
             ),
             child: Icon(
               LucideIcons.history,
-              color: AppColors.textMutedOf(context),
+              color: AppColors.mutedBadgeTextOf(context),
               size: 32,
             ),
           ),

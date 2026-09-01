@@ -620,81 +620,71 @@ class _SimulationViewState extends State<SimulationView> {
       color: const Color(0xFF020617), // slate-950
       padding: const EdgeInsets.all(16),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          // Top Headers
-          Column(
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  IconButton(
-                    icon: const Icon(
-                      LucideIcons.chevronLeft,
-                      color: Colors.grey,
-                      size: 20,
-                    ),
-                    onPressed: () => game.setGameState('choose_category'),
-                  ),
-                  _buildShieldsHeader(game),
-                ],
-              ),
-              const SizedBox(height: 12),
-              const Text(
-                    'PANGGILAN MASUK...',
-                    style: TextStyle(
-                      color: Color(0xFFF43F5E),
-                      fontSize: 16,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 0.5,
-                    ),
-                  )
-                  .animate(
-                    onPlay: (controller) => controller.repeat(reverse: true),
-                  )
-                  .fadeIn(duration: 800.ms),
-            ],
-          ),
-
-          // Caller avatar
-          Column(
-            children: [
-              Container(
-                    width: 64,
-                    height: 64,
-                    decoration: BoxDecoration(
-                      color: const Color(0xFFDC2626).withValues(alpha: 0.2),
-                      shape: BoxShape.circle,
-                      border: Border.all(
-                        color: const Color(0xFFEF4444).withValues(alpha: 0.3),
-                      ),
-                    ),
-                    child: const Icon(
-                      LucideIcons.phoneCall,
-                      color: Color(0xFFEF4444),
-                      size: 28,
-                    ),
-                  )
-                  .animate(
-                    onPlay: (controller) => controller.repeat(reverse: true),
-                  )
-                  .scale(
-                    begin: const Offset(0.9, 0.9),
-                    end: const Offset(1.1, 1.1),
-                    duration: 1.seconds,
-                  ),
-              const SizedBox(height: 12),
-              Text(
-                scen.sender,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.w900,
+              IconButton(
+                icon: const Icon(
+                  LucideIcons.chevronLeft,
+                  color: Colors.grey,
+                  size: 20,
                 ),
+                onPressed: () => game.setGameState('choose_category'),
               ),
+              _buildShieldsHeader(game),
             ],
           ),
-
+          const SizedBox(height: 12),
+          const Text(
+                'PANGGILAN MASUK...',
+                style: TextStyle(
+                  color: Color(0xFFF43F5E),
+                  fontSize: 16,
+                  fontWeight: FontWeight.w900,
+                  letterSpacing: 0.5,
+                ),
+              )
+              .animate(
+                onPlay: (controller) => controller.repeat(reverse: true),
+              )
+              .fadeIn(duration: 800.ms),
+          const SizedBox(height: 16),
+          // Caller avatar
+          Container(
+                width: 64,
+                height: 64,
+                decoration: BoxDecoration(
+                  color: const Color(0xFFDC2626).withValues(alpha: 0.2),
+                  shape: BoxShape.circle,
+                  border: Border.all(
+                    color: const Color(0xFFEF4444).withValues(alpha: 0.3),
+                  ),
+                ),
+                child: const Icon(
+                  LucideIcons.phoneCall,
+                  color: Color(0xFFEF4444),
+                  size: 28,
+                ),
+              )
+              .animate(
+                onPlay: (controller) => controller.repeat(reverse: true),
+              )
+              .scale(
+                begin: const Offset(0.9, 0.9),
+                end: const Offset(1.1, 1.1),
+                duration: 1.seconds,
+              ),
+          const SizedBox(height: 10),
+          Text(
+            scen.sender,
+            style: const TextStyle(
+              color: Colors.white,
+              fontSize: 15,
+              fontWeight: FontWeight.w900,
+            ),
+          ),
+          const SizedBox(height: 20),
           // Transcript Display Area
           Container(
             padding: const EdgeInsets.all(14),

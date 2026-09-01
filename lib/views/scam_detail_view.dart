@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import '../app_theme.dart';
 import '../widgets/glass_app_bar.dart';
@@ -41,7 +40,7 @@ class ScamDetailView extends StatelessWidget {
               title: 'Penjelasan Terperinci',
               subtitle: null,
               onBack: () => Navigator.pop(context),
-            ).animate().fadeIn(duration: 300.ms),
+            ),
 
             Expanded(
               child: ListView(
@@ -96,7 +95,7 @@ class ScamDetailView extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ).animate().fadeIn(delay: 100.ms, duration: 350.ms),
+                  ),
                   const SizedBox(height: 16),
 
                   // Structured Details Card
@@ -165,7 +164,7 @@ class ScamDetailView extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ).animate().fadeIn(delay: 200.ms, duration: 350.ms),
+                  ),
                   const SizedBox(height: 20),
                 ],
               ),

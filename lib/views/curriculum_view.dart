@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import '../app_theme.dart';
@@ -90,7 +89,7 @@ class _CurriculumViewState extends State<CurriculumView> {
                   ),
                 ),
               ],
-            ).animate().fadeIn(duration: 300.ms),
+            ),
 
             // Search bar
             Padding(
@@ -104,7 +103,7 @@ class _CurriculumViewState extends State<CurriculumView> {
                 ),
                 onChanged: (v) => setState(() => _searchQuery = v),
               ),
-            ).animate().fadeIn(delay: 80.ms, duration: 300.ms),
+            ),
             const SizedBox(height: 8),
 
             // Type filter chips
@@ -121,7 +120,7 @@ class _CurriculumViewState extends State<CurriculumView> {
                   _buildChip('phone', 'Telefon'),
                 ],
               ),
-            ).animate().fadeIn(delay: 120.ms, duration: 300.ms),
+            ),
             const SizedBox(height: 6),
 
             // Category filter chips
@@ -140,7 +139,7 @@ class _CurriculumViewState extends State<CurriculumView> {
                   _buildCategoryChip(kCategoryOthers, 'Lain-lain'),
                 ],
               ),
-            ).animate().fadeIn(delay: 140.ms, duration: 300.ms),
+            ),
             const SizedBox(height: 6),
 
             // Stats row
@@ -173,7 +172,7 @@ class _CurriculumViewState extends State<CurriculumView> {
                   ),
                 ],
               ),
-            ).animate().fadeIn(delay: 150.ms, duration: 300.ms),
+            ),
 
             // List
             Expanded(
@@ -403,10 +402,7 @@ class _CurriculumViewState extends State<CurriculumView> {
           ),
         ],
       ),
-    ).animate().fadeIn(
-          delay: Duration(milliseconds: 160 + index * 40),
-          duration: 300.ms,
-        );
+    );
   }
 
   Widget _miniTag(String text, Color bgColor, Color textColor) {
@@ -458,7 +454,7 @@ class _CurriculumViewState extends State<CurriculumView> {
               ),
             ),
         ],
-      ).animate().fadeIn(duration: 350.ms),
+      ),
     );
   }
 

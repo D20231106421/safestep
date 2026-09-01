@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import '../app_theme.dart';
@@ -30,21 +29,14 @@ class HomeView extends StatelessWidget {
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   children: [
-                    const PhishingLogo(size: 84)
-                        .animate()
-                        .fadeIn(duration: 500.ms)
-                        .scale(
-                          begin: const Offset(0.85, 0.85),
-                          duration: 500.ms,
-                          curve: Curves.easeOutBack,
-                        ),
+                    const PhishingLogo(size: 84),
                     const SizedBox(height: 14),
                     Text(
                       'SafeStep',
                       style: AppTextStyles.displayLarge.copyWith(
                         color: AppColors.textPrimaryOf(context),
                       ),
-                    ).animate().fadeIn(delay: 100.ms, duration: 400.ms),
+                    ),
                     const SizedBox(height: 8),
                     // Solid emerald badge
                     Container(
@@ -63,7 +55,7 @@ class HomeView extends StatelessWidget {
                           letterSpacing: 0.8,
                         ),
                       ),
-                    ).animate().fadeIn(delay: 200.ms, duration: 400.ms),
+                    ),
                   ],
                 ),
               ),
@@ -263,11 +255,7 @@ class HomeView extends StatelessWidget {
           ),
         ),
       ),
-    ).animate().fadeIn(delay: Duration(milliseconds: delay), duration: 400.ms).slideY(
-          begin: 0.08,
-          duration: 400.ms,
-          curve: Curves.easeOut,
-        );
+    );
   }
 
   /// Secondary solid card (navigation items) — opaque solid fill in both themes
@@ -343,10 +331,6 @@ class HomeView extends StatelessWidget {
           ),
         ),
       ),
-    ).animate().fadeIn(delay: Duration(milliseconds: delay), duration: 400.ms).slideY(
-          begin: 0.08,
-          duration: 400.ms,
-          curve: Curves.easeOut,
-        );
+    );
   }
 }

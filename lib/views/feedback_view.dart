@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import '../app_theme.dart';
@@ -76,7 +75,7 @@ class FeedbackView extends StatelessWidget {
                   ),
                 ],
               ),
-            ).animate().fadeIn(duration: 350.ms),
+            ),
 
             // ── Content ───────────────────────────────────────────────────
             Expanded(
@@ -128,7 +127,7 @@ class FeedbackView extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ).animate().fadeIn(delay: 100.ms, duration: 350.ms),
+                  ),
                   const SizedBox(height: 16),
 
                   // Recommended actions
@@ -187,7 +186,7 @@ class FeedbackView extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ).animate().fadeIn(delay: 250.ms, duration: 350.ms),
+                    ),
                   ],
                 ],
               ),
@@ -208,7 +207,7 @@ class FeedbackView extends StatelessWidget {
                 gradientColors: const [Color(0xFF106452), Color(0xFF106452)],
                 onPressed: () => game.nextScenario(historyProv),
               ),
-            ).animate().fadeIn(delay: 300.ms, duration: 350.ms),
+            ),
           ],
         ),
       ),

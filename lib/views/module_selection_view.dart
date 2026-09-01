@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import '../app_theme.dart';
@@ -106,7 +105,7 @@ class ModuleSelectionView extends StatelessWidget {
               title: 'Pilih Modul Latihan',
               subtitle: null,
               onBack: () => game.setGameState('menu'),
-            ).animate().fadeIn(duration: 300.ms),
+            ),
 
             Padding(
               padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
@@ -119,7 +118,7 @@ class ModuleSelectionView extends StatelessWidget {
                   height: 1.4,
                 ),
               ),
-            ).animate().fadeIn(delay: 100.ms, duration: 300.ms),
+            ),
 
             Expanded(
               child: ListView.builder(
@@ -224,14 +223,7 @@ class ModuleSelectionView extends StatelessWidget {
                         ),
                       ),
                     ),
-                  ).animate().fadeIn(
-                        delay: Duration(milliseconds: 150 + index * 50),
-                        duration: 300.ms,
-                      ).slideY(
-                        begin: 0.05,
-                        duration: 300.ms,
-                        curve: Curves.easeOut,
-                      );
+                  );
                 },
               ),
             ),

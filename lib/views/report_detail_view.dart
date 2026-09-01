@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:provider/provider.dart';
 
@@ -33,7 +32,7 @@ class ReportDetailView extends StatelessWidget {
               title: 'Laporan Terperinci',
               subtitle: null,
               onBack: () => Navigator.pop(context),
-            ).animate().fadeIn(duration: 300.ms),
+            ),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
@@ -132,7 +131,7 @@ class ReportDetailView extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ).animate().fadeIn(delay: 100.ms, duration: 350.ms),
+                  ),
 
                   const SizedBox(height: 16),
 

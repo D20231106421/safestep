@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import '../app_theme.dart';
@@ -40,7 +39,7 @@ class HistoryView extends StatelessWidget {
                     onPressed: () => _confirmClear(context, histProv),
                   ),
               ],
-            ).animate().fadeIn(duration: 300.ms),
+            ),
 
             // Content
             Expanded(
@@ -199,10 +198,7 @@ class HistoryView extends StatelessWidget {
           ],
         ),
       ),
-    ).animate().fadeIn(
-          delay: Duration(milliseconds: index * 60),
-          duration: 350.ms,
-        );
+    );
   }
 
   Widget _buildEmptyState(BuildContext context) {
@@ -245,11 +241,7 @@ class HistoryView extends StatelessWidget {
             ),
           ),
         ],
-      ).animate().fadeIn(duration: 400.ms).scale(
-            begin: const Offset(0.9, 0.9),
-            duration: 400.ms,
-            curve: Curves.easeOut,
-          ),
+      ),
     );
   }
 

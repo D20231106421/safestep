@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:provider/provider.dart';
@@ -28,7 +27,7 @@ class SettingsView extends StatelessWidget {
               title: 'Tetapan Aplikasi',
               subtitle: null,
               onBack: () => game.setGameState('menu'),
-            ).animate().fadeIn(duration: 300.ms),
+            ),
 
             Expanded(
               child: ListView(
@@ -86,7 +85,7 @@ class SettingsView extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ).animate().fadeIn(delay: 100.ms, duration: 350.ms),
+                  ),
 
                   const SizedBox(height: 24),
 
@@ -123,7 +122,7 @@ class SettingsView extends StatelessWidget {
                         _buildFrequencySelector(context, settings),
                       ],
                     ),
-                  ).animate().fadeIn(delay: 180.ms, duration: 350.ms),
+                  ),
 
                   const SizedBox(height: 20),
                 ],
@@ -550,17 +549,13 @@ class SettingsView extends StatelessWidget {
             Row(
               children: [
                 Container(
-                      width: 8,
-                      height: 8,
-                      decoration: const BoxDecoration(
-                        color: AppColors.emerald,
-                        shape: BoxShape.circle,
-                      ),
-                    )
-                    .animate(onPlay: (c) => c.repeat())
-                    .fadeOut(duration: 800.ms)
-                    .then()
-                    .fadeIn(duration: 800.ms),
+                  width: 8,
+                  height: 8,
+                  decoration: const BoxDecoration(
+                    color: AppColors.emerald,
+                    shape: BoxShape.circle,
+                  ),
+                ),
                 const SizedBox(width: 6),
                 Text(
                   'Notifikasi auto setiap ${settings.notificationIntervalSeconds}s',

@@ -331,7 +331,7 @@ class _SimulationViewState extends State<SimulationView> {
                           ),
                         ],
                       ),
-                    ).animate().slideX(begin: -0.1, end: 0, duration: 200.ms),
+                    ),
                   ),
               ],
             ),
@@ -444,7 +444,7 @@ class _SimulationViewState extends State<SimulationView> {
                           ),
                         ],
                       ),
-                    ).animate().slideX(begin: -0.1, end: 0, duration: 200.ms),
+                    ),
                   ),
               ],
             ),
@@ -1537,7 +1537,6 @@ class _SimulationViewState extends State<SimulationView> {
                   onTap: () => game.analyzeUserReply(
                     'Saya terus sekat (block) nombor pengirim ini di telefon saya.',
                   ),
-                  isPulse: true,
                 ),
               ],
             ),
@@ -1555,40 +1554,30 @@ class _SimulationViewState extends State<SimulationView> {
     required Color color,
     required Color bg,
     required VoidCallback onTap,
-    bool isPulse = false,
   }) {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-              width: 56,
-              height: 56,
-              decoration: BoxDecoration(
-                color: bg,
-                shape: BoxShape.circle,
-                border: Border.all(
-                  color: color.withValues(alpha: 0.35),
-                  width: 1.5,
-                ),
-              ),
-              child: Material(
-                color: Colors.transparent,
-                child: InkWell(
-                  customBorder: const CircleBorder(),
-                  onTap: onTap,
-                  child: Center(child: Icon(icon, color: color, size: 24)),
-                ),
-              ),
-            )
-            .animate(
-              target: isPulse ? 1 : 0,
-              onPlay: (controller) => controller.repeat(reverse: true),
-            )
-            .scale(
-              begin: const Offset(0.95, 0.95),
-              end: const Offset(1.05, 1.05),
-              duration: 800.ms,
+          width: 56,
+          height: 56,
+          decoration: BoxDecoration(
+            color: bg,
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: color.withValues(alpha: 0.35),
+              width: 1.5,
             ),
+          ),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              customBorder: const CircleBorder(),
+              onTap: onTap,
+              child: Center(child: Icon(icon, color: color, size: 24)),
+            ),
+          ),
+        ),
         const SizedBox(height: 6),
         Text(
           title,

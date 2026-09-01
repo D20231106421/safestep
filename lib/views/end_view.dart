@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import '../app_theme.dart';
@@ -46,7 +45,7 @@ class EndView extends StatelessWidget {
                   ),
                 ],
               ),
-            ).animate().fadeIn(duration: 300.ms),
+            ),
 
             Expanded(
               child: SingleChildScrollView(
@@ -108,11 +107,7 @@ class EndView extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ).animate().fadeIn(delay: 100.ms, duration: 500.ms).scale(
-                          begin: const Offset(0.92, 0.92),
-                          duration: 500.ms,
-                          curve: Curves.easeOutBack,
-                        ),
+                    ),
                     const SizedBox(height: 16),
 
                     // Score stats card
@@ -178,10 +173,7 @@ class EndView extends StatelessWidget {
                           ),
                         ],
                       ),
-                    ).animate().fadeIn(delay: 250.ms, duration: 400.ms).slideY(
-                          begin: 0.05, duration: 400.ms,
-                          curve: Curves.easeOut,
-                        ),
+                    ),
                     const SizedBox(height: 16),
 
                     // Results list
@@ -206,7 +198,7 @@ class EndView extends StatelessWidget {
                                     r.type, r.sender, r.userCorrect)),
                           ],
                         ),
-                      ).animate().fadeIn(delay: 350.ms, duration: 400.ms),
+                      ),
                     const SizedBox(height: 20),
 
                     // Action buttons
@@ -219,7 +211,7 @@ class EndView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(16),
                       gradientColors: const [Color(0xFF106452), Color(0xFF106452)],
                       onPressed: () => game.setGameState('menu'),
-                    ).animate().fadeIn(delay: 450.ms, duration: 350.ms),
+                    ),
                     const SizedBox(height: 10),
                     GlassButton(
                       label: 'LIHAT REKOD',
@@ -229,7 +221,7 @@ class EndView extends StatelessWidget {
                       padding: const EdgeInsets.symmetric(vertical: 15),
                       borderRadius: BorderRadius.circular(16),
                       onPressed: () => game.setGameState('history'),
-                    ).animate().fadeIn(delay: 500.ms, duration: 350.ms),
+                    ),
                     const SizedBox(height: 20),
                   ],
                 ),

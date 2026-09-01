@@ -363,6 +363,16 @@ abstract class AppTheme {
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
       ),
+
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {
+          TargetPlatform.android: SafeStepPageTransitionsBuilder(),
+          TargetPlatform.iOS: SafeStepPageTransitionsBuilder(),
+          TargetPlatform.windows: SafeStepPageTransitionsBuilder(),
+          TargetPlatform.macOS: SafeStepPageTransitionsBuilder(),
+          TargetPlatform.linux: SafeStepPageTransitionsBuilder(),
+        },
+      ),
     );
   }
 
@@ -511,6 +521,49 @@ abstract class AppTheme {
           borderSide: const BorderSide(color: AppColors.rose, width: 1.5),
         ),
         contentPadding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
+      ),
+
+      pageTransitionsTheme: const PageTransitionsTheme(
+        builders: {
+          TargetPlatform.android: SafeStepPageTransitionsBuilder(),
+          TargetPlatform.iOS: SafeStepPageTransitionsBuilder(),
+          TargetPlatform.windows: SafeStepPageTransitionsBuilder(),
+          TargetPlatform.macOS: SafeStepPageTransitionsBuilder(),
+          TargetPlatform.linux: SafeStepPageTransitionsBuilder(),
+        },
+      ),
+    );
+  }
+}
+
+/// Custom page transition matching SafeStep's smooth subtle slide-fade router animation.
+class SafeStepPageTransitionsBuilder extends PageTransitionsBuilder {
+  const SafeStepPageTransitionsBuilder();
+
+  @override
+  Widget buildTransitions<T>(
+    PageRoute<T> route,
+    BuildContext context,
+    Animation<double> animation,
+    Animation<double> secondaryAnimation,
+    Widget child,
+  ) {
+    final curvedAnimation = CurvedAnimation(
+      parent: animation,
+      curve: Curves.easeOutCubic,
+      reverseCurve: Curves.easeInCubic,
+    );
+
+    final slideAnimation = Tween<Offset>(
+      begin: const Offset(0.06, 0.0),
+      end: Offset.zero,
+    ).animate(curvedAnimation);
+
+    return FadeTransition(
+      opacity: curvedAnimation,
+      child: SlideTransition(
+        position: slideAnimation,
+        child: child,
       ),
     );
   }

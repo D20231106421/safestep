@@ -160,36 +160,59 @@ class AppShell extends StatelessWidget {
   }
 }
 
-/// Routes between views based on game state string.
+/// Routes between views based on game state string with smooth page transitions.
 class _ViewRouter extends StatelessWidget {
   const _ViewRouter();
+
+  Widget _buildScreen(String gameState) {
+    switch (gameState) {
+      case 'menu':
+        return const HomeView(key: ValueKey('menu'));
+      case 'choose_category':
+        return const ModuleSelectionView(key: ValueKey('choose_category'));
+      case 'playing':
+        return const SimulationView(key: ValueKey('playing'));
+      case 'feedback':
+        return const FeedbackView(key: ValueKey('feedback'));
+      case 'end':
+        return const EndView(key: ValueKey('end'));
+      case 'trends':
+        return const TrendsView(key: ValueKey('trends'));
+      case 'history':
+        return const HistoryView(key: ValueKey('history'));
+      case 'manage_sim':
+        return const CurriculumView(key: ValueKey('manage_sim'));
+      case 'settings':
+        return const SettingsView(key: ValueKey('settings'));
+      default:
+        return const HomeView(key: ValueKey('menu'));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     final gameState = context.select<GameProvider, String>((g) => g.gameState);
 
-    switch (gameState) {
-      case 'menu':
-        return const HomeView();
-      case 'choose_category':
-        return const ModuleSelectionView();
-      case 'playing':
-        return const SimulationView();
-      case 'feedback':
-        return const FeedbackView();
-      case 'end':
-        return const EndView();
-      case 'trends':
-        return const TrendsView();
-      case 'history':
-        return const HistoryView();
-      case 'manage_sim':
-        return const CurriculumView();
-      case 'settings':
-        return const SettingsView();
-      default:
-        return const HomeView();
-    }
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 300),
+      switchInCurve: Curves.easeOutCubic,
+      switchOutCurve: Curves.easeInCubic,
+      transitionBuilder: (Widget child, Animation<double> animation) {
+        final slideAnimation = Tween<Offset>(
+          begin: const Offset(0.06, 0.0),
+          end: Offset.zero,
+        ).animate(animation);
+
+        return FadeTransition(
+          opacity: animation,
+          child: SlideTransition(
+            position: slideAnimation,
+            child: child,
+          ),
+        );
+      },
+      child: _buildScreen(gameState),
+    );
   }
 }
 

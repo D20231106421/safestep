@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:lucide_icons_flutter/lucide_icons.dart';
 import 'package:provider/provider.dart';
 import '../app_theme.dart';
@@ -232,7 +231,7 @@ class TrendsView extends StatelessWidget {
               title: 'Panduan Penipuan',
               subtitle: null,
               onBack: () => game.setGameState('menu'),
-            ).animate().fadeIn(duration: 300.ms),
+            ),
 
             Expanded(
               child: ListView(
@@ -366,7 +365,7 @@ class TrendsView extends StatelessWidget {
                         ),
                       ],
                     ),
-                  ).animate().fadeIn(delay: 470.ms, duration: 350.ms),
+                  ),
                   const SizedBox(height: 20),
                 ],
               ),
@@ -467,7 +466,7 @@ class TrendsView extends StatelessWidget {
           ),
         ),
       ),
-    ).animate().fadeIn(delay: Duration(milliseconds: delay), duration: 350.ms);
+    );
   }
 
   Widget _buildCampaignCard(
@@ -523,6 +522,6 @@ class TrendsView extends StatelessWidget {
           ),
         ],
       ),
-    ).animate().fadeIn(delay: Duration(milliseconds: delay), duration: 350.ms);
+    );
   }
 }

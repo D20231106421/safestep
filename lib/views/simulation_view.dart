@@ -1566,9 +1566,10 @@ class _SimulationViewState extends State<SimulationView> {
               decoration: BoxDecoration(
                 color: bg,
                 shape: BoxShape.circle,
-                border: isPulse
-                    ? Border.all(color: color.withValues(alpha: 0.50), width: 2)
-                    : null,
+                border: Border.all(
+                  color: color.withValues(alpha: 0.35),
+                  width: 1.5,
+                ),
               ),
               child: Material(
                 color: Colors.transparent,

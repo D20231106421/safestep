@@ -250,14 +250,17 @@ class ModuleSelectionView extends StatelessWidget {
           ),
         ),
         actions: [
-          TextButton(
+          ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              backgroundColor: AppColors.emeraldBadgeBgOf(context),
+              foregroundColor: AppColors.emeraldBadgeTextOf(context),
+              shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10)),
+            ),
             onPressed: () => Navigator.pop(ctx),
             child: const Text(
               'Faham',
-              style: TextStyle(
-                color: AppColors.emerald,
-                fontWeight: FontWeight.w900,
-              ),
+              style: TextStyle(fontWeight: FontWeight.w900),
             ),
           ),
         ],

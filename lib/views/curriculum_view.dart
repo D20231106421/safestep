@@ -494,8 +494,8 @@ class _CurriculumViewState extends State<CurriculumView> {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.rose,
-              foregroundColor: Colors.white,
+              backgroundColor: AppColors.roseBadgeBgOf(context),
+              foregroundColor: AppColors.roseBadgeTextOf(context),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
             ),
@@ -540,8 +540,8 @@ class _CurriculumViewState extends State<CurriculumView> {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.emerald,
-              foregroundColor: Colors.white,
+              backgroundColor: AppColors.emeraldBadgeBgOf(context),
+              foregroundColor: AppColors.emeraldBadgeTextOf(context),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
             ),

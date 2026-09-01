@@ -283,8 +283,8 @@ class HistoryView extends StatelessWidget {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.rose,
-              foregroundColor: Colors.white,
+              backgroundColor: AppColors.roseBadgeBgOf(context),
+              foregroundColor: AppColors.roseBadgeTextOf(context),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
             ),
@@ -331,8 +331,8 @@ class HistoryView extends StatelessWidget {
           ),
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.rose,
-              foregroundColor: Colors.white,
+              backgroundColor: AppColors.roseBadgeBgOf(context),
+              foregroundColor: AppColors.roseBadgeTextOf(context),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(10)),
             ),

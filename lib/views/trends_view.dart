@@ -216,6 +216,214 @@ class TrendsView extends StatelessWidget {
     ),
   ];
 
+  static const List<ScamDetail> communicationGuides = [
+    ScamDetail(
+      title: 'Perlindungan Penipuan WhatsApp',
+      icon: LucideIcons.messageSquare,
+      themeColor: AppColors.emerald,
+      definition: 'Lindungi Diri Anda di WhatsApp: Ketahui cara mengenal pasti dan mengelakkan penipuan WhatsApp yang menyasarkan rakyat Malaysia. Daripada mesej palsu hinggalah penipuan penyamaran. Lebih 30% penipuan dalam talian di Malaysia bermula di WhatsApp.',
+      howItWorks: [
+        'Pemberitahuan Penghantaran Palsu: Scammer menghantar mesej menyamar sebagai syarikat kurier dan meminta anda mengklik pautan atau membayar yuran. (Contoh: Bungkusan anda ditahan di kastam. Klik di sini untuk membayar yuran kastam RM15: [pautan berniat jahat])',
+        'Penipuan Penyamaran: Penipu menyamar sebagai rakan atau ahli keluarga anda untuk meminta pemindahan wang dengan segera. (Contoh: Hi, ini anak mak. Telefon saya rosak, boleh tak transfer wang sikit dengan segera?)',
+        'Penipuan Tawaran Pekerjaan: Perekrut palsu menawarkan kerja dari rumah berpendapatan tinggi yang memerlukan pembayaran pendahuluan. (Contoh: Jana RM5000/sebulan bekerja dari rumah! Hanya bayar yuran pendaftaran RM300 untuk bermula.)',
+        'Skim Pelaburan: Skim cepat kaya yang menjanjikan pulangan tidak masuk akal untuk mata wang kripto, forex, atau pelaburan lain. (Contoh: Sertai kumpulan pelaburan eksklusif kami! Jaminan pulangan 300% dalam masa 30 hari!)',
+        'Khidmat Pelanggan Palsu: Penipu menyamar sebagai kakitangan sokongan rasmi syarikat untuk meminta maklumat peribadi atau pembayaran. (Contoh: Akaun anda telah digantung. Hubungi pasukan sokongan kami di [nombor palsu] untuk mengaktifkannya semula.)',
+      ],
+      warningSigns: [
+        'Mesej daripada nombor tidak dikenali yang mendakwa mereka adalah seseorang yang anda kenali',
+        'Permintaan mendesak untuk wang atau maklumat peribadi',
+        'Pautan yang dipendekkan (bit.ly, tinyurl, dll.)',
+        'Kesilapan ejaan dan tatabahasa dalam mesej rasmi',
+        'Tawaran yang kelihatan terlalu bagus untuk menjadi kenyataan',
+        'Tekanan untuk bertindak segera tanpa masa untuk membuat pengesahan',
+        'Permintaan untuk beralih ke platform perbualan yang lain',
+        'Mesej yang tidak diminta mengenai hadiah, bayaran balik, atau bungkusan',
+      ],
+      whatToDo: [
+        'Aktifkan pengesahan dua langkah di tetapan WhatsApp',
+        'Jangan sesekali berkongsi kod OTP atau TAC dengan sesiapa melalui WhatsApp',
+        'Sahkan identiti dengan menelefon individu tersebut menggunakan nombor mereka yang anda ketahui',
+        'Jangan klik pautan yang mencurigakan - taip URL secara manual',
+        'Gunakan ciri Lihat Kod Keselamatan WhatsApp untuk kenalan penting',
+        'Berhati-hati dengan mesej daripada nombor menggunakan kod negara asing',
+        'Sekat dan laporkan akaun yang mencurigakan dengan segera',
+        'Jangan muat turun fail daripada penghantar yang tidak dikenali',
+        'Sahkan nombor telefon syarikat melalui laman web rasmi mereka',
+        'Aktifkan tetapan privasi untuk mengehadkan siapa yang boleh memasukkan anda ke dalam kumpulan WhatsApp',
+      ],
+      ifAlreadyScammed: [
+        'Tangkap layar perbualan tersebut sebagai bukti',
+        'Sekat nombor penipu tersebut di WhatsApp',
+        'Laporkan akaun kepada WhatsApp (Tekan lama pada mesej > Lapor)',
+        'Jika wang telah dipindahkan, hubungi bank anda dengan segera',
+        'Buat laporan polis di CCID PDRM (03-2610-1559)',
+        'Lapor kepada talian hotline Cyber999 SKMM (1-300-88-2999)',
+        'Kongsi nombor penipu di ScamChecker untuk memberi amaran kepada orang lain',
+      ],
+      reportingContacts: [
+        'Talian Hotline PDRM CCID: 03-2610-1559',
+        'Talian Hotline Cyber999: 1-300-88-2999',
+        'Bank Negara (BNMTELELINK): 1-300-88-5465',
+      ],
+    ),
+    ScamDetail(
+      title: 'Perlindungan Penipuan E-mel',
+      icon: LucideIcons.mail,
+      themeColor: AppColors.cyan,
+      definition: 'Perlindungan Phishing E-mel: Ketahui cara mengenal pasti dan mengelakkan penipuan e-mel termasuk pemancingan data, penyamaran e-mel, dan kompromi e-mel perniagaan. E-mel kekal sebagai vektor #1 untuk serangan siber di Malaysia.',
+      howItWorks: [
+        'E-mel Phishing Bank: E-mel palsu yang menyamar sebagai bank anda untuk meminta anda mengesahkan butiran akaun atau mengklik pautan berniat jahat. (Contoh: Subjek: SEGERA - Akaun Digantung. Klik di sini dalam masa 24 jam untuk mengaktifkan semula akaun anda.)',
+        'Penipuan Penghantaran Bungkusan: E-mel yang mendakwa dari syarikat kurier tentang kegagalan penghantaran atau yuran kastam. (Contoh: Penghantaran bungkusan anda gagal. Bayar yuran penghantaran semula RM20 di sini: [pautan phishing])',
+        'Penipuan Bayaran Balik Cukai: E-mel palsu daripada LHDN atau pihak berkuasa cukai yang menjanjikan bayaran balik atau mengancam dengan penalti. (Contoh: Anda layak menerima bayaran balik cukai sebanyak RM2,350. Klik di sini untuk menuntut dalam masa 7 hari.)',
+        'Kompromi E-mel Perniagaan: Penipu menyamar sebagai eksekutif syarikat dan meminta pekerja memindahkan wang atau berkongsi data sensitif. (Contoh: Daripada: CEO ceo@syarikat-palsu.com - SEGERA: Pindahkan RM50,000 ke akaun ini segera untuk urusan pengambilalihan.)',
+        'Penipuan Invois: Invois palsu atau permintaan pembayaran yang kelihatan sah tetapi mengubah hala pembayaran ke akaun penipu. (Contoh: Invois tertunggak. Akaun bank kami telah bertukar. Sila kemas kini butiran pembayaran dan masukkan wang ke akaun baharu.)',
+      ],
+      warningSigns: [
+        'Sapaan umum (Pelanggan Dihormati, Pengguna Dihormati)',
+        'Kesilapan ejaan dan tatabahasa',
+        'Mewujudkan rasa terdesak atau ancaman (akaun akan ditutup, tindakan undang-undang)',
+        'E-mel penghantar tidak sepadan dengan domain rasmi',
+        'Lampiran yang mencurigakan (fail .exe, .zip daripada penghantar tidak dikenali)',
+        'Pautan dengan URL yang salah eja atau domain pelik',
+        'Permintaan untuk maklumat sensitif melalui e-mel',
+        'Invois atau permintaan pembayaran yang tidak dijangka',
+        'Tawaran yang terlalu bagus (hadiah, bayaran balik, harta pusaka)',
+      ],
+      whatToDo: [
+        'Halakan kursor pada pautan untuk menyemak URL sebenar sebelum klik',
+        'Sahkan alamat e-mel penghantar dengan teliti (semak alamat penuh, bukan nama paparan sahaja)',
+        'Jangan sesekali memuat turun lampiran daripada penghantar tidak dikenali',
+        'Taip URL bank atau laman web rasmi secara manual dan elakkan mengklik pautan e-mel',
+        'Aktifkan penapis spam dan pastikan ia sentiasa dikemas kini',
+        'Gunakan pengesahan e-mel (SPF, DKIM) untuk e-mel perniagaan',
+        'Latih pekerja untuk mengenal pasti cubaan phishing',
+        'Sentiasa sahkan permintaan pembayaran melalui saluran sekunder (panggilan telefon)',
+        'Pastikan perisian dan pelanggan e-mel dikemas kini',
+        'Laporkan e-mel mencurigakan kepada jabatan IT atau pembekal e-mel anda',
+      ],
+      ifAlreadyScammed: [
+        'Jangan klik sebarang pautan atau memuat turun lampiran',
+        'Tandakan e-mel sebagai spam atau phishing dalam pelanggan e-mel anda',
+        'Majukan e-mel phishing kepada pasukan penyalahgunaan pembekal e-mel anda',
+        'Jika mereka menyamar sebagai sebuah syarikat, laporkan kepada e-mel rasmi syarikat tersebut',
+        'Padamkan e-mel dari peti masuk dan tong sampah anda',
+        'Jika anda telah klik pautan, tukar kata laluan anda dengan segera',
+        'Jalankan imbasan antivirus jika anda telah memuat turun apa-apa',
+        'Lapor kepada CyberSecurity Malaysia (cyber999@cybersecurity.my)',
+      ],
+      reportingContacts: [
+        'Talian Hotline PDRM CCID: 03-2610-1559',
+        'Talian Hotline Cyber999: 1-300-88-2999',
+        'Bank Negara (BNMTELELINK): 1-300-88-5465',
+      ],
+    ),
+    ScamDetail(
+      title: 'Perlindungan Penipuan SMS',
+      icon: LucideIcons.smartphone,
+      themeColor: AppColors.indigo,
+      definition: 'Pencegahan Penipuan SMS: Lindungi diri anda daripada penipuan SMS termasuk pemberitahuan penghantaran palsu, amaran bank, dan penyamaran kerajaan. Jutaan mesej SMS penipuan dihantar kepada rakyat Malaysia setiap bulan.',
+      howItWorks: [
+        'SMS Penghantaran Palsu: Mesej yang mendakwa daripada perkhidmatan kurier (PosLaju, J&T, dll.) yang mengandungi pautan berniat jahat. (Contoh: PosLaju: Bungkusan anda gagal dihantar. Dijadualkan semula ke [tarikh]. Jejaki di sini: http://poslaju-my.com)',
+        'Penipuan SMS Bank: Mesej palsu yang menyamar sebagai bank mengenai isu akaun, transaksi mencurigakan, atau sekatan kad. (Contoh: Maybank: Akaun anda digantung sementara kerana aktiviti mencurigakan. Sahkan sekarang: [pautan])',
+        'Penyamaran Kerajaan: SMS yang mendakwa daripada LHDN, PDRM, JPJ, atau agensi lain mengenai saman, bayaran balik, atau isu undang-undang. (Contoh: LHDN: Anda mempunyai bayaran balik cukai yang belum dituntut sebanyak RM3,200. Klik untuk tuntut: [pautan phishing])',
+        'Kecurian OTP/TAC: Penipu menelefon dan menyamar sebagai bank/syarikat meminta anda berkongsi OTP/TAC yang baru anda terima. (Contoh: Terima OTP: 123456. Kemudian pemanggil: Saya dari bank anda, tolong beritahu kod yang baru anda terima untuk pengesahan.)',
+        'Penipuan Hadiah & Cabutan Bertuah: SMS mendakwa anda memenangi hadiah dari peraduan yang anda tidak pernah sertai. (Contoh: Tahniah! Anda memenangi RM50,000 dalam Cabutan Bertuah Shopee! Klik untuk tebus: [pautan scam])',
+      ],
+      warningSigns: [
+        'Nombor penghantar tidak dikenali (terutamanya nombor antarabangsa)',
+        'Kesilapan ejaan nama syarikat atau domain pelik pada pautan',
+        'Taktik mendesak (bertindak dalam 24 jam, akaun akan ditutup)',
+        'Permintaan untuk mengklik pautan atau memuat turun aplikasi',
+        'Kesilapan ejaan dan tatabahasa',
+        'Permintaan untuk maklumat peribadi atau kata laluan melalui SMS',
+        'Hadiah dari peraduan yang anda tidak pernah sertai',
+        'URL dipendekkan yang mencurigakan (bit.ly, dll.)',
+        'Mesej tentang bungkusan yang tidak anda pesan',
+      ],
+      whatToDo: [
+        'Jangan sesekali klik pautan dalam SMS yang tidak dijangka',
+        'Buat pengesahan dengan menghubungi nombor rasmi (dari laman web/kad bank, bukan dari SMS)',
+        'Semak nombor penghantar - syarikat rasmi menggunakan kod pendek atau nombor yang disahkan',
+        'Jangan sesekali berkongsi kod OTP/TAC dengan sesiapa, walaupun mereka mendakwa dari bank anda',
+        'Taip URL laman web rasmi secara manual dan elakkan klik pautan SMS',
+        'Aktifkan penapis SMS pada telefon anda',
+        'Simpan nombor rasmi syarikat untuk mengenali mesej yang sah',
+        'Lebih berhati-hati dengan mesej yang mendesak atau berbaur ancaman',
+        'Laporkan SMS penipuan kepada penyedia syarikat telekomunikasi anda',
+        'Didik ahli keluarga, terutamanya warga emas, tentang penipuan SMS',
+      ],
+      ifAlreadyScammed: [
+        'Jangan klik sebarang pautan dalam SMS',
+        'Tangkap layar mesej sebagai bukti',
+        'Majukan SMS penipuan kepada SKMM di 15888 (untuk Malaysia)',
+        'Sekat nombor penghantar pada telefon anda',
+        'Lapor kepada penyedia perkhidmatan mudah alih anda (Maxis, Celcom, Digi, dll.)',
+        'Jika anda klik pautan dan memasukkan butiran, hubungi bank anda dengan segera',
+        'Tukar kata laluan yang terjejas dan aktifkan 2FA',
+        'Buat laporan polis di CCID PDRM jika anda kehilangan wang',
+        'Kongsi nombor penipu di ScamChecker untuk memberi amaran kepada orang lain',
+      ],
+      reportingContacts: [
+        'Talian Hotline PDRM CCID: 03-2610-1559',
+        'Talian Hotline Cyber999: 1-300-88-2999',
+        'Bank Negara (BNMTELELINK): 1-300-88-5465',
+      ],
+    ),
+    ScamDetail(
+      title: 'Perlindungan Penipuan Panggilan Telefon',
+      icon: LucideIcons.phoneCall,
+      themeColor: AppColors.rose,
+      definition: 'Pencegahan Penipuan Panggilan Telefon: Ketahui cara mengenal pasti dan melindungi diri anda daripada penipuan panggilan suara termasuk penipuan Macau Scam, penyamaran pegawai bank, ugutan penguat kuasa, dan panggilan robotik automatik. Panggilan suara merupakan taktik manipulasi psikologi yang paling agresif dan mengakibatkan kerugian kewangan terbesar di Malaysia.',
+      howItWorks: [
+        'Penyamaran Agensi Penguatkuasa dan Mahkamah: Penipu menyamar sebagai pegawai polis, pegawai mahkamah, SPRM, atau LHDN yang mendakwa anda terlibat dalam jenayah penggubahan wang haram atau tunggakan cukai dan mengugut untuk menangkap anda. (Contoh: Panggilan mendakwa daripada Ibu Pejabat Polis Bukit Aman menyatakan akaun anda digunakan untuk transaksi dadah bernilai RM2.5 juta dan waran tangkap telah dikeluarkan atas nama anda.)',
+        'Penipuan Pegawai Bank dan Kad Kredit: Pemanggil mendakwa daripada jabatan keselamatan bank menyatakan kad kredit anda telah digunakan di lokasi lain atau pinjaman peribadi telah diluluskan atas nama anda. (Contoh: Selamat pagi, saya dari Bahagian Pencegahan Penipuan Bank. Kami mengesan transaksi kad kredit sebanyak RM4,800 di KLIA. Sila sahkan atau batalkan transaksi ini segera.)',
+        'Penipuan Pakej Kurier dan Kastam: Pemanggil mendakwa dari syarikat penghantaran bungkusan atau Jabatan Kastam menyatakan ada bungkusan haram yang dihantar atas nama anda dan memerlukan pembayaran rasmi untuk diselesaikan. (Contoh: Bungkusan anda mengandungi barang terlarang seperti kad pengenalan palsu dan ditahan di pejabat pos. Panggilan anda akan disambungkan terus ke balai polis untuk siasatan.)',
+        'Kecurian Kod OTP dan Pengesahan Transaksi: Penipu mendakwa telah tersalah memasukkan nombor telefon anda untuk urusan bank dan memohon anda membaca kod pengesahan yang baru dihantar ke telefon anda. (Contoh: Maaf encik, saya tersilap letak nombor telefon semasa daftar akaun online. Boleh tolong beritahu nombor enam digit yang baru masuk ke SMS encik?)',
+        'Panggilan Robotik Automatik Interaktif: Panggilan suara rakaman berkomputer yang menyamar sebagai kementerian, syarikat telekomunikasi, atau bank yang mengarahkan anda menekan butang nombor untuk bercakap dengan pegawai. (Contoh: Rakaman suara: Ini adalah amaran terakhir daripada Mahkamah Tinggi. Talian anda akan dipotong dalam tempoh dua jam. Tekan nombor sembilan untuk berhubung dengan pegawai bertugas.)',
+        'Penipuan Penyamaran Suara Keluarga: Penipu menggunakan teknik tiruan suara atau penyamaran rakan lama atau ahli keluarga yang menangis atau terdesak meminta wang ikat jamin atau bayaran hospital kecemasan. (Contoh: Pemanggil menangis: Tolong saya, saya ditahan polis sebab kemalangan jalan raya. Tolong jangan beritahu sesiapa dan pindahkan wang jaminan RM10,000 ke akaun peguam ini segera.)',
+      ],
+      warningSigns: [
+        'Pemanggil mendakwa dari agensi kerajaan tetapi menyambungkan panggilan anda terus ke balai polis atau mahkamah dalam satu talian',
+        'Meminta anda memindahkan wang ke akaun peribadi pihak ketiga atau akaun audit keselamatan',
+        'Menggunakan ugutan waran tangkap, akaun dibekukan, atau tindakan mahkamah segera',
+        'Melarang anda memutuskan panggilan, berbincang dengan ahli keluarga, atau memberitahu pihak ketiga',
+        'Meminta nombor kad pengenalan, nombor kad bank, nombor CVV di belakang kad, kata laluan, atau kod OTP',
+        'Panggilan menggunakan nombor telefon bimbit peribadi atau nombor antarabangsa yang menyerupai nombor rasmi',
+        'Menggunakan nada suara yang menengking, mendesak, atau cuba menimbulkan rasa panik dan takut',
+        'Nada suara rakaman automatik yang meminta anda menekan nombor telefon tertentu',
+        'Mendakwa wang dalam akaun bank anda perlu disiasat atau diaudit oleh Bank Negara Malaysia',
+      ],
+      whatToDo: [
+        'Letakkan panggilan telefon dengan serta-merta jika pemanggil mula bercakap mengenai kes polis, cukai, mahkamah, atau pemindahan wang',
+        'Sahkan sebarang dakwaan dengan menghubungi nombor rasmi agensi tersebut melalui carian sendiri di portal rasmi',
+        'Ingat bahawa agensi kerajaan dan pihak polis tidak pernah menyelesaikan kes jenayah atau waran tangkap melalui telefon',
+        'Bank Negara Malaysia dan pihak bank tidak pernah meminta pengguna memindahkan wang ke akaun audit keselamatan',
+        'Jangan sesekali membacakan atau berkongsi kod OTP, TAC, nombor PIN, atau kata laluan kepada mana-mana pemanggil',
+        'Pasang aplikasi pengesanan nombor telefon yang sah pada peranti anda untuk mengenal pasti panggilan penipuan',
+        'Hubungi ahli keluarga secara terus melalui nombor yang anda simpan jika menerima panggilan kecemasan mengenai mereka',
+        'Bertenang dan jangan panik apabila pemanggil cuba mengugut atau menggunakan bahasa yang mendesak',
+        'Jangan tekan sebarang nombor pada papan kekunci telefon semasa menerima panggilan robotik automatik',
+        'Jangan percayai paparan nombor pemanggil kerana penipu boleh memalsukan identiti nombor menggunakan teknologi pengklonan',
+      ],
+      ifAlreadyScammed: [
+        'Hentikan perbualan dan jangan buat sebarang pemindahan wang tambahan',
+        'Hubungi Pusat Tindak Balas Penipuan Kebangsaan di talian 997 dengan kadar segera jika transaksi baru sahaja berlaku',
+        'Hubungi bahagian khidmat pelanggan bank anda serta-merta untuk membekukan akaun dan menyekat kad perbankan',
+        'Tangkap layar rekod panggilan telefon, nombor pemanggil, dan bukti transaksi pemindahan wang',
+        'Buat laporan polis di Balai Polis berhampiran atau hubungi Jabatan Siasatan Jenayah Komersil PDRM',
+        'Laporkan nombor pemanggil penipu tersebut kepada penyedia perkhidmatan telekomunikasi anda',
+        'Sekat nombor telefon tersebut pada peranti mudah alih anda',
+        'Kongsi nombor telefon penipu di portal SemakMule PDRM dan platform ScamChecker untuk memberi amaran kepada orang ramai',
+      ],
+      reportingContacts: [
+        'Pusat Tindak Balas Penipuan Kebangsaan (NSRC): 997',
+        'Talian Hotline PDRM CCID: 03-2610-1559',
+        'Talian Hotline Cyber999: 1-300-88-2999',
+        'Bank Negara (BNMTELELINK): 1-300-88-5465',
+      ],
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     final game = Provider.of<GameProvider>(context, listen: false);
@@ -245,50 +453,27 @@ class TrendsView extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
 
-                    // Vertical list of 4 cards/buttons that navigate to ScamDetailView
-                    Column(
-                      children: List.generate(scamDetails.length, (index) {
-                        final detail = scamDetails[index];
-                        return _buildScamTypeCard(context, detail, delay: 150 + (index * 40));
-                      }),
-                    ),
-                    const SizedBox(height: 20),
+                  // Vertical list of 4 cards/buttons that navigate to ScamDetailView
+                  Column(
+                    children: List.generate(scamDetails.length, (index) {
+                      final detail = scamDetails[index];
+                      return _buildScamTypeCard(context, detail, delay: 150 + (index * 40));
+                    }),
+                  ),
+                  const SizedBox(height: 20),
 
-                  // Campaigns
+                  // Communication Safety Guides
                   _sectionLabel(
-                    'KEMPEN KESEDARAN TERKINI',
-                    LucideIcons.megaphone,
-                    AppColors.emerald,
-                  ),
-                  const SizedBox(height: 8),
-                  _buildCampaignCard(
-                    context,
-                    emoji: '⛽',
-                    brand: 'PETRONAS',
-                    title: 'Jangan Percaya Hadiah PETRONAS Palsu',
-                    body: 'Petronas TIDAK menganjurkan cabutan bertuah melalui WhatsApp atau SMS. Hubungi 1300-88-8118.',
-                    accentColor: AppColors.emerald,
-                    delay: 350,
+                    'PANDUAN KESELAMATAN MEDIUM KOMUNIKASI',
+                    LucideIcons.messageSquare,
+                    AppColors.cyan,
                   ),
                   const SizedBox(height: 10),
-                  _buildCampaignCard(
-                    context,
-                    emoji: '📺',
-                    brand: 'ASTRO',
-                    title: 'Amaran Rasmi: Pembaruan Kad Astro Palsu',
-                    body: 'Astro tidak menghubungi anda melalui WhatsApp untuk mengemaskini set-top-box. Hubungi 1300-82-3838.',
-                    accentColor: AppColors.cyan,
-                    delay: 390,
-                  ),
-                  const SizedBox(height: 10),
-                  _buildCampaignCard(
-                    context,
-                    emoji: '🏦',
-                    brand: 'BANK NEGARA',
-                    title: 'BNM: Laporkan Akaun Mule Melalui BNMLINK',
-                    body: 'Menyediakan akaun bank kepada penipu adalah JENAYAH. Hubungi BNM di 1-300-88-5465.',
-                    accentColor: AppColors.indigo,
-                    delay: 430,
+                  Column(
+                    children: List.generate(communicationGuides.length, (index) {
+                      final guide = communicationGuides[index];
+                      return _buildScamTypeCard(context, guide, delay: 350 + (index * 40));
+                    }),
                   ),
                   const SizedBox(height: 20),
 
@@ -465,62 +650,6 @@ class TrendsView extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-
-  Widget _buildCampaignCard(
-    BuildContext context, {
-    required String emoji,
-    required String brand,
-    required String title,
-    required String body,
-    required Color accentColor,
-    int delay = 0,
-  }) {
-    return GlassCard(
-      padding: const EdgeInsets.all(14),
-      border: Border.all(
-        color: accentColor.withValues(alpha: 0.35),
-        width: 1.5,
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Text(emoji, style: const TextStyle(fontSize: 18)),
-              const SizedBox(width: 8),
-              Text(
-                brand,
-                style: TextStyle(
-                  color: accentColor,
-                  fontSize: 8.5,
-                  fontWeight: FontWeight.w900,
-                  letterSpacing: 1.0,
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 6),
-          Text(
-            title,
-            style: TextStyle(
-              color: AppColors.textPrimaryOf(context),
-              fontSize: 12,
-              fontWeight: FontWeight.w800,
-            ),
-          ),
-          const SizedBox(height: 4),
-          Text(
-            body,
-            style: TextStyle(
-              color: AppColors.textSecondaryOf(context),
-              fontSize: 10,
-              height: 1.4,
-            ),
-          ),
-        ],
       ),
     );
   }

@@ -221,7 +221,7 @@ class ScamDetailView extends StatelessWidget {
                     child: Text(
                       item,
                       style: TextStyle(
-                        color: AppColors.textSecondaryOf(context),
+                        color: AppColors.textPrimaryOf(context),
                         fontSize: 12,
                         height: 1.4,
                         fontWeight: FontWeight.w500,

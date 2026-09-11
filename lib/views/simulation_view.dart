@@ -19,6 +19,13 @@ class SimulationView extends StatefulWidget {
 
 class _SimulationViewState extends State<SimulationView> {
   bool _isReplying = false;
+  final ScrollController _replyScrollController = ScrollController();
+
+  @override
+  void dispose() {
+    _replyScrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -1387,88 +1394,177 @@ class _SimulationViewState extends State<SimulationView> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text(
-                  'Pilih Maklum Balas Keselamatan',
-                  style: TextStyle(
-                    color: AppColors.textMutedOf(context),
-                    fontSize: 9,
-                    fontWeight: FontWeight.w900,
-                  ),
+                Row(
+                  children: [
+                    Text(
+                      'Pilih Maklum Balas Keselamatan',
+                      style: TextStyle(
+                        color: AppColors.textMutedOf(context),
+                        fontSize: 9.5,
+                        fontWeight: FontWeight.w900,
+                      ),
+                    ),
+                    const SizedBox(width: 6),
+                    Container(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 6,
+                        vertical: 2,
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.emeraldBadgeBgOf(context),
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: Text(
+                        '${scen.replyOptions.length} pilihan',
+                        style: TextStyle(
+                          color: AppColors.emeraldBadgeTextOf(context),
+                          fontSize: 8.5,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                TextButton(
+                OutlinedButton.icon(
                   onPressed: () => setState(() => _isReplying = false),
-                  child: const Text(
+                  icon: Icon(
+                    LucideIcons.x,
+                    size: 14,
+                    color: AppColors.roseBadgeTextOf(context),
+                  ),
+                  label: Text(
                     'Batal',
                     style: TextStyle(
-                      color: Color(0xFFF43F5E),
-                      fontSize: 9.5,
+                      color: AppColors.roseBadgeTextOf(context),
+                      fontSize: 11,
                       fontWeight: FontWeight.w900,
+                    ),
+                  ),
+                  style: OutlinedButton.styleFrom(
+                    backgroundColor: AppColors.roseBadgeBgOf(context),
+                    side: BorderSide(
+                      color: AppColors.roseBadgeTextOf(context).withValues(alpha: 0.35),
+                      width: 1.5,
+                    ),
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                    minimumSize: Size.zero,
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
                     ),
                   ),
                 ),
               ],
             ),
-            const SizedBox(height: 6),
+            const SizedBox(height: 8),
             Container(
-              constraints: const BoxConstraints(maxHeight: 140),
-              child: ListView.builder(
-                shrinkWrap: true,
-                itemCount: scen.replyOptions.length,
-                itemBuilder: (context, i) {
-                  final opt = scen.replyOptions[i];
-                  return Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.cardFillOf(context),
-                        borderRadius: BorderRadius.circular(12),
-                        border: Border.all(
-                          color: AppColors.surfaceBorderOf(context),
-                          width: 1.5,
-                        ),
-                      ),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(12),
-                        onTap: game.isAnalyzing
-                            ? null
-                            : () async {
-                                await game.analyzeUserReply(opt.text);
-                                setState(() => _isReplying = false);
-                              },
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 14,
-                            vertical: 16,
+              constraints: const BoxConstraints(maxHeight: 200),
+              child: Scrollbar(
+                controller: _replyScrollController,
+                thumbVisibility: scen.replyOptions.length > 2,
+                thickness: 4,
+                radius: const Radius.circular(8),
+                child: ListView.builder(
+                  controller: _replyScrollController,
+                  shrinkWrap: true,
+                  padding: EdgeInsets.zero,
+                  itemCount: scen.replyOptions.length,
+                  itemBuilder: (context, i) {
+                    final opt = scen.replyOptions[i];
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 8.0),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: AppColors.cardFillOf(context),
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(
+                            color: AppColors.surfaceBorderOf(context),
+                            width: 1.5,
                           ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  '"${opt.text}"',
-                                  style: TextStyle(
-                                    color: AppColors.textPrimaryOf(context),
-                                    fontSize: 10.5,
-                                    fontWeight: FontWeight.w800,
-                                    height: 1.3,
+                        ),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(12),
+                          onTap: game.isAnalyzing
+                              ? null
+                              : () async {
+                                  await game.analyzeUserReply(opt.text);
+                                  setState(() => _isReplying = false);
+                                },
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 12,
+                            ),
+                            child: Row(
+                              children: [
+                                Container(
+                                  width: 22,
+                                  height: 22,
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    color: AppColors.surfaceBorderOf(context),
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Text(
+                                    '${i + 1}',
+                                    style: TextStyle(
+                                      color: AppColors.textPrimaryOf(context),
+                                      fontSize: 10,
+                                      fontWeight: FontWeight.w900,
+                                    ),
                                   ),
                                 ),
-                              ),
-                              const SizedBox(width: 8),
-                              Icon(
-                                LucideIcons.send,
-                                color: AppColors.textMutedOf(context),
-                                size: 14,
-                              ),
-                            ],
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: Text(
+                                    '"${opt.text}"',
+                                    style: TextStyle(
+                                      color: AppColors.textPrimaryOf(context),
+                                      fontSize: 10.5,
+                                      fontWeight: FontWeight.w800,
+                                      height: 1.3,
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Icon(
+                                  LucideIcons.send,
+                                  color: AppColors.textMutedOf(context),
+                                  size: 14,
+                                ),
+                              ],
+                            ),
                           ),
                         ),
                       ),
-                    ),
-                  );
-                },
+                    );
+                  },
+                ),
               ),
             ),
+            if (scen.replyOptions.length > 2)
+              Padding(
+                padding: const EdgeInsets.only(top: 2.0, bottom: 4.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      LucideIcons.chevronsUpDown,
+                      size: 10,
+                      color: AppColors.textMutedOf(context),
+                    ),
+                    const SizedBox(width: 4),
+                    Text(
+                      'Scroll untuk melihat semua ${scen.replyOptions.length} pilihan',
+                      style: TextStyle(
+                        color: AppColors.textMutedOf(context),
+                        fontSize: 8.5,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             if (game.isAnalyzing)
               const Padding(
                 padding: EdgeInsets.only(top: 8.0),

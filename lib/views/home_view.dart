@@ -47,7 +47,7 @@ class HomeView extends StatelessWidget {
                         borderRadius: BorderRadius.circular(100),
                       ),
                       child: Text(
-                        'SIBER ANTI-SCAM MALAYSIA',
+                        'PERISAI DIGITAL WARGA EMAS',
                         style: TextStyle(
                           color: AppColors.emeraldBadgeTextOf(context),
                           fontSize: 9.5,
@@ -69,7 +69,7 @@ class HomeView extends StatelessWidget {
                     // Primary CTA — gradient card with emerald glow
                     _buildPrimaryCard(
                       title: 'MULA LATIHAN',
-                      subtitle: 'Uji & latih Street Smarts siber',
+                      subtitle: 'Latih diri menghadapi penipuan sebenar',
                       icon: LucideIcons.play,
                       onTap: () => game.setGameState('choose_category'),
                       delay: 300,
@@ -78,7 +78,7 @@ class HomeView extends StatelessWidget {
                     _buildNavCard(
                       context,
                       title: 'PANDUAN PENIPUAN',
-                      subtitle: 'Kes terkini Malaysia & push alert',
+                      subtitle: 'Ketahui taktik penipu',
                       icon: LucideIcons.bell,
                       iconColor: AppColors.indigoBadgeTextOf(context),
                       iconBgColor: AppColors.indigoBadgeBgOf(context),
@@ -89,7 +89,7 @@ class HomeView extends StatelessWidget {
                     _buildNavCard(
                       context,
                       title: 'SEJARAH LATIHAN',
-                      subtitle: 'Semak laporan prestasi lama',
+                      subtitle: 'Semak rekod simulasi',
                       icon: LucideIcons.history,
                       iconColor: AppColors.emeraldBadgeTextOf(context),
                       iconBgColor: AppColors.emeraldBadgeBgOf(context),
@@ -100,7 +100,7 @@ class HomeView extends StatelessWidget {
                     _buildNavCard(
                       context,
                       title: 'KATALOG SENARIO',
-                      subtitle: 'Tambah & selia taktik baharu',
+                      subtitle: 'Tambah & urus senario penipuan',
                       icon: LucideIcons.fileText,
                       iconColor: AppColors.mutedBadgeTextOf(context),
                       iconBgColor: AppColors.mutedBadgeBgOf(context),
@@ -148,7 +148,7 @@ class HomeView extends StatelessWidget {
                     ),
                     Expanded(
                       child: Text(
-                        'INISIATIF CELIK DIGITAL WARGA EMAS',
+                        'CELIK DIGITAL, ELAK TERPERDAYA',
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           color: AppColors.textMutedOf(context),

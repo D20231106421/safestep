@@ -6,7 +6,6 @@ import '../app_theme.dart';
 import '../providers/game_provider.dart';
 import '../widgets/glass_card.dart';
 import '../widgets/glass_app_bar.dart';
-import '../widgets/gradient_button.dart';
 import 'scam_detail_view.dart';
 
 class ScamDetail {
@@ -474,82 +473,6 @@ class TrendsView extends StatelessWidget {
                       final guide = communicationGuides[index];
                       return _buildScamTypeCard(context, guide, delay: 350 + (index * 40));
                     }),
-                  ),
-                  const SizedBox(height: 20),
-
-                  // Helpline
-                  _sectionLabel(
-                    'TALIAN KECEMASAN',
-                    LucideIcons.phone,
-                    AppColors.rose,
-                  ),
-                  const SizedBox(height: 8),
-                  GlassCard(
-                    padding: const EdgeInsets.all(18),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            const Icon(
-                              LucideIcons.shieldAlert,
-                              color: AppColors.emerald,
-                              size: 18,
-                            ),
-                            const SizedBox(width: 8),
-                            Text(
-                              'Pusat Rujukan Penipuan Kebangsaan',
-                              style: TextStyle(
-                                color: AppColors.textPrimaryOf(context),
-                                fontSize: 13,
-                                fontWeight: FontWeight.w800,
-                              ),
-                            ),
-                          ],
-                        ),
-                        const SizedBox(height: 10),
-                        Text(
-                          'Jika anda telah menjadi mangsa penipuan atau mempunyai maklumat lanjut, sila hubungi segera:',
-                          style: TextStyle(
-                            color: AppColors.textSecondaryOf(context),
-                            fontSize: 10,
-                            height: 1.5,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        GradientButton(
-                          label: 'Hubungi 997 — NSRC',
-                          icon: LucideIcons.phone,
-                          width: double.infinity,
-                          gradientColors: const [
-                            Color(0xFF106452),
-                            Color(0xFF106452),
-                          ],
-                          onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text(
-                                  'Dail 997 untuk NSRC (National Scam Response Centre)',
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                        const SizedBox(height: 10),
-                        Center(
-                          child: Text(
-                            'Talian Bebas Tol  •  24 Jam  •  7 Hari Seminggu',
-                            style: TextStyle(
-                              color: AppColors.isDark(context)
-                                  ? AppColors.emeraldMuted
-                                  : AppColors.lightEmeraldMuted,
-                              fontSize: 9,
-                              fontWeight: FontWeight.w700,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
                   ),
                   const SizedBox(height: 20),
                 ],

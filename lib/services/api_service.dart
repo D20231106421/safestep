@@ -99,8 +99,8 @@ Tentukan jika jawapan itu selamat atau mengundang bahaya. Secara umum, membalas 
     }
 
     // 3. Last Fallback: Static rule evaluation (identical to React's frontend local fallback)
-    final bool isActionSafe = reply == 'Saya abaikan dan padam mesej ini tanpa klik pautan.' ||
-        reply == 'Saya terus sekat (block) nombor pengirim ini di telefon saya.';
+    final bool isActionSafe = reply == 'Saya terus abaikan dan padam pesanan dari scammer ini.' ||
+        reply == 'Saya terus sekat scammer daripada menghantar pesanan.';
 
     final matchedOpt = scenario.replyOptions.firstWhere(
       (o) => o.text == reply,
@@ -114,14 +114,14 @@ Tentukan jika jawapan itu selamat atau mengundang bahaya. Secara umum, membalas 
     String why = '';
 
     if (isCorrect) {
-      feedback = 'Tindakan Cemerlang!';
-      why = 'Anda menolak taktik tipu muslihat scammer dengan tegas dan mengekalkan privasi anda secara selamat.';
+      feedback = 'Tahniah!';
+      why = 'Anda tidak tertipu muslihat scammer atas talian dan berjaya melindungi diri anda.';
     } else if (safetyLevel == 'bahaya') {
       feedback = 'Berisiko tinggi!';
-      why = 'Menjawab atau bertanya lanjut menunjukkan nombor anda aktif, membolehkan scammer melancarkan taktik emosi lanjutan.';
+      why = 'Menjawab atau bertanya lanjut menunjukkan anda boleh diperdaya oleh scammer atas talian, membolehkan scammer melancarkan taktik seterusnya.';
     } else {
       feedback = 'Sangat Bahaya!';
-      why = 'Menyerahkan butiran perbankan, maklumat sulit atau bersetuju dengan pindahan wang akan menyebabkan kerugian kewangan mutlak.';
+      why = 'Memberikan butiran perbankan, maklumat sulit atau bersetuju dengan pindahan wang akan menunjukkan scammer atas talian telah berjaya menipu anda.';
     }
 
     return ApiAnalysisResult(

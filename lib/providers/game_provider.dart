@@ -247,9 +247,9 @@ class GameProvider with ChangeNotifier {
     _foundRedFlags.add(cleanWord);
 
     if (isFlag) {
-      _redFlagMessage = 'Hebat! "$word" ialah bukti Red Flag siber yang sah. Modus operandi ini direka khas untuk memperdaya mangsa.';
+      _redFlagMessage = 'Hebat! "$word" ialah perkataan Red Flag dalam senario ini.';
     } else {
-      _redFlagMessage = '"$word" ialah perkataan biasa. Cuba cari pautan asing, desakan masa, atau permintaan maklumat bank.';
+      _redFlagMessage = '"$word" ialah perkataan biasa. Cuba cari pautan asing, desakan, atau permintaan maklumat bank.';
     }
     notifyListeners();
   }

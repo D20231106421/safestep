@@ -166,7 +166,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  'Bina senario dengan langkah yang jelas',
+                                  'BINA SENARIO SIMULASI ANDA SENDIRI',
                                   style: TextStyle(
                                     color: AppColors.textPrimaryOf(context),
                                     fontSize: 13,
@@ -175,7 +175,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                                 ),
                                 const SizedBox(height: 4),
                                 Text(
-                                  'Pilih medium, isi kandungan, tetapkan klasifikasi, kemudian tambah balasan dan tindakan.',
+                                  'Bina senario simulasi berdasarkan langkah dibawah.',
                                   style: TextStyle(
                                     color: AppColors.textMutedOf(context),
                                     fontSize: 10.5,
@@ -192,7 +192,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
 
                     _sectionCard(
                       title: 'JENIS MEDIUM',
-                      subtitle: 'Pilih saluran yang digunakan oleh senario ini.',
+                      subtitle: 'Pilih medium yang digunakan oleh senario ini.',
                       child: Wrap(
                         spacing: 8,
                         runSpacing: 8,
@@ -203,7 +203,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
 
                     _sectionCard(
                       title: 'KATEGORI PENIPUAN',
-                      subtitle: 'Pilih kumpulan modus operandi yang paling sesuai.',
+                      subtitle: 'Pilih kategori penipuan yang paling sesuai untuk senario ini.',
                       child: _dropdown(
                         _category,
                         _categories,
@@ -214,7 +214,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
 
                     _sectionCard(
                       title: 'MAKLUMAT ASAS',
-                      subtitle: 'Isi butiran utama sebelum masuk ke kandungan mesej.',
+                      subtitle: 'Isi maklumat penipu seperti Penghantar/Nama/Nombor & masa penipuan berlaku.',
                       child: Column(
                         children: [
                           CustomTextField(
@@ -226,7 +226,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                           ),
                           const SizedBox(height: 10),
                           CustomTextField(
-                            hintText: 'Cap masa, contohnya semalam atau 10:30 PM',
+                            hintText: 'Masa, contohnya semalam atau 10:30 PM',
                             controller: _timestampCtrl,
                           ),
                         ],
@@ -236,9 +236,9 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
 
                     _sectionCard(
                       title: 'MESEJ / KANDUNGAN',
-                      subtitle: 'Masukkan teks penuh yang akan dipaparkan kepada pengguna.',
+                      subtitle: 'Masukkan teks mesej/kandungan senario yang akan dipaparkan.',
                       child: CustomTextField(
-                        hintText: 'Teks mesej penuh...',
+                        hintText: 'Teks mesej/kandungan penuh...',
                         controller: _messageCtrl,
                         maxLines: 5,
                         validator: (v) => (v == null || v.trim().isEmpty)
@@ -250,7 +250,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
 
                     _sectionCard(
                       title: 'KLASIFIKASI',
-                      subtitle: 'Tetapkan tahap kesukaran dan tahap ancaman.',
+                      subtitle: 'Tetapkan tahap kesukaran, tahap ancaman & tetapkan sama ada senario ini adalah penipuan atau tidak.',
                       child: Column(
                         children: [
                           LayoutBuilder(
@@ -408,7 +408,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                                       ),
                                       const SizedBox(height: 3),
                                       Text(
-                                        'Aktifkan untuk kandungan yang perlu ditanda sebagai contoh penipuan.',
+                                        'Aktifkan untuk tandakan senario ini adalah penipuan.',
                                         style: TextStyle(
                                           color: AppColors.textMutedOf(context),
                                           fontSize: 9.5,
@@ -433,7 +433,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                     _sectionCard(
                       title: 'PENJELASAN',
                       child: CustomTextField(
-                        hintText: 'Penjelasan pakar tentang kenapa ini penipuan...',
+                        hintText: 'Penjelasan tentang mengapa ini penipuan...',
                         controller: _explanationCtrl,
                         maxLines: 3,
                         validator: (v) => (v == null || v.trim().isEmpty)
@@ -445,6 +445,7 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
 
                     _sectionCard(
                       title: 'TINDAKAN YANG DISYORKAN',
+                      subtitle: 'Masukkan tindakan yang boleh diambil sekiranya berhadapan dengan senario ini.',
                       trailing: GestureDetector(
                         onTap: () {
                           setState(() {
@@ -509,8 +510,8 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                     const SizedBox(height: 16),
 
                     _sectionCard(
-                      title: 'PILIHAN BALAS',
-                      subtitle: 'Sediakan pilihan respons yang selamat dan berbeza tahap risiko.',
+                      title: 'PILIHAN RESPON',
+                      subtitle: 'Masukkan pilihan respons yang selamat, berisiko atau bahaya bagi senario ini.',
                       trailing: GestureDetector(
                         onTap: () {
                           setState(() {

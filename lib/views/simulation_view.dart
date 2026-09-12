@@ -1621,7 +1621,7 @@ class _SimulationViewState extends State<SimulationView> {
                   color: AppColors.mutedBadgeTextOf(context),
                   bg: AppColors.mutedBadgeBgOf(context),
                   onTap: () => game.analyzeUserReply(
-                    'Saya abaikan dan padam mesej ini tanpa klik pautan.',
+                    'Saya terus abaikan dan padam pesanan dari scammer ini.',
                   ),
                 ),
                 // Sekat Option
@@ -1631,7 +1631,7 @@ class _SimulationViewState extends State<SimulationView> {
                   color: AppColors.roseBadgeTextOf(context),
                   bg: AppColors.roseBadgeBgOf(context),
                   onTap: () => game.analyzeUserReply(
-                    'Saya terus sekat (block) nombor pengirim ini di telefon saya.',
+                    'Saya terus sekat scammer daripada menghantar pesanan.',
                   ),
                 ),
               ],

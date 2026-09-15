@@ -23,34 +23,28 @@ class NotificationService {
   // ── Sample alert content ───────────────────────────────────────────────────
   static const List<Map<String, String>> _sampleAlerts = [
     {
-      'title': '🚨 SafeStep Amaran: Macau Scam',
-      'body':
-          'Waspada panggilan telefon dari Bukit Aman kononnya akaun anda dibekukan. PDRM tidak siasat guna telefon!',
+      'title': 'Peringatan: Hati-Hati Dengan Penipuan',
+      'body': 'Jangan mudah percaya pada mesej atau panggilan yang mencurigakan. Semak dahulu sebelum bertindak',
     },
     {
-      'title': '💡 SafeStep Tips Keselamatan',
-      'body':
-          'Jangan dedahkan kod SMS TAC bank anda. Kakitangan Maybank/CIMB tidak akan memintanya.',
+      'title': 'Peringatan: Jangan Terburu-buru',
+      'body': 'Penipu mungkin cuba membuat anda panik. Bertenang dan fikir dahulu sebelum memberi maklumat',
     },
     {
-      'title': '🔥 Amaran Trend: LHDN Palsu',
-      'body':
-          'SMS menawarkan bayaran balik cukai mengandungi pautan ganjil \'.top\' sedang merebak. Abaikan segera!',
+      'title': 'Peringatan: Lindungi Maklumat Anda',
+      'body': 'Jangan berikan OTP, kata laluan atau maklumat bank kepada sesiapa',
     },
     {
-      'title': '🛡️ SafeStep Amaran APK',
-      'body':
-          'Jangan sesekali memasang fail aplikasi (.apk) yang dihantar melalui chat orang asing. Risiko peranti digodam!',
+      'title': 'Peringatan: Tawaran Terlalu Menarik?',
+      'body': 'Jika tawaran terlalu bagus untuk dipercayai, semak dahulu. Jangan terus membuat bayaran',
     },
     {
-      'title': '⚠️ Amaran: Pelaburan Palsu',
-      'body':
-          'Tawaran pulangan tinggi 30% sebulan melalui Telegram adalah tipuan. Tiada pelaburan sah menjanjikan ini!',
+      'title': 'Peringatan: Panggilan Mencurigakan?',
+      'body': 'Jika seseorang meminta wang atau maklumat peribadi, hentikan perbualan dan semak dengan keluarga.',
     },
     {
-      'title': '📱 SafeStep: Panggilan Scam',
-      'body':
-          'Jangan berikan maklumat peribadi kepada mana-mana pihak yang menghubungi anda secara tiba-tiba. Tutup sahaja!',
+      'title': 'Peringatan: Ingat, Penipu Boleh Menyamar',
+      'body': 'Penipu boleh menyamar sebagai bank, polis atau orang yang anda kenali. Sentiasa semak sebelum percaya.',
     },
   ];
 

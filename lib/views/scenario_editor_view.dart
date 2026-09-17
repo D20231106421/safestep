@@ -527,12 +527,12 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             Icon(LucideIcons.plus,
-                                color: AppColors.indigo, size: 14),
+                                color: AppColors.emerald, size: 14),
                             SizedBox(width: 4),
                             Text(
                               'Tambah',
                               style: TextStyle(
-                                color: AppColors.indigo,
+                                color: AppColors.emerald,
                                 fontSize: 10,
                                 fontWeight: FontWeight.w700,
                               ),

@@ -79,12 +79,12 @@ class ModuleSelectionView extends StatelessWidget {
         case 'phishing':
           return (AppColors.indigoBadgeBgOf(context), AppColors.indigoBadgeTextOf(context));
         case 'family':
-          return (AppColors.emeraldBadgeBgOf(context), AppColors.emeraldBadgeTextOf(context));
-        case 'others':
           return (AppColors.cyanBadgeBgOf(context), AppColors.cyanBadgeTextOf(context));
+        case 'others':
+          return (AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context));
         case 'all':
         default:
-          return (AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context));
+          return (AppColors.emeraldBadgeBgOf(context), AppColors.emeraldBadgeTextOf(context));
       }
     }
 

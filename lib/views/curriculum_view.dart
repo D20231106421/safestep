@@ -26,15 +26,13 @@ class _CurriculumViewState extends State<CurriculumView> {
   (Color, Color) _getTypeBadgeColors(BuildContext context, String type) {
     switch (type.toLowerCase()) {
       case 'whatsapp':
-        return (AppColors.emeraldBadgeBgOf(context), AppColors.emeraldBadgeTextOf(context));
+        return (AppColors.blueBadgeBgOf(context), AppColors.blueBadgeTextOf(context));
       case 'sms':
         return (AppColors.cyanBadgeBgOf(context), AppColors.cyanBadgeTextOf(context));
       case 'email':
         return (AppColors.amberBadgeBgOf(context), AppColors.amberBadgeTextOf(context));
       case 'phone':
         return (AppColors.roseBadgeBgOf(context), AppColors.roseBadgeTextOf(context));
-      case 'web':
-        return (AppColors.indigoBadgeBgOf(context), AppColors.indigoBadgeTextOf(context));
       default:
         return (AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context));
     }
@@ -148,7 +146,7 @@ class _CurriculumViewState extends State<CurriculumView> {
               child: Row(
                 children: [
                   Text(
-                    '${filtered.length} senario',
+                    '${filtered.length} Senario',
                     style: TextStyle(
                       color: AppColors.textSecondaryOf(context),
                       fontSize: 10,
@@ -163,7 +161,7 @@ class _CurriculumViewState extends State<CurriculumView> {
                   ),
                   const SizedBox(width: 8),
                   Text(
-                    '$activeCount aktif',
+                    '$activeCount Aktif',
                     style: const TextStyle(
                       color: AppColors.emerald,
                       fontSize: 10,
@@ -252,14 +250,14 @@ class _CurriculumViewState extends State<CurriculumView> {
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
         decoration: BoxDecoration(
           color: active
-              ? AppColors.amberBadgeBgOf(context)
+              ? AppColors.emeraldBadgeBgOf(context)
               : (isDark
                   ? AppColors.surfaceBorder.withValues(alpha: 0.5)
                   : Colors.white),
           borderRadius: BorderRadius.circular(100),
           border: Border.all(
             color: active
-                ? AppColors.amber.withValues(alpha: 0.5)
+                ? AppColors.emerald.withValues(alpha: 0.5)
                 : AppColors.surfaceBorderOf(context),
             width: 1,
           ),
@@ -270,7 +268,7 @@ class _CurriculumViewState extends State<CurriculumView> {
             textAlign: TextAlign.center,
             style: TextStyle(
               color: active
-                  ? AppColors.amberBadgeTextOf(context)
+                  ? AppColors.emeraldBadgeTextOf(context)
                   : AppColors.textMutedOf(context),
               fontSize: 10,
               fontWeight: FontWeight.w700,
@@ -343,9 +341,9 @@ class _CurriculumViewState extends State<CurriculumView> {
               children: [
                 _miniTag(s.type.toUpperCase(), typeBg, typeText),
                 const SizedBox(width: 5),
-                _miniTag(s.difficulty, AppColors.indigoBadgeBgOf(context), AppColors.indigoBadgeTextOf(context)),
+                _miniTag(s.difficulty, AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context)),
                 const SizedBox(width: 5),
-                _miniTag(s.threatLevel, AppColors.roseBadgeBgOf(context), AppColors.roseBadgeTextOf(context)),
+                _miniTag(s.threatLevel, AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context)),
                 const Spacer(),
                 GestureDetector(
                   onTap: () => Navigator.push(
@@ -464,7 +462,6 @@ class _CurriculumViewState extends State<CurriculumView> {
       case 'sms':      return LucideIcons.messageSquare;
       case 'email':    return LucideIcons.mail;
       case 'phone':    return LucideIcons.phone;
-      case 'web':      return LucideIcons.globe;
       default:         return LucideIcons.file;
     }
   }

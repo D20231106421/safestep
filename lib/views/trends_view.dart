@@ -39,7 +39,7 @@ class TrendsView extends StatelessWidget {
     ScamDetail(
       title: 'Phishing & Smishing',
       icon: LucideIcons.mail,
-      themeColor: AppColors.rose,
+      themeColor: AppColors.cyan,
       definition: 'Penipuan melalui e-mel, SMS, WhatsApp, atau mesej lain yang menyamar sebagai organisasi sah seperti bank, agensi kerajaan, syarikat penghantaran, atau jenama terkenal dengan tujuan mencuri maklumat peribadi dan kewangan.',
       howItWorks: [
         'Penipu menghantar mesej yang mendakwa akaun anda dikunci atau bungkusan tertahan.',
@@ -72,7 +72,7 @@ class TrendsView extends StatelessWidget {
     ScamDetail(
       title: 'Penyamaran Pihak Berkuasa & Agensi Kerajaan',
       icon: LucideIcons.userCheck,
-      themeColor: AppColors.amber,
+      themeColor: AppColors.cyan,
       definition: 'Penipuan di mana penipu menyamar sebagai ahli keluarga, rakan, pegawai kerajaan (PDRM, LHDN), pekerja bank, jenama terkenal, atau selebriti untuk memperdayakan anda.',
       howItWorks: [
         'Penipu mencipta akaun media sosial atau WhatsApp palsu menggunakan nama dan gambar orang sebenar.',
@@ -106,7 +106,7 @@ class TrendsView extends StatelessWidget {
     ScamDetail(
       title: 'Penipuan Sokongan Teknikal & Bank',
       icon: LucideIcons.monitorPlay,
-      themeColor: AppColors.indigo,
+      themeColor: AppColors.cyan,
       definition: 'Penipu menyamar sebagai kakitangan sokongan teknikal atau pegawai bank untuk mendapatkan akses ke peranti atau akaun kewangan anda bagi mencuri wang dan data peribadi.',
       howItWorks: [
         'Pop-up amaran virus palsu muncul pada pelayar web meminta anda hubungi nombor sokongan.',
@@ -149,7 +149,7 @@ class TrendsView extends StatelessWidget {
     ScamDetail(
       title: 'Cabutan Bertuah & Hadiah Palsu',
       icon: LucideIcons.gift,
-      themeColor: AppColors.emerald,
+      themeColor: AppColors.cyan,
       definition: 'Penipuan di mana mangsa diberitahu mereka telah memenangi hadiah lumayan, loteri, atau pertandingan walaupun mereka tidak pernah menyertainya, sebagai umpan untuk memeras wang.',
       howItWorks: [
         'Mangsa menerima SMS, e-mel, atau mesej media sosial yang mendakwa mereka memenangi hadiah eksklusif.',
@@ -182,7 +182,7 @@ class TrendsView extends StatelessWidget {
     ScamDetail(
       title: 'Penipuan Penyamar Keluarga',
       icon: LucideIcons.users,
-      themeColor: AppColors.amber,
+      themeColor: AppColors.cyan,
       definition: 'Penipuan di mana penipu menyamar sebagai ahli keluarga atau rakan rapat untuk meminta wang atau maklumat peribadi sensitif atas alasan kecemasan.',
       howItWorks: [
         'Penipu mengklon akaun media sosial atau WhatsApp menggunakan gambar dan nama orang yang anda kenali.',
@@ -219,7 +219,7 @@ class TrendsView extends StatelessWidget {
     ScamDetail(
       title: 'Perlindungan Penipuan WhatsApp',
       icon: LucideIcons.messageSquare,
-      themeColor: AppColors.emerald,
+      themeColor: AppColors.indigo,
       definition: 'Lindungi Diri Anda di WhatsApp: Ketahui cara mengenal pasti dan mengelakkan penipuan WhatsApp yang menyasarkan rakyat Malaysia. Daripada mesej palsu hinggalah penipuan penyamaran. Lebih 30% penipuan dalam talian di Malaysia bermula di WhatsApp.',
       howItWorks: [
         'Pemberitahuan Penghantaran Palsu: Scammer menghantar mesej menyamar sebagai syarikat kurier dan meminta anda mengklik pautan atau membayar yuran. (Contoh: Bungkusan anda ditahan di kastam. Klik di sini untuk membayar yuran kastam RM15: [pautan berniat jahat])',
@@ -268,7 +268,7 @@ class TrendsView extends StatelessWidget {
     ScamDetail(
       title: 'Perlindungan Penipuan E-mel',
       icon: LucideIcons.mail,
-      themeColor: AppColors.cyan,
+      themeColor: AppColors.indigo,
       definition: 'Perlindungan Phishing E-mel: Ketahui cara mengenal pasti dan mengelakkan penipuan e-mel termasuk pemancingan data, penyamaran e-mel, dan kompromi e-mel perniagaan. E-mel kekal sebagai vektor #1 untuk serangan siber di Malaysia.',
       howItWorks: [
         'E-mel Phishing Bank: E-mel palsu yang menyamar sebagai bank anda untuk meminta anda mengesahkan butiran akaun atau mengklik pautan berniat jahat. (Contoh: Subjek: SEGERA - Akaun Digantung. Klik di sini dalam masa 24 jam untuk mengaktifkan semula akaun anda.)',
@@ -371,7 +371,7 @@ class TrendsView extends StatelessWidget {
     ScamDetail(
       title: 'Perlindungan Penipuan Panggilan Telefon',
       icon: LucideIcons.phoneCall,
-      themeColor: AppColors.rose,
+      themeColor: AppColors.indigo,
       definition: 'Pencegahan Penipuan Panggilan Telefon: Ketahui cara mengenal pasti dan melindungi diri anda daripada penipuan panggilan suara termasuk penipuan Macau Scam, penyamaran pegawai bank, ugutan penguat kuasa, dan panggilan robotik automatik. Panggilan suara merupakan taktik manipulasi psikologi yang paling agresif dan mengakibatkan kerugian kewangan terbesar di Malaysia.',
       howItWorks: [
         'Penyamaran Agensi Penguatkuasa dan Mahkamah: Penipu menyamar sebagai pegawai polis, pegawai mahkamah, SPRM, atau LHDN yang mendakwa anda terlibat dalam jenayah penggubahan wang haram atau tunggakan cukai dan mengugut untuk menangkap anda. (Contoh: Panggilan mendakwa daripada Ibu Pejabat Polis Bukit Aman menyatakan akaun anda digunakan untuk transaksi dadah bernilai RM2.5 juta dan waran tangkap telah dikeluarkan atas nama anda.)',
@@ -448,7 +448,7 @@ class TrendsView extends StatelessWidget {
                   _sectionLabel(
                     'JENIS SCAM YANG KERAP BERLAKU',
                     LucideIcons.alertTriangle,
-                    AppColors.rose,
+                    AppColors.emerald,
                   ),
                   const SizedBox(height: 10),
 
@@ -465,7 +465,7 @@ class TrendsView extends StatelessWidget {
                   _sectionLabel(
                     'PANDUAN KESELAMATAN MEDIUM KOMUNIKASI',
                     LucideIcons.messageSquare,
-                    AppColors.cyan,
+                    AppColors.emerald,
                   ),
                   const SizedBox(height: 10),
                   Column(
@@ -487,14 +487,14 @@ class TrendsView extends StatelessWidget {
   Widget _sectionLabel(String text, IconData icon, Color color) {
     return Row(
       children: [
-        Icon(icon, color: color, size: 13),
+        Icon(icon, color: color, size: 14),
         const SizedBox(width: 6),
         Text(
           text,
           style: TextStyle(
             color: color,
-            fontSize: 8.5,
-            fontWeight: FontWeight.w800,
+            fontSize: 9,
+            fontWeight: FontWeight.w900,
             letterSpacing: 0.8,
           ),
         ),

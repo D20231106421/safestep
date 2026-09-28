@@ -29,22 +29,32 @@ class ScenarioProvider with ChangeNotifier {
     }
     notifyListeners();
     await _storageService.saveScenarios(_masterScenarios);
+
+    // Save custom scenarios to Cloud Firestore
+    await _storageService.saveCustomScenarioToCloud(scenario);
   }
 
   Future<void> deleteScenario(int id) async {
     _masterScenarios.removeWhere((s) => s.id == id);
     notifyListeners();
     await _storageService.saveScenarios(_masterScenarios);
+
+    // Delete custom scenario from Cloud Firestore
+    await _storageService.deleteCustomScenarioFromCloud(id);
   }
 
   Future<void> toggleScenarioActive(int id) async {
     final index = _masterScenarios.indexWhere((s) => s.id == id);
     if (index != -1) {
-      _masterScenarios[index] = _masterScenarios[index].copyWith(
+      final updated = _masterScenarios[index].copyWith(
         isActive: !_masterScenarios[index].isActive,
       );
+      _masterScenarios[index] = updated;
       notifyListeners();
       await _storageService.saveScenarios(_masterScenarios);
+
+      // If this is a custom scenario, update in cloud
+      await _storageService.saveCustomScenarioToCloud(updated);
     }
   }
 

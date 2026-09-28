@@ -28,17 +28,23 @@ class HistoryProvider with ChangeNotifier {
     _historyLogs.insert(0, log);
     notifyListeners();
     await _storageService.saveHistory(_historyLogs);
+    // Sync to Firestore in the background
+    await _storageService.saveHistoryLogToCloud(log);
   }
 
   Future<void> deleteLog(int id) async {
     _historyLogs.removeWhere((log) => log.id == id);
     notifyListeners();
     await _storageService.saveHistory(_historyLogs);
+    // Delete from Firestore
+    await _storageService.deleteHistoryLogFromCloud(id);
   }
 
   Future<void> clearAllLogs() async {
     _historyLogs.clear();
     notifyListeners();
     await _storageService.saveHistory(_historyLogs);
+    // Clear in Firestore
+    await _storageService.clearAllHistoryFromCloud();
   }
 }

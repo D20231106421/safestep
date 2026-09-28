@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 import 'app_theme.dart';
 import 'providers/settings_provider.dart';
 import 'providers/history_provider.dart';
 import 'providers/scenario_provider.dart';
 import 'providers/game_provider.dart';
 import 'services/notification_service.dart';
+import 'services/identity_service.dart';
 import 'views/home_view.dart';
 import 'views/module_selection_view.dart';
 import 'views/simulation_view.dart';
@@ -35,6 +38,16 @@ void main() async {
     DeviceOrientation.portraitUp,
     DeviceOrientation.portraitDown,
   ]);
+
+  // Initialize Firebase Core & Persistent Identity
+  try {
+    await Firebase.initializeApp(
+      options: DefaultFirebaseOptions.currentPlatform,
+    );
+    await IdentityService.instance.getOrCreateUserId();
+  } catch (e, stackTrace) {
+    debugPrint('Error initializing Firebase / Identity: $e\n$stackTrace');
+  }
 
   // Initialize real system notification plugin
   try {

@@ -169,43 +169,53 @@ abstract class AppColors {
 //  TEXT STYLE TOKENS
 // ─────────────────────────────────────────────
 abstract class AppTextStyles {
-  static TextStyle get displayLarge => GoogleFonts.plusJakartaSans(
+  static const String fontFamily = 'PlusJakartaSans';
+
+  static TextStyle get displayLarge => const TextStyle(
+    fontFamily: fontFamily,
     fontSize: 32, fontWeight: FontWeight.w900,
     color: AppColors.textPrimary, letterSpacing: -0.5,
   );
 
-  static TextStyle get headlineLarge => GoogleFonts.plusJakartaSans(
+  static TextStyle get headlineLarge => const TextStyle(
+    fontFamily: fontFamily,
     fontSize: 22, fontWeight: FontWeight.w800,
     color: AppColors.textPrimary, letterSpacing: -0.5,
   );
 
-  static TextStyle get titleMedium => GoogleFonts.plusJakartaSans(
+  static TextStyle get titleMedium => const TextStyle(
+    fontFamily: fontFamily,
     fontSize: 16, fontWeight: FontWeight.w700,
     color: AppColors.textPrimary,
   );
 
-  static TextStyle get titleSmall => GoogleFonts.plusJakartaSans(
+  static TextStyle get titleSmall => const TextStyle(
+    fontFamily: fontFamily,
     fontSize: 13, fontWeight: FontWeight.w700,
     color: AppColors.textPrimary,
   );
 
-  static TextStyle get bodyMedium => GoogleFonts.plusJakartaSans(
+  static TextStyle get bodyMedium => const TextStyle(
+    fontFamily: fontFamily,
     fontSize: 12, fontWeight: FontWeight.w500,
     color: AppColors.textSecondary, height: 1.5,
   );
 
-  static TextStyle get bodySmall => GoogleFonts.plusJakartaSans(
+  static TextStyle get bodySmall => const TextStyle(
+    fontFamily: fontFamily,
     fontSize: 10, fontWeight: FontWeight.w500,
     color: AppColors.textSecondary, height: 1.5,
   );
 
-  static TextStyle get labelSmall => GoogleFonts.plusJakartaSans(
+  static TextStyle get labelSmall => const TextStyle(
+    fontFamily: fontFamily,
     fontSize: 8.5, fontWeight: FontWeight.w800,
     color: AppColors.textMuted,
     letterSpacing: 0.8,
   );
 
-  static TextStyle get caption => GoogleFonts.plusJakartaSans(
+  static TextStyle get caption => const TextStyle(
+    fontFamily: fontFamily,
     fontSize: 9, fontWeight: FontWeight.w600,
     color: AppColors.textMuted, letterSpacing: 0.3,
   );
@@ -215,14 +225,17 @@ abstract class AppTextStyles {
 //  THEME DATA
 // ─────────────────────────────────────────────
 abstract class AppTheme {
+  static const String fontFamily = 'PlusJakartaSans';
+
   static ThemeData buildTheme() => buildDarkTheme();
 
   static ThemeData buildDarkTheme() {
-    final base = GoogleFonts.plusJakartaSansTextTheme();
+    final base = ThemeData.dark().textTheme;
 
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.dark,
+      fontFamily: fontFamily,
       scaffoldBackgroundColor: AppColors.canvas,
 
       colorScheme: const ColorScheme.dark(
@@ -236,49 +249,50 @@ abstract class AppTheme {
 
       textTheme: base.copyWith(
         displayLarge: base.displayLarge?.copyWith(
-          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+          fontFamily: fontFamily,
           fontSize: 32, fontWeight: FontWeight.w900,
           color: AppColors.textPrimary, letterSpacing: -0.5,
         ),
         headlineLarge: base.headlineLarge?.copyWith(
-          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+          fontFamily: fontFamily,
           fontSize: 22, fontWeight: FontWeight.w800,
           color: AppColors.textPrimary,
         ),
         titleMedium: base.titleMedium?.copyWith(
-          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+          fontFamily: fontFamily,
           fontSize: 16, fontWeight: FontWeight.w700,
           color: AppColors.textPrimary,
         ),
         titleSmall: base.titleSmall?.copyWith(
-          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+          fontFamily: fontFamily,
           fontSize: 13, fontWeight: FontWeight.w700,
           color: AppColors.textPrimary,
         ),
         bodyMedium: base.bodyMedium?.copyWith(
-          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+          fontFamily: fontFamily,
           fontSize: 12, color: AppColors.textSecondary, height: 1.5,
         ),
         bodySmall: base.bodySmall?.copyWith(
-          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+          fontFamily: fontFamily,
           fontSize: 10, color: AppColors.textSecondary, height: 1.5,
         ),
         labelSmall: base.labelSmall?.copyWith(
-          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+          fontFamily: fontFamily,
           fontSize: 8.5, fontWeight: FontWeight.w800,
           color: AppColors.textMuted, letterSpacing: 0.8,
         ),
       ),
 
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.surface,
         elevation: 0,
-        systemOverlayStyle: const SystemUiOverlayStyle(
+        systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: Brightness.light,
         ),
-        iconTheme: const IconThemeData(color: AppColors.textSecondary),
-        titleTextStyle: GoogleFonts.plusJakartaSans(
+        iconTheme: IconThemeData(color: AppColors.textSecondary),
+        titleTextStyle: TextStyle(
+          fontFamily: fontFamily,
           color: AppColors.textPrimary,
           fontSize: 14, fontWeight: FontWeight.w900, letterSpacing: 0.3,
         ),
@@ -291,7 +305,8 @@ abstract class AppTheme {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           elevation: 0,
           minimumSize: const Size(0, 48),
-          textStyle: GoogleFonts.plusJakartaSans(
+          textStyle: const TextStyle(
+            fontFamily: fontFamily,
             fontSize: 13, fontWeight: FontWeight.w700,
           ),
         ),
@@ -303,7 +318,8 @@ abstract class AppTheme {
           side: const BorderSide(color: AppColors.surfaceBorder, width: 1.5),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           minimumSize: const Size(0, 48),
-          textStyle: GoogleFonts.plusJakartaSans(
+          textStyle: const TextStyle(
+            fontFamily: fontFamily,
             fontSize: 13, fontWeight: FontWeight.w700,
           ),
         ),
@@ -377,11 +393,12 @@ abstract class AppTheme {
   }
 
   static ThemeData buildLightTheme() {
-    final base = GoogleFonts.plusJakartaSansTextTheme();
+    final base = ThemeData.light().textTheme;
 
     return ThemeData(
       useMaterial3: true,
       brightness: Brightness.light,
+      fontFamily: fontFamily,
       scaffoldBackgroundColor: AppColors.lightCanvas,
 
       colorScheme: const ColorScheme.light(
@@ -395,49 +412,50 @@ abstract class AppTheme {
 
       textTheme: base.copyWith(
         displayLarge: base.displayLarge?.copyWith(
-          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+          fontFamily: fontFamily,
           fontSize: 32, fontWeight: FontWeight.w900,
           color: AppColors.lightTextPrimary, letterSpacing: -0.5,
         ),
         headlineLarge: base.headlineLarge?.copyWith(
-          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+          fontFamily: fontFamily,
           fontSize: 22, fontWeight: FontWeight.w800,
           color: AppColors.lightTextPrimary,
         ),
         titleMedium: base.titleMedium?.copyWith(
-          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+          fontFamily: fontFamily,
           fontSize: 16, fontWeight: FontWeight.w700,
           color: AppColors.lightTextPrimary,
         ),
         titleSmall: base.titleSmall?.copyWith(
-          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+          fontFamily: fontFamily,
           fontSize: 13, fontWeight: FontWeight.w700,
           color: AppColors.lightTextPrimary,
         ),
         bodyMedium: base.bodyMedium?.copyWith(
-          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+          fontFamily: fontFamily,
           fontSize: 12, color: AppColors.lightTextSecondary, height: 1.5,
         ),
         bodySmall: base.bodySmall?.copyWith(
-          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+          fontFamily: fontFamily,
           fontSize: 10, color: AppColors.lightTextSecondary, height: 1.5,
         ),
         labelSmall: base.labelSmall?.copyWith(
-          fontFamily: GoogleFonts.plusJakartaSans().fontFamily,
+          fontFamily: fontFamily,
           fontSize: 8.5, fontWeight: FontWeight.w800,
           color: AppColors.lightTextMuted, letterSpacing: 0.8,
         ),
       ),
 
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         backgroundColor: AppColors.lightCanvas,
         elevation: 0,
-        systemOverlayStyle: const SystemUiOverlayStyle(
+        systemOverlayStyle: SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: Brightness.dark,
         ),
-        iconTheme: const IconThemeData(color: AppColors.lightTextSecondary),
-        titleTextStyle: GoogleFonts.plusJakartaSans(
+        iconTheme: IconThemeData(color: AppColors.lightTextSecondary),
+        titleTextStyle: TextStyle(
+          fontFamily: fontFamily,
           color: AppColors.lightTextPrimary,
           fontSize: 14, fontWeight: FontWeight.w900, letterSpacing: 0.3,
         ),
@@ -450,7 +468,8 @@ abstract class AppTheme {
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           elevation: 0,
           minimumSize: const Size(0, 48),
-          textStyle: GoogleFonts.plusJakartaSans(
+          textStyle: const TextStyle(
+            fontFamily: fontFamily,
             fontSize: 13, fontWeight: FontWeight.w700,
           ),
         ),
@@ -462,7 +481,8 @@ abstract class AppTheme {
           side: const BorderSide(color: AppColors.lightSurfaceBorder, width: 1.5),
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           minimumSize: const Size(0, 48),
-          textStyle: GoogleFonts.plusJakartaSans(
+          textStyle: const TextStyle(
+            fontFamily: fontFamily,
             fontSize: 13, fontWeight: FontWeight.w700,
           ),
         ),
@@ -489,19 +509,21 @@ abstract class AppTheme {
         ),
       ),
 
-      snackBarTheme: SnackBarThemeData(
+      snackBarTheme: const SnackBarThemeData(
         backgroundColor: AppColors.lightTextPrimary,
-        contentTextStyle: GoogleFonts.plusJakartaSans(
+        contentTextStyle: TextStyle(
+          fontFamily: fontFamily,
           color: Colors.white, fontSize: 12,
         ),
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(12))),
         behavior: SnackBarBehavior.floating,
       ),
 
       inputDecorationTheme: InputDecorationTheme(
         filled: true,
         fillColor: Colors.white,
-        hintStyle: GoogleFonts.plusJakartaSans(
+        hintStyle: const TextStyle(
+          fontFamily: fontFamily,
           color: AppColors.lightTextMuted, fontSize: 13,
         ),
         enabledBorder: OutlineInputBorder(

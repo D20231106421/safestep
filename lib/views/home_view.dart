@@ -126,10 +126,6 @@ class HomeView extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: AppColors.mutedBadgeBgOf(context),
                           borderRadius: BorderRadius.circular(12),
-                          border: Border.all(
-                            color: AppColors.surfaceBorderOf(context),
-                            width: 1.5,
-                          ),
                           boxShadow: [
                             if (!isDark)
                               BoxShadow(
@@ -288,10 +284,6 @@ class HomeView extends StatelessWidget {
                     // Solid icon background
                     color: iconBgColor,
                     borderRadius: BorderRadius.circular(14),
-                    border: Border.all(
-                      color: iconColor.withValues(alpha: 0.35),
-                      width: 1.5,
-                    ),
                   ),
                   child: Icon(icon, color: iconColor, size: 22),
                 ),

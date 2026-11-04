@@ -149,10 +149,6 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                             decoration: BoxDecoration(
                               color: AppColors.emeraldBadgeBgOf(context),
                               borderRadius: BorderRadius.circular(14),
-                              border: Border.all(
-                                color: AppColors.emeraldBadgeTextOf(context).withValues(alpha: 0.35),
-                                width: 1.5,
-                              ),
                             ),
                             child: Icon(
                               LucideIcons.edit3,
@@ -382,10 +378,6 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
                                   decoration: BoxDecoration(
                                     color: AppColors.amberBadgeBgOf(context),
                                     borderRadius: BorderRadius.circular(10),
-                                    border: Border.all(
-                                      color: AppColors.amberBadgeTextOf(context).withValues(alpha: 0.35),
-                                      width: 1.5,
-                                    ),
                                   ),
                                   child: Icon(
                                     LucideIcons.alertTriangle,

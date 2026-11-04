@@ -8,7 +8,6 @@ import '../providers/scenario_provider.dart';
 import '../widgets/custom_text_field.dart';
 import '../widgets/glass_app_bar.dart';
 import '../widgets/glass_card.dart';
-import '../widgets/metric_chip.dart';
 import 'scenario_editor_view.dart';
 
 class CurriculumView extends StatefulWidget {
@@ -20,19 +19,17 @@ class CurriculumView extends StatefulWidget {
 
 class _CurriculumViewState extends State<CurriculumView> {
   String _searchQuery = '';
-  String _filterType = 'all';
-  String _filterCategory = 'all';
 
   (Color, Color) _getTypeBadgeColors(BuildContext context, String type) {
     switch (type.toLowerCase()) {
       case 'whatsapp':
-        return (AppColors.blueBadgeBgOf(context), AppColors.blueBadgeTextOf(context));
+        return (AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context));
       case 'sms':
-        return (AppColors.cyanBadgeBgOf(context), AppColors.cyanBadgeTextOf(context));
+        return (AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context));
       case 'email':
-        return (AppColors.amberBadgeBgOf(context), AppColors.amberBadgeTextOf(context));
+        return (AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context));
       case 'phone':
-        return (AppColors.roseBadgeBgOf(context), AppColors.roseBadgeTextOf(context));
+        return (AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context));
       default:
         return (AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context));
     }
@@ -44,14 +41,11 @@ class _CurriculumViewState extends State<CurriculumView> {
     final game = Provider.of<GameProvider>(context, listen: false);
 
     final filtered = scenProv.masterScenarios.where((s) {
-      final matchType = _filterType == 'all' || s.type == _filterType;
-      final matchCategory = _filterCategory == 'all' ||
-          normalizeCategoryLabel(s.category) == _filterCategory;
       final matchSearch = _searchQuery.isEmpty ||
           s.sender.toLowerCase().contains(_searchQuery.toLowerCase()) ||
           s.category.toLowerCase().contains(_searchQuery.toLowerCase()) ||
           s.message.toLowerCase().contains(_searchQuery.toLowerCase());
-      return matchType && matchCategory && matchSearch;
+      return matchSearch;
     }).toList();
 
     final activeCount = scenProv.masterScenarios.where((s) => s.isActive).length;
@@ -103,42 +97,6 @@ class _CurriculumViewState extends State<CurriculumView> {
               ),
             ),
             const SizedBox(height: 8),
-
-            // Type filter chips
-            SizedBox(
-              height: 36,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                children: [
-                  _buildChip('all', 'Semua'),
-                  _buildChip('whatsapp', 'WhatsApp'),
-                  _buildChip('sms', 'SMS'),
-                  _buildChip('email', 'Emel'),
-                  _buildChip('phone', 'Telefon'),
-                ],
-              ),
-            ),
-            const SizedBox(height: 6),
-
-            // Category filter chips
-            SizedBox(
-              height: 36,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                children: [
-                  _buildCategoryChip('all', 'Semua Penipuan'),
-                  _buildCategoryChip(kCategoryTechSupport, 'Sokongan Teknikal & Bank'),
-                  _buildCategoryChip(kCategoryAuthority, 'Penyamaran Pihak Berkuasa'),
-                  _buildCategoryChip(kCategoryGiveaway, 'Cabutan Bertuah & Hadiah Palsu'),
-                  _buildCategoryChip(kCategoryPhishing, 'Phishing & Smishing'),
-                  _buildCategoryChip(kCategoryFamily, 'Penipuan Penyamar Keluarga'),
-                  _buildCategoryChip(kCategoryOthers, 'Lain-lain'),
-                ],
-              ),
-            ),
-            const SizedBox(height: 6),
 
             // Stats row
             Padding(
@@ -198,87 +156,6 @@ class _CurriculumViewState extends State<CurriculumView> {
     );
   }
 
-  Widget _buildChip(String type, String label) {
-    final active = _filterType == type;
-    final isDark = AppColors.isDark(context);
-
-    return GestureDetector(
-      onTap: () => setState(() => _filterType = type),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 180),
-        margin: const EdgeInsets.only(right: 8),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-        decoration: BoxDecoration(
-          color: active
-              ? AppColors.emeraldBadgeBgOf(context)
-              : (isDark
-                  ? AppColors.surfaceBorder.withValues(alpha: 0.5)
-                  : Colors.white),
-          borderRadius: BorderRadius.circular(100),
-          border: Border.all(
-            color: active
-                ? AppColors.emerald.withValues(alpha: 0.4)
-                : AppColors.surfaceBorderOf(context),
-            width: 1,
-          ),
-        ),
-        child: Center(
-          child: Text(
-            label,
-            style: TextStyle(
-              color: active
-                  ? AppColors.emeraldBadgeTextOf(context)
-                  : AppColors.textMutedOf(context),
-              fontSize: 10,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _buildCategoryChip(String category, String label) {
-    final active = _filterCategory == category;
-    final isDark = AppColors.isDark(context);
-
-    return GestureDetector(
-      onTap: () => setState(() => _filterCategory = category),
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 180),
-        margin: const EdgeInsets.only(right: 8),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
-        decoration: BoxDecoration(
-          color: active
-              ? AppColors.emeraldBadgeBgOf(context)
-              : (isDark
-                  ? AppColors.surfaceBorder.withValues(alpha: 0.5)
-                  : Colors.white),
-          borderRadius: BorderRadius.circular(100),
-          border: Border.all(
-            color: active
-                ? AppColors.emerald.withValues(alpha: 0.5)
-                : AppColors.surfaceBorderOf(context),
-            width: 1,
-          ),
-        ),
-        child: Center(
-          child: Text(
-            label,
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              color: active
-                  ? AppColors.emeraldBadgeTextOf(context)
-                  : AppColors.textMutedOf(context),
-              fontSize: 10,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _buildTile(
     BuildContext context,
     Scenario s,
@@ -300,10 +177,6 @@ class _CurriculumViewState extends State<CurriculumView> {
               decoration: BoxDecoration(
                 color: typeBg,
                 borderRadius: BorderRadius.circular(12),
-                border: Border.all(
-                  color: typeText.withValues(alpha: 0.35),
-                  width: 1.5,
-                ),
               ),
               child: Icon(_typeIcon(s.type), color: typeText, size: 18),
             ),
@@ -339,12 +212,6 @@ class _CurriculumViewState extends State<CurriculumView> {
             padding: const EdgeInsets.fromLTRB(14, 0, 14, 10),
             child: Row(
               children: [
-                _miniTag(s.type.toUpperCase(), typeBg, typeText),
-                const SizedBox(width: 5),
-                _miniTag(s.difficulty, AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context)),
-                const SizedBox(width: 5),
-                _miniTag(s.threatLevel, AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context)),
-                const Spacer(),
                 GestureDetector(
                   onTap: () => Navigator.push(
                     context,
@@ -403,15 +270,6 @@ class _CurriculumViewState extends State<CurriculumView> {
     );
   }
 
-  Widget _miniTag(String text, Color bgColor, Color textColor) {
-    return MetricChip(
-      label: text,
-      backgroundColor: bgColor,
-      textColor: textColor,
-      fontSize: 7.5,
-    );
-  }
-
   Widget _buildEmpty(BuildContext context) {
     return Center(
       child: Column(
@@ -423,10 +281,6 @@ class _CurriculumViewState extends State<CurriculumView> {
             decoration: BoxDecoration(
               color: AppColors.mutedBadgeBgOf(context),
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(
-                color: AppColors.mutedBadgeTextOf(context).withValues(alpha: 0.35),
-                width: 1.5,
-              ),
             ),
             child: Icon(
               LucideIcons.bookOpen,

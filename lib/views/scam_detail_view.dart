@@ -59,10 +59,6 @@ class ScamDetailView extends StatelessWidget {
                               decoration: BoxDecoration(
                                 color: badgeBg,
                                 borderRadius: BorderRadius.circular(12),
-                                border: Border.all(
-                                  color: badgeText.withValues(alpha: 0.35),
-                                  width: 1.5,
-                                ),
                               ),
                               child: Icon(
                                 scamDetail.icon,

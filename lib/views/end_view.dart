@@ -72,8 +72,6 @@ class EndView extends StatelessWidget {
                             decoration: BoxDecoration(
                               color: heroColor.withValues(alpha: 0.12),
                               shape: BoxShape.circle,
-                              border: Border.all(
-                                  color: heroColor.withValues(alpha: 0.3), width: 2),
                             ),
                             child: Icon(
                               passed
@@ -243,10 +241,6 @@ class EndView extends StatelessWidget {
           decoration: BoxDecoration(
             color: bgColor,
             borderRadius: BorderRadius.circular(12),
-            border: Border.all(
-              color: iconColor.withValues(alpha: 0.35),
-              width: 1.5,
-            ),
           ),
           child: Icon(icon, color: iconColor, size: 18),
         ),

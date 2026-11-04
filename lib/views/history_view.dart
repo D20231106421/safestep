@@ -212,10 +212,6 @@ class HistoryView extends StatelessWidget {
             decoration: BoxDecoration(
               color: AppColors.mutedBadgeBgOf(context),
               borderRadius: BorderRadius.circular(20),
-              border: Border.all(
-                color: AppColors.mutedBadgeTextOf(context).withValues(alpha: 0.35),
-                width: 1.5,
-              ),
             ),
             child: Icon(
               LucideIcons.history,

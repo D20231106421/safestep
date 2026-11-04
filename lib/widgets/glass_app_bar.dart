@@ -84,10 +84,6 @@ class _BackButton extends StatelessWidget {
           // Solid fill — no opacity
           color: isDark ? AppColors.surfaceBorder : Colors.white,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: isDark ? AppColors.surfaceBorder : AppColors.lightSurfaceBorder,
-            width: 1.5,
-          ),
           boxShadow: isDark
               ? null
               : [
@@ -147,10 +143,6 @@ class HeaderActionButton extends StatelessWidget {
         decoration: BoxDecoration(
           color: bgColor,
           borderRadius: BorderRadius.circular(12),
-          border: Border.all(
-            color: isDark ? AppColors.surfaceBorder : AppColors.lightSurfaceBorder,
-            width: 1.5,
-          ),
           boxShadow: isDark
               ? null
               : [

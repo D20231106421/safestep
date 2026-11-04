@@ -71,15 +71,15 @@ class ModuleSelectionView extends StatelessWidget {
     (Color, Color) getModuleColors(String catId) {
       switch (catId) {
         case 'tech_support':
-          return (AppColors.blueBadgeBgOf(context), AppColors.blueBadgeTextOf(context));
+          return (AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context));
         case 'authority':
-          return (AppColors.roseBadgeBgOf(context), AppColors.roseBadgeTextOf(context));
+          return (AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context));
         case 'giveaway':
-          return (AppColors.amberBadgeBgOf(context), AppColors.amberBadgeTextOf(context));
+          return (AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context));
         case 'phishing':
-          return (AppColors.indigoBadgeBgOf(context), AppColors.indigoBadgeTextOf(context));
+          return (AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context));
         case 'family':
-          return (AppColors.cyanBadgeBgOf(context), AppColors.cyanBadgeTextOf(context));
+          return (AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context));
         case 'others':
           return (AppColors.mutedBadgeBgOf(context), AppColors.mutedBadgeTextOf(context));
         case 'all':
@@ -161,10 +161,6 @@ class ModuleSelectionView extends StatelessWidget {
                                     // Solid icon background
                                     color: badgeBg,
                                     borderRadius: BorderRadius.circular(13),
-                                    border: Border.all(
-                                      color: badgeText.withValues(alpha: 0.35),
-                                      width: 1.5,
-                                    ),
                                   ),
                                   child: Icon(
                                     item['icon'] as IconData,

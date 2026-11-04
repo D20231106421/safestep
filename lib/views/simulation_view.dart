@@ -151,9 +151,6 @@ class _SimulationViewState extends State<SimulationView> {
                       decoration: BoxDecoration(
                         color: AppColors.amberBadgeBgOf(context),
                         borderRadius: BorderRadius.circular(100),
-                        border: Border.all(
-                          color: AppColors.amber.withValues(alpha: 0.25),
-                        ),
                       ),
                       child: Icon(
                         LucideIcons.alertCircle,

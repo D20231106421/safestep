@@ -300,8 +300,6 @@ class GameProvider with ChangeNotifier {
       id: scenario.id,
       type: scenario.type,
       category: scenario.category,
-      difficulty: scenario.difficulty,
-      threatLevel: scenario.threatLevel,
       technique: scenario.technique,
       sender: scenario.sender,
       timestamp: scenario.timestamp,

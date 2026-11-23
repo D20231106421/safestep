@@ -28,8 +28,6 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
   late TextEditingController _explanationCtrl;
 
   String _type = 'whatsapp';
-  String _difficulty = 'SEDERHANA';
-  String _threatLevel = 'TINGGI';
   bool _isScam = true;
   bool _isActive = true;
 
@@ -72,8 +70,6 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
 
     if (s != null) {
       _type = _supportedTypes.contains(s.type) ? s.type : 'whatsapp';
-      _difficulty = s.difficulty;
-      _threatLevel = s.threatLevel;
       _isScam = s.isScam;
       _isActive = s.isActive;
       for (final r in s.replyOptions) {
@@ -246,178 +242,60 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
 
                     _sectionCard(
                       title: 'KLASIFIKASI',
-                      subtitle: 'Tetapkan tahap kesukaran, tahap ancaman & tetapkan sama ada senario ini adalah penipuan atau tidak.',
-                      child: Column(
-                        children: [
-                          LayoutBuilder(
-                            builder: (context, constraints) {
-                              final stack = constraints.maxWidth < 420;
-                              if (stack) {
-                                return Column(
-                                  children: [
-                                    _classificationGroup(
-                                      title: 'KESUKARAN',
-                                      children: [
-                                        _buildClassificationChip(
-                                          label: 'MUDAH',
-                                          value: 'MUDAH',
-                                          groupValue: _difficulty,
-                                          activeColor: AppColors.emerald,
-                                          onTap: () => setState(() => _difficulty = 'MUDAH'),
-                                        ),
-                                        _buildClassificationChip(
-                                          label: 'SEDERHANA',
-                                          value: 'SEDERHANA',
-                                          groupValue: _difficulty,
-                                          activeColor: AppColors.emerald,
-                                          onTap: () => setState(() => _difficulty = 'SEDERHANA'),
-                                        ),
-                                        _buildClassificationChip(
-                                          label: 'SUKAR',
-                                          value: 'SUKAR',
-                                          groupValue: _difficulty,
-                                          activeColor: AppColors.emerald,
-                                          onTap: () => setState(() => _difficulty = 'SUKAR'),
-                                        ),
-                                      ],
-                                    ),
-                                    const SizedBox(height: 14),
-                                    _classificationGroup(
-                                      title: 'TAHAP ANCAMAN',
-                                      children: [
-                                        _buildClassificationChip(
-                                          label: 'TINGGI',
-                                          value: 'TINGGI',
-                                          groupValue: _threatLevel,
-                                          activeColor: AppColors.rose,
-                                          onTap: () => setState(() => _threatLevel = 'TINGGI'),
-                                        ),
-                                        _buildClassificationChip(
-                                          label: 'SEDERHANA',
-                                          value: 'SEDERHANA',
-                                          groupValue: _threatLevel,
-                                          activeColor: AppColors.rose,
-                                          onTap: () => setState(() => _threatLevel = 'SEDERHANA'),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                );
-                              }
-
-                              return Row(
+                      subtitle: 'Tetapkan sama ada senario ini adalah penipuan atau tidak.',
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
+                        decoration: BoxDecoration(
+                          color: AppColors.surfaceOf(context),
+                          borderRadius: BorderRadius.circular(14),
+                          border: Border.all(color: AppColors.surfaceBorderOf(context)),
+                        ),
+                        child: Row(
+                          children: [
+                            Container(
+                              width: 34,
+                              height: 34,
+                              decoration: BoxDecoration(
+                                color: AppColors.amberBadgeBgOf(context),
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              child: Icon(
+                                LucideIcons.alertTriangle,
+                                color: AppColors.amberBadgeTextOf(context),
+                                size: 16,
+                              ),
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Expanded(
-                                    child: _classificationGroup(
-                                      title: 'KESUKARAN',
-                                      children: [
-                                        _buildClassificationChip(
-                                          label: 'MUDAH',
-                                          value: 'MUDAH',
-                                          groupValue: _difficulty,
-                                          activeColor: AppColors.emerald,
-                                          onTap: () => setState(() => _difficulty = 'MUDAH'),
-                                        ),
-                                        _buildClassificationChip(
-                                          label: 'SEDERHANA',
-                                          value: 'SEDERHANA',
-                                          groupValue: _difficulty,
-                                          activeColor: AppColors.emerald,
-                                          onTap: () => setState(() => _difficulty = 'SEDERHANA'),
-                                        ),
-                                        _buildClassificationChip(
-                                          label: 'SUKAR',
-                                          value: 'SUKAR',
-                                          groupValue: _difficulty,
-                                          activeColor: AppColors.emerald,
-                                          onTap: () => setState(() => _difficulty = 'SUKAR'),
-                                        ),
-                                      ],
+                                  Text(
+                                    'Ini adalah penipuan',
+                                    style: TextStyle(
+                                      color: AppColors.textPrimaryOf(context),
+                                      fontSize: 12.5,
+                                      fontWeight: FontWeight.w800,
                                     ),
                                   ),
-                                  const SizedBox(width: 14),
-                                  Expanded(
-                                    child: _classificationGroup(
-                                      title: 'TAHAP ANCAMAN',
-                                      children: [
-                                        _buildClassificationChip(
-                                          label: 'TINGGI',
-                                          value: 'TINGGI',
-                                          groupValue: _threatLevel,
-                                          activeColor: AppColors.rose,
-                                          onTap: () => setState(() => _threatLevel = 'TINGGI'),
-                                        ),
-                                        _buildClassificationChip(
-                                          label: 'SEDERHANA',
-                                          value: 'SEDERHANA',
-                                          groupValue: _threatLevel,
-                                          activeColor: AppColors.rose,
-                                          onTap: () => setState(() => _threatLevel = 'SEDERHANA'),
-                                        ),
-                                      ],
+                                  const SizedBox(height: 3),
+                                  Text(
+                                    'Aktifkan untuk tandakan senario ini adalah penipuan.',
+                                    style: TextStyle(
+                                      color: AppColors.textMutedOf(context),
+                                      fontSize: 9.5,
+                                      height: 1.35,
                                     ),
                                   ),
                                 ],
-                              );
-                            },
-                          ),
-                          const SizedBox(height: 12),
-                          Container(
-                            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
-                            decoration: BoxDecoration(
-                              color: AppColors.surfaceOf(context),
-                              borderRadius: BorderRadius.circular(14),
-                              border: Border.all(color: AppColors.surfaceBorderOf(context)),
+                              ),
                             ),
-                            child: Row(
-                              children: [
-                                Container(
-                                  width: 34,
-                                  height: 34,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.amberBadgeBgOf(context),
-                                    borderRadius: BorderRadius.circular(10),
-                                  ),
-                                  child: Icon(
-                                    LucideIcons.alertTriangle,
-                                    color: AppColors.amberBadgeTextOf(context),
-                                    size: 16,
-                                  ),
-                                ),
-                                const SizedBox(width: 12),
-                                Expanded(
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'Ini adalah penipuan',
-                                        style: TextStyle(
-                                          color: AppColors.textPrimaryOf(context),
-                                          fontSize: 12.5,
-                                          fontWeight: FontWeight.w800,
-                                        ),
-                                      ),
-                                      const SizedBox(height: 3),
-                                      Text(
-                                        'Aktifkan untuk tandakan senario ini adalah penipuan.',
-                                        style: TextStyle(
-                                          color: AppColors.textMutedOf(context),
-                                          fontSize: 9.5,
-                                          height: 1.35,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Switch(
-                                  value: _isScam,
-                                  onChanged: (v) => setState(() => _isScam = v),
-                                ),
-                              ],
+                            Switch(
+                              value: _isScam,
+                              onChanged: (v) => setState(() => _isScam = v),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                     const SizedBox(height: 16),
@@ -701,40 +579,6 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
     );
   }
 
-  Widget _buildClassificationChip({
-    required String label,
-    required String value,
-    required String groupValue,
-    required Color activeColor,
-    required VoidCallback onTap,
-  }) {
-    final active = groupValue == value;
-    return GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 180),
-        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 8),
-        decoration: BoxDecoration(
-          color: active ? activeColor.withValues(alpha: 0.12) : AppColors.surfaceOf(context),
-          borderRadius: BorderRadius.circular(100),
-          border: Border.all(
-            color: active ? activeColor : AppColors.surfaceBorderOf(context),
-            width: 1.5,
-          ),
-        ),
-        child: Text(
-          label.toUpperCase(),
-          style: TextStyle(
-            color: active ? activeColor : AppColors.textMutedOf(context),
-            fontSize: 10,
-            fontWeight: FontWeight.w900,
-            letterSpacing: 0.5,
-          ),
-        ),
-      ),
-    );
-  }
-
   Widget _buildSafetyChip({
     required String label,
     required String value,
@@ -865,8 +709,6 @@ class _ScenarioEditorViewState extends State<ScenarioEditorView> {
       isActive: _isActive,
       type: _type,
       category: _category,
-      difficulty: _difficulty,
-      threatLevel: _threatLevel,
       technique: _techniqueCtrl.text.trim().isEmpty
           ? _category
           : _techniqueCtrl.text.trim(),

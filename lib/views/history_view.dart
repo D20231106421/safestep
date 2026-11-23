@@ -7,7 +7,6 @@ import '../providers/game_provider.dart';
 import '../providers/history_provider.dart';
 import '../widgets/glass_app_bar.dart';
 import '../widgets/glass_card.dart';
-import '../widgets/metric_chip.dart';
 import 'report_detail_view.dart';
 
 class HistoryView extends StatelessWidget {
@@ -91,26 +90,33 @@ class HistoryView extends StatelessWidget {
         child: Row(
           children: [
             // Circular accuracy ring
-            SizedBox(
-              width: 56,
-              height: 56,
+            SizedBox.square(
+              dimension: 50,
               child: Stack(
                 alignment: Alignment.center,
                 children: [
-                  CircularProgressIndicator(
-                    value: log.total > 0 ? log.score / log.total : 0,
-                    strokeWidth: 5,
-                    backgroundColor: AppColors.surfaceBorderOf(context),
-                    valueColor: AlwaysStoppedAnimation<Color>(
-                      passed ? AppColors.emerald : AppColors.rose,
+                  SizedBox.expand(
+                    child: CircularProgressIndicator(
+                      value: log.total > 0 ? log.score / log.total : 0,
+                      strokeWidth: 4.5,
+                      backgroundColor: AppColors.surfaceBorderOf(context),
+                      valueColor: AlwaysStoppedAnimation<Color>(
+                        passed ? AppColors.emerald : AppColors.rose,
+                      ),
                     ),
                   ),
-                  Text(
-                    '$pct%',
-                    style: TextStyle(
-                      color: AppColors.textPrimaryOf(context),
-                      fontSize: 10,
-                      fontWeight: FontWeight.w900,
+                  Padding(
+                    padding: const EdgeInsets.all(7),
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(
+                        '$pct%',
+                        style: TextStyle(
+                          color: AppColors.textPrimaryOf(context),
+                          fontSize: 11,
+                          fontWeight: FontWeight.w900,
+                        ),
+                      ),
                     ),
                   ),
                 ],
@@ -123,29 +129,31 @@ class HistoryView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      passed
-                          ? const MetricChip.emerald(label: 'TAMAT')
-                          : const MetricChip.rose(label: 'KECUNDANG'),
-                      const SizedBox(width: 8),
-                      Icon(
-                        LucideIcons.shield,
-                        color: log.shields > 0
-                            ? AppColors.emerald
-                            : AppColors.rose,
-                        size: 13,
-                      ),
-                      const SizedBox(width: 3),
-                      Text(
-                        '${log.shields}/3',
-                        style: TextStyle(
-                          color: AppColors.textSecondaryOf(context),
-                          fontSize: 9.5,
-                          fontWeight: FontWeight.w700,
+                  Transform.translate(
+                    offset: const Offset(-2, 0),
+                    child: Row(
+                      children: [
+                        Icon(
+                          LucideIcons.shield,
+                          color: log.shields > 0
+                              ? AppColors.emerald
+                              : AppColors.rose,
+                          size: 13,
                         ),
-                      ),
-                    ],
+                        const SizedBox(width: 4),
+                        Expanded(
+                          child: Text(
+                            '${log.shields}/3 perisai  |  ${log.date}',
+                            style: TextStyle(
+                              color: AppColors.textMutedOf(context),
+                              fontSize: 11,
+                            ),
+                            maxLines: 1,
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                   const SizedBox(height: 5),
                   Text(
@@ -154,14 +162,6 @@ class HistoryView extends StatelessWidget {
                       color: AppColors.textPrimaryOf(context),
                       fontSize: 12,
                       fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                  const SizedBox(height: 2),
-                  Text(
-                    log.date,
-                    style: TextStyle(
-                      color: AppColors.textMutedOf(context),
-                      fontSize: 9,
                     ),
                   ),
                 ],

@@ -2,8 +2,6 @@ class ScenarioResult {
   final int id;
   final String type;
   final String category;
-  final String difficulty;
-  final String threatLevel;
   final String technique;
   final String sender;
   final String timestamp;
@@ -21,8 +19,6 @@ class ScenarioResult {
     required this.id,
     required this.type,
     required this.category,
-    required this.difficulty,
-    required this.threatLevel,
     required this.technique,
     required this.sender,
     required this.timestamp,
@@ -41,8 +37,6 @@ class ScenarioResult {
         'id': id,
         'type': type,
         'category': category,
-        'difficulty': difficulty,
-        'threatLevel': threatLevel,
         'technique': technique,
         'sender': sender,
         'timestamp': timestamp,
@@ -68,8 +62,6 @@ class ScenarioResult {
       id: json['id'] as int,
       type: json['type'] as String,
       category: json['category'] as String,
-      difficulty: json['difficulty'] as String? ?? 'Sederhana',
-      threatLevel: json['threatLevel'] as String? ?? 'TINGGI',
       technique: json['technique'] as String? ?? 'Social Engineering',
       sender: json['sender'] as String,
       timestamp: json['timestamp'] as String? ?? 'Terkini',

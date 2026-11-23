@@ -89,9 +89,33 @@ class ReportDetailView extends StatelessWidget {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              passed
-                                  ? const MetricChip.emerald(label: 'TAMAT')
-                                  : const MetricChip.rose(label: 'KECUNDANG'),
+                              Transform.translate(
+                                offset: const Offset(-2, 0),
+                                child: Row(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      LucideIcons.shield,
+                                      size: 13,
+                                      color: log.shields > 0
+                                          ? AppColors.emerald
+                                          : AppColors.rose,
+                                    ),
+                                    const SizedBox(width: 4),
+                                    Expanded(
+                                      child: Text(
+                                        '${log.shields}/3 perisai  |  ${log.date}',
+                                        style: TextStyle(
+                                          color: AppColors.textMutedOf(context),
+                                          fontSize: 11,
+                                        ),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
                               const SizedBox(height: 6),
                               Text(
                                 '${log.score} / ${log.total} betul',
@@ -103,29 +127,6 @@ class ReportDetailView extends StatelessWidget {
                                 maxLines: 1,
                                 overflow: TextOverflow.ellipsis,
                               ),
-                              Row(
-                                children: [
-                                  Icon(
-                                    LucideIcons.shield,
-                                    size: 11,
-                                    color: log.shields > 0
-                                        ? AppColors.emerald
-                                        : AppColors.rose,
-                                  ),
-                                  const SizedBox(width: 4),
-                                  Expanded(
-                                    child: Text(
-                                      '${log.shields}/3 perisai  |  ${log.date}',
-                                      style: TextStyle(
-                                        color: AppColors.textMutedOf(context),
-                                        fontSize: 9.5,
-                                      ),
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                  ),
-                                ],
-                              ),
                             ],
                           ),
                         ),
@@ -135,12 +136,12 @@ class ReportDetailView extends StatelessWidget {
 
                   const SizedBox(height: 16),
 
-                  Padding(
-                    padding: const EdgeInsets.only(left: 4, bottom: 10),
+                  const Padding(
+                    padding: EdgeInsets.only(left: 4, bottom: 10),
                     child: Text(
                       'SEMAKAN JAWAPAN',
                       style: TextStyle(
-                        color: AppColors.textMutedOf(context),
+                        color: AppColors.emerald,
                         fontSize: 8.5,
                         fontWeight: FontWeight.w900,
                         letterSpacing: 0.8,
@@ -227,79 +228,72 @@ class ReportDetailView extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Row(
-                    children: [
-                      Icon(
-                        LucideIcons.user,
-                        color: AppColors.textMutedOf(context),
-                        size: 11,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        r.sender,
-                        style: TextStyle(
-                          color: AppColors.textSecondaryOf(context),
-                          fontSize: 10,
-                          fontWeight: FontWeight.w700,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 6),
-                  Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Icon(
-                        LucideIcons.tag,
-                        color: AppColors.textMutedOf(context),
-                        size: 11,
-                      ),
-                      const SizedBox(width: 4),
-                      Expanded(
-                        child: Text(
-                          'Kategori Penipuan: ${normalizeCategoryLabel(r.category)}',
-                          style: TextStyle(
-                            color: AppColors.textSecondaryOf(context),
-                            fontSize: 9.5,
-                            fontWeight: FontWeight.w600,
-                            height: 1.35,
-                          ),
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                        ),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 8),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: _buildThreatBadge(r.threatLevel),
-                      ),
-                      const SizedBox(width: 8),
-                      Expanded(
-                        child: _buildDifficultyBadge(r.difficulty),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 10),
                   Container(
                     width: double.infinity,
-                    padding: const EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: AppColors.surfaceOf(context),
+                      color: AppColors.surfaceBorderOf(context).withValues(alpha: 0.8),
                       borderRadius: BorderRadius.circular(10),
-                      border: Border.all(color: AppColors.surfaceBorderOf(context)),
                     ),
-                    child: Text(
-                      r.message,
-                      style: TextStyle(
-                        color: AppColors.textPrimaryOf(context),
-                        fontSize: 10.5,
-                        height: 1.4,
-                      ),
-                      maxLines: 4,
-                      overflow: TextOverflow.ellipsis,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Row(
+                          children: [
+                            Icon(
+                              LucideIcons.user,
+                              color: AppColors.textMutedOf(context),
+                              size: 11,
+                            ),
+                            const SizedBox(width: 4),
+                            Text(
+                              r.sender,
+                              style: TextStyle(
+                                color: AppColors.textSecondaryOf(context),
+                                fontSize: 10,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 6),
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Icon(
+                              LucideIcons.tag,
+                              color: AppColors.textMutedOf(context),
+                              size: 11,
+                            ),
+                            const SizedBox(width: 4),
+                            Expanded(
+                              child: Text(
+                                'Kategori Penipuan: ${normalizeCategoryLabel(r.category)}',
+                                style: TextStyle(
+                                  color: AppColors.textSecondaryOf(context),
+                                  fontSize: 9.5,
+                                  fontWeight: FontWeight.w600,
+                                  height: 1.35,
+                                ),
+                                maxLines: 2,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                            ),
+                          ],
+                        ),
+                        const SizedBox(height: 10),
+                        Text(
+                          r.message,
+                          style: TextStyle(
+                            color: AppColors.textPrimaryOf(context),
+                            fontSize: 11,
+                            height: 1.45,
+                            fontWeight: FontWeight.w600,
+                          ),
+                          maxLines: 4,
+                          overflow: TextOverflow.ellipsis,
+                        ),
+                      ],
                     ),
                   ),
                 ],
@@ -313,10 +307,10 @@ class ReportDetailView extends StatelessWidget {
                   Text(
                     'JAWAPAN ANDA:',
                     style: TextStyle(
-                      color: AppColors.textMutedOf(context),
-                      fontSize: 7.5,
+                      color: AppColors.textPrimaryOf(context),
+                      fontSize: 11,
                       fontWeight: FontWeight.w900,
-                      letterSpacing: 0.5,
+                      letterSpacing: 0.4,
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -339,7 +333,13 @@ class ReportDetailView extends StatelessWidget {
                     highlight: (r.userChoiceText ?? '').isNotEmpty,
                     correct: r.userCorrect,
                   ),
-                  const SizedBox(height: 14),
+                  const SizedBox(height: 4),
+                  Divider(
+                    color: AppColors.textSecondaryOf(context).withValues(alpha: 0.2),
+                    thickness: 1,
+                    height: 24,
+                  ),
+                  const SizedBox(height: 2),
                   Text(
                     'PENJELASAN',
                     style: TextStyle(
@@ -439,26 +439,6 @@ class ReportDetailView extends StatelessWidget {
     );
   }
 
-  Widget _buildThreatBadge(String level) {
-    final isHigh = level.toUpperCase() == 'TINGGI';
-    return isHigh
-        ? MetricChip.rose(
-            label: 'Tahap Ancaman: ${_threatLevelLabel(level)}',
-            fontSize: 8.5,
-          )
-        : MetricChip.amber(
-            label: 'Tahap Ancaman: ${_threatLevelLabel(level)}',
-            fontSize: 8.5,
-          );
-  }
-
-  Widget _buildDifficultyBadge(String level) {
-    return MetricChip.indigo(
-      label: 'Tahap Kesukaran: ${_difficultyLevelLabel(level)}',
-      fontSize: 8.5,
-    );
-  }
-
   Widget _buildAnswerStep({
     required BuildContext context,
     required String title,
@@ -483,10 +463,10 @@ class ReportDetailView extends StatelessWidget {
         Text(
           title,
           style: TextStyle(
-            color: AppColors.textMutedOf(context),
-            fontSize: 7.8,
+            color: AppColors.textPrimaryOf(context),
+            fontSize: 11,
             fontWeight: FontWeight.w900,
-            letterSpacing: 0.5,
+            letterSpacing: 0.4,
           ),
         ),
         const SizedBox(height: 4),
@@ -510,9 +490,9 @@ class ReportDetailView extends StatelessWidget {
             answer,
             style: TextStyle(
               color: chipColor,
-              fontSize: 10.5,
-              fontWeight: FontWeight.w700,
-              height: 1.35,
+              fontSize: 11,
+              fontWeight: FontWeight.w600,
+              height: 1.45,
             ),
           ),
         ),
@@ -532,10 +512,10 @@ class ReportDetailView extends StatelessWidget {
         Text(
           '2. RED FLAGS',
           style: TextStyle(
-            color: AppColors.textMutedOf(context),
-            fontSize: 7.8,
+            color: AppColors.textPrimaryOf(context),
+            fontSize: 11,
             fontWeight: FontWeight.w900,
-            letterSpacing: 0.5,
+            letterSpacing: 0.4,
           ),
         ),
         const SizedBox(height: 4),
@@ -552,9 +532,9 @@ class ReportDetailView extends StatelessWidget {
               'Tiada red flags direkodkan.',
               style: TextStyle(
                 color: AppColors.textSecondaryOf(context),
-                fontSize: 10.5,
-                fontWeight: FontWeight.w700,
-                height: 1.35,
+                fontSize: 11,
+                fontWeight: FontWeight.w600,
+                height: 1.45,
               ),
             ),
           )
@@ -573,34 +553,6 @@ class ReportDetailView extends StatelessWidget {
           ),
       ],
     );
-  }
-
-  String _threatLevelLabel(String level) {
-    switch (level.toLowerCase()) {
-      case 'tinggi':
-        return 'Tinggi';
-      case 'sederhana':
-        return 'Sederhana';
-      case 'rendah':
-        return 'Rendah';
-      default:
-        if (level.isEmpty) return '';
-        return level[0].toUpperCase() + level.substring(1).toLowerCase();
-    }
-  }
-
-  String _difficultyLevelLabel(String level) {
-    switch (level.toLowerCase()) {
-      case 'mudah':
-        return 'Mudah';
-      case 'sederhana':
-        return 'Sederhana';
-      case 'sukar':
-        return 'Sukar';
-      default:
-        if (level.isEmpty) return '';
-        return level[0].toUpperCase() + level.substring(1).toLowerCase();
-    }
   }
 
   Scenario? _findScenario(ScenarioProvider scenProv, int id) {

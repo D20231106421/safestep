@@ -9,6 +9,7 @@ import '../widgets/custom_text_field.dart';
 import '../widgets/glass_app_bar.dart';
 import '../widgets/glass_card.dart';
 import 'scenario_editor_view.dart';
+import 'scenario_preview_view.dart';
 
 class CurriculumView extends StatefulWidget {
   const CurriculumView({super.key});
@@ -216,12 +217,50 @@ class _CurriculumViewState extends State<CurriculumView> {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
+                      builder: (_) => ScenarioPreviewView(scenario: s),
+                    ),
+                  ),
+                  child: Container(
+                    height: 26,
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    decoration: BoxDecoration(
+                      color: isDark
+                          ? AppColors.surfaceBorder.withValues(alpha: 0.6)
+                          : Colors.white,
+                      borderRadius: BorderRadius.circular(8),
+                      border: Border.all(
+                        color: AppColors.surfaceBorderOf(context),
+                      ),
+                    ),
+                    child: Row(
+                      children: [
+                        Icon(LucideIcons.eye,
+                            color: AppColors.textSecondaryOf(context), size: 11),
+                        const SizedBox(width: 4),
+                        Text(
+                          'Butiran Senario',
+                          style: TextStyle(
+                            color: AppColors.textSecondaryOf(context),
+                            fontSize: 9.5,
+                            fontWeight: FontWeight.w700,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 6),
+                const Spacer(),
+                GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
                       builder: (_) => ScenarioEditorView(scenario: s),
                     ),
                   ),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 5),
+                    height: 26,
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
                     decoration: BoxDecoration(
                       color: isDark
                           ? AppColors.surfaceBorder.withValues(alpha: 0.6)
@@ -252,14 +291,15 @@ class _CurriculumViewState extends State<CurriculumView> {
                 GestureDetector(
                   onTap: () => _confirmDelete(context, s, scenProv),
                   child: Container(
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 10, vertical: 5),
+                    height: 26,
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    alignment: Alignment.center,
                     decoration: BoxDecoration(
                       color: AppColors.roseBadgeBgOf(context),
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Icon(LucideIcons.trash2,
-                        color: AppColors.roseBadgeTextOf(context), size: 11),
+                        color: AppColors.roseBadgeTextOf(context), size: 13.5),
                   ),
                 ),
               ],

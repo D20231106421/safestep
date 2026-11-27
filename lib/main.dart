@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
+import 'supabase_options.dart';
 import 'app_theme.dart';
 import 'providers/settings_provider.dart';
 import 'providers/history_provider.dart';
@@ -39,14 +39,21 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
 
-  // Initialize Firebase Core & Persistent Identity
+  // Initialize Supabase & Persistent Identity
   try {
-    await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-    );
+    if (SupabaseOptions.isConfigured) {
+      await Supabase.initialize(
+        url: SupabaseOptions.url,
+        publishableKey: SupabaseOptions.anonKey,
+      );
+    } else {
+      debugPrint(
+        'SupabaseOptions not configured; running in local-only mode until SUPABASE_URL and SUPABASE_ANON_KEY are set.',
+      );
+    }
     await IdentityService.instance.getOrCreateUserId();
   } catch (e, stackTrace) {
-    debugPrint('Error initializing Firebase / Identity: $e\n$stackTrace');
+    debugPrint('Error initializing Supabase / Identity: $e\n$stackTrace');
   }
 
   // Initialize real system notification plugin

@@ -27,15 +27,9 @@ class FeedbackView extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // ── Result header banner ──────────────────────────────────────
-            Container(
+            // ── Result header (no background box) ─────────────────────────
+            Padding(
               padding: const EdgeInsets.symmetric(vertical: 24, horizontal: 20),
-              decoration: BoxDecoration(
-                color: heroColor.withValues(alpha: 0.1),
-                border: Border(
-                  bottom: BorderSide(color: heroColor.withValues(alpha: 0.2), width: 1),
-                ),
-              ),
               child: Column(
                 children: [
                   Container(

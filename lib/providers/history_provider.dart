@@ -28,7 +28,7 @@ class HistoryProvider with ChangeNotifier {
     _historyLogs.insert(0, log);
     notifyListeners();
     await _storageService.saveHistory(_historyLogs);
-    // Sync to Firestore in the background
+    // Sync to Supabase in the background
     await _storageService.saveHistoryLogToCloud(log);
   }
 
@@ -36,7 +36,7 @@ class HistoryProvider with ChangeNotifier {
     _historyLogs.removeWhere((log) => log.id == id);
     notifyListeners();
     await _storageService.saveHistory(_historyLogs);
-    // Delete from Firestore
+    // Delete from Supabase
     await _storageService.deleteHistoryLogFromCloud(id);
   }
 
@@ -44,7 +44,7 @@ class HistoryProvider with ChangeNotifier {
     _historyLogs.clear();
     notifyListeners();
     await _storageService.saveHistory(_historyLogs);
-    // Clear in Firestore
+    // Clear in Supabase
     await _storageService.clearAllHistoryFromCloud();
   }
 }

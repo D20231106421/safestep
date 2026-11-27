@@ -21,7 +21,7 @@ class EndView extends StatelessWidget {
     final pct     = total > 0 ? (score / total * 100).round() : 0;
 
     final heroColor = passed ? AppColors.emerald : AppColors.rose;
-    final heroMuted = passed ? AppColors.emeraldMuted : const Color(0xFFF87171);
+    final heroMuted = passed ? AppColors.emeraldMuted : AppColors.rose;
 
     return Scaffold(
       backgroundColor: AppColors.canvasOf(context),
@@ -52,26 +52,21 @@ class EndView extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    // Hero result card
-                    GlassCard(
-                      color: heroColor.withValues(alpha: 0.06),
-                      border: Border.all(color: heroColor.withValues(alpha: 0.2)),
-                      shadows: [
-                        BoxShadow(
-                          color: heroColor.withValues(alpha: 0.15),
-                          blurRadius: 32,
-                          spreadRadius: -4,
-                        ),
-                      ],
-                      padding: const EdgeInsets.all(28),
+                    // Hero result header (no background box)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
                       child: Column(
                         children: [
                           Container(
                             width: 80,
                             height: 80,
                             decoration: BoxDecoration(
-                              color: heroColor.withValues(alpha: 0.12),
+                              color: heroColor.withValues(alpha: 0.18),
                               shape: BoxShape.circle,
+                              border: Border.all(
+                                color: heroColor.withValues(alpha: 0.3),
+                                width: 2,
+                              ),
                             ),
                             child: Icon(
                               passed
@@ -98,7 +93,7 @@ class EndView extends StatelessWidget {
                                 : 'Perisai anda musnah. Lebih berhati-hati.',
                             textAlign: TextAlign.center,
                             style: TextStyle(
-                              color: heroColor.withValues(alpha: 0.8),
+                              color: AppColors.textSecondaryOf(context),
                               fontSize: 11,
                               fontWeight: FontWeight.w600,
                             ),
@@ -162,11 +157,11 @@ class EndView extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
                               _buildStat(context, '$score / $total', 'Betul',
-                                  LucideIcons.target, AppColors.cyanBadgeBgOf(context), AppColors.cyanBadgeTextOf(context)),
+                                  LucideIcons.target, AppColors.emeraldBadgeBgOf(context), AppColors.emeraldBadgeTextOf(context)),
                               _buildStat(context, '$shields / 3', 'Perisai',
                                   LucideIcons.shield, AppColors.emeraldBadgeBgOf(context), AppColors.emeraldBadgeTextOf(context)),
                               _buildStat(context, '$total', 'Soalan',
-                                  LucideIcons.fileText, AppColors.indigoBadgeBgOf(context), AppColors.indigoBadgeTextOf(context)),
+                                  LucideIcons.fileText, AppColors.emeraldBadgeBgOf(context), AppColors.emeraldBadgeTextOf(context)),
                             ],
                           ),
                         ],

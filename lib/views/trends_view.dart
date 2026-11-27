@@ -19,6 +19,14 @@ class ScamDetail {
   final IconData icon;
   final Color themeColor;
 
+  // Media & Situation Example Fields
+  final String? youtubeVideoId;
+  final String? youtubeVideoTitle;
+  final String? exampleImagePath;
+  final String? exampleSender;
+  final String? exampleMessage;
+  final String? exampleWarningNotes;
+
   const ScamDetail({
     required this.title,
     required this.definition,
@@ -29,6 +37,12 @@ class ScamDetail {
     required this.reportingContacts,
     required this.icon,
     required this.themeColor,
+    this.youtubeVideoId,
+    this.youtubeVideoTitle,
+    this.exampleImagePath,
+    this.exampleSender,
+    this.exampleMessage,
+    this.exampleWarningNotes,
   });
 }
 
@@ -68,6 +82,11 @@ class TrendsView extends StatelessWidget {
         'Hubungi National Scam Response Centre (NSRC) di talian 997.',
         'Laporkan kepada MCMC di aduan.skmm.gov.my, PDRM CCID, atau bank anda.'
       ],
+      youtubeVideoId: 'ZOZGQeG8avQ',
+      youtubeVideoTitle: 'Video: Modus Operandi Phishing & Smishing di Malaysia',
+      exampleSender: '+60 11-2893 4812',
+      exampleMessage: '[RM0.00 BANK]: Akaun perbankan anda telah DISEKAT kerana aktiviti mencurigakan. Sila klik pautan segera untuk aktifkan semula akaun: http://maybank2u-keselamatan-kemaskini.top/verify',
+      exampleWarningNotes: 'Bank tidak pernah menggunakan nombor telefon bimbit peribadi (+6011) atau pautan domain yang bukan rasmi (.top) untuk sebarang notifikasi akaun.',
     ),
     ScamDetail(
       title: 'Penyamaran Pihak Berkuasa & Agensi Kerajaan',
@@ -102,6 +121,11 @@ class TrendsView extends StatelessWidget {
         'Hubungi National Scam Response Centre (NSRC) di talian 997.',
         'Laporkan kepada PDRM CCID di talian 03-2610 1559 atau Balai Polis berhampiran.'
       ],
+      youtubeVideoId: 'wFk7hH9T4V8',
+      youtubeVideoTitle: 'Video: Taktik Penyamaran Polis, Mahkamah & LHDN (Macau Scam)',
+      exampleSender: 'Panggilan Caller ID (+603-2610 1559)',
+      exampleMessage: '"Saya Inspektor Azman dari Bukit Aman. Akaun bank anda terlibat dalam sindiket dadah antarabangsa berjumlah RM2.3 juta. Waran tangkap telah dikeluarkan! Untuk elak reman, pindahkan semua simpanan anda ke akaun audit sementara mahkamah sekarang juga!"',
+      exampleWarningNotes: 'PDRM, Mahkamah, atau LHDN TIDAK PERNAH mengarahkan sebarang pemindahan wang ke akaun lain melalui telefon dan tidak pernah mengendalikan siasatan jenayah melalui WhatsApp.',
     ),
     ScamDetail(
       title: 'Penipuan Sokongan Teknikal & Bank',
@@ -145,6 +169,11 @@ class TrendsView extends StatelessWidget {
         'Bank Negara Malaysia: 1-300-88-5465.',
         'PDRM CCID: 03-2610 1559.'
       ],
+      youtubeVideoId: 'f0sTz_3mJkY',
+      youtubeVideoTitle: 'Video: Modus Operandi Scam Pegawai Bank & Pop-up Virus',
+      exampleSender: 'Amaran Keselamatan / SMS (+6013-882 1904)',
+      exampleMessage: '"AMARAN: Komputer atau telefon anda dikesan dijangkiti virus perbankan berbahaya. Untuk elak akaun simpanan disekat, segera pasang aplikasi kawalan jauh AnyDesk atau klik pautan ini untuk juruteknik kami bantu: http://support-security-clean.net"',
+      exampleWarningNotes: 'Jangan sesekali pasang aplikasi AnyDesk atau TeamViewer atas arahan orang lain. Bank tidak pernah meminta anda berkongsi akses skrin atau memberikan nombor TAC/OTP.',
     ),
     ScamDetail(
       title: 'Cabutan Bertuah & Hadiah Palsu',
@@ -178,6 +207,11 @@ class TrendsView extends StatelessWidget {
         'Hubungi National Scam Response Centre di 997.',
         'Laporkan kepada MCMC dan PDRM CCID.'
       ],
+      youtubeVideoId: '8z3YnI9Q2bE',
+      youtubeVideoTitle: 'Video: Taktik Cabutan Bertuah & Hadiah Wang Tunai Palsu',
+      exampleSender: 'SMS Notifikasi Hadiah (+6019-338 7201)',
+      exampleMessage: '"TAHNIAH! Nombor telefon anda telah dipilih memenangi Hadiah Utama Cabutan Bertuah Shopee / Petronas bernilai RM50,000 Tunai! Sila hubungi Pegawai Khidmat Pelanggan En. Razak di WhatsApp 011-xxxxxxx dan buat bayaran duti setem sebanyak RM350 untuk menuntut hadiah."',
+      exampleWarningNotes: 'Penganjur peraduan sah tidak akan meminta sebarang bayaran wang pendahuluan untuk menuntut hadiah kemenangan. Jika perlu bayar untuk menang, itu adalah SCAM.',
     ),
     ScamDetail(
       title: 'Penipuan Penyamar Keluarga',
@@ -212,6 +246,11 @@ class TrendsView extends StatelessWidget {
         'Hubungi National Scam Response Centre (NSRC) di talian 997.',
         'Laporkan kepada PDRM CCID atau balai polis berhampiran.'
       ],
+      youtubeVideoId: '6qG1Y7T6GjM',
+      youtubeVideoTitle: 'Video: Taktik Scammer Menyamar Sebagai Anak / Ahli Keluarga',
+      exampleSender: 'WhatsApp Nombor Baru (+6011-6482 9102)',
+      exampleMessage: '"Assalamualaikum mak/ayah. Telefon saya jatuh dalam air tadi rosak teruk, ni saya guna nombor sementara kawan saya. Mak, boleh tolong transferkan RM900 ke akaun kawan saya ni dulu tak? Urgent sangat nak bayar bil bengkel petang ni mak. Nanti esok gaji saya ganti balik."',
+      exampleWarningNotes: 'Scammer sentiasa menggunakan alasan "telefon rosak" dan meminta wang dipindahkan ke akaun pihak ketiga (keldai akaun). Sentiasa telefon nombor asal ahli keluarga untuk mendengar suara sebenar mereka sebelum buat apa-apa pemindahan.',
     ),
   ];
 
@@ -264,6 +303,11 @@ class TrendsView extends StatelessWidget {
         'Talian Hotline Cyber999: 1-300-88-2999',
         'Bank Negara (BNMTELELINK): 1-300-88-5465',
       ],
+      youtubeVideoId: '3d8K1VqJ5Z8',
+      youtubeVideoTitle: 'Video: Lindungi WhatsApp Daripada Digodam & Diperdaya',
+      exampleSender: 'WhatsApp Nombor Asing (+62 812-9938 1204)',
+      exampleMessage: '"Hai, bungkusan kurier anda telah tiba di pusat agihan tetapi alamat tidak lengkap. Sila klik pautan ini untuk sahkan penghantaran dan bayar caj simpanan RM10: http://poslaju-express-redelivery.info/track"',
+      exampleWarningNotes: 'Pos Laju atau J&T tidak pernah menghantar mesej WhatsApp menggunakan nombor luar negara untuk meminta pembayaran caj tambahan melalui pautan luar.',
     ),
     ScamDetail(
       title: 'Perlindungan Penipuan E-mel',
@@ -315,6 +359,11 @@ class TrendsView extends StatelessWidget {
         'Talian Hotline Cyber999: 1-300-88-2999',
         'Bank Negara (BNMTELELINK): 1-300-88-5465',
       ],
+      youtubeVideoId: '3d8K1VqJ5Z8',
+      youtubeVideoTitle: 'Video: Lindungi WhatsApp Daripada Digodam & Diperdaya',
+      exampleSender: 'WhatsApp Nombor Asing (+62 812-9938 1204)',
+      exampleMessage: '"Hai, bungkusan kurier anda telah tiba di pusat agihan tetapi alamat tidak lengkap. Sila klik pautan ini untuk sahkan penghantaran dan bayar caj simpanan RM10: http://poslaju-express-redelivery.info/track"',
+      exampleWarningNotes: 'Pos Laju atau J&T tidak pernah menghantar mesej WhatsApp menggunakan nombor luar negara untuk meminta pembayaran caj tambahan melalui pautan luar.',
     ),
     ScamDetail(
       title: 'Perlindungan Penipuan SMS',
@@ -367,6 +416,11 @@ class TrendsView extends StatelessWidget {
         'Talian Hotline Cyber999: 1-300-88-2999',
         'Bank Negara (BNMTELELINK): 1-300-88-5465',
       ],
+      youtubeVideoId: '3d8K1VqJ5Z8',
+      youtubeVideoTitle: 'Video: Lindungi WhatsApp Daripada Digodam & Diperdaya',
+      exampleSender: 'WhatsApp Nombor Asing (+62 812-9938 1204)',
+      exampleMessage: '"Hai, bungkusan kurier anda telah tiba di pusat agihan tetapi alamat tidak lengkap. Sila klik pautan ini untuk sahkan penghantaran dan bayar caj simpanan RM10: http://poslaju-express-redelivery.info/track"',
+      exampleWarningNotes: 'Pos Laju atau J&T tidak pernah menghantar mesej WhatsApp menggunakan nombor luar negara untuk meminta pembayaran caj tambahan melalui pautan luar.',
     ),
     ScamDetail(
       title: 'Perlindungan Penipuan Panggilan Telefon',

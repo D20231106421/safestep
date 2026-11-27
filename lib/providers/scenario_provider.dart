@@ -30,7 +30,7 @@ class ScenarioProvider with ChangeNotifier {
     notifyListeners();
     await _storageService.saveScenarios(_masterScenarios);
 
-    // Save custom scenarios to Cloud Firestore
+    // Save custom scenarios to Supabase
     await _storageService.saveCustomScenarioToCloud(scenario);
   }
 
@@ -39,7 +39,7 @@ class ScenarioProvider with ChangeNotifier {
     notifyListeners();
     await _storageService.saveScenarios(_masterScenarios);
 
-    // Delete custom scenario from Cloud Firestore
+    // Delete custom scenario from Supabase
     await _storageService.deleteCustomScenarioFromCloud(id);
   }
 

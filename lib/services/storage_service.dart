@@ -18,7 +18,7 @@ class StorageService {
   // ---------------------------------------------------------------------------
 
   /// Load scenarios from storage, fallback to default curated scenarios list,
-  /// and automatically restore user's custom scenarios from Firestore if available.
+  /// and automatically restore user's custom scenarios from Supabase if available.
   Future<List<Scenario>> loadScenarios() async {
     final prefs = await SharedPreferences.getInstance();
     final data = prefs.getString(_scenariosKey);
@@ -53,13 +53,13 @@ class StorageService {
       }
     }
 
-    // Background restore of custom scenarios from Cloud Firestore
+    // Background restore of custom scenarios from Supabase
     _syncCustomScenariosFromCloud(list);
 
     return list;
   }
 
-  /// Syncs and merges custom scenarios from Firestore into local storage.
+  /// Syncs and merges custom scenarios from Supabase into local storage.
   Future<List<Scenario>> _syncCustomScenariosFromCloud(List<Scenario> currentList) async {
     try {
       final userId = await _identity.getOrCreateUserId();
@@ -87,14 +87,14 @@ class StorageService {
     return currentList;
   }
 
-  /// Save scenarios to SharedPreferences and sync any custom ones to Firestore.
+  /// Save scenarios to SharedPreferences and sync any custom ones to Supabase.
   Future<void> saveScenarios(List<Scenario> list) async {
     final prefs = await SharedPreferences.getInstance();
     final String data = json.encode(list.map((s) => s.toJson()).toList());
     await prefs.setString(_scenariosKey, data);
   }
 
-  /// Save a single custom scenario to both local storage and Firestore.
+  /// Save a single custom scenario to both local storage and Supabase.
   Future<void> saveCustomScenarioToCloud(Scenario scenario) async {
     try {
       final userId = await _identity.getOrCreateUserId();
@@ -104,7 +104,7 @@ class StorageService {
     }
   }
 
-  /// Delete a custom scenario from Firestore.
+  /// Delete a custom scenario from Supabase.
   Future<void> deleteCustomScenarioFromCloud(int id) async {
     try {
       final userId = await _identity.getOrCreateUserId();
@@ -131,7 +131,7 @@ class StorageService {
 
   /// Load simulation history logs:
   /// 1. Reads local cache for instant UI rendering.
-  /// 2. If local cache is empty (e.g. after reinstall), pulls from Firestore.
+  /// 2. If local cache is empty (e.g. after reinstall), pulls from Supabase.
   Future<List<HistoryLog>> loadHistory() async {
     final prefs = await SharedPreferences.getInstance();
     final data = prefs.getString(_historyKey);
@@ -148,13 +148,13 @@ class StorageService {
       }
     }
 
-    // If local storage is empty (clean reinstall), try pulling from Cloud Firestore
+    // If local storage is empty (clean reinstall), try pulling from Supabase
     if (localLogs.isEmpty) {
       try {
         final userId = await _identity.getOrCreateUserId();
         final cloudLogs = await _cloud.fetchHistory(userId);
         if (cloudLogs.isNotEmpty) {
-          debugPrint('StorageService: Restored ${cloudLogs.length} history logs from Firestore.');
+          debugPrint('StorageService: Restored ${cloudLogs.length} history logs from Supabase.');
           await saveHistory(cloudLogs);
           return cloudLogs;
         }
@@ -166,14 +166,14 @@ class StorageService {
     return localLogs;
   }
 
-  /// Save history logs locally and push newest additions to Firestore.
+  /// Save history logs locally and push newest additions to Supabase.
   Future<void> saveHistory(List<HistoryLog> list) async {
     final prefs = await SharedPreferences.getInstance();
     final String data = json.encode(list.map((l) => l.toJson()).toList());
     await prefs.setString(_historyKey, data);
   }
 
-  /// Save a single simulation report log to Firestore.
+  /// Save a single simulation report log to Supabase.
   Future<void> saveHistoryLogToCloud(HistoryLog log) async {
     try {
       final userId = await _identity.getOrCreateUserId();
@@ -184,7 +184,7 @@ class StorageService {
     }
   }
 
-  /// Delete a history log from Firestore.
+  /// Delete a history log from Supabase.
   Future<void> deleteHistoryLogFromCloud(int logId) async {
     try {
       final userId = await _identity.getOrCreateUserId();
@@ -194,7 +194,7 @@ class StorageService {
     }
   }
 
-  /// Clear all history logs from Firestore.
+  /// Clear all history logs from Supabase.
   Future<void> clearAllHistoryFromCloud() async {
     try {
       final userId = await _identity.getOrCreateUserId();
